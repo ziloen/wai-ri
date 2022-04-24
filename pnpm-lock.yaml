@@ -14,23 +14,27 @@ importers:
       eslint: 8.14.0
       typescript: 4.6.3
 
+  packages/all:
+    specifiers:
+      '@wai-ri/core': workspace:*
+      '@wai-ri/random': workspace:*
+      '@wai-ri/shared': workspace:*
+    dependencies:
+      '@wai-ri/core': link:../core
+      '@wai-ri/random': link:../random
+      '@wai-ri/shared': link:../shared
+
   packages/core:
     specifiers:
       '@wai-ri/shared': workspace:*
-      typescript: ^4.6.3
     dependencies:
       '@wai-ri/shared': link:../shared
-    devDependencies:
-      typescript: 4.6.3
 
   packages/random:
     specifiers:
       '@wai-ri/shared': workspace:*
-      typescript: ^4.6.3
     dependencies:
       '@wai-ri/shared': link:../shared
-    devDependencies:
-      typescript: 4.6.3
 
   packages/shared:
     specifiers: {}
