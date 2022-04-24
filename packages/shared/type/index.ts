@@ -175,7 +175,7 @@ type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...
 
 
 /** O 扩展 O 类型 */
-export type Extension<O extends ObjectType> = O & ObjectType
+export type Extensible<O extends ObjectType> = O & ObjectType
 
 
 

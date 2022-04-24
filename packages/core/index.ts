@@ -1,4 +1,4 @@
-import { Extension } from '@wai-ri/shared'
+import { Extensible } from '@wai-ri/shared'
 
 export * from '@wai-ri/shared'
 
@@ -11,4 +11,4 @@ export * from './useEnum'
 export * from './sleep'
 export * from './switchLatest'
 
-export const extend: <T, U extends Extension<Partial<T>>>(target: T, source: U) => T = Object.assign
+export const extend: <T, U extends Extensible<Partial<T>>>(target: T, source: U) => T = Object.assign
