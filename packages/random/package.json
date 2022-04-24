@@ -1,6 +1,6 @@
 {
-  "name": "@wai-ri/core",
-  "version": "0.0.3",
+  "name": "@wai-ri/random",
+  "version": "0.0.4",
   "keywords": [
     "utils"
   ],
