@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "moduleResolution": "node",
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "declaration": true,
+    "declarationDir": "./types",
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "noUnusedLocals": false,
+    "paths": {
+      "@wai-ri/core": ["./packages/core/index.ts"],
+      "@wai-ri/core/*": ["./packages/core/*"],
+      "@wai-ri/shared": ["./packages/shared/index.ts"],
+      "@wai-ri/shared/*": ["./packages/shared/*"]
+    },
+  },
+  "include": [
+    "packages",
+    // "packages/.vitepress/components/*.vue",
+    // "packages/.vitepress/*.ts",
+    // "meta",
+    // "vitest.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/**/*.stories.tsx",
+    "**/**/*.md",
+    "**/dist",
+    "packages/.test",
+    "packages/_docs"
+  ]
+}

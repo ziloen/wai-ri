@@ -1,0 +1,10 @@
+{
+  "name": "@wai-ri/shared",
+  "version": "0.0.2",
+  "keywords": [
+    "utils"
+  ],
+  "license": "MIT",
+  "author": "ziloen",
+  "main": "./index.ts"
+}

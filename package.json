@@ -1,11 +1,18 @@
 {
-  "name": "wai-ri",
-  "version": "0.0.1",
-  "description": "",
+  "name": "@wai-ri/monorepo",
+  "private": true,
+  "version": "0.0.2",
+  "description": "util",
+  "author": "ziloen",
+  "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "bumpp package.json packages/*/package.json --commit && pnpm -r publish --access public"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "@types/eslint": "^8.4.1",
+    "bumpp": "^7.1.1",
+    "eslint": "^8.14.0",
+    "typescript": "^4.6.3"
+  }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "@wai-ri/core",
+  "version": "0.0.2",
+  "keywords": [
+    "utils"
+  ],
+  "license": "MIT",
+  "author": "ziloen",
+  "main": "./index.ts",
+  "dependencies": {
+    "@wai-ri/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
+}
