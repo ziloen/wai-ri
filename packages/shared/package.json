@@ -1,10 +1,13 @@
 {
   "name": "@wai-ri/shared",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "keywords": [
     "utils"
   ],
   "license": "MIT",
   "author": "ziloen",
-  "main": "./index.ts"
+  "main": "./index.ts",
+  "peerDependencies": {
+    "typescript": ">=4.6.3"
+  }
 }

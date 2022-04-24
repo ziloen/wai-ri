@@ -1,6 +1,6 @@
 {
   "name": "@wai-ri/core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "keywords": [
     "utils"
   ],
@@ -10,7 +10,7 @@
   "dependencies": {
     "@wai-ri/shared": "workspace:*"
   },
-  "devDependencies": {
-    "typescript": "^4.6.3"
+  "peerDependencies": {
+    "typescript": ">=4.6.3"
   }
 }
