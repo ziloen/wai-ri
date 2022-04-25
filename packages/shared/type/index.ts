@@ -10,7 +10,7 @@ export type AsyncFn<Args extends any[] = any[], Return = any> = (...args: Args) 
 
 
 
-/** A 数组的元素类型 */
+/** 数组的元素类型 */
 export type ArrayType<A extends any[]> = A extends Array<infer P> ? P : never
 
 
