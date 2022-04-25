@@ -1,4 +1,4 @@
-import { Extensible } from '@wai-ri/shared'
+import type { Extensible } from '@wai-ri/shared'
 
 export * from '@wai-ri/shared'
 
