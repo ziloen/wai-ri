@@ -1,6 +1,6 @@
 
 
-export type ObjectType = Record<keyof any, unknown>
+export type ObjectType<K extends keyof any = keyof any, V = unknown> = Record<K, V>
 
 
 /** 任意函数 */
@@ -74,7 +74,7 @@ type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ..
 
 
 /** 展开类型 */
-export type Expand<T> = T extends ObjectType ? { [P in keyof T]: Expand<T[P]> } : IsUnion<T> extends true ? UnionToTuple<T>[number] : T
+export type Expand<T> = T extends ObjectType ? { [P in keyof T]: Expand<T[P]> } : IsUnion<T> extends true ? Expand<UnionToTuple<T>[number]> : T
 
 
 
