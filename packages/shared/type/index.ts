@@ -43,16 +43,16 @@ export type KeysMatching<Obj, Val> = { [Key in keyof Obj]-?: Obj[Key] extends Va
 
 type SetValuesTokeyType<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
   [K in keyof T]: T[K] extends keyof any
-    ? T[K]
-    : T[K] extends true
-      ? 'true'
-      : T[K] extends false
-        ? 'false'
-        : T[K] extends null
-          ? 'null'
-          : T[K] extends undefined
-            ? 'undefined'
-            : never
+  ? T[K]
+  : T[K] extends true
+  ? 'true'
+  : T[K] extends false
+  ? 'false'
+  : T[K] extends null
+  ? 'null'
+  : T[K] extends undefined
+  ? 'undefined'
+  : never
 }
 
 /** 反转 对象 值与键 */
@@ -63,6 +63,18 @@ export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null 
 
 /** 反转 Tuple 顺序 */
 export type ReverseTuple<T extends readonly unknown[]> = T extends [...infer Rest, infer Last] ? [Last, ...ReverseTuple<Rest>] : []
+
+
+
+type IsUnion<T, U = T> = T extends U ? [U] extends [T] ? false : true : never
+type UnionToIntersection<U> = (U extends any ? Fn<[U]> : never) extends Fn<[infer Arg]> ? Arg : never
+type UnionLast<T> = UnionToIntersection<T extends unknown ? Fn<[T]> : never> extends Fn<[infer A]> ? A : never
+type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ...UnionToTuple<Exclude<U, Last>>]
+
+
+
+/** 展开类型 */
+export type Expand<T> = T extends ObjectType ? { [P in keyof T]: Expand<T[P]> } : IsUnion<T> extends true ? UnionToTuple<T>[number] : T
 
 
 
