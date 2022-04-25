@@ -3,8 +3,9 @@
 export type ObjectType<K extends keyof any = keyof any, V = unknown> = Record<K, V>
 
 
-/** 任意函数 */
+/** 函数 */
 export type Fn<Args extends any[] = any[], Return = any> = (...args: Args) => Return
+/** 异步函数 */
 export type AsyncFn<Args extends any[] = any[], Return = any> = (...args: Args) => Promise<Return>
 
 
@@ -66,6 +67,7 @@ export type ReverseTuple<T extends readonly unknown[]> = T extends [...infer Res
 
 
 
+// 一堆工具
 type IsUnion<T, U = T> = T extends U ? [U] extends [T] ? false : true : never
 type UnionToIntersection<U> = (U extends any ? Fn<[U]> : never) extends Fn<[infer Arg]> ? Arg : never
 type UnionLast<T> = UnionToIntersection<T extends unknown ? Fn<[T]> : never> extends Fn<[infer A]> ? A : never
