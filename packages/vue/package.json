@@ -1,0 +1,17 @@
+{
+  "name": "@wai-ri/vue",
+  "version": "0.0.17",
+  "keywords": [
+    "utils"
+  ],
+  "license": "MIT",
+  "author": "ziloen",
+  "main": "./index.ts",
+  "dependencies": {
+    "@wai-ri/shared": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": ">=4.6.3",
+    "vue": ">=3.2.33"
+  }
+}
