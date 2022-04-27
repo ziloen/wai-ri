@@ -5,20 +5,6 @@ import type { Selection } from 'd3'
 
 type ValueFn<T extends Element, D, R> = (datum: D, index: number, groups: T[]) => R
 
-type D3DragEventType = 'start' | 'drag' | 'end'
-type D3DragEvent<T extends D3DragEventType, D> = {
-  active: number
-  dx: number
-  dy: number
-  x: number
-  y: number
-  identifier: string
-  type: T
-  target: Fn
-  subject: D
-  sourceEvent: MouseEvent
-}
-
 
 /** 
  * 同.attr函数参数，但是一次设置多个attr
@@ -42,6 +28,23 @@ export function setAttrs<T extends Element, D>(fn: ValueFn<T, D, ObjectType<stri
 }
 
 
+type D3DragEventType = 'start' | 'drag' | 'end'
+type D3DragEvent<T extends D3DragEventType, D> = {
+  active: number
+  dx: number
+  dy: number
+  x: number
+  y: number
+  identifier: string
+  type: T
+  target: Fn
+  subject: D
+  sourceEvent: MouseEvent
+}
+
+
+type DragFn<E extends D3DragEventType,T, D> = (this: T, event: D3DragEvent<E, D>, data: D, thisArg: T) => any
+
 
 /**
  * 拖拽事件
@@ -60,9 +63,9 @@ export function setAttrs<T extends Element, D>(fn: ValueFn<T, D, ObjectType<stri
  * )) 
  */
 export function setDrag<T extends Element, D>(
-  start: (this: T, event: D3DragEvent<'start', D>, data: D, thisArg: T) => any,
-  drag: (this: T, event: D3DragEvent<'drag', D>, data: D, thisArg: T) => any,
-  end: (this: T, event: D3DragEvent<'end', D>, data: D, thisArg: T) => any,
+  start: DragFn<'start', T, D>,
+  drag: DragFn<'drag', T, D>,
+  end: DragFn<'end', T, D>,
 ) {
   return d3.drag<T, D>()
     .on("start", function (e, d) { start.call(this, e, d, this) })
