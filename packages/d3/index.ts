@@ -65,13 +65,7 @@ export function setDrag<T extends Element, D>(
   end: (this: T, event: D3DragEvent<'end', D>, data: D, thisArg: T) => any,
 ) {
   return d3.drag<T, D>()
-    .on("start", function (e, d) {
-      start.call(this, e, d, this)
-    })
-    .on("drag", function (e, d) {
-      drag.call(this, e, d, this)
-    })
-    .on("end", function (e, d) {
-      end.call(this, e, d, this)
-    })
+    .on("start", function (e, d) { start.call(this, e, d, this) })
+    .on("drag", function (e, d) { drag.call(this, e, d, this) })
+    .on("end", function (e, d) { end.call(this, e, d, this) })
 }
