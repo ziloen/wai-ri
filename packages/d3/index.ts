@@ -1,6 +1,6 @@
-import type { ObjectType, Fn, ArrayType } from '@wai-ri/shared'
-import type { BaseType, EnterElement } from 'd3'
+import type { ObjectType, Fn } from '@wai-ri/shared'
 import * as d3 from 'd3'
+import type { Selection } from 'd3'
 
 
 type ValueFn<T extends Element, D, R> = (datum: D, index: number, groups: T[]) => R
@@ -21,7 +21,7 @@ type D3DragEvent<T extends D3DragEventType, D> = {
 
 
 /** 
- * 一次设置多个attr
+ * 同.attr函数参数，但是一次设置多个attr
  * @example
  * selection
  *   .each(setAttrs((data, index, group) => {
@@ -51,8 +51,8 @@ export function setAttrs<T extends Element, D>(fn: ValueFn<T, D, ObjectType<stri
  * @example 
  * selection.call(setDrag(
  *   nothing,
- *   function(event, data) {
- *     d3.select(this)
+ *   (event, data, thisArg) => {
+ *     d3.select(thisArg)
  *       .attr('x', event.x)
  *       .attr('y', event.y)
  *   },
@@ -60,12 +60,21 @@ export function setAttrs<T extends Element, D>(fn: ValueFn<T, D, ObjectType<stri
  * )) 
  */
 export function setDrag<T extends Element, D>(
-  start: (this: T, event: D3DragEvent<'start', D>, data: D) => any,
-  drag: (this: T, event: D3DragEvent<'drag', D>, data: D) => any,
-  end: (this: T, event: D3DragEvent<'end', D>, data: D) => any,
+  start: (this: T, event: D3DragEvent<'start', D>, data: D, target: Selection<T, D, null, undefined>) => any,
+  drag: (this: T, event: D3DragEvent<'drag', D>, data: D, target: Selection<T, D, null, undefined>) => any,
+  end: (this: T, event: D3DragEvent<'end', D>, data: D, target: Selection<T, D, null, undefined>) => any,
 ) {
   return d3.drag<T, D>()
-    .on("start", start)
-    .on("drag", drag)
-    .on("end", end)
+    .on("start", function (e, d) {
+      const target = d3.select(this)
+      start.call(this, e, d, target as Selection<T, D, null, undefined>)
+    })
+    .on("drag", function (e, d) {
+      const target = d3.select(this)
+      drag.call(this, e, d, target as Selection<T, D, null, undefined>)
+    })
+    .on("end", function (e, d) {
+      const target = d3.select(this)
+      end.call(this, e, d, target as Selection<T, D, null, undefined>)
+    })
 }
