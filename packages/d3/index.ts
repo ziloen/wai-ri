@@ -60,21 +60,18 @@ export function setAttrs<T extends Element, D>(fn: ValueFn<T, D, ObjectType<stri
  * )) 
  */
 export function setDrag<T extends Element, D>(
-  start: (this: T, event: D3DragEvent<'start', D>, data: D, target: Selection<T, D, null, undefined>) => any,
-  drag: (this: T, event: D3DragEvent<'drag', D>, data: D, target: Selection<T, D, null, undefined>) => any,
-  end: (this: T, event: D3DragEvent<'end', D>, data: D, target: Selection<T, D, null, undefined>) => any,
+  start: (this: T, event: D3DragEvent<'start', D>, data: D, thisArg: T) => any,
+  drag: (this: T, event: D3DragEvent<'drag', D>, data: D, thisArg: T) => any,
+  end: (this: T, event: D3DragEvent<'end', D>, data: D, thisArg: T) => any,
 ) {
   return d3.drag<T, D>()
     .on("start", function (e, d) {
-      const target = d3.select(this)
-      start.call(this, e, d, target as Selection<T, D, null, undefined>)
+      start.call(this, e, d, this)
     })
     .on("drag", function (e, d) {
-      const target = d3.select(this)
-      drag.call(this, e, d, target as Selection<T, D, null, undefined>)
+      drag.call(this, e, d, this)
     })
     .on("end", function (e, d) {
-      const target = d3.select(this)
-      end.call(this, e, d, target as Selection<T, D, null, undefined>)
+      end.call(this, e, d, this)
     })
 }
