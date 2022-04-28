@@ -76,7 +76,12 @@ type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ..
 
 
 /** 展开类型 */
-export type Expand<T> = T extends ObjectType ? { [P in keyof T]: Expand<T[P]> } : IsUnion<T> extends true ? Expand<UnionToTuple<T>[number]> : T
+export type Expand<T> = T extends ObjectType ? { [P in keyof T]: T[P] } : IsUnion<T> extends true ? UnionToTuple<T>[number] : T
+
+
+
+/** 递归展开，TODO: 增加递归深度？ */
+export type ExpandDeep<T> = T extends ObjectType ? { [P in keyof T]: Expand<T[P]> } : IsUnion<T> extends true ? Expand<UnionToTuple<T>[number]> : T
 
 
 
@@ -186,10 +191,13 @@ type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...
 
 
 
+/** 用 New类型 扩展 Org类型*/
+export type Extension<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
 
 
-/** O 扩展 O 类型 */
-export type Extensible<O extends ObjectType> = O & ObjectType
+
+/** 可扩展类型 */
+export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
 
 
 
