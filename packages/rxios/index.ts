@@ -5,10 +5,10 @@ import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios'
 
 
 export function useRxios(instance: AxiosInstance) {
-  return function rxios<Data, Config>(config: AxiosRequestConfig<Config>) {
-    return new Observable<AxiosResponse<Data, Config>>(observer => {
+  return function rxios<ResponseData, ConfigData>(config: AxiosRequestConfig<ConfigData>) {
+    return new Observable<AxiosResponse<ResponseData, ConfigData>>(observer => {
       const controller = new AbortController()
-      instance.request<Data>({ ...config, signal: controller.signal })
+      instance.request<ResponseData>({ ...config, signal: controller.signal })
         .then(val => (observer.next(val), observer.complete()))
         .catch(err => AxiosStatic.isCancel(err) ? observer.complete() : observer.error(err))
       return controller.abort.bind(controller)
