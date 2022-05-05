@@ -209,15 +209,23 @@ export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
 // TODO: 数学运算
 // 正整数加减乘除, 大于小于, 大于等于, 小于等于
 namespace Num {
-  export type Len<T extends any[]> = T['length']
+
   // export
   // export type
 }
 
 // TODO: 数组操作
-// 首尾元素 Pop, Push, Splice,
+// 首尾元素 Pop, Push, Splice, Join
 namespace Arr {
+  export type Length<T extends any[]> = T['length']
   export type Pop<T extends any[]> = T extends [...infer Rest, infer any] ? Rest : T
+}
+
+
+// TODO: 字符串操作
+// Length, Split, 
+namespace Str {
+  export type Split<T> = []
 }
 
 
