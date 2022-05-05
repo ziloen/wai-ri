@@ -6,7 +6,7 @@ import type { Selection } from 'd3'
 type ValueFn<T extends Element, D, R> = (datum: D, index: number, groups: T[]) => R
 
 
-/** 
+/**
  * 同.attr函数参数，但是一次设置多个attr
  * @example
  * selection
@@ -43,7 +43,7 @@ type D3DragEvent<T extends D3DragEventType, D> = {
 }
 
 
-type DragFn<E extends D3DragEventType,T, D> = (this: T, event: D3DragEvent<E, D>, data: D, thisArg: T) => any
+type DragFn<E extends D3DragEventType, T, D> = (this: T, event: D3DragEvent<E, D>, data: D, thisArg: T) => any
 
 
 /**
@@ -51,7 +51,7 @@ type DragFn<E extends D3DragEventType,T, D> = (this: T, event: D3DragEvent<E, D>
  * @param start 开始事件
  * @param drag 拖拽事件
  * @param end 结束事件
- * @example 
+ * @example
  * selection.call(setDrag(
  *   nothing,
  *   (event, data, thisArg) => {
@@ -60,7 +60,7 @@ type DragFn<E extends D3DragEventType,T, D> = (this: T, event: D3DragEvent<E, D>
  *       .attr('y', event.y)
  *   },
  *   nothing
- * )) 
+ * ))
  */
 export function setDrag<T extends Element, D>(
   start: DragFn<'start', T, D>,

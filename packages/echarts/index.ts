@@ -4,7 +4,12 @@ import { init } from 'echarts'
 import type { EChartsOption, ECharts } from 'echarts'
 
 
-
+/**
+ * 挂载后生成，卸载后删除，深度监听dataOption
+ * @param id 要挂载dom元素的id
+ * @param initOption 初始化的图表选项，只会在挂载时使用一次
+ * @param dataOption 数据选项，发生改变会重新 setOption
+ */
 export function useEcharts(id: string, initOption: EChartsOption, dataOption: Ref<EChartsOption>) {
   const chart: { value: ECharts | null } = {
     value: null
