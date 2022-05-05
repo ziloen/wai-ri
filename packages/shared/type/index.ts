@@ -76,7 +76,7 @@ type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ..
 
 
 
-/** 展开类型, Promise无效 */
+/** 展开类型 */
 export type Expand<T, Deep extends 0 | 1 | 2 = 2> =
   Deep extends 0 ? T :
   T extends ObjectType ? { [K in keyof T]: Expand<T[K], Deep extends 2 ? 1 : 0> } :
