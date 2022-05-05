@@ -237,7 +237,11 @@ namespace Union {
   /** 去掉最后一个元素 */
   export type Pop<T extends any[]> = T extends readonly [...infer Rest, any] ? Rest : T
 
-  /** 生成固定长度元组 */
+  /**
+   * 生成固定长度元组
+   * @param T 类型
+   * @param L 长度
+   */
   export type New<T, L extends number, A extends unknown[] = []> = A['length'] extends L ? A : New<T, L, [T, ...A]>
 
   /** 向最后添加一项 */
@@ -267,7 +271,7 @@ namespace String {
     : [...It, Str]
 
   /**
-   * 字符串分离
+   * 分离字符串
    * @param Str 要分离的字符串
    * @param Devider 分隔符
    */
@@ -291,83 +295,17 @@ namespace String {
 
 // TODO: 函数
 namespace Function {
-  /** 函数参数长度 如果有重载会怎么样? */
-  export type Length<T extends (...args: any[]) => any> = Union.Length<Parameters<T>>
+  /** 函数参数长度 函数重载会选最后一个? */
+  export type Length<T extends Fn> = Union.Length<Parameters<T>>
 
   /** 设置参数类型 */
-  export type SetParams<T, P extends any[]> = T extends (...arg: any[]) => infer R ? (...args: P) => R : never
+  export type SetParams<T extends Fn, P extends any[]> = T extends Fn<any[], infer R> ? Fn<P, R> : never
 
   /** 设置返回类型 */
-  export type SetReturn<T, R> = T extends (...args: infer P) => any ? (...args: P) => R : never
+  export type SetReturn<T extends Fn, R> = T extends Fn<infer P, any> ? Fn<P, R> : never
 
   export type New<Args extends any[] = any[], Return = any> = (...args: Args) => Return
 }
 
 
 
-/** 是否为 整数 */
-export function isInteger(val: unknown): val is number {
-  return Number.isInteger(val)
-}
-
-
-
-/** 是否为 NaN */
-export function isNaN(val: unknown): boolean {
-  return Number.isNaN(val)
-}
-
-
-
-/** 是否为 null */
-export function isNull(val: unknown): val is null {
-  return null === val
-}
-
-
-
-/** 是否为 boolean */
-export function isBoolean(val: unknown): val is boolean {
-  return typeof val === 'boolean'
-}
-
-
-
-/** 是否为 nullish */
-export function isNil(val: unknown): val is null | undefined {
-  return (
-    val === undefined ||
-    val === null
-  )
-}
-
-
-
-/** 是否为 假值(不包括 0 和 '') */
-export function isFalsy(val: unknown): val is (null | undefined | false) {
-  return (
-    val === undefined ||
-    val === null ||
-    val === false
-  )
-}
-
-
-
-/** 断言 值不为空，为空抛出错误 */
-export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
-  if (val === null || val === undefined)
-    throw new Error('断言失败')
-}
-
-
-
-/** 是否为数组 */
-export const isArray = Array.isArray
-
-
-
-/** 判断 key is keyof obj */
-export function isKeyof<O extends ObjectType>(obj: O, key: string | number | symbol): key is keyof O {
-  return key in obj
-}
