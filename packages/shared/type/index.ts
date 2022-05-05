@@ -76,7 +76,7 @@ type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ..
 
 
 
-/** 展开类型 */
+/** 展开类型, Promise无效 */
 export type Expand<T> =
   T extends ObjectType ? { [K in keyof T]: T[K] } :
   IsUnion<T> extends true ? UnionToTuple<T>[number] : T
@@ -206,7 +206,7 @@ export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
 
 
 
-// TODO: 数学运算
+// TODO: 数字运算
 // 正整数加减乘除, 大于小于, 大于等于, 小于等于
 namespace Num {
 
@@ -223,13 +223,14 @@ namespace Arr {
 
 
 // TODO: 字符串操作
-// Length, Split, 
+// Length, Split, Replace
 namespace Str {
   export type Split<T> = []
 }
 
 
-//
+// TODO: 函数
+// Length,
 // namespace Func {
 //  type SetParam
 //  type SetReturn
