@@ -24,6 +24,7 @@ export function random<T>(...args: [T[]] | [boolean?] | [number, boolean?] | [nu
 
   // 初始化
   let min = 0, max = 1
+  // TODO: Number.isInteger 判断 min 和 max
   const is_float = args.at(-1) === true ? true : false
 
   if (typeof args[0] === 'number') {
