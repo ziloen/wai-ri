@@ -77,12 +77,12 @@ type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ..
 
 
 /** 展开类型, Promise无效 */
-export type Expand<T, Deep extends 0 | 1 = 1> =
+export type Expand<T, Deep extends 0 | 1 | 2 = 2> =
   Deep extends 0 ? T :
-  T extends ObjectType ? { [K in keyof T]: T[K] } :
+  T extends ObjectType ? { [K in keyof T]: Expand<T[K], Deep extends 2 ? 1 : 0> } :
   IsUnion<T> extends true ? UnionToTuple<T>[number] :
-  T extends Fn<infer Params, infer Return> ? Fn<Expand<Params, 0>, Expand<Return, 0>> :
-  T extends Promise<infer Pro> ? Promise<Expand<Pro, 0>> :
+  T extends Fn<infer Params, infer Return> ? Fn<Expand<Params, Deep extends 2 ? 1 : 0>, Expand<Return, Deep extends 2 ? 1 : 0>> :
+  T extends Promise<infer Pro> ? Promise<Expand<Pro, Deep extends 2 ? 1 : 0>> :
   T
 
 
