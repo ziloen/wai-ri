@@ -80,8 +80,8 @@ export type Expand<T> = T extends ObjectType ? { [P in keyof T]: T[P] } : IsUnio
 
 
 
-/** 递归展开，TODO: 增加递归深度？ */
-export type ExpandDeep<T> = T extends ObjectType ? { [P in keyof T]: Expand<T[P]> } : IsUnion<T> extends true ? Expand<UnionToTuple<T>[number]> : T
+/** 递归展开，TODO: 增加递归深度？递归类型？ */
+export type ExpandDeep<T> = T extends ObjectType ? { [P in keyof T]: ExpandDeep<T[P]> } : IsUnion<T> extends true ? ExpandDeep<UnionToTuple<T>[number]> : T
 
 
 
