@@ -48,8 +48,8 @@ type SetValuesTokeyType<T extends Record<keyof any, keyof any | boolean | null |
   T[K] extends true ? 'true' :
   T[K] extends false ? 'false' :
   T[K] extends null ? 'null' :
-  T[K] extends undefined ? 'undefined'
-  : never
+  T[K] extends undefined ? 'undefined' :
+  never
 }
 
 /** 反转 对象 值与键 */
@@ -191,13 +191,29 @@ type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...
 
 
 
-/** 用 New类型 扩展 Org类型*/
+/** 用 New 类型 扩展 Org 类型*/
 export type Extension<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
 
 
 
 /** 可扩展类型 */
 export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
+
+
+
+// TODO: 数学运算
+// 正整数加减乘除, 大于小于, 大于等于, 小于等于
+namespace M {
+  export type Len<T extends any[]> = T['length']
+  // export
+  // export type
+}
+
+// TODO: 数组操作
+// 首尾元素 Pop, Push, Splice, 
+namespace Arr {
+  export type Pop<T extends any[]> = T extends [...infer Rest, infer any] ? Rest : T
+}
 
 
 
