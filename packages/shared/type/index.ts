@@ -1,4 +1,9 @@
 
+/**
+ * 参考：https://github.com/millsp/ts-toolbelt
+ */
+
+
 /** 对象类型，用来取代 object | {} */
 export type ObjectType<K extends keyof any = keyof any, V = unknown> = Record<K, V>
 
@@ -203,7 +208,7 @@ export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
 
 // TODO: 数学运算
 // 正整数加减乘除, 大于小于, 大于等于, 小于等于
-namespace M {
+namespace Num {
   export type Len<T extends any[]> = T['length']
   // export
   // export type
@@ -214,6 +219,13 @@ namespace M {
 namespace Arr {
   export type Pop<T extends any[]> = T extends [...infer Rest, infer any] ? Rest : T
 }
+
+
+//
+// namespace Func {
+//  type SetParam
+//  type SetReturn
+// }
 
 
 
