@@ -102,12 +102,12 @@ export type ExpandDeep<T, Deep extends number = 5> =
 // import { flow } from 'lodash-es'
 // import { OperatorFunction } from 'rxjs'
 // 去除第一个
-// type Tail<T extends unknown[]> = T extends [infer F, ...infer L] ? L : []
+// type Tail<T extends unknown[]> = T extends [any, ...infer L] ? L : []
 // Array / Truple 操作
 // type Unshift<Arr extends unknown[], T> = [T, ...Arr]
 // type Push<Arr extends unknown[], T> = [...Arr, T]
-// type Pop<Arr extends unknown[]> = Arr extends [...infer F, infer L] ? F : []
-// type Shift<Arr extends unknown[]> = Arr extends [infer F, ...infer L] ? L : []
+// type Pop<Arr extends unknown[]> = Arr extends readonly [...infer Rest, any] ? Rest : []
+// type Shift<Arr extends unknown[]> = Arr extends readonly [any, ...infer L] ? L : []
 // type Concat<Arr1 extends unknown[], Arr2 extends unknown[]> = [...Arr1, ...Arr2]
 
 
@@ -213,35 +213,95 @@ export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
 
 
 
+type Literal = string | number | bigint | boolean
+
+
 // TODO: 数字运算
 // 正整数加减乘除, 大于小于, 大于等于, 小于等于
-namespace Num {
-
+namespace Number {
+  /** 两数相加 */
+  export type Add<N1 extends number, N2 extends number> = [...Union.New<any, N1>, ...Union.New<any, N2>]['length']
+  /** 两数相减 */
+  export type Sub<N1 extends number, N2 extends number> = []['length']
+  // export type GreatThan<N1 extends number, N2 extends number>
   // export
   // export type
 }
 
-// TODO: 数组操作
-// 首尾元素 Pop, Push, Splice, Join
-namespace Arr {
+// TODO: 元组操作
+// 首尾元素 Pop, Push, Splice, Join, ToIntersection, At
+namespace Union {
+  /** 获取长度 */
   export type Length<T extends any[]> = T['length']
-  export type Pop<T extends any[]> = T extends [...infer Rest, infer any] ? Rest : T
+
+  /** 去掉最后一个元素 */
+  export type Pop<T extends any[]> = T extends readonly [...infer Rest, any] ? Rest : T
+
+  /** 生成固定长度元组 */
+  export type New<T, L extends number, A extends unknown[] = []> = A['length'] extends L ? A : New<T, L, [T, ...A]>
+
+  /** 向最后添加一项 */
+  export type Push<U extends any[], T> = [...U, T]
+
+  /** 合并为字符串 */
+  export type Join<T extends any[], Devider extends string> =
+    T extends [] ? '' :
+    // TODO: 使用 4.7 语法重构这两行的T[0]
+    T extends [Literal] ? `${T[0]}` :
+    T extends [Literal, ...infer Rest] ? `${T[0]}${Devider}${Join<Rest, Devider>}` :
+    string
 }
+
+
 
 
 // TODO: 字符串操作
 // Length, Split, Replace
-namespace Str {
-  export type Split<T> = []
+namespace String {
+  /** 字符串长度 */
+  export type Length<T extends string> = Union.Length<Split<T, ''>>
+
+  type _Split<Str extends string, Devider extends string, It extends string[] = []> =
+    Str extends `${infer StrA}${Devider}${infer StrB}`
+    ? _Split<StrB, Devider, [...It, StrA]>
+    : [...It, Str]
+
+  /**
+   * 字符串分离
+   * @param Str 要分离的字符串
+   * @param Devider 分隔符
+   */
+  export type Split<Str extends string, Devider extends string = ''> =
+    Devider extends ''
+    ? Union.Pop<_Split<Str, Devider>>
+    : _Split<Str, Devider>
+
+  /**
+   * 用 NewStr 替换 Str 中的 OldStr
+   * @param OldStr 需要替换的字符
+   * @param NewStr 替换后的字符
+   */
+  export type Replace<Str extends string, OldStr extends string, NewStr extends string> =
+    Str extends `${infer StrA}${OldStr}${infer StrB}`
+    ? `${StrA}${NewStr}${Replace<StrB, OldStr, NewStr>}`
+    : Str
 }
 
 
+
 // TODO: 函数
-// Length,
-// namespace Func {
-//  type SetParam
-//  type SetReturn
-// }
+namespace Function {
+  /** 函数参数长度 如果有重载会怎么样? */
+  export type Length<T extends (...args: any[]) => any> = Union.Length<Parameters<T>>
+
+  /** 设置参数类型 */
+  export type SetParams<T, P extends any[]> = T extends (...arg: any[]) => infer R ? (...args: P) => R : never
+
+  /** 设置返回类型 */
+  export type SetReturn<T, R> = T extends (...args: infer P) => any ? (...args: P) => R : never
+
+  export type New<Args extends any[] = any[], Return = any> = (...args: Args) => Return
+}
 
 
 
