@@ -47,7 +47,7 @@ export type KeysMatching<Obj, Val> = { [Key in keyof Obj]-?: Obj[Key] extends Va
 
 
 
-type SetValuesTokeyType<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
+type SetValuesToString<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
   [K in keyof T]:
   T[K] extends keyof any ? T[K] :
   T[K] extends true ? 'true' :
@@ -59,7 +59,7 @@ type SetValuesTokeyType<T extends Record<keyof any, keyof any | boolean | null |
 
 /** 反转 对象 值与键 */
 export type Reverse<Obj extends Record<keyof Obj, Obj[keyof Obj]>> = { [Val in ValueOf<Obj>]: KeysMatching<Obj, Val> }
-export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null | undefined>> = Reverse<SetValuesTokeyType<T>>
+export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null | undefined>> = Reverse<SetValuesToString<T>>
 
 
 
