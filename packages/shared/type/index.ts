@@ -43,16 +43,12 @@ export type KeysMatching<Obj, Val> = { [Key in keyof Obj]-?: Obj[Key] extends Va
 
 
 type SetValuesTokeyType<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
-  [K in keyof T]: T[K] extends keyof any
-  ? T[K]
-  : T[K] extends true
-  ? 'true'
-  : T[K] extends false
-  ? 'false'
-  : T[K] extends null
-  ? 'null'
-  : T[K] extends undefined
-  ? 'undefined'
+  [K in keyof T]:
+  T[K] extends keyof any ? T[K] :
+  T[K] extends true ? 'true' :
+  T[K] extends false ? 'false' :
+  T[K] extends null ? 'null' :
+  T[K] extends undefined ? 'undefined'
   : never
 }
 
@@ -76,12 +72,16 @@ type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ..
 
 
 /** 展开类型 */
-export type Expand<T> = T extends ObjectType ? { [P in keyof T]: T[P] } : IsUnion<T> extends true ? UnionToTuple<T>[number] : T
+export type Expand<T> =
+  T extends ObjectType ? { [K in keyof T]: T[K] } :
+  IsUnion<T> extends true ? UnionToTuple<T>[number] : T
 
 
 
 /** 递归展开，TODO: 增加递归深度？递归类型？ */
-export type ExpandDeep<T> = T extends ObjectType ? { [P in keyof T]: ExpandDeep<T[P]> } : IsUnion<T> extends true ? ExpandDeep<UnionToTuple<T>[number]> : T
+export type ExpandDeep<T, Deep extends number = 5> =
+  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K]> } :
+  IsUnion<T> extends true ? ExpandDeep<UnionToTuple<T>[number]> : T
 
 
 
@@ -113,7 +113,7 @@ type Last<Arr extends unknown[]> = Arr extends [...infer F, infer L] ? L : never
 // type FnType<Arg, Return> = (arg: Arg) => Return
 
 // pipe<First, Lenth = 0>
-// 如果 检查 Pipe<First, 0> extends [(arg: FirstParam) => infer FirstReturn] ? [(arg: FirstParam) => FirstReturn] : 
+// 如果 检查 Pipe<First, 0> extends [(arg: FirstParam) => infer FirstReturn] ? [(arg: FirstParam) => FirstReturn] :
 
 
 // type Func = (...args: any[]) => any
@@ -135,9 +135,9 @@ export type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['le
   ? []
   : Funcs extends [infer First, infer Second, ...infer Rest]
   ? [
-    SourceT extends never
-    ? First
-    : SetFnParams<First, [SourceT]>,
+    ([SourceT] extends [never]
+      ? First
+      : SetFnParams<First, [SourceT]>),
 
     ...PipeParams<
       Rest extends UnaryFn[]
@@ -175,7 +175,7 @@ type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...
 
 // declare function pipe<Funcs extends UnaryFn[]>(...args: PipeParams<Funcs, number>): PipeReturn<Funcs, number>
 
-// 测试 pipe --- 
+// 测试 pipe ---
 // declare function num2str(a: number): string
 // declare function str2num(a: string): number
 // declare function num2boo(a: number): boolean
