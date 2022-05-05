@@ -117,7 +117,7 @@ type Last<Arr extends unknown[]> = Arr extends [...infer F, infer L] ? L : never
 
 
 // type Func = (...args: any[]) => any
-// type Pipe<FirstArg = never, LastArg = never> = FirstArg extends never ? [] : Head<Pipe<FirstArg> extends [(arg: FirstArg) => infer R] ? [(arg: FirstArg) => R] : []> extends FnType<FirstArg, infer Return> ? [FnType<FirstArg, Return>, ...Pipe<Return>] : []
+// type Pipe<FirstArg = never, LastArg = never> = [FirstArg] extends [never] ? [] : Head<Pipe<FirstArg> extends [(arg: FirstArg) => infer R] ? [(arg: FirstArg) => R] : []> extends FnType<FirstArg, infer Return> ? [FnType<FirstArg, Return>, ...Pipe<Return>] : []
 
 // declare function pipe<F, L>(...args: Pipe<F, L>): L
 // declare function pipe<T extends Func, U extends Func, R extends Func>(...functions: [T, ...U[], R]) : (...args: Parameters<T>) => ReturnType<R>;
@@ -158,7 +158,7 @@ export type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['le
 //     ? []
 //     : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
 //       ? [
-//         SourceT extends never
+//         [SourceT] extends [never]
 //           ? First
 //           : SetFnParams<First, [SourceT]>,
 
@@ -210,7 +210,7 @@ namespace M {
 }
 
 // TODO: 数组操作
-// 首尾元素 Pop, Push, Splice, 
+// 首尾元素 Pop, Push, Splice,
 namespace Arr {
   export type Pop<T extends any[]> = T extends [...infer Rest, infer any] ? Rest : T
 }
