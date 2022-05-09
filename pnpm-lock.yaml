@@ -11,6 +11,7 @@ importers:
       echarts: ^5.3.2
       eslint: ^8.15.0
       rxjs: ^7.5.5
+      three: ^0.140.1
       typescript: ^4.6.4
       vue: ^3.2.33
     dependencies:
@@ -18,6 +19,7 @@ importers:
       d3: 7.4.4
       echarts: 5.3.2
       rxjs: 7.5.5
+      three: 0.140.1
       typescript: 4.6.4
       vue: 3.2.33
     devDependencies:
@@ -72,6 +74,12 @@ importers:
   packages/shared:
     specifiers: {}
 
+  packages/three:
+    specifiers:
+      '@wai-ri/shared': workspace:*
+    dependencies:
+      '@wai-ri/shared': link:../shared
+
   packages/vue:
     specifiers:
       '@wai-ri/shared': workspace:*
@@ -80,10 +88,25 @@ importers:
 
 packages:
 
+  /@babel/helper-validator-identifier/7.16.7:
+    resolution: {integrity: sha512-hsEnFemeiW4D08A5gUAZxLBTXpZ39P+a+DGDsHw1yxqyQ/jzFEnxf5uTEGp+3bzAbNOxU1paTgYS4ECU/IgfDw==}
+    engines: {node: '>=6.9.0'}
+    dev: false
+
   /@babel/parser/7.17.10:
     resolution: {integrity: sha512-n2Q6i+fnJqzOaq2VkdXxy2TCPCWQZHiCo0XqmrCvDWcZQKRyZzYi4Z0yxlBuN0w+r2ZHmre+Q087DSrw3pbJDQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.10
+    dev: false
+
+  /@babel/types/7.17.10:
+    resolution: {integrity: sha512-9O26jG0mBYfGkUYCYZRnBwbVLd1UZOICEr2Em6InB6jVfsAv1GKgwXHmrSg+WFWDmeKTA6vyTZiN8tCSM5Oo3A==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-validator-identifier': 7.16.7
+      to-fast-properties: 2.0.0
     dev: false
 
   /@eslint/eslintrc/1.2.3:
@@ -1490,6 +1513,15 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
+
+  /three/0.140.1:
+    resolution: {integrity: sha512-gjTMCfmbXtjD/U1Thw2Lbq4FR6H2kcy7+bd09OSqiPwU5X49va87QC2Kbrdzg8MQvkCbKAagaIbf3m3rCqmcYg==}
+    dev: false
+
+  /to-fast-properties/2.0.0:
+    resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=}
+    engines: {node: '>=4'}
+    dev: false
 
   /to-regex-range/5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}

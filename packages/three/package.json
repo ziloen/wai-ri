@@ -1,0 +1,17 @@
+{
+  "name": "@wai-ri/three",
+  "version": "0.0.28",
+  "keywords": [
+    "utils"
+  ],
+  "license": "MIT",
+  "author": "ziloen",
+  "main": "./index.ts",
+  "dependencies": {
+    "@wai-ri/shared": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "",
+    "three": ""
+  }
+}
