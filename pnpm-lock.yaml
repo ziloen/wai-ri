@@ -11,7 +11,7 @@ importers:
       echarts: ^5.3.2
       eslint: ^8.15.0
       rxjs: ^7.5.5
-      three: ^0.140.1
+      three: ^0.140.2
       typescript: ^4.6.4
       vue: ^3.2.33
     dependencies:
@@ -19,7 +19,7 @@ importers:
       d3: 7.4.4
       echarts: 5.3.2
       rxjs: 7.5.5
-      three: 0.140.1
+      three: 0.140.2
       typescript: 4.6.4
       vue: 3.2.33
     devDependencies:
@@ -116,7 +116,7 @@ packages:
       ajv: 6.12.6
       debug: 4.3.4
       espree: 9.3.2
-      globals: 13.13.0
+      globals: 13.14.0
       ignore: 5.2.0
       import-fresh: 3.3.0
       js-yaml: 4.1.0
@@ -965,7 +965,7 @@ packages:
       file-entry-cache: 6.0.1
       functional-red-black-tree: 1.0.1
       glob-parent: 6.0.2
-      globals: 13.13.0
+      globals: 13.14.0
       ignore: 5.2.0
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
@@ -1137,8 +1137,8 @@ packages:
       path-is-absolute: 1.0.1
     dev: true
 
-  /globals/13.13.0:
-    resolution: {integrity: sha512-EQ7Q18AJlPwp3vUDL4mKA0KXrXyNIQyWon6T6XQiBQF0XHvRsiCSrWmmeATpUzdJN2HhWZU6Pdl0a9zdep5p6A==}
+  /globals/13.14.0:
+    resolution: {integrity: sha512-ERO68sOYwm5UuLvSJTY7w7NP2c8S4UcXs3X1GBX8cwOr+ShOcDBbCY5mH4zxz0jsYCdJ8ve8Mv9n2YGJMB1aeg==}
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2
@@ -1514,8 +1514,8 @@ packages:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
 
-  /three/0.140.1:
-    resolution: {integrity: sha512-gjTMCfmbXtjD/U1Thw2Lbq4FR6H2kcy7+bd09OSqiPwU5X49va87QC2Kbrdzg8MQvkCbKAagaIbf3m3rCqmcYg==}
+  /three/0.140.2:
+    resolution: {integrity: sha512-DdT/AHm/TbZXEhQKQpGt5/iSgBrmXpjU26FNtj1KhllVPTKj1eG4X/ShyD5W2fngE+I1s1wa4ttC4C3oCJt7Ag==}
     dev: false
 
   /to-fast-properties/2.0.0:
