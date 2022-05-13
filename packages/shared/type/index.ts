@@ -4,10 +4,10 @@
  */
 
 
-export * as String from './String'
 export * as Function from './Function'
-export * as Union from './Union'
 export * as Number from './Number'
+export * as String from './String'
+export * as Union from './Union'
 
 
 
