@@ -1,3 +1,5 @@
+import type { ObjectType } from './index'
+
 /** 是否为 整数 */
 export function isInteger(val: unknown): val is number {
   return Number.isInteger(val)
@@ -62,5 +64,12 @@ export const isArray = Array.isArray
 
 /** 判断 key is keyof obj */
 export function isKeyof<O extends ObjectType>(obj: O, key: string | number | symbol): key is keyof O {
-  return key in obj
+
+  // return key in obj
+
+  // 等同于 in 操作符
+  // return Reflect.has(obj, key)
+
+  // 不同于 in 操作符, Object.hasOwn 不检查原型链
+  return Object.hasOwn(obj, key)
 }
