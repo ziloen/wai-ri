@@ -1,1 +1,1 @@
-export const a = 12
+export const a = ``

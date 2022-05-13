@@ -4,6 +4,13 @@
  */
 
 
+export * as String from './String'
+export * as Function from './Function'
+export * as Union from './Union'
+export * as Number from './Number'
+
+
+
 /** 对象类型，用来取代 object | {} */
 export type ObjectType<K extends keyof any = keyof any, V = unknown> = Record<K, V>
 
@@ -204,108 +211,9 @@ type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...
 
 
 /** 用 New 类型 扩展 Org 类型*/
-export type Extension<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
+export type Asign<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
 
 
 
 /** 可扩展类型 */
 export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
-
-
-
-type Literal = string | number | bigint | boolean
-
-
-// TODO: 数字运算
-// 正整数加减乘除, 大于小于, 大于等于, 小于等于
-namespace Number {
-  /** 两数相加 */
-  export type Add<N1 extends number, N2 extends number> = [...Union.New<any, N1>, ...Union.New<any, N2>]['length']
-  /** 两数相减 */
-  export type Sub<N1 extends number, N2 extends number> = []['length']
-  // export type GreatThan<N1 extends number, N2 extends number>
-  // export
-  // export type
-}
-
-// TODO: 元组操作
-// 首尾元素 Pop, Push, Splice, Join, ToIntersection, At
-namespace Union {
-  /** 获取长度 */
-  export type Length<T extends any[]> = T['length']
-
-  /** 去掉最后一个元素 */
-  export type Pop<T extends any[]> = T extends readonly [...infer Rest, any] ? Rest : T
-
-  /**
-   * 生成固定长度元组
-   * @param T 类型
-   * @param L 长度
-   */
-  export type New<T, L extends number, A extends unknown[] = []> = A['length'] extends L ? A : New<T, L, [T, ...A]>
-
-  /** 向最后添加一项 */
-  export type Push<U extends any[], T> = [...U, T]
-
-  /** 合并为字符串 */
-  export type Join<T extends any[], Devider extends string> =
-    T extends [] ? '' :
-    // TODO: 使用 4.7 语法重构这两行的T[0]
-    T extends [Literal] ? `${T[0]}` :
-    T extends [Literal, ...infer Rest] ? `${T[0]}${Devider}${Join<Rest, Devider>}` :
-    string
-}
-
-
-
-
-// TODO: 字符串操作
-// Length, Split, Replace
-namespace String {
-  /** 字符串长度 */
-  export type Length<T extends string> = Union.Length<Split<T, ''>>
-
-  type _Split<Str extends string, Devider extends string, It extends string[] = []> =
-    Str extends `${infer StrA}${Devider}${infer StrB}`
-    ? _Split<StrB, Devider, [...It, StrA]>
-    : [...It, Str]
-
-  /**
-   * 分离字符串
-   * @param Str 要分离的字符串
-   * @param Devider 分隔符
-   */
-  export type Split<Str extends string, Devider extends string = ''> =
-    Devider extends ''
-    ? Union.Pop<_Split<Str, Devider>>
-    : _Split<Str, Devider>
-
-  /**
-   * 用 NewStr 替换 Str 中的 OldStr
-   * @param OldStr 需要替换的字符
-   * @param NewStr 替换后的字符
-   */
-  export type Replace<Str extends string, OldStr extends string, NewStr extends string> =
-    Str extends `${infer StrA}${OldStr}${infer StrB}`
-    ? `${StrA}${NewStr}${Replace<StrB, OldStr, NewStr>}`
-    : Str
-}
-
-
-
-// TODO: 函数
-namespace Function {
-  /** 函数参数长度 函数重载会选最后一个? */
-  export type Length<T extends Fn> = Union.Length<Parameters<T>>
-
-  /** 设置参数类型 */
-  export type SetParams<T extends Fn, P extends any[]> = T extends Fn<any[], infer R> ? Fn<P, R> : never
-
-  /** 设置返回类型 */
-  export type SetReturn<T extends Fn, R> = T extends Fn<infer P, any> ? Fn<P, R> : never
-
-  export type New<Args extends any[] = any[], Return = any> = (...args: Args) => Return
-}
-
-
-
