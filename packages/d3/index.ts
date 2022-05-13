@@ -19,7 +19,8 @@ type ValueFn<T extends Element, D, R> = (datum: D, index: number, groups: T[]) =
  */
 export function setAttrs<T extends Element, D>(fn: ValueFn<T, D, ObjectType<string, number | string>>) {
   return function (this: T, ...args: [D, number, any]) {
-    const attrs = fn.apply(this, args)
+
+    const attrs = Reflect.apply(fn, this, args)
     for (const [name, v] of Object.entries(attrs)) {
       if (v === null) this.removeAttribute(name)
       else this.setAttribute(name, v + '')
