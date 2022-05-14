@@ -5,4 +5,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   ignorePatterns: ['/**/*.*', '!packages/**/*.*'],
+  rules: {
+    "@typescript-eslint/no-namespace": 'off'
+  }
 }

@@ -1,5 +1,6 @@
 import type { Literal } from './_internal'
 import type * as Union from './Union'
+import type * as Number from './Number'
 
 
 // TODO: 字符串操作
@@ -36,3 +37,16 @@ export type Replace<Str extends string, OldStr extends string, NewStr extends st
   Str extends `${infer StrA}${OldStr}${infer StrB}`
   ? `${StrA}${NewStr}${Replace<StrB, OldStr, NewStr>}`
   : Str
+
+
+
+
+
+// TODO: 4.8.0
+// export type ToNumber<NumStr extends string | number> = `${NumStr}` extends `${infer N extends number}` ? N : never
+export type ToNumber<NumStr extends string, Arr extends number[] = [], Len extends number = Arr['length']> =
+  NumStr extends `${number}`
+  ? NumStr extends `-${number}`
+  ? never : `${Len}` extends NumStr
+  ? Len : ToNumber<NumStr, [0, ...Arr]>
+  : never
