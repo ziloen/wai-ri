@@ -18,6 +18,10 @@ export type Length<U extends any[]> = U['length']
 
 
 
+export type Typeof<U extends any[]> = U[number]
+
+
+
 /** 去掉最后一个元素 */
 export type Pop<U extends any[]> = U extends readonly [...infer Rest, any] ? Rest : U
 
@@ -46,6 +50,10 @@ export type Shift<U extends any[]> = U extends [any, ...infer Rest] ? Rest : U
 
 
 export type Unshift<U extends any[], T> = [T, ...U]
+
+
+
+export type Includes<U extends any[], T> = T extends Typeof<U> ? true : false
 
 
 
