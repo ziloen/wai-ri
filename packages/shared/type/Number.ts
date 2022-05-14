@@ -87,6 +87,9 @@ export type ToString<N extends number, radix extends Radix> = `${N}`
 
 // type NewNum<L extends number, A extends unknown[] = [], LL = A['length']> = A["length"] extends L ? A : NewNum<L, [LL, ...A]>
 
+
+// type Is<N1 extends number, N2 extends number> = N1 extends N2 ? true : false
+
 // N1 - N2 > 0
 // export type GreatThan<N1 extends number, N2 extends number> = IsPos<Sub<N1, N2>>
 // N1 - N2 >= 0
