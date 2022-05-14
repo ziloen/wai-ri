@@ -1,13 +1,11 @@
 import type { Literal } from './_internal'
-import type * as Tuple from './Tuple'
-import type * as Number from './Number'
+import type { Length as TupleLen, Pop } from './Tuple'
+import type { } from './Number'
 
 
-// TODO: 字符串操作
-// Length, Split, Replace
 
 /** 字符串长度 */
-export type Length<T extends string> = Tuple.Length<Split<T, ''>>
+export type Length<T extends string> = TupleLen<Split<T, ''>>
 
 
 
@@ -23,7 +21,7 @@ type _Split<Str extends string, Devider extends string, It extends string[] = []
  */
 export type Split<Str extends string, Devider extends string = ''> =
   Devider extends ''
-  ? Tuple.Pop<_Split<Str, Devider>>
+  ? Pop<_Split<Str, Devider>>
   : _Split<Str, Devider>
 
 
@@ -50,3 +48,7 @@ export type ToNumber<NumStr extends string, Arr extends number[] = [], Len exten
   ? never : `${Len}` extends NumStr
   ? Len : ToNumber<NumStr, [0, ...Arr]>
   : never
+
+
+
+export type ToString<T> = T extends number | string | bigint | boolean | undefined | null ? `${T}` : string

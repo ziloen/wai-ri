@@ -38,7 +38,7 @@ export type Slice<T extends any[], Start extends number = 0, End extends number 
 
 
 /**
- * @param U 操作的元组
+ * @param T 操作的元组
  * @param DeleteCount 删除数
  * @param Item 添加项
  */

@@ -2,13 +2,17 @@
 /**
  * 参考：https://github.com/millsp/ts-toolbelt
  */
-
-
 export * as Function from './Function'
 export * as Number from './Number'
 export * as String from './String'
 export * as Tuple from './Tuple'
 export * as Union from './Union'
+
+
+
+import * as Union from './Union'
+import { SetParams, UnaryFn } from './Function'
+
 
 
 
@@ -18,6 +22,9 @@ export type ObjectType<K extends keyof any = keyof any, V = unknown> = Record<K,
 
 /** 函数 */
 export type Fn<Args extends any[] = any[], Return = any> = (...args: Args) => Return
+
+
+
 /** 异步函数 */
 export type AsyncFn<Args extends any[] = any[], Return = any> = (...args: Args) => Promise<Return>
 
@@ -34,7 +41,7 @@ export type FixedArray<T, L extends number, A extends unknown[] = []> = A['lengt
 
 
 /** F 异步函数的返回 异步 数据类型 */
-export type AwaitedReturnType<F extends AsyncFn> = Awaited<ReturnType<F>>
+export type AwaitedReturn<F extends AsyncFn> = Awaited<ReturnType<F>>
 
 
 
@@ -57,12 +64,11 @@ export type KeysMatching<Obj, Val> = { [Key in keyof Obj]-?: Obj[Key] extends Va
 
 type SetValuesToString<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
   [K in keyof T]:
-  T[K] extends keyof any ? T[K] :
-  T[K] extends true ? 'true' :
-  T[K] extends false ? 'false' :
-  T[K] extends null ? 'null' :
-  T[K] extends undefined ? 'undefined' :
-  never
+  T[K] extends keyof any
+  ? T[K]
+  : T[K] extends bigint | boolean | undefined | null
+  ? `${T[K]}`
+  : never
 }
 
 /** 反转 对象 值与键 */
@@ -71,24 +77,12 @@ export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null 
 
 
 
-/** 反转 Tuple 顺序 */
-export type ReverseTuple<T extends readonly unknown[]> = T extends [...infer Rest, infer Last] ? [Last, ...ReverseTuple<Rest>] : []
-
-
-
-// 一堆工具
-type IsUnion<T, U = T> = T extends U ? [U] extends [T] ? false : true : never
-type UnionToIntersection<U> = (U extends any ? Fn<[U]> : never) extends Fn<[infer Arg]> ? Arg : never
-type UnionLast<T> = UnionToIntersection<T extends unknown ? Fn<[T]> : never> extends Fn<[infer A]> ? A : never
-type UnionToTuple<U, Last = UnionLast<U>> = [U] extends [never] ? [] : [Last, ...UnionToTuple<Exclude<U, Last>>]
-
-
-
 /** 展开类型 */
+// export type Expand<T> = ExpandDeep<T, 2>
 export type Expand<T, Deep extends 0 | 1 | 2 = 2> =
   Deep extends 0 ? T :
   T extends ObjectType ? { [K in keyof T]: Expand<T[K], Deep extends 2 ? 1 : 0> } :
-  IsUnion<T> extends true ? Expand<UnionToTuple<T>[number], Deep extends 2 ? 1 : 0> :
+  Union.IsUnion<T> extends true ? Expand<Union.ToTuple<T>[number], Deep extends 2 ? 1 : 0> :
   T extends Fn<infer Params, infer Return> ? Fn<Expand<Params, Deep extends 2 ? 1 : 0>, Expand<Return, Deep extends 2 ? 1 : 0>> :
   T extends Promise<infer Pro> ? Promise<Expand<Pro, Deep extends 2 ? 1 : 0>> :
   T
@@ -98,7 +92,7 @@ export type Expand<T, Deep extends 0 | 1 | 2 = 2> =
 /** 递归展开，TODO: 增加递归深度？递归类型？ */
 export type ExpandDeep<T, Deep extends number = 5> =
   T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K]> } :
-  IsUnion<T> extends true ? ExpandDeep<UnionToTuple<T>[number]> :
+  Union.IsUnion<T> extends true ? ExpandDeep<Union.ToTuple<T>[number]> :
   T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params>, ExpandDeep<Return>> :
   T extends Promise<infer Pro> ? Promise<ExpandDeep<Pro>> :
   T
@@ -119,19 +113,6 @@ export type ExpandDeep<T, Deep extends number = 5> =
 // type Concat<Arr1 extends unknown[], Arr2 extends unknown[]> = [...Arr1, ...Arr2]
 
 
-
-// type Head<Arr extends unknown[]> = Arr extends [infer F, ...infer L] ? F : never
-type Last<Arr extends unknown[]> = Arr extends [...infer F, infer L] ? L : never
-
-// type GetTuple<T extends number, R extends any[] = []> = R["length"] extends T ? R : GetTuple<T, [...R, any]>
-
-// type Add<T1 extends number, T2 extends number> = [...GetTuple<T1>, ...GetTuple<T2>]["length"]
-// type Minus<N1 extends number, N2 extends number> = []['length']
-
-// 获取 Array / Turple 长度
-// type Len<Arr extends any[]> = Arr['length']
-// type FnType<Arg, Return> = (arg: Arg) => Return
-
 // pipe<First, Lenth = 0>
 // 如果 检查 Pipe<First, 0> extends [(arg: FirstParam) => infer FirstReturn] ? [(arg: FirstParam) => FirstReturn] :
 
@@ -143,55 +124,50 @@ type Last<Arr extends unknown[]> = Arr extends [...infer F, infer L] ? L : never
 // declare function pipe<T extends Func, U extends Func, R extends Func>(...functions: [T, ...U[], R]) : (...args: Parameters<T>) => ReturnType<R>;
 
 
-type UnaryFn = (arg: any) => any
-type SetFnParams<T, P extends any[]> = T extends (...arg: any[]) => infer R ? (...args: P) => R : never
-type SetFnReturn<T, R> = T extends (...args: infer P) => any ? (...args: P) => R : never
-type UnaryReturnType<T> = T extends (arg: any) => infer R ? R : any
+// type UnaryReturnType<T> = T extends (arg: any) => infer R ? R : any
 
 
+// export type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
+//   Len extends 0
+//   ? []
+//   : Funcs extends [infer First, infer Second, ...infer Rest]
+//   ? [
+//     ([SourceT] extends [never]
+//       ? First
+//       : FnSetParams<First, [SourceT]>),
 
-export type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
-  Len extends 0
-  ? []
-  : Funcs extends [infer First, infer Second, ...infer Rest]
-  ? [
-    ([SourceT] extends [never]
-      ? First
-      : SetFnParams<First, [SourceT]>),
-
-    ...PipeParams<
-      Rest extends UnaryFn[]
-      ? First extends UnaryFn
-      ? Second extends UnaryFn
-      ? [(arg: ReturnType<First>) => ReturnType<Second>, ...Rest]
-      : never
-      : never
-      : never,
-      UnaryReturnType<First>
-    >
-  ]
-  : Funcs
+//     ...PipeParams<
+//       Rest extends UnaryFn[]
+//       ? First extends UnaryFn
+//       ? Second extends UnaryFn
+//       ? [(arg: ReturnType<First>) => ReturnType<Second>, ...Rest]
+//       : never
+//       : never
+//       : never,
+//       UnaryReturnType<First>
+//     >
+//   ]
+//   : Funcs
 
 /** 管道函数 类型 */
 // export type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
 //   Len extends 0
-//     ? []
-//     : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
-//       ? [
-//         [SourceT] extends [never]
-//           ? First
-//           : SetFnParams<First, [SourceT]>,
+//   ? []
+//   : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
+//   ? [
+//     [SourceT] extends [never]
+//     ? First
+//     : SetParams<First, [SourceT]>,
 
-//         ...PipeParams<
-//           // [(arg: ReturnType<First>) => ReturnType<Second>, ...Rest],
-//           [SetFnParams<Second, [ReturnType<First>]>, ...Rest],
-//           ReturnType<First>
-//         >
-//       ]
-//       : Funcs
+//     ...PipeParams<
+//       [SetParams<Second, [ReturnType<First>]>, ...Rest],
+//       ReturnType<First>
+//     >
+//   ]
+//   : Funcs
 
 /**  */
-type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
+// type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
 
 // declare function pipe<Funcs extends UnaryFn[]>(...args: PipeParams<Funcs, number>): PipeReturn<Funcs, number>
 
