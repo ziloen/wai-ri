@@ -1,5 +1,5 @@
 import { Split } from './String'
-import { New as NewUnion, Includes } from './Union'
+import { New as NewTuple, Includes } from './Tuple'
 import { Not } from './Logical'
 
 
@@ -11,7 +11,7 @@ import { Not } from './Logical'
  * @param N2 数字2
  * TODO: 支持负数
  */
-export type Add<N1 extends number, N2 extends number> = [...NewUnion<0, N1>, ...NewUnion<0, N2>]['length']
+export type Add<N1 extends number, N2 extends number> = [...NewTuple<0, N1>, ...NewTuple<0, N2>]['length']
 
 // 另一种解法: 分离数字和进位并一位一位算，加一减一直到一方为零
 // type Add<N1 extends number, N2 extends number> = []

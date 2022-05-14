@@ -1,9 +1,9 @@
 import type { Fn } from '.'
-import type * as Union from './Union'
+import type * as Tuple from './Tuple'
 
 // TODO: 函数
 /** 函数参数长度 函数重载会选最后一个? */
-export type Length<T extends Fn> = Union.Length<Parameters<T>>
+export type Length<T extends Fn> = Tuple.Length<Parameters<T>>
 
 
 

@@ -1,5 +1,5 @@
 import type { Literal } from './_internal'
-import type * as Union from './Union'
+import type * as Tuple from './Tuple'
 import type * as Number from './Number'
 
 
@@ -7,7 +7,7 @@ import type * as Number from './Number'
 // Length, Split, Replace
 
 /** 字符串长度 */
-export type Length<T extends string> = Union.Length<Split<T, ''>>
+export type Length<T extends string> = Tuple.Length<Split<T, ''>>
 
 
 
@@ -23,7 +23,7 @@ type _Split<Str extends string, Devider extends string, It extends string[] = []
  */
 export type Split<Str extends string, Devider extends string = ''> =
   Devider extends ''
-  ? Union.Pop<_Split<Str, Devider>>
+  ? Tuple.Pop<_Split<Str, Devider>>
   : _Split<Str, Devider>
 
 
