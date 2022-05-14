@@ -211,7 +211,7 @@ type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...
 
 
 /** 用 New 类型 扩展 Org 类型*/
-export type Asign<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
+export type Assign<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
 
 
 
