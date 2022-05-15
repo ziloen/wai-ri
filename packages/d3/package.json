@@ -9,10 +9,9 @@
   "main": "./index.ts",
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "@types/d3": "^7.1.0"
+    "@types/d3": "*",
+    "typescript": "*",
+    "d3": "*"
   },
-  "peerDependencies": {
-    "typescript": ">=4.6.4",
-    "d3": ">=7.4.4"
-  }
+  "peerDependencies": {}
 }

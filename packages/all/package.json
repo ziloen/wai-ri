@@ -10,9 +10,7 @@
   "dependencies": {
     "@wai-ri/core": "workspace:*",
     "@wai-ri/random": "workspace:*",
-    "@wai-ri/shared": "workspace:*"
-  },
-  "peerDependencies": {
-    "typescript": ">=4.6.4"
+    "@wai-ri/shared": "workspace:*",
+    "typescript": "*"
   }
 }

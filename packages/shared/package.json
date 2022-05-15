@@ -7,7 +7,7 @@
   "license": "MIT",
   "author": "ziloen",
   "main": "./index.ts",
-  "peerDependencies": {
-    "typescript": ">=4.6.4"
+  "dependencies": {
+    "typescript": "*"
   }
 }

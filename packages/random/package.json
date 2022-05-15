@@ -8,9 +8,8 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/shared": "workspace:*"
+    "@wai-ri/shared": "workspace:*",
+    "typescript": "*"
   },
-  "peerDependencies": {
-    "typescript": ">=4.6.4"
-  }
+  "peerDependencies": {}
 }
