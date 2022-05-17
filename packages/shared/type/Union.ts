@@ -15,5 +15,6 @@ export type ToIntersection<U> = (U extends any ? Fn<[U]> : never) extends Fn<[in
 export type Last<T> = ToIntersection<T extends unknown ? Fn<[T]> : never> extends Fn<[infer A]> ? A : never
 
 
+// export type First
 
 export type ToTuple<U, L = Last<U>> = [U] extends [never] ? [] : [L, ...ToTuple<Exclude<U, L>>]

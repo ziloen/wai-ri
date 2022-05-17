@@ -1,6 +1,6 @@
 import type { Split } from './String'
 import type { New as TupleNew, Includes, Shift, Unshift } from './Tuple'
-import type { Not } from './Logical'
+import type { Not, Xor } from './Logical'
 
 
 // TODO: 支持bigInt 数字运算
@@ -27,15 +27,15 @@ type AddInTen<N1 extends number, N2 extends number> =
 
 type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string = '0'> =
   Arr1 extends []
-    ? Carry extends '0'
-      ? Arr2
-      : [...AddArrs<Arr2, [Carry]>]
-    : Arr2 extends []
-      ? ['0']
-      // 均只有一位
-      : [Arr1, Arr2] extends [[infer A1], [infer A2]]
-        ? []
-        : []
+  ? Carry extends '0'
+  ? Arr2
+  : [...AddArrs<Arr2, [Carry]>]
+  : Arr2 extends []
+  ? ['0']
+  // 均只有一位
+  : [Arr1, Arr2] extends [[infer A1 extends `${infer Num1 extends number}`], [infer A2 extends `${infer Num2 extends number}`]]
+  ? []
+  : []
 
 type _Add<N1 extends number, N2 extends number> = N1
 
@@ -92,8 +92,8 @@ export type IsInteger<N extends number> = Not<Includes<Split<`${N}`>, '.'>>
 
 
 /** 负数转正数 TODO: 4.8.0 plan */
-// export type ToPos<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
-export type ToPos<N extends number> = `${N}` extends `-${infer P}` ? P : N
+export type ToPos<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
+// export type ToPos<N extends number> = `${N}` extends `-${infer P}` ? P : N
 
 
 
@@ -103,6 +103,10 @@ export type ToNeg<N extends number> = IsNeg<N> extends true ? N : `-${N}`
 
 
 export type Abs<N extends number> = IsNeg<N> extends true ? ToPos<N> : N
+
+
+
+export type SameSign<N1 extends number, N2 extends number> = Xor<IsNeg<N1>, IsNeg<N2>>
 
 
 
@@ -127,13 +131,13 @@ export type ToString<N extends number, radix extends Radix> = `${N}`
 // type Is<N1 extends number, N2 extends number> = N1 extends N2 ? true : false
 
 // N1 - N2 > 0
-// export type GreatThan<N1 extends number, N2 extends number> = IsPos<Sub<N1, N2>>
+export type GreatThan<N1 extends number, N2 extends number> = N1 extends N2 ? false : IsPos<Sub<N1, N2>>
 // N1 - N2 >= 0
-// export type GreatEqual<N1 extends number, N2 extends number> = N1 extends N2 ? true : IsPos<Sub<N1, N2>>
+export type GreatEqual<N1 extends number, N2 extends number> = N1 extends N2 ? true : IsPos<Sub<N1, N2>>
 // N1 - N2 < 0
-// export type LessThan<N1 extends number, N2 extends number> = IsNeg<Sub<N1, N2>>
+export type LessThan<N1 extends number, N2 extends number> = N1 extends N2 ? false : IsNeg<Sub<N1, N2>>
 // N1 - N2 <= 0
-// export type LessEqual<N1 extends number, N2 extends number> = N1 extends N2 ? true : IsPos<Sub<N1, N2>>
+export type LessEqual<N1 extends number, N2 extends number> = N1 extends N2 ? true : IsPos<Sub<N1, N2>>
 // N1 === N2
 // export type Equal<N1 extends number, N2 extends number> = N1 extends N2 ? true : false
 
