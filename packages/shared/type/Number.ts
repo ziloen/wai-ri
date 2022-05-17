@@ -1,5 +1,5 @@
 import type { Split } from './String'
-import type { New as TupleNew, Includes , Shift, Unshift} from './Tuple'
+import type { New as TupleNew, Includes, Shift, Unshift } from './Tuple'
 import type { Not } from './Logical'
 
 
@@ -17,12 +17,13 @@ import type { Not } from './Logical'
 // type Add<N1 extends number, N2 extends number> = []
 type TwoNumSum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 type NumToArr<T extends number> = Split<`${T}`>
-type Inc<N extends number> = Shift<TwoNumSum>[N]
-type Dec<N extends number> = Unshift<TwoNumSum, -1>[N]
+type IncInTen<N extends number> = Shift<TwoNumSum>[N]
+type DecInTen<N extends number> = Unshift<TwoNumSum, -1>[N]
+
 type AddInTen<N1 extends number, N2 extends number> =
   N1 extends 0 ? N2 :
   N2 extends 0 ? N1 :
-  AddInTen<Inc<N1>, Dec<N2>>
+  AddInTen<IncInTen<N1>, DecInTen<N2>>
 
 type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string = '0'> =
   Arr1 extends []
@@ -38,19 +39,34 @@ type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string 
 
 type _Add<N1 extends number, N2 extends number> = N1
 
+type NegTwoNumSum = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19]
+type NegIncInTen<N extends number> = Unshift<NegTwoNumSum, 1>[ToPos<N>]
+type NegDecInTen<N extends number> = Shift<NegTwoNumSum>[ToPos<N>]
+
+type NegAddInTen<N1 extends number, N2 extends number> =
+  N1 extends 0 ? N2 :
+  N2 extends 0 ? N1 :
+  NegAddInTen<NegIncInTen<N1>, NegDecInTen<N2>>
+
+
+type PosAddNegInTen<N1 extends number, N2 extends number> =
+  N1 extends 0 ? N2 :
+  N2 extends 0 ? N1 :
+  PosAddNegInTen<0, 0>
+
 export type Add<N1 extends number, N2 extends number> =
   IsPos<N1> extends true
-    // N1 为正数
-    ? IsPos<N2> extends true
-      // N1, N2 均为正数
-      ? _Add<N1, N2>
-      // N1为正, N2 为负
-      : _Add<N1, N2>
-    : IsPos<N2> extends true
-      // N1为负, N2为正
-      ? _Add<N1, N2>
-      // N1, N2 均为负数
-      : _Add<N1, N2>
+  // N1 为正数
+  ? IsPos<N2> extends true
+  // N1, N2 均为正数
+  ? _Add<N1, N2>
+  // N1为正, N2 为负
+  : _Add<N1, N2>
+  : IsPos<N2> extends true
+  // N1为负, N2为正
+  ? _Add<N1, N2>
+  // N1, N2 均为负数
+  : _Add<N1, N2>
 
 
 
@@ -70,18 +86,23 @@ export type IsPos<N extends number,> = Not<IsNeg<N>>
 
 
 
-/** 判断是否为正数 */
+/** 判断是否为整数 */
 export type IsInteger<N extends number> = Not<Includes<Split<`${N}`>, '.'>>
 
 
 
 /** 负数转正数 TODO: 4.8.0 plan */
 // export type ToPos<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
+export type ToPos<N extends number> = `${N}` extends `-${infer P}` ? P : N
 
 
 
 /** TODO: 4.8.0 正数转负数 */
 export type ToNeg<N extends number> = IsNeg<N> extends true ? N : `-${N}`
+
+
+
+export type Abs<N extends number> = IsNeg<N> extends true ? ToPos<N> : N
 
 
 
