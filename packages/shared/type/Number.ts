@@ -1,5 +1,5 @@
 import type { Split } from './String'
-import type { New as TupleNew, Includes } from './Tuple'
+import type { New as TupleNew, Includes , Shift, Unshift} from './Tuple'
 import type { Not } from './Logical'
 
 
@@ -11,31 +11,46 @@ import type { Not } from './Logical'
  * @param N2 数字2
  * TODO: 支持负数
  */
-export type Add<N1 extends number, N2 extends number> = [...TupleNew<0, N1>, ...TupleNew<0, N2>]['length']
+// export type Add<N1 extends number, N2 extends number> = [...TupleNew<0, N1>, ...TupleNew<0, N2>]['length']
 
 // 另一种解法: 分离数字和进位并一位一位算，加一减一直到一方为零
 // type Add<N1 extends number, N2 extends number> = []
-// type TwoNumSum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-// type NumToArr<T extends number> = String.Split<`${T}`>
-// type Inc<N extends number> = Shift<TwoNumSum>[N]
-// type Dec<N extends number> = Unshift<TwoNumSum, -1>[N]
-// type AddInTen<N1 extends number, N2 extends number> =
-//   N1 extends 0 ? N2 :
-//   N2 extends 0 ? N1 :
-//   AddInTen<Inc<N1>, Dec<N2>>
+type TwoNumSum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+type NumToArr<T extends number> = Split<`${T}`>
+type Inc<N extends number> = Shift<TwoNumSum>[N]
+type Dec<N extends number> = Unshift<TwoNumSum, -1>[N]
+type AddInTen<N1 extends number, N2 extends number> =
+  N1 extends 0 ? N2 :
+  N2 extends 0 ? N1 :
+  AddInTen<Inc<N1>, Dec<N2>>
 
-// type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string = '0'> =
-//   Arr1 extends []
-//     ? Carry extends '0'
-//       ? Arr2
-//       : [...AddArrs<Arr2, [Carry]>]
-//     : Arr2 extends []
-//       ? ['0']
-//       // 均只有一位
-//       : [Arr1, Arr2] extends [[infer A1], [infer A2]]
-//         ?
+type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string = '0'> =
+  Arr1 extends []
+    ? Carry extends '0'
+      ? Arr2
+      : [...AddArrs<Arr2, [Carry]>]
+    : Arr2 extends []
+      ? ['0']
+      // 均只有一位
+      : [Arr1, Arr2] extends [[infer A1], [infer A2]]
+        ? []
+        : []
 
-// type Add<N1 extends number, N2 extends number> =
+type _Add<N1 extends number, N2 extends number> = N1
+
+export type Add<N1 extends number, N2 extends number> =
+  IsPos<N1> extends true
+    // N1 为正数
+    ? IsPos<N2> extends true
+      // N1, N2 均为正数
+      ? _Add<N1, N2>
+      // N1为正, N2 为负
+      : _Add<N1, N2>
+    : IsPos<N2> extends true
+      // N1为负, N2为正
+      ? _Add<N1, N2>
+      // N1, N2 均为负数
+      : _Add<N1, N2>
 
 
 
