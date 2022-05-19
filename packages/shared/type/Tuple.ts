@@ -67,7 +67,7 @@ export type Includes<T extends any[], P> = P extends Typeof<T> ? true : false
  * @param T 数组
  * @param Devider 分隔符
  */
-export type Join<T extends any[], Devider extends string> =
+export type Join<T extends any[], Devider extends string = ''> =
   T extends [] ? '' :
   // TODO: 使用 4.7 语法重构这两行的T[0]
   // T extends [infer X extends Literal] ? X

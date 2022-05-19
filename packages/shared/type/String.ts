@@ -41,13 +41,7 @@ export type Replace<Str extends string, OldStr extends string, NewStr extends st
 
 
 // TODO: 4.8.0
-// export type ToNumber<NumStr extends string | number> = `${NumStr}` extends `${infer N extends number}` ? N : never
-export type ToNumber<NumStr extends string, Arr extends number[] = [], Len extends number = Arr['length']> =
-  NumStr extends `${number}`
-  ? NumStr extends `-${number}`
-  ? never : `${Len}` extends NumStr
-  ? Len : ToNumber<NumStr, [0, ...Arr]>
-  : never
+export type ToNumber<NumStr extends string | number> = `${NumStr}` extends `${infer N extends number}` ? N : never
 
 
 

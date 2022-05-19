@@ -1,6 +1,24 @@
-import type { Split } from './String'
-import type { New as TupleNew, Includes, Shift, Unshift } from './Tuple'
+import type { Split, ToNumber } from './String'
+import type { New as TupleNew, Includes, Shift, Unshift, Join } from './Tuple'
 import type { Not, Xor } from './Logical'
+
+
+
+/** 判断是否是负数 */
+export type IsNeg<N extends number> = `${N}` extends `-${number}` ? true : false
+
+
+
+/** 判断是否为正数 */
+export type IsPos<N extends number,> = Not<IsNeg<N>>
+
+
+
+/** 判断是否为整数 */
+export type IsInteger<N extends number> = Not<Includes<Split<`${N}`>, '.'>>
+
+
+
 
 
 // TODO: 支持bigInt 数字运算
@@ -15,7 +33,7 @@ import type { Not, Xor } from './Logical'
 
 // 另一种解法: 分离数字和进位并一位一位算，加一减一直到一方为零
 // type Add<N1 extends number, N2 extends number> = []
-type TwoNumSum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+// type TwoNumSum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
 /** [num]: [self, -1, +1, sign] */
 type NumMap = {
@@ -59,43 +77,40 @@ type NumMap = {
   '18': [18, 17, 19, 1],
   '19': [19, 18, 20, 1],
 }
+
+
 type NumToArr<T extends number> = Split<`${T}`>
-type IncInTen<N extends number> = Shift<TwoNumSum>[N]
-type DecInTen<N extends number> = Unshift<TwoNumSum, -1>[N]
+type ArrToNum<T extends (number | string)[]> = ToNumber<Join<T>>
+type DecInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][1] : never
+type IncInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][2] : never
 
 type AddInTen<N1 extends number, N2 extends number> =
   N1 extends 0 ? N2 :
   N2 extends 0 ? N1 :
-  AddInTen<IncInTen<N1>, DecInTen<N2>>
+  IsNeg<N1> extends true
+  ? AddInTen<IncInTen<N1>, DecInTen<N2>>
+  : IsNeg<N2> extends true
+  // 左边为正数，右边为负数 左减右加，其余左加右减
+  ? AddInTen<DecInTen<N1>, IncInTen<N2>>
+  : AddInTen<IncInTen<N1>, DecInTen<N2>>
 
-type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string = '0'> =
-  Arr1 extends []
-  ? Carry extends '0'
-  ? Arr2
-  : [...AddArrs<Arr2, [Carry]>]
-  : Arr2 extends []
-  ? ['0']
-  // 均只有一位
-  : [Arr1, Arr2] extends [[infer A1 extends `${infer Num1 extends number}`], [infer A2 extends `${infer Num2 extends number}`]]
-  ? []
-  : []
+
+// type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string = '0'> =
+//   Arr1 extends []
+//   ? Carry extends '0'
+//   ? Arr2
+//   : [...AddArrs<Arr2, [Carry]>]
+//   : Arr2 extends []
+//   ? ['0']
+//   // 均只有一位
+//   : [Arr1, Arr2] extends [[infer A1 extends `${infer Num1 extends number}`], [infer A2 extends `${infer Num2 extends number}`]]
+//   ? []
+//   : []
 
 type _Add<N1 extends number, N2 extends number> = N1
 
-type NegTwoNumSum = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19]
-type NegIncInTen<N extends number> = Unshift<NegTwoNumSum, 1>[ToPos<N>]
-type NegDecInTen<N extends number> = Shift<NegTwoNumSum>[ToPos<N>]
-
-type NegAddInTen<N1 extends number, N2 extends number> =
-  N1 extends 0 ? N2 :
-  N2 extends 0 ? N1 :
-  NegAddInTen<NegIncInTen<N1>, NegDecInTen<N2>>
 
 
-type PosAddNegInTen<N1 extends number, N2 extends number> =
-  N1 extends 0 ? N2 :
-  N2 extends 0 ? N1 :
-  PosAddNegInTen<0, 0>
 
 export type Add<N1 extends number, N2 extends number> =
   IsPos<N1> extends true
@@ -112,40 +127,40 @@ export type Add<N1 extends number, N2 extends number> =
   : _Add<N1, N2>
 
 
+type Sub9<N extends number> =
+  N extends 0
+  ? [9, 10]
+  : [_sub9<NumToArr<N>>]
 
+type _sub9<A extends string[]> =
+  {
+    [S in keyof A]: A[S] extends keyof NumMap ? AddInTen<9, ToNeg<ToNumber<A[S]>>> : never
+  }[number]
+
+type D = ArrToNum<[1, 2, 3, 4]>
+
+
+type C = Sub9<12>
 
 /** 两数相减 */
+// 避免借位 9999 代表减数长度的9
+// A > B -> A - B = A + (9999 - B) + 1 - 10000
+// A < B -> A - B = -(9999 - (A + (9999 - B)))
 export type Sub<N1 extends number, N2 extends number> = []['length']
-
-
-
-/** 判断是否是负数 */
-export type IsNeg<N extends number> = `${N}` extends `-${number}` ? true : false
-
-
-
-/** 判断是否为正数 */
-export type IsPos<N extends number,> = Not<IsNeg<N>>
-
-
-
-/** 判断是否为整数 */
-export type IsInteger<N extends number> = Not<Includes<Split<`${N}`>, '.'>>
 
 
 
 /** 负数转正数 TODO: 4.8.0 plan */
 export type ToPos<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
-// export type ToPos<N extends number> = `${N}` extends `-${infer P}` ? P : N
 
 
 
 /** TODO: 4.8.0 正数转负数 */
-export type ToNeg<N extends number> = IsNeg<N> extends true ? N : `-${N}`
+export type ToNeg<N extends number> = IsNeg<N> extends true ? N : ToNumber<`-${N}`>
 
 
 
-export type Abs<N extends number> = IsNeg<N> extends true ? ToPos<N> : N
+export type Abs<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
 
 
 
@@ -158,6 +173,8 @@ type Radix = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16
 
 /** TODO: 支持指定基数  */
 export type ToString<N extends number, radix extends Radix> = `${N}`
+
+
 
 
 
