@@ -12,16 +12,16 @@ importers:
       echarts: ^5.3.2
       eslint: ^8.16.0
       rxjs: ^7.5.5
-      three: ^0.140.2
-      typescript: 4.8.0-dev.20220527
+      three: ^0.141.0
+      typescript: 4.8.0-dev.20220528
       vue: ^3.2.36
     dependencies:
       axios: 0.27.2
       d3: 7.4.4
       echarts: 5.3.2
       rxjs: 7.5.5
-      three: 0.140.2
-      typescript: 4.8.0-dev.20220527
+      three: 0.141.0
+      typescript: 4.8.0-dev.20220528
       vue: 3.2.36
     devDependencies:
       '@types/eslint': 8.4.2
@@ -1118,7 +1118,7 @@ packages:
     dev: false
 
   /delayed-stream/1.0.0:
-    resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=}
+    resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
     dev: false
 
@@ -1150,7 +1150,7 @@ packages:
     dev: true
 
   /escape-string-regexp/1.0.5:
-    resolution: {integrity: sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=}
+    resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
     engines: {node: '>=0.8.0'}
     dev: true
 
@@ -1333,7 +1333,7 @@ packages:
     dev: true
 
   /fast-levenshtein/2.0.6:
-    resolution: {integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=}
+    resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
     dev: true
 
   /fastq/1.13.0:
@@ -1403,7 +1403,7 @@ packages:
     dev: false
 
   /fs.realpath/1.0.0:
-    resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=}
+    resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
 
   /function-bind/1.1.1:
@@ -1411,7 +1411,7 @@ packages:
     dev: true
 
   /functional-red-black-tree/1.0.1:
-    resolution: {integrity: sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=}
+    resolution: {integrity: sha512-dsKNQNdj6xA3T+QlADDA7mOSlX0qiMINjn0cgr+eGHGsbSHzTabcIogz2+p/iqP1Xs6EP/sS2SbqH+brGTbq0g==}
     dev: true
 
   /glob-parent/5.1.2:
@@ -2019,8 +2019,8 @@ packages:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
 
-  /three/0.140.2:
-    resolution: {integrity: sha512-DdT/AHm/TbZXEhQKQpGt5/iSgBrmXpjU26FNtj1KhllVPTKj1eG4X/ShyD5W2fngE+I1s1wa4ttC4C3oCJt7Ag==}
+  /three/0.141.0:
+    resolution: {integrity: sha512-JaSDAPWuk4RTzG5BYRQm8YZbERUxTfTDVouWgHMisS2to4E5fotMS9F2zPFNOIJyEFTTQDDKPpsgZVThKU3pXA==}
     dev: false
 
   /to-fast-properties/2.0.0:
@@ -2089,8 +2089,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.8.0-dev.20220527:
-    resolution: {integrity: sha512-TRZVcNGFXAZdpo73XeA8Wg90nmEbmVUh/7RKkl+yCawp50V45Y59ZXfhkJwt/rmlUafMVK44DfOyd0gXsEZC7g==}
+  /typescript/4.8.0-dev.20220528:
+    resolution: {integrity: sha512-UwmuLxRQY/O6TxqCcrEDbGy+xktr823/ysLvUA5cvKhousGfv2+w57E22mhLirzYh9UUqRfPYGvko2tjyWMgIg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
