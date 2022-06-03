@@ -13,7 +13,7 @@ importers:
       eslint: ^8.16.0
       rxjs: ^7.5.5
       three: ^0.141.0
-      typescript: 4.8.0-dev.20220531
+      typescript: 4.8.0-dev.20220603
       vue: ^3.2.36
     dependencies:
       axios: 0.27.2
@@ -21,11 +21,11 @@ importers:
       echarts: 5.3.2
       rxjs: 7.5.5
       three: 0.141.0
-      typescript: 4.8.0-dev.20220531
+      typescript: 4.8.0-dev.20220603
       vue: 3.2.36
     devDependencies:
       '@types/eslint': 8.4.2
-      '@ziloen/eslint-config-typescript': 0.0.32
+      '@ziloen/eslint-config-typescript': 0.0.33
       bumpp: 7.1.1
       eslint: 8.16.0
 
@@ -623,8 +623,8 @@ packages:
     resolution: {integrity: sha512-JtB41wXl7Au3+Nl3gD16Cfpj7k/6aCroZ6BbOiCMFCMvrOpkg/qQUXTso2XowaNqBbnkuGHurLAqkLBxNGc1hQ==}
     dev: false
 
-  /@ziloen/eslint-config-basic/0.0.32:
-    resolution: {integrity: sha512-Z2p+DPssZoxzHRAcwEgP6gqi/+VtfwUmSJPp+i26G5KMBcX03o7NdZt7Pp54O43Y2l7Bkws143SlCHo75KG6WA==}
+  /@ziloen/eslint-config-basic/0.0.33:
+    resolution: {integrity: sha512-/Oz74EnMeqvjhK2muUui44vHdw8L1nCHxVh94ES06Pq02AngQvDoHhLlaeTy0se8U1hJGSH4nfTy8CsrugLDpg==}
     dependencies:
       eslint: 8.16.0
       eslint-plugin-promise: 6.0.0_eslint@8.16.0
@@ -633,12 +633,12 @@ packages:
       - supports-color
     dev: true
 
-  /@ziloen/eslint-config-typescript/0.0.32:
-    resolution: {integrity: sha512-+80GwXP+GkapFLEkb7eYHo7yEuLwd6IK0tBqc6vW3Znxnr6K3DMC1MKpS2ikBRiNC3ctuBqMvDqA4N6x6SC2pQ==}
+  /@ziloen/eslint-config-typescript/0.0.33:
+    resolution: {integrity: sha512-ShiAn9sOzyY/NuTPTONQ6ms1qMvCtJxrripFTsZLs5S0/IlljcDEPciT/Red6IXpKAfrGTVGZpbj8drhjnoFgg==}
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.27.0_dszb5tb7atwkjjijmmov4qhi7i
       '@typescript-eslint/parser': 5.27.0_xztl6dhthcahlo6akmb2bmjmle
-      '@ziloen/eslint-config-basic': 0.0.32
+      '@ziloen/eslint-config-basic': 0.0.33
       eslint: 8.16.0
       typescript: 4.7.2
     transitivePeerDependencies:
@@ -1754,7 +1754,7 @@ packages:
     dev: true
 
   /path-is-absolute/1.0.1:
-    resolution: {integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=}
+    resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -2089,8 +2089,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.8.0-dev.20220531:
-    resolution: {integrity: sha512-2heG5zmrhGjjgnX5n9Gpm9wW/zVcNPlj4aqZgzF+hAVw3mmfaJBnk+C5PxP2hvTLpuwkXkKoh51Aq1aZgc5htA==}
+  /typescript/4.8.0-dev.20220603:
+    resolution: {integrity: sha512-/BcKYtfSpuzSOPHdthZs78D7f2SCMKQ/rWtyYq5JJqVwHhuAsa0BD/kUlUFqB91u5UU8yz3UiG+mXBC3H806WQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
