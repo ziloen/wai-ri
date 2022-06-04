@@ -23,3 +23,12 @@ export function assertNotNilRef<T>(refVal: Ref<T>): asserts refVal is Ref<NonNul
   if (refVal.value === null || refVal.value === undefined)
     throw new Error('断言失败')
 }
+
+
+export function openRoute() {
+  globalThis.open()
+}
+
+// export default function openRoute(to: RouteLocationRaw) {
+//   window.open(router.resolve(to).href, '_blank')
+// }

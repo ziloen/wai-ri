@@ -8,10 +8,9 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/shared": "workspace:*"
-  },
-  "peerDependencies": {
-    "typescript": ">=4.6.4",
-    "vue": ">=3.2.33"
+    "@wai-ri/shared": "workspace:*",
+    "vue": "*",
+    "typescript": "*",
+    "vue-router": ""
   }
 }

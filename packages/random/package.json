@@ -10,6 +10,5 @@
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
     "typescript": "*"
-  },
-  "peerDependencies": {}
+  }
 }

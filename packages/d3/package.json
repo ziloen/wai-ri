@@ -12,6 +12,5 @@
     "@types/d3": "*",
     "typescript": "*",
     "d3": "*"
-  },
-  "peerDependencies": {}
+  }
 }
