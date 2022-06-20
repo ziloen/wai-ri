@@ -1,4 +1,5 @@
 import { Fn } from '.'
+import { Includes } from './Tuple'
 
 
 type _IsUnion<T, U = T> = T extends U ? [U] extends [T] ? false : true : never
@@ -15,6 +16,13 @@ export type ToIntersection<U> = (U extends any ? Fn<[U]> : never) extends Fn<[in
 export type Last<T> = ToIntersection<T extends unknown ? Fn<[T]> : never> extends Fn<[infer A]> ? A : never
 
 
+
+// export type Has<T, P> = P extends T ? true : false
+
+
+
 // export type First
+
+
 
 export type ToTuple<U, L = Last<U>> = [U] extends [never] ? [] : [L, ...ToTuple<Exclude<U, L>>]

@@ -2,11 +2,16 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "esnext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "moduleResolution": "node",
     "strict": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+    "exactOptionalPropertyTypes": true,
     "declaration": true,
     "declarationDir": "./types",
     "resolveJsonModule": true,
@@ -17,12 +22,24 @@
     "skipDefaultLibCheck": true,
     "noUnusedLocals": false,
     "paths": {
-      "@wai-ri/core": ["./packages/core/index.ts"],
-      "@wai-ri/core/*": ["./packages/core/*"],
-      "@wai-ri/random": ["./packages/core/index.ts"],
-      "@wai-ri/random/*": ["./packages/core/*"],
-      "@wai-ri/shared": ["./packages/shared/index.ts"],
-      "@wai-ri/shared/*": ["./packages/shared/*"]
+      "@wai-ri/core": [
+        "./packages/core/index.ts"
+      ],
+      "@wai-ri/core/*": [
+        "./packages/core/*"
+      ],
+      "@wai-ri/random": [
+        "./packages/core/index.ts"
+      ],
+      "@wai-ri/random/*": [
+        "./packages/core/*"
+      ],
+      "@wai-ri/shared": [
+        "./packages/shared/index.ts"
+      ],
+      "@wai-ri/shared/*": [
+        "./packages/shared/*"
+      ]
     },
   },
   "include": [

@@ -1,7 +1,7 @@
-import type { ObjectType, Fn, Extensible, ExpandDeep } from '@wai-ri/shared'
+import { ObjectType, Fn, Extensible, ExpandDeep, Union } from '@wai-ri/shared'
 import * as d3 from 'd3'
 import type { Selection, BaseType } from 'd3'
-import type { Attributes, SVGElements } from '@lsegurado/htmltype'
+import type { Attributes, SVGElements  } from '@lsegurado/htmltype'
 
 
 type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) => R
@@ -85,7 +85,7 @@ type _Extensible<T> = T & { [k: string]: string | number }
  *     }
  *   }))
  */
-export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, _Extensible<ElementMap<BaseType>>>) {
+export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, _Extensible<ElementMap<T>>>) {
   return function (this: T, ...args: [D, number, any]) {
 
     const attrs = Reflect.apply(fn, this, args)
@@ -98,6 +98,25 @@ export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, _Extensible<El
   }
 }
 
+const data = [{value: 12}]
+
+d3.select('#mySvg')
+.each(setAttrs(() => ({
+  height: window.innerHeight,
+  width: window.innerWidth
+})))
+.selectAll('circle')
+.data(data, (data: any) => data.id)
+.join('circle')
+.each(setAttrs((data, index, group) => ({
+  cx: data.value * 10,
+  cy: data.value * 10,
+  r: 20,
+  fill: 'white',
+  // stroke: 'red',
+  'stroke-width': 2,
+  stroke: ''
+})))
 
 type D3DragEventType = 'start' | 'drag' | 'end'
 type D3DragEvent<T extends D3DragEventType, D> = {
