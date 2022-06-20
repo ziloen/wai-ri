@@ -1,7 +1,7 @@
 import { ObjectType, Fn, Extensible, ExpandDeep, Union } from '@wai-ri/shared'
 import * as d3 from 'd3'
-import type { Selection, BaseType } from 'd3'
-import type { Attributes, SVGElements  } from '@lsegurado/htmltype'
+import type { Selection, BaseType, DraggedElementBaseType } from 'd3'
+import type { Attributes, SVGElements } from '@lsegurado/htmltype'
 
 
 type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) => R
@@ -134,12 +134,12 @@ type DragFn<E extends D3DragEventType, T, D> = (this: T, event: D3DragEvent<E, D
  *   nothing
  * ))
  */
-export function setDrag<T extends Element, D>(
+export function setDrag<T extends DraggedElementBaseType, D>(
   start: DragFn<'start', T, D>,
   drag: DragFn<'drag', T, D>,
   end: DragFn<'end', T, D>,
 ) {
-  return d3.drag<T, D>()
+  return d3.drag<T, D, any>()
     .on("start", function (e, d) { start.call(this, e, d, this) })
     .on("drag", function (e, d) { drag.call(this, e, d, this) })
     .on("end", function (e, d) { end.call(this, e, d, this) })
