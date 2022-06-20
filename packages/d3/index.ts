@@ -1,9 +1,9 @@
 import type { ObjectType, Fn } from '@wai-ri/shared'
 import * as d3 from 'd3'
-import type { Selection } from 'd3'
+import type { Selection, BaseType } from 'd3'
 
 
-type ValueFn<T extends Element, D, R> = (datum: D, index: number, groups: T[]) => R
+type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) => R
 
 
 /**
@@ -17,11 +17,13 @@ type ValueFn<T extends Element, D, R> = (datum: D, index: number, groups: T[]) =
  *     }
  *   }))
  */
-export function setAttrs<T extends Element, D>(fn: ValueFn<T, D, ObjectType<string, number | string>>) {
+export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, ObjectType<string, number | string>>) {
   return function (this: T, ...args: [D, number, any]) {
 
     const attrs = Reflect.apply(fn, this, args)
     for (const [name, v] of Object.entries(attrs)) {
+      if (!(this instanceof Element)) return
+
       if (v === null) this.removeAttribute(name)
       else this.setAttribute(name, v + '')
     }

@@ -95,18 +95,6 @@ type AddInTen<N1 extends number, N2 extends number> =
   : AddInTen<IncInTen<N1>, DecInTen<N2>>
 
 
-// type AddArrs<Arr1 extends string[], Arr2 extends string[], Carry extends string = '0'> =
-//   Arr1 extends []
-//   ? Carry extends '0'
-//   ? Arr2
-//   : [...AddArrs<Arr2, [Carry]>]
-//   : Arr2 extends []
-//   ? ['0']
-//   // 均只有一位
-//   : [Arr1, Arr2] extends [[infer A1 extends `${infer Num1 extends number}`], [infer A2 extends `${infer Num2 extends number}`]]
-//   ? []
-//   : []
-
 type _Add<N1 extends number, N2 extends number> = N1
 
 // 当前位，进位
@@ -132,8 +120,24 @@ type HalfAddMap = {
   '18': [8, 1],
   '19': [9, 1],
 }
+
+type Stringable<T extends string | number | never> = T extends string | number | never ? T : never
+
 // 半加器
-// type HalfAdder<N1 extends number, N2 extends number> =
+type HalfAdder<N1 extends number, N2 extends number> =
+  AddInTen<N1, N2> extends Stringable<infer K>
+    ? `${K}` extends keyof HalfAddMap
+      ? HalfAddMap[`${K}`]
+      : never
+    : never
+
+
+
+
+
+type FullAdder<N1 extends number[], N2 extends number[], Carry extends number> =
+  []
+
 
 
 export type Add<N1 extends number, N2 extends number> =
@@ -151,20 +155,6 @@ export type Add<N1 extends number, N2 extends number> =
   : _Add<N1, N2>
 
 
-type Sub9<N extends number> =
-  N extends 0
-  ? [9, 10]
-  : [_sub9<NumToArr<N>>]
-
-type _sub9<A extends string[]> =
-  {
-    [S in keyof A]: A[S] extends keyof NumMap ? AddInTen<9, ToNeg<ToNumber<A[S]>>> : never
-  }[number]
-
-type D = ArrToNum<[1, 2, 3, 4]>
-
-
-type C = Sub9<12>
 
 /** 两数相减 */
 // 避免借位 9999 代表减数长度的9
