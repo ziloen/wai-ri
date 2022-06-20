@@ -1,6 +1,6 @@
 import { ObjectType, Fn, Extensible, ExpandDeep, Union } from '@wai-ri/shared'
 import * as d3 from 'd3'
-import type { Selection, BaseType, DraggedElementBaseType } from 'd3'
+import type { Selection, BaseType, DraggedElementBaseType, D3DragEvent } from 'd3'
 import type { Attributes, SVGElements } from '@lsegurado/htmltype'
 
 
@@ -100,22 +100,22 @@ export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, _Extensible<El
 
 
 
-type D3DragEventType = 'start' | 'drag' | 'end'
-type D3DragEvent<T extends D3DragEventType, D> = {
-  active: number
-  dx: number
-  dy: number
-  x: number
-  y: number
-  identifier: string
-  type: T
-  target: Fn
-  subject: D
-  sourceEvent: MouseEvent
-}
+// type D3DragEventType = 'start' | 'drag' | 'end'
+// type D3DragEvent<T extends D3DragEventType, D> = {
+//   active: number
+//   dx: number
+//   dy: number
+//   x: number
+//   y: number
+//   identifier: string
+//   type: T
+//   target: Fn
+//   subject: D
+//   sourceEvent: MouseEvent
+// }
 
 
-type DragFn<E extends D3DragEventType, T, D> = (this: T, event: D3DragEvent<E, D>, data: D, thisArg: T) => any
+type DragFn<T extends DraggedElementBaseType, D> = (this: T, event: D3DragEvent<T, D, D>, data: D, thisArg: T) => any
 
 
 /**
@@ -135,11 +135,11 @@ type DragFn<E extends D3DragEventType, T, D> = (this: T, event: D3DragEvent<E, D
  * ))
  */
 export function setDrag<T extends DraggedElementBaseType, D>(
-  start: DragFn<'start', T, D>,
-  drag: DragFn<'drag', T, D>,
-  end: DragFn<'end', T, D>,
+  start: DragFn<T, D>,
+  drag: DragFn<T, D>,
+  end: DragFn<T, D>,
 ) {
-  return d3.drag<T, D, any>()
+  return d3.drag<T, D, D>()
     .on("start", function (e, d) { start.call(this, e, d, this) })
     .on("drag", function (e, d) { drag.call(this, e, d, this) })
     .on("end", function (e, d) { end.call(this, e, d, this) })
