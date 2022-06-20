@@ -98,25 +98,7 @@ export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, _Extensible<El
   }
 }
 
-const data = [{value: 12}]
 
-d3.select('#mySvg')
-.each(setAttrs(() => ({
-  height: window.innerHeight,
-  width: window.innerWidth
-})))
-.selectAll('circle')
-.data(data, (data: any) => data.id)
-.join('circle')
-.each(setAttrs((data, index, group) => ({
-  cx: data.value * 10,
-  cy: data.value * 10,
-  r: 20,
-  fill: 'white',
-  // stroke: 'red',
-  'stroke-width': 2,
-  stroke: ''
-})))
 
 type D3DragEventType = 'start' | 'drag' | 'end'
 type D3DragEvent<T extends D3DragEventType, D> = {
