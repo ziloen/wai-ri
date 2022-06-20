@@ -12,6 +12,7 @@
     "@wai-ri/shared": "workspace:*",
     "@types/d3": "*",
     "typescript": "*",
+    "@lsegurado/htmltype": "*",
     "d3": "*"
   }
 }

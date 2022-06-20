@@ -53,11 +53,13 @@ importers:
 
   packages/d3:
     specifiers:
+      '@lsegurado/htmltype': '*'
       '@types/d3': '*'
       '@wai-ri/shared': workspace:*
       d3: '*'
       typescript: '*'
     dependencies:
+      '@lsegurado/htmltype': 0.1.2
       '@types/d3': 7.4.0
       '@wai-ri/shared': link:../shared
       d3: 7.4.4
@@ -202,6 +204,12 @@ packages:
       string-argv: 0.3.1
       type-detect: 4.0.8
     dev: true
+
+  /@lsegurado/htmltype/0.1.2:
+    resolution: {integrity: sha512-jfh7S18Is9wD47kZLlCyPtPSQD4blX5ccoIJ+hCrp2BBoKCL7HtrYJCUSEWG6STto9ihYrNrFbOc5aKYibknPw==}
+    dependencies:
+      csstype: 3.1.0
+    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -851,6 +859,10 @@ packages:
 
   /csstype/2.6.20:
     resolution: {integrity: sha512-/WwNkdXfckNgw6S5R125rrW8ez139lBHWouiBvX8dfMFtcn6V81REDqnH7+CRpRipfYlyU1CmOnOxrmGcFOjeA==}
+    dev: false
+
+  /csstype/3.1.0:
+    resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
     dev: false
 
   /d3-array/3.1.6:
