@@ -1,7 +1,7 @@
 {
   "name": "@wai-ri/monorepo",
   "private": true,
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "util",
   "author": "ziloen",
   "license": "ISC",
