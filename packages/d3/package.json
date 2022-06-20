@@ -9,10 +9,10 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/shared": "workspace:*",
-    "@types/d3": "*",
-    "typescript": "*",
     "@lsegurado/htmltype": "*",
-    "d3": "*"
+    "@types/d3": "*",
+    "@wai-ri/shared": "workspace:*",
+    "d3": "*",
+    "typescript": "*"
   }
 }
