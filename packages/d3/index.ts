@@ -6,7 +6,7 @@ import type { SVGElements } from '@lsegurado/htmltype'
 
 type SVGElementTagNameMap = globalThis.SVGElementTagNameMap
 
-// ERROR: connot use namespace 'SVGElements' as a type
+// 因为到处不是类型是 namespace所以不能直接用key， ERROR: connot use namespace 'SVGElements' as a type
 type NamesToAttr = {
   a: SVGElements.a
   animate: SVGElements.animate
