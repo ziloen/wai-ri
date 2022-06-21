@@ -1,77 +1,81 @@
-import { ObjectType, Fn, Extensible, ExpandDeep, Union } from '@wai-ri/shared'
+import { ObjectType, Fn, Extensible, ExpandDeep, Union, KeysMatching } from '@wai-ri/shared'
 import * as d3 from 'd3'
 import type { Selection, BaseType, DraggedElementBaseType, D3DragEvent } from 'd3'
-import type { Attributes, SVGElements } from '@lsegurado/htmltype'
+import type { SVGElements } from '@lsegurado/htmltype'
 
+
+type SVGElementTagNameMap = globalThis.SVGElementTagNameMap
+
+// ERROR: connot use namespace 'SVGElements' as a type
+type NamesToAttr = {
+  a: SVGElements.a
+  animate: SVGElements.animate
+  animateMotion: SVGElements.animateMotion
+  animateTransform: SVGElements.animateTransform
+  circle: SVGElements.circle
+  clipPath: SVGElements.clipPath
+  defs: SVGElements.defs
+  desc: SVGElements.desc
+  ellipse: SVGElements.ellipse
+  feBlend: SVGElements.feBlend
+  feColorMatrix: SVGElements.feColorMatrix
+  feComponentTransfer: SVGElements.feComponentTransfer
+  feComposite: SVGElements.feComposite
+  feConvolveMatrix: SVGElements.feConvolveMatrix
+  feDiffuseLighting: SVGElements.feDiffuseLighting
+  feDisplacementMap: SVGElements.feDisplacementMap
+  feDistantLight: SVGElements.feDistantLight
+  feFlood: SVGElements.feFlood
+  feFuncA: SVGElements.feFuncA
+  feFuncB: SVGElements.feFuncB
+  feFuncG: SVGElements.feFuncG
+  feFuncR: SVGElements.feFuncR
+  feGaussianBlur: SVGElements.feGaussianBlur
+  feImage: SVGElements.feImage
+  feMerge: SVGElements.feMerge
+  feMergeNode: SVGElements.feMergeNode
+  feMorphology: SVGElements.feMorphology
+  feOffset: SVGElements.feOffset
+  fePointLight: SVGElements.fePointLight
+  feSpecularLighting: SVGElements.feSpecularLighting
+  feSpotLight: SVGElements.feSpotLight
+  feTile: SVGElements.feTile
+  feTurbulence: SVGElements.feTurbulence
+  filter: SVGElements.filter
+  foreignObject: SVGElements.foreignObject
+  g: SVGElements.g
+  image: SVGElements.image
+  line: SVGElements.line
+  linearGradient: SVGElements.linearGradient
+  marker: SVGElements.marker
+  mask: SVGElements.mask
+  metadata: SVGElements.metadata
+  mpath: SVGElements.mpath
+  path: SVGElements.path
+  pattern: SVGElements.pattern
+  polygon: SVGElements.polygon
+  polyline: SVGElements.polyline
+  radialGradient: SVGElements.radialGradient
+  rect: SVGElements.rect
+  script: SVGElements.script
+  set: SVGElements.set
+  stop: SVGElements.stop
+  style: SVGElements.style
+  svg: SVGElements.svg
+  switch: SVGElements._switch
+  symbol: SVGElements._symbol
+  text: SVGElements.text
+  textPath: SVGElements.textPath
+  title: SVGElements.title
+  tspan: SVGElements.tspan
+  use: SVGElements.use
+  view: SVGElements.view
+} & { [a: string]: never }
+type NamesMatch<T extends string> = NamesToAttr[T]
+type _Extensible<T> = [T] extends [never] ? & { [k: string]: string | number } : T & { [k: string]: string | number }
+type SVGAttrType<T> = _Extensible<NamesMatch<KeysMatching<SVGElementTagNameMap, T>>>
 
 type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) => R
-
-
-type ElementMap<T> =
-  T extends SVGAElement ? SVGElements.a :
-  T extends SVGAnimateElement ? SVGElements.animate :
-  T extends SVGAnimateMotionElement ? SVGElements.animateMotion :
-  T extends SVGAnimateTransformElement ? SVGElements.animateTransform :
-  T extends SVGCircleElement ? SVGElements.circle :
-  T extends SVGClipPathElement ? SVGElements.clipPath :
-  T extends SVGDefsElement ? SVGElements.defs :
-  T extends SVGDescElement ? SVGElements.desc :
-  T extends SVGEllipseElement ? SVGElements.ellipse :
-  T extends SVGFEBlendElement ? SVGElements.feBlend :
-  T extends SVGFEColorMatrixElement ? SVGElements.feColorMatrix :
-  T extends SVGFEComponentTransferElement ? SVGElements.feComponentTransfer :
-  T extends SVGFECompositeElement ? SVGElements.feComposite :
-  T extends SVGFEConvolveMatrixElement ? SVGElements.feConvolveMatrix :
-  T extends SVGFEDiffuseLightingElement ? SVGElements.feDiffuseLighting :
-  T extends SVGFEDisplacementMapElement ? SVGElements.feDisplacementMap :
-  T extends SVGFEDistantLightElement ? SVGElements.feDistantLight :
-  T extends SVGFEFloodElement ? SVGElements.feFlood :
-  T extends SVGFEFuncAElement ? SVGElements.feFuncA :
-  T extends SVGFEFuncBElement ? SVGElements.feFuncB :
-  T extends SVGFEFuncGElement ? SVGElements.feFuncG :
-  T extends SVGFEFuncRElement ? SVGElements.feFuncR :
-  T extends SVGFEGaussianBlurElement ? SVGElements.feGaussianBlur :
-  T extends SVGFEImageElement ? SVGElements.feImage :
-  T extends SVGFEMergeElement ? SVGElements.feMerge :
-  T extends SVGFEMergeNodeElement ? SVGElements.feMergeNode :
-  T extends SVGFEMorphologyElement ? SVGElements.feMorphology :
-  T extends SVGFEOffsetElement ? SVGElements.feOffset :
-  T extends SVGFEPointLightElement ? SVGElements.fePointLight :
-  T extends SVGFESpecularLightingElement ? SVGElements.feSpecularLighting :
-  T extends SVGFESpotLightElement ? SVGElements.feSpotLight :
-  T extends SVGFETileElement ? SVGElements.feTile :
-  T extends SVGFETurbulenceElement ? SVGElements.feTurbulence :
-  T extends SVGFilterElement ? SVGElements.filter :
-  T extends SVGForeignObjectElement ? SVGElements.foreignObject :
-  T extends SVGGElement ? SVGElements.g :
-  T extends SVGImageElement ? SVGElements.image :
-  T extends SVGLinearGradientElement ? SVGElements.linearGradient :
-  T extends SVGMarkerElement ? SVGElements.marker :
-  T extends SVGMaskElement ? SVGElements.mask :
-  T extends SVGMetadataElement ? SVGElements.metadata :
-  T extends SVGMPathElement ? SVGElements.mpath :
-  T extends SVGPathElement ? SVGElements.path :
-  T extends SVGPatternElement ? SVGElements.pattern :
-  T extends SVGPolygonElement ? SVGElements.polygon :
-  T extends SVGPolylineElement ? SVGElements.polyline :
-  T extends SVGRadialGradientElement ? SVGElements.radialGradient :
-  T extends SVGRectElement ? SVGElements.rect :
-  T extends SVGScriptElement ? SVGElements.script :
-  T extends SVGSetElement ? SVGElements.set :
-  T extends SVGStopElement ? SVGElements.stop :
-  T extends SVGStyleElement ? SVGElements.style :
-  T extends SVGSVGElement ? SVGElements.svg :
-  T extends SVGSwitchElement ? SVGElements._switch :
-  T extends SVGSymbolElement ? SVGElements._symbol :
-  T extends SVGTextElement ? SVGElements.text :
-  T extends SVGTextPathElement ? SVGElements.textPath :
-  T extends SVGTitleElement ? SVGElements.title :
-  T extends SVGTSpanElement ? SVGElements.tspan :
-  T extends SVGUseElement ? SVGElements.use :
-  T extends SVGViewElement ? SVGElements.view :
-  ObjectType
-
-type _Extensible<T> = T & { [k: string]: string | number }
 
 
 /**
@@ -85,7 +89,7 @@ type _Extensible<T> = T & { [k: string]: string | number }
  *     }
  *   }))
  */
-export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, _Extensible<ElementMap<T>>>) {
+export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, SVGAttrType<T>>) {
   return function (this: T, ...args: [D, number, any]) {
 
     const attrs = Reflect.apply(fn, this, args)
