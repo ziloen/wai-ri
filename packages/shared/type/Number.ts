@@ -1,6 +1,7 @@
 import type { Split, ToNumber } from './String'
 import type { New as TupleNew, Includes, Shift, Unshift, Join } from './Tuple'
 import type { Not, Xor } from './Logical'
+import { Literal } from './_internal'
 
 
 
@@ -121,17 +122,15 @@ type HalfAddMap = {
   '19': [9, 1],
 }
 
-type Stringable<T extends string | number | never> = T extends string | number | never ? T : never
+
 
 // 半加器
 type HalfAdder<N1 extends number, N2 extends number> =
-  AddInTen<N1, N2> extends Stringable<infer K>
+  AddInTen<N1, N2> extends `${infer K extends number}`
     ? `${K}` extends keyof HalfAddMap
       ? HalfAddMap[`${K}`]
       : never
     : never
-
-
 
 
 
