@@ -91,11 +91,9 @@ type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) 
  */
 export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, SVGAttrType<T>>) {
   return function (this: T, ...args: [D, number, any]) {
-
     const attrs = Reflect.apply(fn, this, args)
     for (const [name, v] of Object.entries(attrs)) {
       if (!(this instanceof Element)) return
-
       if (v === null || v === undefined) this.removeAttribute(name)
       else this.setAttribute(name, v + '')
     }
