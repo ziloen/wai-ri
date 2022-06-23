@@ -1,6 +1,7 @@
 import { SetParams, UnaryFn } from '@wai-ri/shared/type/Function'
 
 
+
 /** 管道函数 参数类型 */
 type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
   Len extends 0
@@ -17,8 +18,11 @@ type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']>
   ]
   : Funcs
 
+
+
 /** 管道函数 返回类型 */
 type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
+
 
 
 export function pipe<T>(startValue: T) {
