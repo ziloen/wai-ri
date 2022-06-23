@@ -99,91 +99,46 @@ export type ExpandDeep<T, Deep extends number = 5> =
 
 
 
-/** pipe 函数类型 */
-// export type Pipe<T extends ((...args: any) => any) = any, N extends ((...args: any) => any) = any> = [T, N]
-// import { flow } from 'lodash-es'
-// import { OperatorFunction } from 'rxjs'
-// 去除第一个
-// type Tail<T extends unknown[]> = T extends [any, ...infer L] ? L : []
-// Array / Truple 操作
-// type Unshift<Arr extends unknown[], T> = [T, ...Arr]
-// type Push<Arr extends unknown[], T> = [...Arr, T]
-// type Pop<Arr extends unknown[]> = Arr extends readonly [...infer Rest, any] ? Rest : []
-// type Shift<Arr extends unknown[]> = Arr extends readonly [any, ...infer L] ? L : []
-// type Concat<Arr1 extends unknown[], Arr2 extends unknown[]> = [...Arr1, ...Arr2]
+/** 管道函数 参数类型 */
+type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
+  Len extends 0
+  ? []
+  : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
+  ? [
+    // [SourceT] extends [never] ? First :
+    SetParams<First, [SourceT]>,
 
+    ...PipeParams<
+      [SetParams<Second, [ReturnType<First>]>, ...Rest],
+      ReturnType<First>
+    >
+  ]
+  : Funcs
 
-// pipe<First, Lenth = 0>
-// 如果 检查 Pipe<First, 0> extends [(arg: FirstParam) => infer FirstReturn] ? [(arg: FirstParam) => FirstReturn] :
-
-
-// type Func = (...args: any[]) => any
-// type Pipe<FirstArg = never, LastArg = never> = [FirstArg] extends [never] ? [] : Head<Pipe<FirstArg> extends [(arg: FirstArg) => infer R] ? [(arg: FirstArg) => R] : []> extends FnType<FirstArg, infer Return> ? [FnType<FirstArg, Return>, ...Pipe<Return>] : []
-
-// declare function pipe<F, L>(...args: Pipe<F, L>): L
-// declare function pipe<T extends Func, U extends Func, R extends Func>(...functions: [T, ...U[], R]) : (...args: Parameters<T>) => ReturnType<R>;
-
-
-// type UnaryReturnType<T> = T extends (arg: any) => infer R ? R : any
-
-
-// export type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
-//   Len extends 0
-//   ? []
-//   : Funcs extends [infer First, infer Second, ...infer Rest]
-//   ? [
-//     ([SourceT] extends [never]
-//       ? First
-//       : FnSetParams<First, [SourceT]>),
-
-//     ...PipeParams<
-//       Rest extends UnaryFn[]
-//       ? First extends UnaryFn
-//       ? Second extends UnaryFn
-//       ? [(arg: ReturnType<First>) => ReturnType<Second>, ...Rest]
-//       : never
-//       : never
-//       : never,
-//       UnaryReturnType<First>
-//     >
-//   ]
-//   : Funcs
-
-/** 管道函数 类型 */
-// export type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
-//   Len extends 0
-//   ? []
-//   : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
-//   ? [
-//     [SourceT] extends [never]
-//     ? First
-//     : SetParams<First, [SourceT]>,
-
-//     ...PipeParams<
-//       [SetParams<Second, [ReturnType<First>]>, ...Rest],
-//       ReturnType<First>
-//     >
-//   ]
-//   : Funcs
-
-/**  */
-// type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
+/** 管道函数 返回类型 */
+type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
 
 // declare function pipe<Funcs extends UnaryFn[]>(...args: PipeParams<Funcs, number>): PipeReturn<Funcs, number>
 
 // 测试 pipe ---
 // declare function num2str(a: number): string
-// declare function str2num(a: string): number
 // declare function num2boo(a: number): boolean
+// declare function str2num(a: string): number
+// declare function str2boo(a: string): boolean
 // declare function boo2num(a: boolean): number
+// declare function boo2str(a: boolean): string
 
 // pipe(num2str, str2num, num2boo, boo2num)
 // // @ts-expect-error 'number' not assignable to 'string'
-
 // pipe(str2num, num2boo, boo2num)
 // // @ts-expect-error 'boolean' not assignable to 'string'
 // pipe(num2boo, str2num, num2boo)
+// pipe(num2boo, boo2str)
+// // @ts-expect-error 'boolean' not assignable to 'number'
+// pipe(num2boo, num2str)
+// pipe(num2boo)
 // pipe()
+
 
 
 

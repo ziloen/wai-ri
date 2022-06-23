@@ -96,6 +96,7 @@ type AddInTen<N1 extends number, N2 extends number> =
   : AddInTen<IncInTen<N1>, DecInTen<N2>>
 
 
+
 type _Add<N1 extends number, N2 extends number> = N1
 
 // 当前位，进位
@@ -190,13 +191,6 @@ export type ToString<N extends number, radix extends Radix> = `${N}`
 
 
 
-
-// type nums = [
-//   -100,
-//   -99,
-//   -98,
-//   -97
-// ]
 
 // type NewNum<L extends number, A extends unknown[] = [], LL = A['length']> = A["length"] extends L ? A : NewNum<L, [LL, ...A]>
 
