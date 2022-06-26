@@ -1,4 +1,4 @@
-export const a = ``
+const a = ``
 
 
 
