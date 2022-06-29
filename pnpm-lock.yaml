@@ -110,7 +110,7 @@ importers:
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
-      three: 0.141.0
+      three: 0.142.0
       typescript: 4.7.4
 
   packages/vue:
@@ -2033,6 +2033,10 @@ packages:
 
   /three/0.141.0:
     resolution: {integrity: sha512-JaSDAPWuk4RTzG5BYRQm8YZbERUxTfTDVouWgHMisS2to4E5fotMS9F2zPFNOIJyEFTTQDDKPpsgZVThKU3pXA==}
+    dev: false
+
+  /three/0.142.0:
+    resolution: {integrity: sha512-ESjPO+3geFr+ZUfVMpMnF/eVU2uJPOh0e2ZpMFqjNca1wApS9lJb7E4MjwGIczgt9iuKd8PEm6Pfgp2bJ92Xtg==}
     dev: false
 
   /to-fast-properties/2.0.0:
