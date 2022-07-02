@@ -9,10 +9,10 @@
     "release": "bumpp package.json packages/*/package.json --commit && pnpm -r publish --access public"
   },
   "devDependencies": {
-    "@types/eslint": "^8.4.3",
+    "@types/eslint": "^8.4.5",
     "@ziloen/eslint-config-typescript": "*",
     "bumpp": "^8.2.1",
-    "eslint": "^8.18.0"
+    "eslint": "^8.19.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
