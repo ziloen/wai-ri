@@ -20,7 +20,16 @@ export type IsInteger<N extends number> = Not<Includes<Split<`${N}`>, '.'>>
 
 
 
+type MustLiteral<N extends number> = `${N}` extends `${infer T extends number}` ? number extends T ? never : N : never
 
+/**
+ * @example
+ * function add<N extends number>(a: CheckNaN<N>) {
+ *   return a
+ * }
+ * // 会误伤 number 类型
+*/
+export type CheckNaN<N extends number> = [MustLiteral<N>] extends [never] ? "可能为NaN" : N
 
 // TODO: 支持bigInt 数字运算
 // 正整数加减乘除, 大于小于, 大于等于, 小于等于
@@ -128,10 +137,10 @@ type HalfAddMap = {
 // 半加器
 type HalfAdder<N1 extends number, N2 extends number> =
   AddInTen<N1, N2> extends `${infer K extends number}`
-    ? `${K}` extends keyof HalfAddMap
-      ? HalfAddMap[`${K}`]
-      : never
-    : never
+  ? `${K}` extends keyof HalfAddMap
+  ? HalfAddMap[`${K}`]
+  : never
+  : never
 
 
 
