@@ -1,6 +1,6 @@
 import { ObjectType, Fn, Extensible, ExpandDeep, Union, KeysMatching } from '@wai-ri/shared'
-import * as d3 from 'd3'
-import { Selection, BaseType, DraggedElementBaseType, D3DragEvent } from 'd3'
+import { drag } from 'd3'
+import type { Selection, BaseType, DraggedElementBaseType, D3DragEvent } from 'd3'
 import type { SVGElements } from '@lsegurado/htmltype'
 
 
@@ -126,9 +126,9 @@ type DragFn<T extends DraggedElementBaseType, D> = (this: T, event: D3DragEvent<
 
 /**
  * 拖拽事件
- * @param start 开始事件
- * @param drag 拖拽事件
- * @param end 结束事件
+ * @param onStart 开始事件
+ * @param onDrag 拖拽事件
+ * @param onEnd 结束事件
  * @example
  * selection.call(setDrag(
  *   nothing,
@@ -141,12 +141,12 @@ type DragFn<T extends DraggedElementBaseType, D> = (this: T, event: D3DragEvent<
  * ))
  */
 export function setDrag<T extends DraggedElementBaseType, D>(
-  start: DragFn<T, D>,
-  drag: DragFn<T, D>,
-  end: DragFn<T, D>,
+  onStart: DragFn<T, D>,
+  onDrag: DragFn<T, D>,
+  onEnd: DragFn<T, D>,
 ) {
-  return d3.drag<T, D, D>()
-    .on("start", function (e, d) { start.call(this, e, d, this) })
-    .on("drag", function (e, d) { drag.call(this, e, d, this) })
-    .on("end", function (e, d) { end.call(this, e, d, this) })
+  return drag<T, D, D>()
+    .on("start", function (e, d) { onStart.call(this, e, d, this) })
+    .on("drag", function (e, d) { onDrag.call(this, e, d, this) })
+    .on("end", function (e, d) { onEnd.call(this, e, d, this) })
 }
