@@ -60,3 +60,5 @@ export type Literal = string | number | bigint | boolean
 // pipe(num2boo)
 
 // pipe()
+
+// type TypeToType = []
