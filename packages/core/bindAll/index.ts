@@ -1,6 +1,5 @@
 /** 绑定对象上的所有函数 */
 export function bindAll<T extends Record<keyof any, any>>(obj: T): T {
-
   for (const key of getAllMethods(obj)) {
     (obj as any)[key] = obj[key].bind(obj)
   }

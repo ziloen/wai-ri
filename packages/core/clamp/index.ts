@@ -15,6 +15,8 @@ export function clamp<Min extends number, Max extends number>(n: number | MaybeN
   }
 }
 
+
+
 function _clamp<T>(n: T, min: number, max: number): T extends number ? number : number | undefined {
   if (Number.isNaN(n) || isNil(n)) {
     return undefined as any
