@@ -12,7 +12,7 @@ importers:
       echarts: ^5.3.3
       eslint: ^8.19.0
       rxjs: ^7.5.5
-      three: ^0.141.0
+      three: ^0.142.0
       typescript: 4.8.0-beta
       vue: ^3.2.37
       vue-router: ^4.1.1
@@ -21,7 +21,7 @@ importers:
       d3: 7.6.1
       echarts: 5.3.3
       rxjs: 7.5.5
-      three: 0.141.0
+      three: 0.142.0
       typescript: 4.8.0-beta
       vue: 3.2.37
       vue-router: 4.1.1_vue@3.2.37
@@ -2030,10 +2030,6 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
-
-  /three/0.141.0:
-    resolution: {integrity: sha512-JaSDAPWuk4RTzG5BYRQm8YZbERUxTfTDVouWgHMisS2to4E5fotMS9F2zPFNOIJyEFTTQDDKPpsgZVThKU3pXA==}
-    dev: false
 
   /three/0.142.0:
     resolution: {integrity: sha512-ESjPO+3geFr+ZUfVMpMnF/eVU2uJPOh0e2ZpMFqjNca1wApS9lJb7E4MjwGIczgt9iuKd8PEm6Pfgp2bJ92Xtg==}
