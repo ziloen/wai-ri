@@ -62,6 +62,16 @@ export type KeysMatching<Obj, Val> = { [Key in keyof Obj]-?: Obj[Key] extends Va
 
 
 
+/** 相等 */
+export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
+
+
+
+/** 是否为 any */
+export type IsAny<T> = 0 extends (1 & T) ? true : false
+
+
+
 type SetValuesToString<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
   [K in keyof T]:
   T[K] extends keyof any

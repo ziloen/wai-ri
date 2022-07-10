@@ -1,12 +1,13 @@
 import { ObjectType, Fn, Extensible, ExpandDeep, Union, KeysMatching } from '@wai-ri/shared'
 import * as d3 from 'd3'
-import type { Selection, BaseType, DraggedElementBaseType, D3DragEvent } from 'd3'
+import { Selection, BaseType, DraggedElementBaseType, D3DragEvent, namespace } from 'd3'
 import type { SVGElements } from '@lsegurado/htmltype'
 
 
 type SVGElementTagNameMap = globalThis.SVGElementTagNameMap
 
-// 因为到处不是类型是 namespace 所以不能直接用 SVGElements[key]， ERROR: connot use namespace 'SVGElements' as a type
+
+// FIXME: 因为到处不是类型是 namespace 所以不能直接用 SVGElements[key]， ERROR: connot use namespace 'SVGElements' as a type
 type NamesToAttr = {
   a: SVGElements.a
   animate: SVGElements.animate
@@ -71,9 +72,9 @@ type NamesToAttr = {
   use: SVGElements.use
   view: SVGElements.view
 } & { [a: string]: never }
-type NamesMatch<T extends string> = NamesToAttr[T]
 type _Extensible<T> = [T] extends [never] ? & { [k: string]: string | number } : T & { [k: string]: string | number }
-type SVGAttrType<T> = _Extensible<NamesMatch<KeysMatching<SVGElementTagNameMap, T>>>
+// TODO: 先从 SVGElements 类型转换为字符串，再从字符串映射为 AttrType，有没有办法直接使用类型映射到另一类型？SVGPathElement -> SVGElements.path
+type SVGAttrType<T> = _Extensible<NamesToAttr[KeysMatching<SVGElementTagNameMap, T>]>
 
 type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) => R
 
@@ -99,6 +100,9 @@ export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, SVGAttrType<T>
     }
   }
 }
+
+// test setAttrs
+// const q = setAttrs<SVGPathElement, number>((d, n, g) => ({ r: "" }))
 
 
 
