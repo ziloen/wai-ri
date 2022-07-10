@@ -1,6 +1,6 @@
 import { ObjectType, Fn, Extensible, ExpandDeep, Union, KeysMatching } from '@wai-ri/shared'
 import * as d3 from 'd3'
-import { Selection, BaseType, DraggedElementBaseType, D3DragEvent, namespace } from 'd3'
+import { Selection, BaseType, DraggedElementBaseType, D3DragEvent } from 'd3'
 import type { SVGElements } from '@lsegurado/htmltype'
 
 
