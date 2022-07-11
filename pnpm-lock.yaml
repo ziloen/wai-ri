@@ -11,20 +11,20 @@ importers:
       d3: ^7.6.1
       echarts: ^5.3.3
       eslint: ^8.19.0
-      rxjs: ^7.5.5
+      rxjs: ^7.5.6
       three: ^0.142.0
       typescript: 4.8.0-beta
       vue: ^3.2.37
-      vue-router: ^4.1.1
+      vue-router: ^4.1.2
     dependencies:
       axios: 0.27.2
       d3: 7.6.1
       echarts: 5.3.3
-      rxjs: 7.5.5
+      rxjs: 7.5.6
       three: 0.142.0
       typescript: 4.8.0-beta
       vue: 3.2.37
-      vue-router: 4.1.1_vue@3.2.37
+      vue-router: 4.1.2_vue@3.2.37
     devDependencies:
       '@types/eslint': 8.4.5
       '@ziloen/eslint-config-typescript': 0.0.34
@@ -94,7 +94,7 @@ importers:
     dependencies:
       '@wai-ri/shared': link:../shared
       axios: 0.27.2
-      rxjs: 7.5.5
+      rxjs: 7.5.6
       typescript: 4.7.4
 
   packages/shared:
@@ -123,7 +123,7 @@ importers:
       '@wai-ri/shared': link:../shared
       typescript: 4.7.4
       vue: 3.2.37
-      vue-router: 4.1.1_vue@3.2.37
+      vue-router: 4.1.2_vue@3.2.37
 
 packages:
 
@@ -1898,8 +1898,8 @@ packages:
     resolution: {integrity: sha512-PdhdWy89SiZogBLaw42zdeqtRJ//zFd2PgQavcICDUgJT5oW10QCRKbJ6bg4r0/UY2M6BWd5tkxuGFRvCkgfHQ==}
     dev: false
 
-  /rxjs/7.5.5:
-    resolution: {integrity: sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==}
+  /rxjs/7.5.6:
+    resolution: {integrity: sha512-dnyv2/YsXhnm461G+R/Pe5bWP41Nm6LBXEYWI6eiFP4fiwx6WRI/CD0zbdVAudd9xwLEF2IDcKXLHit0FYjUzw==}
     dependencies:
       tslib: 2.4.0
     dev: false
@@ -2124,8 +2124,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vue-router/4.1.1_vue@3.2.37:
-    resolution: {integrity: sha512-Wp1mEf2xCwT0ez7o9JvgpfBp9JGnVb+dPERzXDbugTatzJAJ60VWOhJKifQty85k+jOreoFHER4r5fu062PhPw==}
+  /vue-router/4.1.2_vue@3.2.37:
+    resolution: {integrity: sha512-5BP1qXFncVRwgV/XnqzsKApdMjQPqWIpoUBdL1ynz8HyLxIX/UDAx7Ql2BjmA5CXT/p61JfZvkpiFWFpaqcfag==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
