@@ -168,7 +168,7 @@ type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 
 
 type _Add<N1 extends number, N2 extends number> = ToNumber<FullAdder<NumToArr<N1>, NumToArr<N2>>>
 
-// TODO: 支持负数
+// TODO: 支持负数，小数
 export type Add<N1 extends number, N2 extends number> =
   IsPos<N1> extends true
   // N1 为正数
