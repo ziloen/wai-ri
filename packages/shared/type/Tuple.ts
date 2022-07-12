@@ -1,5 +1,5 @@
 import { IsPos } from './Number'
-import { Literal } from './_internal'
+import { Literal, Stringable } from './_internal'
 
 // TODO: 元组操作
 // 首尾元素 Splice, Join, ToIntersection, At
