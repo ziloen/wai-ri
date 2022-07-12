@@ -9,21 +9,19 @@ export type Length<T extends string> = TupleLen<Split<T, ''>>
 
 
 
-type _Split<Str extends string, Devider extends string, It extends string[] = []> =
-  Str extends `${infer StrA}${Devider}${infer StrB}`
-  ? _Split<StrB, Devider, [...It, StrA]>
-  : [...It, Str]
-
 /**
  * 分离字符串
  * @param Str 要分离的字符串
  * @param Devider 分隔符
  */
-export type Split<Str extends string, Devider extends string = ''> =
-  Devider extends ''
-  ? Pop<_Split<Str, Devider>>
-  : _Split<Str, Devider>
-
+export type Split<
+  Str extends string,
+  Separator extends string = '',
+  Result extends string[] = []
+> =
+  Str extends `${infer First}${Separator}${infer Rest}`
+  ? Split<Rest, Separator, [...Result, First]>
+  : [...Result, ...Str extends '' ? [] : [Str]]
 
 
 /**
@@ -44,8 +42,8 @@ export type Replace<Str extends string, OldStr extends string, NewStr extends st
 export type ToNumber<NumStr> =
   NumStr extends Stringable
   ? `${NumStr}` extends `${infer N extends number}`
-    ? N
-    : never
+  ? N
+  : never
   : never
 
 

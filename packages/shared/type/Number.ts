@@ -184,7 +184,6 @@ export type Add<N1 extends number, N2 extends number> =
   : _Add<N1, N2>
 
 
-
 /** 两数相减 */
 // 避免借位 9999 代表减数长度的9
 // A > B -> A - B = A + (9999 - B) + 1 - 10000
