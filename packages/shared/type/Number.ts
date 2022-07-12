@@ -29,7 +29,13 @@ type MustLiteral<N extends number> = `${N}` extends `${infer T extends number}` 
  * }
  * // 会误伤 number 类型
 */
-export type CheckNaN<N extends number> = [MustLiteral<N>] extends [never] ? "可能为NaN" : N
+export type CheckNaN<N extends number, Msg = "可能为NaN"> = [MustLiteral<N>] extends [never] ? Msg : N
+
+
+
+export type CheckNegative<T extends number, Msg = "不能使用负数"> = `${T}` extends `-${number}` ? Msg : T
+
+
 
 // TODO: 支持bigInt 数字运算
 // 正整数加减乘除, 大于小于, 大于等于, 小于等于
