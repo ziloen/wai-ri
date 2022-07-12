@@ -1,5 +1,5 @@
 import type { Split, ToNumber } from './String'
-import type { New as TupleNew, Includes, Shift, Unshift, Join } from './Tuple'
+import type { New as TupleNew, Includes, Shift, Unshift, Join, Pop, Last } from './Tuple'
 import type { Not, Xor } from './Logical'
 import { Literal } from './_internal'
 
@@ -96,7 +96,7 @@ type NumMap = {
 
 
 type NumToArr<T extends number> = Split<`${T}`>
-type ArrToNum<T extends (number | string)[]> = ToNumber<Join<T>>
+// type ArrToNum<T extends (number | string)[]> = ToNumber<Join<T>>
 type DecInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][1] : never
 type IncInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][2] : never
 
@@ -112,7 +112,6 @@ type AddInTen<N1 extends number, N2 extends number> =
 
 
 
-type _Add<N1 extends number, N2 extends number> = N1
 
 // 当前位，进位
 type HalfAddMap = {
@@ -142,7 +141,7 @@ type HalfAddMap = {
 
 // 半加器
 type HalfAdder<N1 extends number, N2 extends number> =
-  AddInTen<N1, N2> extends `${infer K extends number}`
+  `${AddInTen<N1, N2>}` extends `${infer K extends number}`
   ? `${K}` extends keyof HalfAddMap
   ? HalfAddMap[`${K}`]
   : never
@@ -150,11 +149,26 @@ type HalfAdder<N1 extends number, N2 extends number> =
 
 
 
-type FullAdder<N1 extends number[], N2 extends number[], Carry extends number> =
-  []
+type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 0, Result extends string = ''> =
+  N1 extends []
+  ? N2 extends []
+  ? Carry extends 0
+  ? Result
+  : `${1}${Result}`
+  : Carry extends 0
+  ? `${Join<N2>}${Result}`
+  : FullAdder<['1'], N2, 0, Result>
+  : N2 extends []
+  ? Carry extends 0
+  ? `${Join<N1>}${Result}`
+  : FullAdder<['1'], N1, 0, Result>
+  : HalfAdder<AddInTen<ToNumber<Last<N1>>, Carry>, ToNumber<Last<N2>>> extends [infer N extends number, infer C extends number]
+  ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
+  : never
 
+type _Add<N1 extends number, N2 extends number> = ToNumber<FullAdder<NumToArr<N1>, NumToArr<N2>>>
 
-
+// TODO: 支持负数
 export type Add<N1 extends number, N2 extends number> =
   IsPos<N1> extends true
   // N1 为正数

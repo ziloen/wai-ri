@@ -3,13 +3,11 @@ import type { Fn, Number as N } from '@wai-ri/shared'
 
 
 type DebounceOption<MaxWait extends number> = {
-  /** 最大等待时间，在不停触发的情况下，至少多少毫秒调用一次 */
+  /** 最大等待时间，在不停触发的情况下，至少多少毫秒调用一次，类似节流 */
   maxWait?: N.CheckNegative<MaxWait>,
   /** 立即调用(不在防抖时间内时) */
   immediate?: boolean
 }
-
-
 
 
 /**

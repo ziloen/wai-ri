@@ -82,7 +82,7 @@ export type At<T extends any[], Index extends number, Len extends number = T['le
 
 
 /** 最后一个元素 */
-export type Last<T extends any[]> = T extends [...any, infer L] ? L : never
+export type Last<T extends readonly unknown[]> = T extends [...any, infer L] ? L : never
 
 
 

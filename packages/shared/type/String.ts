@@ -1,4 +1,4 @@
-import type { Literal } from './_internal'
+import type { Literal, Stringable } from './_internal'
 import type { Length as TupleLen, Pop } from './Tuple'
 import type { } from './Number'
 
@@ -41,8 +41,13 @@ export type Replace<Str extends string, OldStr extends string, NewStr extends st
 
 
 // TODO: 4.8.0
-export type ToNumber<NumStr extends string | number> = `${NumStr}` extends `${infer N extends number}` ? N : never
+export type ToNumber<NumStr> =
+  NumStr extends Stringable
+  ? `${NumStr}` extends `${infer N extends number}`
+    ? N
+    : never
+  : never
 
 
 
-export type ToString<T> = T extends number | string | bigint | boolean | undefined | null ? `${T}` : string
+export type ToString<T> = T extends Stringable ? `${T}` : string
