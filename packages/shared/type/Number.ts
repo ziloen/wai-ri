@@ -285,11 +285,6 @@ export type Sub<N1 extends number, N2 extends number> =
   : _Sub<N1, N2>
 
 
-type T = Sub<2, 1>
-
-
-
-
 
 /** 负数转正数, TS 4.8+ */
 export type ToPos<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N

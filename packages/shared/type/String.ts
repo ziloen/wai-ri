@@ -44,15 +44,15 @@ export type ReplaceAll<
 /** 转换为数字类型，TS 4.8+ */
 export type ToNumber<NumStr> =
   NumStr extends Stringable
-    ? NumStr extends `.${infer N extends number}`
+    ? `${NumStr}` extends `.${infer N extends number}`
       ? ToNumber<`0.${N}`>
-      : NumStr extends `${infer N extends number}.`
+      : `${NumStr}` extends `${infer N extends number}.`
         ? N
-        : NumStr extends `${'00'}${infer N}`
+        : `${NumStr}` extends `${'00'}${infer N}`
           ? ToNumber<N>
-            : NumStr extends `${infer B}.${infer A}0`
+            : `${NumStr}` extends `${infer B}.${infer A}0`
               ? ToNumber<`${B}.${A}`>
-              : NumStr extends `${infer N extends number}`
+              : `${NumStr}` extends `${infer N extends number}`
                   ? N
                   : never
     : never
