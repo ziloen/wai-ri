@@ -8,11 +8,11 @@ import { Fn } from '@wai-ri/shared'
 export function lerp(start: number, stop: number): Fn<[number], number>
 export function lerp(start: number, stop: number, amt: number): number
 export function lerp(start: number, stop: number, amt?: number): number | Fn<[number], number> {
-  if (amt) {
+  if (amt)
     return _lerp(start, stop, amt)
-  } else {
+
+  else
     return (a: number) => _lerp(start, stop, a)
-  }
 }
 
 function _lerp(start: number, stop: number, amt: number) {

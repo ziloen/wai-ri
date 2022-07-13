@@ -28,7 +28,7 @@ export function asyncDebounce<Params extends unknown[], Return, Wait extends num
 
   const { maxWait, immediate } = options
 
-  return async function (...args: Params): Promise<Return> {
+  return function (...args: Params): Promise<Return> {
     return new Promise(res => {
       timer && clearTimeout(timer)
       timer = setTimeout(() => res(asyncFn(...args)), <number>wait)

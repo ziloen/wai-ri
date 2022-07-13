@@ -260,7 +260,7 @@ packages:
     resolution: {integrity: sha512-C3zfBrhHZvrpAAK3YXqLWVAGo87A4SvJ83Q/zVJ8rFWJdKejUnDYaWZPkA8K84kb2vDA/g90LTQAz7etXcgoQQ==}
     dependencies:
       '@types/d3-array': 3.0.3
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.9
     dev: false
 
   /@types/d3-delaunay/6.0.1:
@@ -302,7 +302,7 @@ packages:
   /@types/d3-geo/3.0.2:
     resolution: {integrity: sha512-DbqK7MLYA8LpyHQfv6Klz0426bQEf7bRTvhMy44sNGVyZoWn//B0c+Qbeg8Osi2Obdc9BLLXYAKpyWege2/7LQ==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.9
     dev: false
 
   /@types/d3-hierarchy/3.1.0:
@@ -414,16 +414,16 @@ packages:
   /@types/eslint/8.4.5:
     resolution: {integrity: sha512-dhsC09y1gpJWnK+Ff4SGvCuSnk9DaU0BJZSzOwa6GVSg65XtTugLBITDAAzRU5duGBoXBHpdR/9jHGxJjNflJQ==}
     dependencies:
-      '@types/estree': 0.0.52
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: true
 
-  /@types/estree/0.0.52:
-    resolution: {integrity: sha512-BZWrtCU0bMVAIliIV+HJO1f1PR41M7NKjfxrFJwwhKI1KwhwOxYw1SXg9ao+CIMt774nFuGiG6eU+udtbEI9oQ==}
+  /@types/estree/1.0.0:
+    resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
-  /@types/geojson/7946.0.8:
-    resolution: {integrity: sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==}
+  /@types/geojson/7946.0.9:
+    resolution: {integrity: sha512-snVY+R7d0VfUEHdfEe/NTFnz0+Qei0kEGIV8ErryWQwDXNS7uzhVEMcUtZ+uBHXSBcJa0zBcevBE0u41acbodQ==}
     dev: false
 
   /@types/json-schema/7.0.11:
@@ -598,8 +598,8 @@ packages:
       '@vue/shared': 3.2.37
     dev: false
 
-  /@vue/devtools-api/6.2.0:
-    resolution: {integrity: sha512-pF1G4wky+hkifDiZSWn8xfuLOJI1ZXtuambpBEYaf7Xaf6zC/pM29rvAGpd3qaGXnr4BAXU1Pxz/VfvBGwexGA==}
+  /@vue/devtools-api/6.2.1:
+    resolution: {integrity: sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ==}
     dev: false
 
   /@vue/reactivity-transform/3.2.37:
@@ -2129,7 +2129,7 @@ packages:
     peerDependencies:
       vue: ^3.2.0
     dependencies:
-      '@vue/devtools-api': 6.2.0
+      '@vue/devtools-api': 6.2.1
       vue: 3.2.37
     dev: false
 

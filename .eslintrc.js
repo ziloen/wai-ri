@@ -12,6 +12,8 @@ module.exports = {
   },
   ignorePatterns: ['/**/*.*', '!packages/**/*.*'],
   rules: {
-    "@typescript-eslint/no-namespace": 'off'
+    "@typescript-eslint/no-namespace": 'off',
+    'no-promise-executor-return': 'off',
+    '@typescript-eslint/promise-function-async': 'off'
   }
 }
