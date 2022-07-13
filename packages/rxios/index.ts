@@ -11,6 +11,7 @@ export function useRxios(instance: AxiosInstance) {
       instance.request<ResponseData>({ ...config, signal: controller.signal })
         .then(val => (observer.next(val), observer.complete()))
         .catch(err => AxiosStatic.isCancel(err) ? observer.complete() : observer.error(err))
+
       return controller.abort.bind(controller)
     })
   }

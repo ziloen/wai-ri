@@ -1,4 +1,4 @@
-import { IsPos } from './Number'
+import { Add, IsPos, Sub } from './Number'
 import { Literal, Stringable } from './_internal'
 
 // TODO: 元组操作
@@ -33,7 +33,13 @@ export type Push<T extends any[], Item> = [...T, Item]
 
 
 
-export type Slice<T extends any[], Start extends number = 0, End extends number = never> = []
+export type Slice<
+  T extends any[],
+  Start extends number = 0,
+  End extends number = never,
+  Index extends number = 0
+> = Sub<Start, Index>
+
 
 
 
@@ -77,7 +83,7 @@ export type Join<T extends Literal[], Devider extends string = ''> =
 
 /** TODO: 支持负数 -1 等 */
 // export type At<T extends any[], Index extends number, Len extends number = T['length']> = IsPos<Len> extends true ? T[Index] : T[Number.Add<Len, Index>]
-export type At<T extends any[], Index extends number, Len extends number = T['length']> = IsPos<Len> extends true ? T[Index] : T[Index]
+export type At<T extends any[], Index extends number, Len extends number = T['length']> = IsPos<Len> extends true ? T[Index] : T[Add<Len, Index>]
 
 
 
