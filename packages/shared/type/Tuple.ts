@@ -1,4 +1,5 @@
 import { Add, IsPos, Sub } from './Number'
+import { Split } from './String'
 import { Literal, Stringable } from './_internal'
 
 // TODO: 元组操作
@@ -15,7 +16,12 @@ export type New<Item, L extends number, T extends Item[] = []> = T['length'] ext
 
 
 /** 获取长度 */
-export type Length<T extends any[]> = T['length']
+export type Length<T extends any[] | string> =
+  T extends any[]
+    ? T['length']
+    : T extends string
+      ? Split<T>['length']
+      : never
 
 
 
@@ -93,7 +99,7 @@ export type Last<T extends readonly unknown[]> = T extends [...any, infer L] ? L
 
 
 /** 第一个元素 */
-export type First<T extends any[]> = T extends [infer F, ...any] ? F : never
+export type First<T extends readonly unknown[]> = T extends [infer F, ...any] ? F : never
 
 
 

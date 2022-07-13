@@ -1,7 +1,8 @@
-import type { Split, ToNumber } from './String'
-import type { New as TupleNew, Includes, Shift, Unshift, Join, Pop, Last } from './Tuple'
+import type { Length, Split, ToNumber, CharAt } from './String'
+import type { New as TupleNew, Includes, Shift, Unshift, Join, Pop, Last, Push } from './Tuple'
 import type { Not, Xor } from './Logical'
 import { Literal } from './_internal'
+import { Equal } from '.'
 
 
 
@@ -11,7 +12,12 @@ export type IsNeg<N extends number> = `${N}` extends `-${number}` ? true : false
 
 
 /** 判断是否为正数 */
-export type IsPos<N extends number,> = Not<IsNeg<N>>
+export type IsPos<N extends number,> =
+  `${N}` extends `-${number}`
+    ? false
+    : N extends 0
+      ? false
+      : true
 
 
 
@@ -20,6 +26,7 @@ export type IsInteger<N extends number> = Not<Includes<Split<`${N}`>, '.'>>
 
 
 
+/** 不能是 number 或者 NaN */
 type MustLiteral<N extends number> = `${N}` extends `${infer T extends number}` ? number extends T ? never : N : never
 
 /**
@@ -45,11 +52,6 @@ export type CheckNegative<T extends number, Msg = "不能使用负数"> = `${T}`
  * @param N2 数字2
  * TODO: 支持负数
  */
-// export type Add<N1 extends number, N2 extends number> = [...TupleNew<0, N1>, ...TupleNew<0, N2>]['length']
-
-// 另一种解法: 分离数字和进位并一位一位算，加一减一直到一方为零
-// type Add<N1 extends number, N2 extends number> = []
-// type TwoNumSum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
 /** [num]: [self, -1, +1, sign] */
 type NumMap = {
@@ -96,7 +98,6 @@ type NumMap = {
 
 
 type NumToArr<T extends number> = Split<`${T}`>
-// type ArrToNum<T extends (number | string)[]> = ToNumber<Join<T>>
 type DecInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][1] : never
 type IncInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][2] : never
 
@@ -104,12 +105,20 @@ type AddInTen<N1 extends number, N2 extends number> =
   N1 extends 0 ? N2 :
   N2 extends 0 ? N1 :
   IsNeg<N1> extends true
-  ? AddInTen<IncInTen<N1>, DecInTen<N2>>
-  : IsNeg<N2> extends true
-  // 左边为正数，右边为负数 左减右加，其余左加右减
-  ? AddInTen<DecInTen<N1>, IncInTen<N2>>
-  : AddInTen<IncInTen<N1>, DecInTen<N2>>
+    ? AddInTen<IncInTen<N1>, DecInTen<N2>>
+    : IsNeg<N2> extends true
+    // 左边为正数，右边为负数 左减右加，其余左加右减
+      ? AddInTen<DecInTen<N1>, IncInTen<N2>>
+      : AddInTen<IncInTen<N1>, DecInTen<N2>>
 
+
+type SubInTen<N1 extends number, N2 extends number> =
+  N1 extends N2 ? 0 :
+  UnsignGreat<N1, N2> extends true
+    ? N2 extends 0
+      ? N1
+      : SubInTen<DecInTen<N1>, DecInTen<N2>>
+    : SubInTen<N2, N1>
 
 
 
@@ -139,6 +148,7 @@ type HalfAddMap = {
 
 
 
+
 // 半加器
 type HalfAdder<N1 extends number, N2 extends number> =
   `${AddInTen<N1, N2>}` extends `${infer K extends number}`
@@ -148,60 +158,138 @@ type HalfAdder<N1 extends number, N2 extends number> =
   : never
 
 
-
+// 全加器
 type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 0, Result extends string = ''> =
   N1 extends []
-  ? N2 extends []
-  ? Carry extends 0
-  ? Result
-  : `${1}${Result}`
-  : Carry extends 0
-  ? `${Join<N2>}${Result}`
-  : FullAdder<['1'], N2, 0, Result>
-  : N2 extends []
-  ? Carry extends 0
-  ? `${Join<N1>}${Result}`
-  : FullAdder<['1'], N1, 0, Result>
-  : HalfAdder<AddInTen<ToNumber<Last<N1>>, Carry>, ToNumber<Last<N2>>> extends [infer N extends number, infer C extends number]
-  ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
-  : never
+    ? N2 extends []
+      ? Carry extends 0
+        ? Result
+        : `${1}${Result}`
+      : Carry extends 0
+        ? `${Join<N2>}${Result}`
+        : FullAdder<['1'], N2, 0, Result>
+    : N2 extends []
+      ? Carry extends 0
+        ? `${Join<N1>}${Result}`
+        : FullAdder<['1'], N1, 0, Result>
+      : HalfAdder<AddInTen<ToNumber<Last<N1>>, Carry>, ToNumber<Last<N2>>> extends [infer N extends number, infer C extends number]
+        ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
+        : never
+
 
 type _Add<N1 extends number, N2 extends number> = ToNumber<FullAdder<NumToArr<N1>, NumToArr<N2>>>
 
-// TODO: 支持负数，小数
+
+// 两数相加 TODO: 支持负数，小数 TS 4.8+
 export type Add<N1 extends number, N2 extends number> =
   IsPos<N1> extends true
-  // N1 为正数
-  ? IsPos<N2> extends true
-  // N1, N2 均为正数
-  ? _Add<N1, N2>
-  // N1为正, N2 为负
-  : _Add<N1, N2>
-  : IsPos<N2> extends true
-  // N1为负, N2为正
-  ? _Add<N1, N2>
-  // N1, N2 均为负数
-  : _Add<N1, N2>
+    // N1 为正数
+    ? IsPos<N2> extends true
+      // N1, N2 均为正数
+      ? _Add<N1, N2>
+      // N1为正, N2 为负
+      : Sub<N1, Abs<N2>>
+    : IsPos<N2> extends true
+      // N1为负, N2为正
+      ? Sub<N2, Abs<N1>>
+      // N1, N2 均为负数
+      : ToNeg<_Add<Abs<N1>, Abs<N2>>>
 
+
+
+type NumToUnion<N extends number, T extends any[] = []> =
+  T['length'] extends N
+    ? N
+    : T['length'] | NumToUnion<N, [...T, 0]>
+
+
+type GreatByUnion<
+  N1 extends number,
+  N2 extends number
+> = NumToUnion<N1> extends NumToUnion<N2> ? false : true
+
+
+
+type GreatByString<
+  N1 extends number,
+  N2 extends number,
+  IndexArr extends any[] = [],
+  I extends number = IndexArr['length'],
+  N1_I extends number = ToNumber<CharAt<`${N1}`, I>>,
+  N2_I extends number = ToNumber<CharAt<`${N2}`, I>>
+> =
+  N1_I extends never
+    ? false
+    : N1_I extends N2_I
+      ? GreatByString<N1, N2, [...IndexArr, ]>
+      : GreatByUnion<N1_I, N2_I>
+
+
+
+type UnsignGreat<
+  N1 extends number,
+  N2 extends number,
+  L1 extends number = Length<`${N1}`>,
+  L2 extends number = Length<`${N2}`>,
+> =
+  N1 extends N2
+    ? false
+    : L1 extends L2
+      ? GreatByString<N1, N2>
+      : GreatByUnion<L1, L2> extends true
+        ? true
+        : false
+
+
+type MinusByNine<
+  N extends number,
+  Result extends number[] = [],
+  IndexArr extends any[] = [],
+  I extends number = IndexArr['length'],
+  N_I extends number = ToNumber<CharAt<`${N}`, I>>,
+  Len = Length<`${N}`>
+> =
+  I extends Len
+    ? ToNumber<Join<Result>>
+    : MinusByNine<N, Push<Result, SubInTen<9, N_I>>, [...IndexArr, 0]>
+
+type Q = ToNumber<'1.'>
 
 /** 两数相减 */
-// 避免借位 9999 代表减数长度的9
-// A > B -> A - B = A + (9999 - B) + 1 - 10000
-// A < B -> A - B = -(9999 - (A + (9999 - B)))
-export type Sub<N1 extends number, N2 extends number> = []['length']
+// 避免借位 9999 代表减数长度的 9, 即 Tuple.New<'9', Length<Split<`${A}`>>>
+// A > B ->
+//   A - B = A + (9999 - B) + 1 - 10000
+// A < B ->
+//   A - B = -(9999 - (A + (9999 - B)))
+export type Sub<N1 extends number, N2 extends number> =
+  Equal<N1, N2> extends true ? 0 :
+  IsNeg<N1> extends true
+    ? IsNeg<N2> extends true
+      ? Sub<Abs<N2>, Abs<N1>>
+      : ToNeg<_Add<Abs<N1>, N2>>
+    : IsNeg<N2> extends true
+      ? _Add<N1, Abs<N2>>
+      // 两数皆为正数了
+      : UnsignGreat<N1, N2> extends true
+        // N1 > N2
+        ? Add<N1, N2>
+        // N1 < N2
+        : ToNeg<Add<N1, N2>>
 
 
 
-/** 负数转正数 TODO: 4.8.0 plan */
+
+/** 负数转正数, TS 4.8+ */
 export type ToPos<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
 
 
 
-/** TODO: 4.8.0 正数转负数 */
+/** 正数转负数, TS 4.8+  */
 export type ToNeg<N extends number> = IsNeg<N> extends true ? N : ToNumber<`-${N}`>
 
 
 
+/** 绝对值 */
 export type Abs<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
 
 

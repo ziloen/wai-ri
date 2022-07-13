@@ -1,6 +1,6 @@
 /** @type import('@types/eslint').Linter.Config */
 module.exports = {
-  extends: ["@ziloen/eslint-config-typescript"],
+  extends: ['@ziloen/eslint-config-typescript'],
   env: {
     node: true,
     browser: true,
@@ -8,11 +8,11 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: './tsconfig.json'
   },
   ignorePatterns: ['/**/*.*', '!packages/**/*.*'],
   rules: {
-    "@typescript-eslint/no-namespace": 'off',
+    '@typescript-eslint/no-namespace': 'off',
     'no-promise-executor-return': 'off',
     '@typescript-eslint/promise-function-async': 'off'
   }

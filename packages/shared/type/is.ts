@@ -1,5 +1,7 @@
 import type { ObjectType } from './index'
 
+
+
 /** 是否为 整数 */
 export function isInteger(val: unknown): val is number {
   return Number.isInteger(val)
