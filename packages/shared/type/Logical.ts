@@ -37,6 +37,8 @@ export type ToBool<T> =
 
 
 
+export type IfElse<T, E> = T extends true ? T : E
+
 /** 相等 - 使用 ./index.ts 中的 Equal */
 // export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
 

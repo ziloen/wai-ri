@@ -5,7 +5,7 @@ import type { } from './Number'
 
 
 /** 字符串长度 */
-export type Length<T extends string> = TupleLen<T>
+export type Length<T extends any[] | string | number> = TupleLen<T>
 
 
 

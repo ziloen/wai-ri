@@ -16,12 +16,14 @@ export type New<Item, L extends number, T extends Item[] = []> = T['length'] ext
 
 
 /** 获取长度 */
-export type Length<T extends any[] | string> =
+export type Length<T extends any[] | string | number> =
   T extends any[]
     ? T['length']
     : T extends string
       ? Split<T>['length']
-      : never
+      : T extends number
+        ? Split<`${T}`>['length']
+        : never
 
 
 
