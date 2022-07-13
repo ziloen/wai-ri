@@ -1,6 +1,6 @@
 {
   "name": "@wai-ri/rxios",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "homepage": "https://github.com/ziloen/wai-ri",
   "keywords": [
     "utils"
@@ -9,7 +9,7 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/shared": "workspace:^0.0.46",
+    "@wai-ri/shared": "workspace:^0.0.47",
     "axios": "*",
     "rxjs": "*",
     "typescript": "*"

@@ -1,6 +1,6 @@
 {
   "name": "wai-ri",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "keywords": [
     "utils"
   ],
@@ -8,9 +8,9 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/core": "workspace:^0.0.46",
-    "@wai-ri/random": "workspace:^0.0.46",
-    "@wai-ri/shared": "workspace:^0.0.46",
+    "@wai-ri/core": "workspace:^0.0.47",
+    "@wai-ri/random": "workspace:^0.0.47",
+    "@wai-ri/shared": "workspace:^0.0.47",
     "typescript": "*"
   }
 }
