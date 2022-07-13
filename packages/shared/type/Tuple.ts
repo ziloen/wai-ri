@@ -4,7 +4,6 @@ import { Literal, Stringable } from './_internal'
 
 // TODO: 元组操作
 // 首尾元素 Splice, Join, ToIntersection, At
-// namespace Union {
 
 /**
  * 生成固定长度元组
@@ -27,6 +26,7 @@ export type Length<T extends any[] | string | number> =
 
 
 
+/** 所以元素类型 [1, 2] -> 1 | 2 */
 export type Typeof<T extends any[]> = T[number]
 
 
@@ -46,7 +46,8 @@ export type Slice<
   Start extends number = 0,
   End extends number = never,
   Index extends number = 0
-> = Sub<Start, Index>
+> = T
+// Sub<Start, Index>
 
 
 
@@ -56,23 +57,38 @@ export type Slice<
  * @param DeleteCount 删除数
  * @param Item 添加项
  */
-export type Splice<T extends any[], DeleteCount extends number = 0, Item = never> = []
+export type Splice<
+  T extends any[],
+  DeleteCount extends number = 0,
+  Item extends any[] = [],
+  Len extends number = T['length'],
+  IndexArr extends any[] = [],
+  Index extends number = IndexArr['length']
+> = T
+// Index extends Len
+//   ? [...T, ...Item]
+//   : Splice<Shift<T>, >
 
 
 
-export type Shift<T extends any[]> = T extends [any, ...infer Rest] ? Rest : T
+
+/** 去除第一个元素 */
+export type Shift<T extends readonly unknown[]> = T extends [any, ...infer Rest] ? Rest : T
 
 
 
-export type Unshift<T extends any[], Item> = [Item, ...T]
+/** 向数组第一个插入元素 */
+export type Unshift<T extends readonly unknown[], Item> = [Item, ...T]
 
 
 
+/** 反转整个数组 */
 export type Reverse<T extends readonly unknown[]> = T extends [...infer Rest, infer Last] ? [Last, ...Reverse<Rest>] : T
 
 
 
-export type Includes<T extends any[], P> = P extends Typeof<T> ? true : false
+/** 是否包含元素 */
+export type Includes<T extends any[], Ele> = Ele extends Typeof<T> ? true : false
 
 
 
@@ -90,8 +106,7 @@ export type Join<T extends Literal[], Devider extends string = ''> =
 
 
 /** TODO: 支持负数 -1 等 */
-// export type At<T extends any[], Index extends number, Len extends number = T['length']> = IsPos<Len> extends true ? T[Index] : T[Number.Add<Len, Index>]
-export type At<T extends any[], Index extends number, Len extends number = T['length']> = IsPos<Len> extends true ? T[Index] : T[Add<Len, Index>]
+export type At<T extends any[], Index extends number, Len extends number = T['length']> = IsPos<Index> extends true ? T[Index] : T[Add<Len, Index>]
 
 
 
@@ -102,9 +117,6 @@ export type Last<T extends readonly unknown[]> = T extends [...any, infer L] ? L
 
 /** 第一个元素 */
 export type First<T extends readonly unknown[]> = T extends [infer F, ...any] ? F : never
-
-
-
 
 
 

@@ -1,11 +1,4 @@
 import type { Literal, Stringable } from './_internal'
-import type { Length as TupleLen, Pop } from './Tuple'
-import type { } from './Number'
-
-
-
-/** 字符串长度 */
-export type Length<T extends any[] | string | number> = TupleLen<T>
 
 
 
@@ -20,15 +13,15 @@ export type Split<
   Result extends string[] = []
 > =
   Str extends `${infer First}${Separator}${infer Rest}`
-  ? Split<Rest, Separator, [...Result, First]>
-  : [...Result, ...Str extends '' ? [] : [Str]]
+    ? Split<Rest, Separator, [...Result, First]>
+    : [...Result, ...Str extends '' ? [] : [Str]]
 
 
 
 /**
  * 用 NewStr 替换 Str 中的 OldStr
- * @param OldStr 需要替换的字符
- * @param NewStr 替换后的字符
+ * @param Old 需要替换的字符
+ * @param New 替换后的字符
  */
 export type ReplaceAll<
   Str extends string,

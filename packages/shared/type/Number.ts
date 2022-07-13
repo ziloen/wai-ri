@@ -114,7 +114,7 @@ type AddInTen<N1 extends number, N2 extends number> =
 
 type SubInTen<N1 extends number, N2 extends number> =
   N1 extends N2 ? 0 :
-  UnsignGreat<N1, N2> extends true
+  UnsignedGreatThan<N1, N2> extends true
   ? N2 extends 0
   ? N1
   : SubInTen<DecInTen<N1>, DecInTen<N2>>
@@ -162,19 +162,19 @@ type HalfAdder<N1 extends number, N2 extends number> =
 type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 0, Result extends string = ''> =
   N1 extends []
   ? N2 extends []
-  ? Carry extends 0
-  ? Result
-  : `${1}${Result}`
-  : Carry extends 0
-  ? `${Join<N2>}${Result}`
-  : FullAdder<['1'], N2, 0, Result>
+    ? Carry extends 0
+      ? Result
+      : `${1}${Result}`
+    : Carry extends 0
+      ? `${Join<N2>}${Result}`
+      : FullAdder<['1'], N2, 0, Result>
   : N2 extends []
-  ? Carry extends 0
-  ? `${Join<N1>}${Result}`
-  : FullAdder<['1'], N1, 0, Result>
-  : HalfAdder<AddInTen<ToNumber<Last<N1>>, Carry>, ToNumber<Last<N2>>> extends [infer N extends number, infer C extends number]
-  ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
-  : never
+    ? Carry extends 0
+      ? `${Join<N1>}${Result}`
+      : FullAdder<['1'], N1, 0, Result>
+    : HalfAdder<AddInTen<ToNumber<Last<N1>>, Carry>, ToNumber<Last<N2>>> extends [infer N extends number, infer C extends number]
+      ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
+      : never
 
 
 type _Add<N1 extends number, N2 extends number> = ToNumber<FullAdder<NumToArr<N1>, NumToArr<N2>>>
@@ -197,47 +197,56 @@ export type Add<N1 extends number, N2 extends number> =
 
 
 
-type NumToUnion<N extends number, T extends any[] = []> =
-  T['length'] extends N
-  ? N
-  : T['length'] | NumToUnion<N, [...T, 0]>
+/** 5 -> 0 | 1 | 2 | 3 | 4 | 5 */
+type NumToUnion<
+  N extends number,
+  T extends any[] = [],
+  Len extends number = T['length']
+> =
+  Len extends N
+    ? N
+    : Len | NumToUnion<N, [...T, 0]>
 
 
-type GreatByUnion<
+/** 2 > 1 ? -> 2 | 1 extends 1 ? false : true */
+type SingleGreatByUnion<
   N1 extends number,
   N2 extends number
 > = NumToUnion<N1> extends NumToUnion<N2> ? false : true
 
 
-
+/** TODO: 改个名字 */
 type GreatByString<
   N1 extends number,
   N2 extends number,
   IndexArr extends any[] = [],
-  I extends number = IndexArr['length'],
-  N1_I extends number = ToNumber<CharAt<`${N1}`, I>>,
-  N2_I extends number = ToNumber<CharAt<`${N2}`, I>>
+  Index extends number = IndexArr['length'],
+  N1_I extends number = ToNumber<CharAt<`${N1}`, Index>>,
+  N2_I extends number = ToNumber<CharAt<`${N2}`, Index>>
 > =
   N1_I extends never
-  ? false
-  : N1_I extends N2_I
-  ? GreatByString<N1, N2, [...IndexArr,]>
-  : GreatByUnion<N1_I, N2_I>
+    ? false
+    : N1_I extends N2_I
+      ? GreatByString<N1, N2, [...IndexArr,]>
+      : SingleGreatByUnion<N1_I, N2_I>
 
 
 
-type UnsignGreat<
+export type UnsignedGreatThan<
   N1 extends number,
   N2 extends number,
   L1 extends number = Length<N1>,
   L2 extends number = Length<N2>,
 > =
   N1 extends N2
-  ? false
-  : L1 extends L2
-  ? GreatByString<N1, N2>
-  : GreatByUnion<L1, L2>
+    ? false
+    : L1 extends L2
+      ? GreatByString<N1, N2>
+      : SingleGreatByUnion<L1, L2>
 
+
+
+/** 9 - N  */
 type SubByNineMap<N extends number> = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0][N]
 
 type MinusByNine<
@@ -249,8 +258,8 @@ type MinusByNine<
   Len = Length<N>
 > =
   I extends Len
-  ? ToNumber<Join<Result>>
-  : MinusByNine<N, Push<Result, SubByNineMap<N_I>>, [...IndexArr, 0]>
+    ? ToNumber<Join<Result>>
+    : MinusByNine<N, Push<Result, SubByNineMap<N_I>>, [...IndexArr, 0]>
 
 
 
@@ -262,27 +271,32 @@ type _Sub<
 // S2 extends string = `${N2}`
 > =
   0
-// UnsignGreat<N1, N2> extends true
+// UnsignedGreatThan<N1, N2> extends true
 //   ? _Add<N1, _Add<MinusByNine<N2>, 1>> // -10...
 //   : ToNeg<MinusByNine<_Add<N1, MinusByNine<N2>>>>
 
 
 /** 两数相减 */
 // 避免借位 9999 代表减数长度的 9, 即 Tuple.New<'9', Length<Split<`${A}`>>>
-// A > B ->
+// A > B :
 //   A - B = A + (9999 - B) + 1 - 10000
-// A < B ->
+//          -> Add<A + Add<MinusByNine<B>, 1> ->
+//          -> Unshift<Shift<LastResult>, SubInTen<ToNumber<LastResult[0]>, 1>>
+//          -> ToNumber<LastResult>
+//
+// A < B :
 //   A - B = -(9999 - (A + (9999 - B)))
+//          -> ToNeg<SubByNine<Add<A, SubByNine<B>>>>
+//
 export type Sub<N1 extends number, N2 extends number> =
-  Equal<N1, N2> extends true ? 0 :
+  N1 extends N2 ? 0 :
   IsNeg<N1> extends true
-  ? IsNeg<N2> extends true
-  ? Sub<Abs<N2>, Abs<N1>>
-  : ToNeg<_Add<Abs<N1>, N2>>
-  : IsNeg<N2> extends true
-  ? _Add<N1, Abs<N2>>
-  // 两数皆为正数了
-  : _Sub<N1, N2>
+    ? IsNeg<N2> extends true
+      ? Sub<Abs<N2>, Abs<N1>>
+      : ToNeg<_Add<Abs<N1>, N2>>
+    : IsNeg<N2> extends true
+      ? _Add<N1, Abs<N2>>
+      : _Sub<N1, N2>
 
 
 
@@ -301,24 +315,18 @@ export type Abs<N extends number> = `${N}` extends `-${infer P extends number}` 
 
 
 
+/** 两数符号是否相同 */
 export type SameSign<N1 extends number, N2 extends number> = Xor<IsNeg<N1>, IsNeg<N2>>
 
 
 
-/** 基数 2-36 */
-type Radix = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16
+/** 基数 2 - 36 */
+type Radix = Exclude<NumToUnion<36>, 0 | 1>
 
-/** TODO: 支持指定基数  */
+/** TODO: 支持指定基数 */
 export type ToString<N extends number, radix extends Radix> = `${N}`
 
 
-
-
-
-// type NewNum<L extends number, A extends unknown[] = [], LL = A['length']> = A["length"] extends L ? A : NewNum<L, [LL, ...A]>
-
-
-// type Is<N1 extends number, N2 extends number> = N1 extends N2 ? true : false
 
 // N1 - N2 > 0
 export type GreatThan<N1 extends number, N2 extends number> = N1 extends N2 ? false : IsPos<Sub<N1, N2>>
@@ -328,7 +336,5 @@ export type GreatEqual<N1 extends number, N2 extends number> = N1 extends N2 ? t
 export type LessThan<N1 extends number, N2 extends number> = N1 extends N2 ? false : IsNeg<Sub<N1, N2>>
 // N1 - N2 <= 0
 export type LessEqual<N1 extends number, N2 extends number> = N1 extends N2 ? true : IsPos<Sub<N1, N2>>
-// N1 === N2
-// export type Equal<N1 extends number, N2 extends number> = N1 extends N2 ? true : false
 
 
