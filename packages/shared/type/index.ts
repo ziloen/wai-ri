@@ -10,8 +10,8 @@ export * as Union from './Union'
 
 
 
-import * as Union from './Union'
-import { SetParams, UnaryFn } from './Function'
+import type { IsUnion, ToTuple } from './Union'
+import type { SetParams, UnaryFn } from './Function'
 
 
 
@@ -100,7 +100,7 @@ export type ExpandDeep<
 > =
   NowDeep extends Deeps ? T :
   T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], Deeps, [...DeepArr, 0]> } :
-  Union.IsUnion<T> extends true ? ExpandDeep<Union.ToTuple<T>[number], Deeps, [...DeepArr, 0]> :
+  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], Deeps, [...DeepArr, 0]> :
   T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, Deeps, [...DeepArr, 0]>, ExpandDeep<Return, Deeps, [...DeepArr, 0]>> :
   T extends Promise<infer P> ? Promise<ExpandDeep<P, Deeps, [...DeepArr, 0]>> :
   T
