@@ -163,6 +163,11 @@ export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
 
 
 /** 使两属性互斥 */
-export type Exclusive<T, K1 extends keyof T, K2 extends keyof T, K extends keyof T = keyof T,> =
-  ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never }) |
-  ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
+export type Exclusive<T, K1 extends keyof T, K2 extends keyof T> =
+  { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
+  (
+    { [K in K1]?: never } & { [K in K2]: T[K] } |
+    { [K in K2]?: never } & { [K in K1]: T[K] }
+  )
+// ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never }) |
+// ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
