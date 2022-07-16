@@ -9,7 +9,7 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/shared": "workspace:^0.0.52",
+    "@wai-ri/shared": "workspace:^0.0.53",
     "three": "*",
     "typescript": "*"
   }
