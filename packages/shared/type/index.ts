@@ -158,7 +158,7 @@ export type Assign<Org extends ObjectType, New extends ObjectType> = Expand<New 
 
 
 /** 可扩展类型 */
-export type Extensible<O extends ObjectType> = Expand<O & ObjectType>
+export type Extensible<O extends ObjectType> = Expand<O & { [K: keyof any]: unknown }>
 
 
 
