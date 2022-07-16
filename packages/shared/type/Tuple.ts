@@ -1,9 +1,9 @@
 import { Add, IsPos, Sub } from './Number'
 import { Split } from './String'
 import { Literal, Stringable } from './_internal'
+import { ToIntersection as UnionToIntersection } from './Union'
 
-// TODO: 元组操作
-// 首尾元素 Splice, Join, ToIntersection, At
+
 
 /**
  * 生成固定长度元组
@@ -41,6 +41,17 @@ export type Push<T extends any[], Item> = [...T, Item]
 
 
 
+/** 去除第一个元素 */
+export type Shift<T extends readonly unknown[]> = T extends [any, ...infer Rest] ? Rest : T
+
+
+
+/** 向数组第一个插入元素 */
+export type Unshift<T extends readonly unknown[], Item> = [Item, ...T]
+
+
+
+// TODO:
 export type Slice<
   T extends any[],
   Start extends number = 0,
@@ -51,8 +62,8 @@ export type Slice<
 
 
 
-
 /**
+ * @todo TODO:
  * @param T 操作的元组
  * @param DeleteCount 删除数
  * @param Item 添加项
@@ -68,17 +79,6 @@ export type Splice<
 // Index extends Len
 //   ? [...T, ...Item]
 //   : Splice<Shift<T>, >
-
-
-
-
-/** 去除第一个元素 */
-export type Shift<T extends readonly unknown[]> = T extends [any, ...infer Rest] ? Rest : T
-
-
-
-/** 向数组第一个插入元素 */
-export type Unshift<T extends readonly unknown[], Item> = [Item, ...T]
 
 
 
@@ -117,6 +117,11 @@ export type Last<T extends readonly unknown[]> = T extends [...any, infer L] ? L
 
 /** 第一个元素 */
 export type First<T extends readonly unknown[]> = T extends [infer F, ...any] ? F : never
+
+
+
+/** 转交集 */
+export type ToIntersection<T extends readonly unknown[]> = UnionToIntersection<T[number]>
 
 
 

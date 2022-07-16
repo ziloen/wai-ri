@@ -12,6 +12,7 @@ export * as Union from './Union'
 
 import type { IsUnion, ToTuple } from './Union'
 import type { SetParams, UnaryFn } from './Function'
+import type { Stringable } from './_internal'
 
 
 
@@ -73,11 +74,11 @@ export type IsAny<T> = 0 extends (1 & T) ? true : false
 
 type SetValuesToString<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
   [K in keyof T]:
-  T[K] extends keyof any
-  ? T[K]
-  : T[K] extends bigint | boolean | undefined | null
-  ? `${T[K]}`
-  : never
+    T[K] extends keyof any
+      ? T[K]
+      : T[K] extends Stringable
+        ? `${T[K]}`
+        : never
 }
 
 /** 反转 对象 值与键 */
@@ -87,22 +88,28 @@ export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null 
 
 
 /** 展开类型 */
-export type Expand<T> = ExpandDeep<T, 2>
+export type Expand<T> = ExpandDeep<T, 3>
 
 
 
-/** 递归展开，TODO: 增加递归深度？递归类型？ */
+/** 递归展开 */
 export type ExpandDeep<
   T,
   Deeps extends number = 5,
   DeepArr extends any[] = [],
-  NowDeep extends number = DeepArr['length']
+  NowDeep extends number = DeepArr['length'],
+  Next extends any[] = [...DeepArr, 0]
 > =
+  // 已到达深度，结束
   NowDeep extends Deeps ? T :
-  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], Deeps, [...DeepArr, 0]> } :
-  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], Deeps, [...DeepArr, 0]> :
-  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, Deeps, [...DeepArr, 0]>, ExpandDeep<Return, Deeps, [...DeepArr, 0]>> :
-  T extends Promise<infer P> ? Promise<ExpandDeep<P, Deeps, [...DeepArr, 0]>> :
+  // 对象类型
+  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], Deeps, Next> } :
+  // 联合类型
+  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], Deeps, Next> :
+  // 函数类型
+  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, Deeps, Next>, ExpandDeep<Return, Deeps, Next>> :
+  // Promise 类型
+  T extends Promise<infer P> ? Promise<ExpandDeep<P, Deeps, Next>> :
   T
 
 
