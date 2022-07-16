@@ -1,4 +1,4 @@
-import type { Fn, Number as N } from '@wai-ri/shared'
+import type { AsyncFn, Fn, Number as N } from '@wai-ri/shared'
 
 
 
@@ -22,13 +22,22 @@ type DebounceOption<MaxWait extends number> = {
  *    .catch(err => catchErr(err))
  * }
  */
-export function asyncDebounce<Params extends unknown[], Return, Wait extends number, MaxWait extends number>(asyncFn: Fn<Params, Return>, wait: N.CheckNegative<Wait> = <any>0, options: DebounceOption<MaxWait> = {}) {
+export function asyncDebounce<
+  Params extends unknown[],
+  Return,
+  Wait extends number,
+  MaxWait extends number
+>(
+  asyncFn: Fn<Params, Return>,
+  wait: N.CheckNegative<Wait> = <any>0,
+  options: DebounceOption<MaxWait> = {}
+) {
   let timer: ReturnType<typeof setTimeout> | undefined
   let maxTimer: ReturnType<typeof setTimeout> | undefined
 
   const { maxWait, /** immediate */ } = options
 
-  return function (...args: Params): Promise<Return> {
+  return function (...args: Params): Promise<Awaited<Return>> {
     return new Promise(res => {
       timer && clearTimeout(timer)
 
@@ -37,14 +46,14 @@ export function asyncDebounce<Params extends unknown[], Return, Wait extends num
         maxTimer = setTimeout(() => {
           timer && clearTimeout(timer)
           maxTimer = timer = undefined
-          res(asyncFn(...args))
+          res(<Awaited<Return>>asyncFn(...args))
         }, <number>maxWait)
       }
 
       timer = setTimeout(() => {
         maxTimer && clearTimeout(maxTimer)
         maxTimer = timer = undefined
-        res(asyncFn(...args))
+        res(<Awaited<Return>>asyncFn(...args))
       }, <number>wait)
     })
   }
