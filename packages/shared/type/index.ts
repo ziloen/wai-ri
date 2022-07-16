@@ -15,7 +15,6 @@ import { SetParams, UnaryFn } from './Function'
 
 
 
-
 /** 对象类型，用来取代 object | {} */
 export type ObjectType<K extends keyof any = keyof any, V = unknown> = Record<K, V>
 
