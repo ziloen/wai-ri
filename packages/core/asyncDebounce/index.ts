@@ -6,7 +6,7 @@ type DebounceOption<MaxWait extends number> = {
   /** 最大等待时间，在不停触发的情况下，至少多少毫秒调用一次，类似节流 */
   maxWait?: N.CheckNegative<MaxWait>,
   /** 立即调用(不在防抖时间内时) */
-  immediate?: boolean
+  // immediate?: boolean
 }
 
 
@@ -23,15 +23,29 @@ type DebounceOption<MaxWait extends number> = {
  * }
  */
 export function asyncDebounce<Params extends unknown[], Return, Wait extends number, MaxWait extends number>(asyncFn: Fn<Params, Return>, wait: N.CheckNegative<Wait> = <any>0, options: DebounceOption<MaxWait> = {}) {
-  let timer: ReturnType<typeof setTimeout>
-  let maxTimer: ReturnType<typeof setTimeout>
+  let timer: ReturnType<typeof setTimeout> | undefined
+  let maxTimer: ReturnType<typeof setTimeout> | undefined
 
-  const { maxWait, immediate } = options
+  const { maxWait, /** immediate */ } = options
 
   return function (...args: Params): Promise<Return> {
     return new Promise(res => {
       timer && clearTimeout(timer)
-      timer = setTimeout(() => res(asyncFn(...args)), <number>wait)
+
+      // 如果有最大延迟时间
+      if (maxWait && !maxTimer /** && !immediate */) {
+        maxTimer = setTimeout(() => {
+          timer && clearTimeout(timer)
+          maxTimer = timer = undefined
+          res(asyncFn(...args))
+        }, <number>maxWait)
+      }
+
+      timer = setTimeout(() => {
+        maxTimer && clearTimeout(maxTimer)
+        maxTimer = timer = undefined
+        res(asyncFn(...args))
+      }, <number>wait)
     })
   }
 }
