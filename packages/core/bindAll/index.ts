@@ -7,6 +7,7 @@ export function bindAll<T extends Record<keyof any, any>>(obj: T): T {
 }
 
 
+/** 找出所有可用的方法 */
 function getAllMethods(object: any) {
   const methods = new Set<string | symbol>()
   const proto = Object.prototype
