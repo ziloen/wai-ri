@@ -88,23 +88,22 @@ export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null 
 
 
 /** 展开类型 */
-// export type Expand<T> = ExpandDeep<T, 2>
-export type Expand<T, Deep extends 0 | 1 | 2 = 2> =
-  Deep extends 0 ? T :
-  T extends ObjectType ? { [K in keyof T]: Expand<T[K], Deep extends 2 ? 1 : 0> } :
-  Union.IsUnion<T> extends true ? Expand<Union.ToTuple<T>[number], Deep extends 2 ? 1 : 0> :
-  T extends Fn<infer Params, infer Return> ? Fn<Expand<Params, Deep extends 2 ? 1 : 0>, Expand<Return, Deep extends 2 ? 1 : 0>> :
-  T extends Promise<infer Pro> ? Promise<Expand<Pro, Deep extends 2 ? 1 : 0>> :
-  T
+export type Expand<T> = ExpandDeep<T, 2>
 
 
 
 /** 递归展开，TODO: 增加递归深度？递归类型？ */
-export type ExpandDeep<T, Deep extends number = 5> =
-  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K]> } :
-  Union.IsUnion<T> extends true ? ExpandDeep<Union.ToTuple<T>[number]> :
-  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params>, ExpandDeep<Return>> :
-  T extends Promise<infer Pro> ? Promise<ExpandDeep<Pro>> :
+export type ExpandDeep<
+  T,
+  Deeps extends number = 5,
+  DeepArr extends any[] = [],
+  NowDeep extends number = DeepArr['length']
+> =
+  NowDeep extends Deeps ? T :
+  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], Deeps, [...DeepArr, 0]> } :
+  Union.IsUnion<T> extends true ? ExpandDeep<Union.ToTuple<T>[number], Deeps, [...DeepArr, 0]> :
+  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, Deeps, [...DeepArr, 0]>, ExpandDeep<Return, Deeps, [...DeepArr, 0]>> :
+  T extends Promise<infer P> ? Promise<ExpandDeep<P, Deeps, [...DeepArr, 0]>> :
   T
 
 
