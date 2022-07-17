@@ -1,7 +1,7 @@
 
 
 
-/**  */
+/** 字面量类型 */
 export type Literal = string | number | bigint | boolean
 
 

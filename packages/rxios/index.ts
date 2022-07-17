@@ -1,7 +1,7 @@
 
-import { Observable } from 'rxjs'
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import AxiosStatic from 'axios'
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios'
+import { Observable } from 'rxjs'
 
 
 export function useRxios(instance: AxiosInstance) {

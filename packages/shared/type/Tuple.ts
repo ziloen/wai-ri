@@ -1,7 +1,7 @@
-import { Add, IsPos, Sub } from './Number'
+import { Add, IsPos } from './Number'
 import { Split } from './String'
-import { Literal, Stringable } from './_internal'
 import { ToIntersection as UnionToIntersection } from './Union'
+import { Literal } from './_internal'
 
 
 

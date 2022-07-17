@@ -1,8 +1,6 @@
-import type { Split, ToNumber, CharAt } from './String'
-import type { New as TupleNew, Includes, Shift, Unshift, Join, Pop, Last, Push, Length } from './Tuple'
 import type { Not, Xor } from './Logical'
-import { Literal } from './_internal'
-import { Equal } from '.'
+import type { CharAt, Split, ToNumber } from './String'
+import type { Includes, Join, Last, Length, Pop, Push } from './Tuple'
 
 
 

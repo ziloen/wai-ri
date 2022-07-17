@@ -1,4 +1,4 @@
-import type { ExpandDeep, ReverseLoose } from '@wai-ri/shared'
+import type { ReverseLoose } from '@wai-ri/shared'
 
 /** 生成双向映射 */
 export function useEnum<T extends Record<string | number, string | number | boolean | null | undefined>>(obj: T)

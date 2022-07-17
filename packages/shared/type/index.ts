@@ -10,8 +10,8 @@ export * as Union from './Union'
 
 
 
-import type { IsUnion, ToTuple } from './Union'
 import type { SetParams, UnaryFn } from './Function'
+import type { IsUnion, ToTuple } from './Union'
 import type { Stringable } from './_internal'
 
 

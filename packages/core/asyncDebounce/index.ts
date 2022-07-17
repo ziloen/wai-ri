@@ -1,4 +1,4 @@
-import type { AsyncFn, Fn, Number as N } from '@wai-ri/shared'
+import type { Fn, Number as N } from '@wai-ri/shared'
 
 
 

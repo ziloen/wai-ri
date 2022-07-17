@@ -1,7 +1,7 @@
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
-import type { Ref } from 'vue'
+import type { ECharts, EChartsOption } from 'echarts'
 import { init } from 'echarts'
-import type { EChartsOption, ECharts } from 'echarts'
+import type { Ref } from 'vue'
+import { onBeforeUnmount, onMounted, watch } from 'vue'
 
 
 /**

@@ -1,6 +1,4 @@
-import { IsPos, ToPos, GreatThan, Sub, LessThan } from './Number'
-import { ToNumber } from './String'
-import { First, Shift } from './Tuple'
+import { GreatThan, IsPos, LessThan, ToPos } from './Number'
 
 
 /** 寻找最大值 */

@@ -1,7 +1,7 @@
-import { ObjectType, Fn, Extensible, ExpandDeep, Union, KeysMatching } from '@wai-ri/shared'
-import { drag } from 'd3'
-import type { Selection, BaseType, DraggedElementBaseType, D3DragEvent } from 'd3'
 import type { SVGElements } from '@lsegurado/htmltype'
+import { KeysMatching } from '@wai-ri/shared'
+import type { BaseType, D3DragEvent, DraggedElementBaseType } from 'd3'
+import { drag } from 'd3'
 
 
 // FIXME: 因为到处不是类型是 namespace 所以不能直接用 SVGElements[key]， ERROR: connot use namespace 'SVGElements' as a type
