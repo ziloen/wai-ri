@@ -12,6 +12,7 @@
     "dependencies"
   ],
   "pin": false,
+  "updateInternalDeps": true,
   "rangeStrategy": "bump",
   "constraints": {
     "pnpm": "7"
