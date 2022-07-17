@@ -1,5 +1,6 @@
 import type { Fn } from '.'
 import type { Length as TupleLen } from './Tuple'
+import type { _ } from './_internal'
 
 
 
@@ -9,12 +10,12 @@ export type Length<T extends Fn> = TupleLen<Parameters<T>>
 
 
 /** 设置参数类型 */
-export type SetParams<T extends Fn, P extends any[]> = T extends Fn<any[], infer R> ? Fn<P, R> : never
+export type SetParams<T extends Fn, P extends any[]> = T extends Fn<_, infer R> ? Fn<P, R> : never
 
 
 
 /** 设置返回类型 */
-export type SetReturn<T extends Fn, R> = T extends Fn<infer P, any> ? Fn<P, R> : never
+export type SetReturn<T extends Fn, R> = T extends Fn<infer P, _> ? Fn<P, R> : never
 
 
 
@@ -24,12 +25,12 @@ export type New<Args extends any[] = any[], Return = any> = (...args: Args) => R
 
 
 /** 获取返回类型 */
-export type Return<F extends Fn> = F extends Fn<any[], infer R> ? R : never
+export type Return<F extends Fn> = F extends Fn<_, infer R> ? R : never
 
 
 
 /** 获取参数类型 */
-export type Parameters<F extends Fn> = F extends Fn<infer P, any> ? P : never
+export type Parameters<F extends Fn> = F extends Fn<infer P, _> ? P : never
 
 
 

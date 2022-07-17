@@ -1,7 +1,6 @@
-import { Add, IsPos } from './Number'
-import { Split } from './String'
-import { ToIntersection as UnionToIntersection } from './Union'
-import { Literal } from './_internal'
+import type { Add, IsPos } from './Number'
+import type { Split } from './String'
+import type { Literal, _ } from './_internal'
 
 
 
@@ -32,7 +31,7 @@ export type Typeof<T extends any[]> = T[number]
 
 
 /** 去掉最后一个元素 */
-export type Pop<T extends any[]> = T extends readonly [...infer Rest, any] ? Rest : T
+export type Pop<T extends any[]> = T extends readonly [...infer Rest, _] ? Rest : T
 
 
 
@@ -42,7 +41,7 @@ export type Push<T extends any[], Item> = [...T, Item]
 
 
 /** 去除第一个元素 */
-export type Shift<T extends readonly unknown[]> = T extends [any, ...infer Rest] ? Rest : T
+export type Shift<T extends readonly unknown[]> = T extends [_, ...infer Rest] ? Rest : T
 
 
 
