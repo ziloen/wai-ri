@@ -121,7 +121,7 @@ export type First<T extends readonly unknown[]> = T extends [infer F, ...any] ? 
 
 
 /** 转交集 */
-export type ToIntersection<T extends readonly unknown[]> = UnionToIntersection<T[number]>
+export type ToIntersection<T extends readonly unknown[], Result = unknown> = T extends [] ? Result : Result & ToIntersection<Shift<T>, T[0]>
 
 
 
