@@ -1,4 +1,4 @@
-import { GreatThan, IsPos, LessThan, ToPos } from './Number'
+import type { GreatThan, IsPos, LessThan, ToPos } from './Number'
 
 
 /** 寻找最大值 */

@@ -1,4 +1,4 @@
-import { Fn } from '.'
+import type { Fn } from '.'
 
 
 
