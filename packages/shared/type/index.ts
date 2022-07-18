@@ -12,7 +12,7 @@ export * as Union from './Union'
 
 import type { SetParams, UnaryFn } from './Function'
 import type { IsUnion, ToTuple } from './Union'
-import type { Stringable } from './_internal'
+import type { Stringable, _ } from './_internal'
 
 
 
@@ -31,7 +31,8 @@ export type AsyncFn<Args extends any[] = any[], Return = any> = (...args: Args) 
 
 
 /** 数组的元素类型 */
-export type ArrayType<A extends any[]> = A extends Array<infer P> ? P : never
+// export type ArrayType<A extends any[]> = A extends Array<infer P> ? P : never
+export type ArrayType<A extends any[]> = A[number]
 
 
 
@@ -82,7 +83,7 @@ type SetValuesToString<T extends Record<keyof any, keyof any | boolean | null | 
 }
 
 /** 反转 对象 值与键 */
-export type Reverse<Obj extends Record<keyof Obj, Obj[keyof Obj]>> = { [Val in ValueOf<Obj>]: KeysMatching<Obj, Val> }
+export type Reverse<Obj extends ObjectType<_, _>> = { [Val in ValueOf<Obj>]: KeysMatching<Obj, Val> }
 export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null | undefined>> = Reverse<SetValuesToString<T>>
 
 
@@ -95,21 +96,21 @@ export type Expand<T> = ExpandDeep<T, 3>
 /** 递归展开 */
 export type ExpandDeep<
   T,
-  Deeps extends number = 5,
+  TargetDeep extends number = 5,
   DeepArr extends any[] = [],
   NowDeep extends number = DeepArr['length'],
-  Next extends any[] = [...DeepArr, 0]
+  Next extends any[] = [...DeepArr, _]
 > =
   // 已到达深度，结束
-  NowDeep extends Deeps ? T :
+  NowDeep extends TargetDeep ? T :
   // 对象类型
-  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], Deeps, Next> } :
+  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, Next> } :
   // 联合类型
-  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], Deeps, Next> :
+  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, Next> :
   // 函数类型
-  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, Deeps, Next>, ExpandDeep<Return, Deeps, Next>> :
+  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, TargetDeep, Next>, ExpandDeep<Return, TargetDeep, Next>> :
   // Promise 类型
-  T extends Promise<infer P> ? Promise<ExpandDeep<P, Deeps, Next>> :
+  T extends Promise<infer P> ? Promise<ExpandDeep<P, TargetDeep, Next>> :
   T
 
 
@@ -163,7 +164,7 @@ export type Assign<Org extends ObjectType, New extends ObjectType> = Expand<New 
 
 
 /** 可扩展类型 */
-export type Extensible<O extends ObjectType> = Expand<O & { [K: keyof any]: unknown }>
+export type Extensible<O extends ObjectType> = ExpandDeep<O & { [K: keyof any]: unknown }, 1>
 
 
 

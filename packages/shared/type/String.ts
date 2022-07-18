@@ -1,4 +1,4 @@
-import type { Stringable } from './_internal'
+import type { Stringable, _ } from './_internal'
 
 
 
@@ -56,14 +56,16 @@ export type ToNumber<NumStr> =
 export type CharAt<
   Str extends string,
   Index extends number = 0,
-  Iter extends any[] = []
+  Current extends any[] = [],
+  CurrInex extends number = Current['length'],
+  Next extends any[] = [...Current, _],
 > =
-  Iter['length'] extends Index
-    ? Str extends `${infer Result}${any}`
+  CurrInex extends Index
+    ? Str extends `${infer Result}${_}`
       ? Result
       : ''
-    : Str extends `${any}${infer Rest}`
-      ? CharAt<Rest, Index, [...Iter, 0]>
+    : Str extends `${_}${infer Rest}`
+      ? CharAt<Rest, Index, Next>
       : never
 
 

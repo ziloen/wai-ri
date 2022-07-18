@@ -1,6 +1,7 @@
 import type { Not, Xor } from './Logical'
 import type { CharAt, Split, ToNumber } from './String'
 import type { Includes, Join, Last, Length, Pop, Push } from './Tuple'
+import { _ } from './_internal'
 
 
 
@@ -203,7 +204,7 @@ type NumToUnion<
 > =
   Len extends N
     ? N
-    : Len | NumToUnion<N, [...T, 0]>
+    : Len | NumToUnion<N, [...T, _]>
 
 
 /** 2 > 1 ? -> 2 | 1 extends 1 ? false : true */
@@ -225,7 +226,7 @@ type GreatByString<
   N1_I extends never
     ? false
     : N1_I extends N2_I
-      ? GreatByString<N1, N2, [...IndexArr,]>
+      ? GreatByString<N1, N2, [...IndexArr, _]>
       : SingleGreatByUnion<N1_I, N2_I>
 
 
@@ -257,7 +258,7 @@ type MinusByNine<
 > =
   I extends Len
     ? ToNumber<Join<Result>>
-    : MinusByNine<N, Push<Result, SubByNineMap<N_I>>, [...IndexArr, 0]>
+    : MinusByNine<N, Push<Result, SubByNineMap<N_I>>, [...IndexArr, _]>
 
 
 
