@@ -13,7 +13,7 @@ importers:
       eslint: ^8.20.0
       rxjs: ^7.5.6
       three: ^0.142.0
-      typescript: 4.8.0-dev.20220717
+      typescript: 4.8.0-dev.20220718
       vue: ^3.2.37
       vue-router: ^4.1.2
     dependencies:
@@ -22,7 +22,7 @@ importers:
       echarts: 5.3.3
       rxjs: 7.5.6
       three: 0.142.0
-      typescript: 4.8.0-dev.20220717
+      typescript: 4.8.0-dev.20220718
       vue: 3.2.37
       vue-router: 4.1.2_vue@3.2.37
     devDependencies:
@@ -2101,8 +2101,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.8.0-dev.20220717:
-    resolution: {integrity: sha512-bo+gO8FV250ldGt8AjVHhAwbkSg10X4p7A5yb66/Muq7MQwktPhCy6kduHfgGyfdUmrbKvO4Yq5yTADnsmy/5w==}
+  /typescript/4.8.0-dev.20220718:
+    resolution: {integrity: sha512-B2TGSCNm1UToV38TnZVxcprJJSmakj3DG0ASbRO3MMl19ezUwMzf7oEM7dRYde2wR6cCrNXC6wpZME1vJYPK3g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
