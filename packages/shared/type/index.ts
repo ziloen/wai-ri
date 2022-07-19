@@ -168,8 +168,8 @@ export type Extensible<O extends ObjectType> = ExpandDeep<O & { [K: keyof any]: 
 
 
 
-/** 使两属性互斥 */
-export type Exclusive<T, K1 extends keyof T, K2 extends keyof T> =
+/** 使两属性互斥，不是线程互斥锁，Disjoint / Mutex / MutuallyExclusive */
+export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
   { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
   (
     { [K in K1]?: never } & { [K in K2]: T[K] } |
