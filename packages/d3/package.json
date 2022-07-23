@@ -11,7 +11,7 @@
   "dependencies": {
     "@lsegurado/htmltype": "*",
     "@types/d3": "*",
-    "@wai-ri/shared": "workspace:^0.0.56",
+    "@wai-ri/shared": "workspace:^0.0.57",
     "d3": "*",
     "typescript": "*"
   }
