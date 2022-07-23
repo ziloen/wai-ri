@@ -1,4 +1,5 @@
-import type { GreatThan, IsPos, LessThan, ToPos } from './Number'
+import type { GreatThan, IsPos, LessThan } from './Number'
+
 
 
 /** 寻找最大值 */
@@ -24,13 +25,9 @@ export type Min<N extends number[], Result extends number = N[0]> =
 export type Floor<N extends number> = N
 
 
+
 export type Round<N extends number> = N
 
 
+
 export type Sign<N extends number> = N extends 0 ? 0 : IsPos<N> extends true ? 1 : -1
-
-
-export type Abs<N extends number> = ToPos<N>
-
-
-export type Sort<N extends number[]> = N

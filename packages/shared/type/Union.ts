@@ -2,15 +2,13 @@ import type { Fn } from '.'
 
 
 
-type _IsUnion<T, U = T> =
+/** 判断是否为联合类型 */
+export type IsUnion<T, U = T> =
   T extends U
     ? [U] extends [T]
       ? false
       : true
     : never
-
-/** 判断是否为联合类型 */
-export type IsUnion<T> = _IsUnion<T>
 
 
 

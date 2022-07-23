@@ -5,6 +5,8 @@ import { _ } from './_internal'
 
 
 
+type StrToNum<T extends string> = T extends `${infer N extends number}` ? N : never;
+
 /** 判断是否是负数 */
 export type IsNeg<N extends number> = `${N}` extends `-${number}` ? true : false
 
@@ -54,95 +56,92 @@ export type CheckNegative<T extends number, Msg = "不能使用负数"> = `${T}`
 
 /** [num]: [self, -1, +1, sign] */
 type NumMap = {
-  '-19': [-19, -20, -18, -1],
-  '-18': [-18, -19, -17, -1],
-  '-17': [-17, -18, -16, -1],
-  '-16': [-16, -17, -15, -1],
-  '-15': [-15, -16, -14, -1],
-  '-14': [-14, -15, -13, -1],
-  '-13': [-13, -14, -12, -1],
-  '-12': [-12, -13, -11, -1],
-  '-11': [-11, -12, -10, -1],
-  '-10': [-10, -11, -9, -1],
-  '-9': [-9, -10, -8, -1],
-  '-8': [-8, -9, -7, -1],
-  '-7': [-7, -8, -6, -1],
-  '-6': [-6, -7, -5, -1],
-  '-5': [-5, -6, -4, -1],
-  '-4': [-4, -5, -3, -1],
-  '-3': [-3, -4, -2, -1],
-  '-2': [-2, -3, -1, -1],
-  '-1': [-1, -2, 0, -1],
-  '0': [0, -1, 1, 1],
-  '1': [1, 0, 2, 1],
-  '2': [2, 1, 3, 1],
-  '3': [3, 2, 4, 1],
-  '4': [4, 3, 5, 1],
-  '5': [5, 4, 6, 1],
-  '6': [6, 5, 7, 1],
-  '7': [7, 6, 8, 1],
-  '8': [8, 7, 9, 1],
-  '9': [9, 8, 10, 1],
-  '10': [10, 9, 11, 1],
-  '11': [11, 10, 12, 1],
-  '12': [12, 11, 13, 1],
-  '13': [13, 12, 14, 1],
-  '14': [14, 13, 15, 1],
-  '15': [15, 14, 16, 1],
-  '16': [16, 15, 17, 1],
-  '17': [17, 16, 18, 1],
-  '18': [18, 17, 19, 1],
-  '19': [19, 18, 20, 1],
+  // '-19': [-19, -20, -18, -1],
+  // '-18': [-18, -19, -17, -1],
+  // '-17': [-17, -18, -16, -1],
+  // '-16': [-16, -17, -15, -1],
+  // '-15': [-15, -16, -14, -1],
+  // '-14': [-14, -15, -13, -1],
+  // '-13': [-13, -14, -12, -1],
+  // '-12': [-12, -13, -11, -1],
+  // '-11': [-11, -12, -10, -1],
+  // '-10': [-10, -11, -9, -1],
+  // '-9': [-9, -10, -8, -1],
+  // '-8': [-8, -9, -7, -1],
+  // '-7': [-7, -8, -6, -1],
+  // '-6': [-6, -7, -5, -1],
+  // '-5': [-5, -6, -4, -1],
+  // '-4': [-4, -5, -3, -1],
+  // '-3': [-3, -4, -2, -1],
+  // '-2': [-2, -3, -1, -1],
+  // '-1': [-1, -2, 0, -1],
+  0: [0, -1, 1, 1],
+  1: [1, 0, 2, 1],
+  2: [2, 1, 3, 1],
+  3: [3, 2, 4, 1],
+  4: [4, 3, 5, 1],
+  5: [5, 4, 6, 1],
+  6: [6, 5, 7, 1],
+  7: [7, 6, 8, 1],
+  8: [8, 7, 9, 1],
+  9: [9, 8, 10, 1],
+  10: [10, 9, 11, 1],
+  11: [11, 10, 12, 1],
+  12: [12, 11, 13, 1],
+  13: [13, 12, 14, 1],
+  14: [14, 13, 15, 1],
+  15: [15, 14, 16, 1],
+  16: [16, 15, 17, 1],
+  17: [17, 16, 18, 1],
+  18: [18, 17, 19, 1],
+  19: [19, 18, 20, 1],
 }
 
 
 type NumToArr<T extends number> = Split<`${T}`>
-type DecInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][1] : never
-type IncInTen<N extends number> = `${N}` extends keyof NumMap ? NumMap[`${N}`][2] : never
+type DecInTen<N extends number> = N extends keyof NumMap ? NumMap[N][1] : never
+type IncInTen<N extends number> = N extends keyof NumMap ? NumMap[N][2] : never
 
+
+/** 暂不考虑负数 */
 type AddInTen<N1 extends number, N2 extends number> =
   N1 extends 0 ? N2 :
   N2 extends 0 ? N1 :
-  IsNeg<N1> extends true
-  ? AddInTen<IncInTen<N1>, DecInTen<N2>>
-  : IsNeg<N2> extends true
-  // 左边为正数，右边为负数 左减右加，其余左加右减
-  ? AddInTen<DecInTen<N1>, IncInTen<N2>>
-  : AddInTen<IncInTen<N1>, DecInTen<N2>>
+  AddInTen<IncInTen<N1>, DecInTen<N2>>
 
 
 type SubInTen<N1 extends number, N2 extends number> =
   N1 extends N2 ? 0 :
+  N1 extends 0 ? N2 :
+  N2 extends 0 ? N1 :
   UnsignedGreatThan<N1, N2> extends true
-  ? N2 extends 0
-  ? N1
-  : SubInTen<DecInTen<N1>, DecInTen<N2>>
-  : SubInTen<N2, N1>
+    ? SubInTen<DecInTen<N1>, DecInTen<N2>>
+    : SubInTen<N2, N1>
 
 
 
-// 当前位，进位
+// [num]: [当前位，进位]
 type HalfAddMap = {
-  '0': [0, 0],
-  '1': [1, 0],
-  '2': [2, 0],
-  '3': [3, 0],
-  '4': [4, 0],
-  '5': [5, 0],
-  '6': [6, 0],
-  '7': [7, 0],
-  '8': [8, 0],
-  '9': [9, 0],
-  '10': [0, 1]
-  '11': [1, 1],
-  '12': [2, 1],
-  '13': [3, 1],
-  '14': [4, 1],
-  '15': [5, 1],
-  '16': [6, 1],
-  '17': [7, 1],
-  '18': [8, 1],
-  '19': [9, 1],
+  0: [0, 0],
+  1: [1, 0],
+  2: [2, 0],
+  3: [3, 0],
+  4: [4, 0],
+  5: [5, 0],
+  6: [6, 0],
+  7: [7, 0],
+  8: [8, 0],
+  9: [9, 0],
+  10: [0, 1]
+  11: [1, 1],
+  12: [2, 1],
+  13: [3, 1],
+  14: [4, 1],
+  15: [5, 1],
+  16: [6, 1],
+  17: [7, 1],
+  18: [8, 1],
+  19: [9, 1],
 }
 
 
@@ -150,11 +149,11 @@ type HalfAddMap = {
 
 // 半加器
 type HalfAdder<N1 extends number, N2 extends number> =
-  `${AddInTen<N1, N2>}` extends `${infer K extends number}`
-  ? `${K}` extends keyof HalfAddMap
-  ? HalfAddMap[`${K}`]
-  : never
-  : never
+  AddInTen<N1, N2> extends infer K
+    ? K extends keyof HalfAddMap
+      ? HalfAddMap[K]
+      : never
+    : never
 
 
 // 全加器
@@ -171,30 +170,25 @@ type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 
     ? Carry extends 0
       ? `${Join<N1>}${Result}`
       : FullAdder<['1'], N1, 0, Result>
-    : HalfAdder<AddInTen<ToNumber<Last<N1>>, Carry>, ToNumber<Last<N2>>> extends [infer N extends number, infer C extends number]
+    : HalfAdder<AddInTen<StrToNum<Last<N1>>, Carry>, StrToNum<Last<N2>>> extends [infer N extends number, infer C extends number]
       ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
       : never
 
 
-type _Add<N1 extends number, N2 extends number> = ToNumber<FullAdder<NumToArr<N1>, NumToArr<N2>>>
+type _Add<N1 extends number, N2 extends number> = StrToNum<FullAdder<NumToArr<N1>, NumToArr<N2>>>
 
 
 // 两数相加 TODO: 支持负数，小数 TS 4.8+
 export type Add<N1 extends number, N2 extends number> =
   IsPos<N1> extends true
-  // N1 为正数
   ? IsPos<N2> extends true
-  // N1, N2 均为正数
-  ? _Add<N1, N2>
-  // N1为正, N2 为负
-  : Sub<N1, Abs<N2>>
+    ? _Add<N1, N2>
+    : Sub<N1, Abs<N2>>
   : IsPos<N2> extends true
-  // N1为负, N2为正
-  ? Sub<N2, Abs<N1>>
-  // N1, N2 均为负数
-  : ToNeg<_Add<Abs<N1>, Abs<N2>>>
+    ? Sub<N2, Abs<N1>>
+    : ToNeg<_Add<Abs<N1>, Abs<N2>>>
 
-
+type N = Add<120, 219>
 
 /** 5 -> 0 | 1 | 2 | 3 | 4 | 5 */
 type NumToUnion<
@@ -205,6 +199,7 @@ type NumToUnion<
   Len extends N
     ? N
     : Len | NumToUnion<N, [...T, _]>
+
 
 
 /** 2 > 1 ? -> 2 | 1 extends 1 ? false : true */
@@ -273,6 +268,9 @@ type _Sub<
 // UnsignedGreatThan<N1, N2> extends true
 //   ? _Add<N1, _Add<MinusByNine<N2>, 1>> // -10...
 //   : ToNeg<MinusByNine<_Add<N1, MinusByNine<N2>>>>
+// UnsignedGreatThan<N1, N2> extends true
+//   ? FullAdder<NumToArr<N1>, NumToArr< FullAdder<NumToArr<MinusByNine<N2>>, ["1"]>>> // -10...
+//   : ToNeg<MinusByNine<FullAdder<NumToArr<N1>, NumToArr<MinusByNine<N2>>>>>
 
 
 /** 两数相减 */
@@ -300,12 +298,12 @@ export type Sub<N1 extends number, N2 extends number> =
 
 
 /** 负数转正数, TS 4.8+ */
-export type ToPos<N extends number> = `${N}` extends `-${infer P extends number}` ? P : N
+export type ToPos<N extends number> = Abs<N>
 
 
 
 /** 正数转负数, TS 4.8+  */
-export type ToNeg<N extends number> = IsNeg<N> extends true ? N : ToNumber<`-${N}`>
+export type ToNeg<N extends number> = IsNeg<N> extends true ? N : StrToNum<`-${N}`>
 
 
 
@@ -320,10 +318,10 @@ export type SameSign<N1 extends number, N2 extends number> = Xor<IsNeg<N1>, IsNe
 
 
 /** 基数 2 - 36 */
-type Radix = Exclude<NumToUnion<36>, 0 | 1>
+type RadixMap = Exclude<NumToUnion<36>, 0 | 1>
 
 /** TODO: 支持指定基数 */
-export type ToString<N extends number, radix extends Radix> = `${N}`
+export type ToString<N extends number, Radix extends RadixMap> = `${N}`
 
 
 

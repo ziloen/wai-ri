@@ -71,4 +71,4 @@ export type CharAt<
 
 
 /** 转换为字符串类型 */
-export type ToString<T> = T extends Stringable ? `${T}` : string
+export type ToString<T> = T extends Stringable ? `${T}` : ''

@@ -82,12 +82,12 @@ export type Splice<
 
 
 /** 反转整个数组 */
-export type Reverse<T extends readonly unknown[]> = T extends [...infer Rest, infer Last] ? [Last, ...Reverse<Rest>] : T
+export type Reverse<T extends readonly unknown[]> = T extends [...infer Rest, infer Last extends T[number]] ? [Last, ...Reverse<Rest>] : T
 
 
 
 /** 是否包含元素 */
-export type Includes<T extends any[], Ele> = Ele extends Typeof<T> ? true : false
+export type Includes<T extends readonly unknown[], Ele> = Ele extends T[number] ? true : false
 
 
 
@@ -110,17 +110,22 @@ export type At<T extends any[], Index extends number, Len extends number = T['le
 
 
 /** 最后一个元素 */
-export type Last<T extends readonly unknown[]> = T extends [...any, infer L] ? L : never
+export type Last<T extends readonly unknown[]> = T extends [..._, infer L extends T[number]] ? L : never
 
 
 
 /** 第一个元素 */
-export type First<T extends readonly unknown[]> = T extends [infer F, ...any] ? F : never
+export type First<T extends readonly unknown[]> = T extends [infer F extends T[number], ..._] ? F : never
 
 
 
 /** 转交集 */
 export type ToIntersection<T extends readonly unknown[], Result = unknown> = T extends [] ? Result : Result & ToIntersection<Shift<T>, T[0]>
+
+
+
+/** TODO: 排序 */
+export type Sort<N extends number[]> = N
 
 
 

@@ -59,6 +59,11 @@ export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
 
 
 
+/** 修改类型 */
+export function assertType<T>(val: any): asserts val is T { }
+
+
+
 /** 是否为数组 */
 export const isArray = Array.isArray
 
