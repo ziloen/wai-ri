@@ -1,4 +1,4 @@
-import type { Fn, Number as N } from '@wai-ri/shared'
+import { asType, Fn, Number as N } from '@wai-ri/shared'
 
 
 
@@ -37,6 +37,10 @@ export function asyncDebounce<
 
   const { maxWait, /** immediate */ } = options
 
+  asType<number>(maxWait)
+  asType<number>(wait)
+  asType<Fn<any[], Awaited<Return>>>(asyncFn)
+
   return function (...args: Params): Promise<Awaited<Return>> {
     return new Promise(res => {
       timer && clearTimeout(timer)
@@ -46,15 +50,15 @@ export function asyncDebounce<
         maxTimer = setTimeout(() => {
           timer && clearTimeout(timer)
           maxTimer = timer = undefined
-          res(<Awaited<Return>>asyncFn(...args))
-        }, <number>maxWait)
+          res(asyncFn(...args))
+        }, maxWait)
       }
 
       timer = setTimeout(() => {
         maxTimer && clearTimeout(maxTimer)
         maxTimer = timer = undefined
-        res(<Awaited<Return>>asyncFn(...args))
-      }, <number>wait)
+        res(asyncFn(...args))
+      }, wait)
     })
   }
 }

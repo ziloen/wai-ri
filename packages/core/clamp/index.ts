@@ -1,4 +1,4 @@
-import type { Number as N } from '@wai-ri/shared'
+import { asType, Number as N } from '@wai-ri/shared'
 import { isNil } from '@wai-ri/shared'
 
 
@@ -7,21 +7,24 @@ type MaybeNumber = number | undefined | null
 export function clamp<Min extends number, Max extends number>(n: number, min: N.CheckNaN<Min>, max: N.CheckNaN<Max>): number
 export function clamp<Min extends number, Max extends number>(n: MaybeNumber[], min: N.CheckNaN<Min>, max: N.CheckNaN<Max>): MaybeNumber[]
 export function clamp<Min extends number, Max extends number>(n: number | MaybeNumber[], min: N.CheckNaN<Min>, max: N.CheckNaN<Max>): number | MaybeNumber[] {
+  asType<number>(min)
+  asType<number>(max)
+
   if (Array.isArray(n))
-    return n.map(v => _clamp(v, min as number, max as number))
+    return n.map(v => _clamp(v, min, max))
 
   else
-    return _clamp(n, min as number, max as number)
+    return _clamp(n, min, max)
 }
 
 
 
-function _clamp<T>(n: T, min: number, max: number): T extends number ? number : number | undefined {
+function _clamp<T extends MaybeNumber>(n: T, min: number, max: number): T extends number ? number : number | undefined {
   if (Number.isNaN(n) || isNil(n))
     return undefined as any
 
   else
-    return Math.max(Math.min(n as number, max), min)
+    return Math.max(Math.min(n, max), min)
 }
 
 

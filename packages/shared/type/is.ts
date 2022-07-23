@@ -59,8 +59,11 @@ export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
 
 
 
-/** 修改类型 */
-export function assertType<T>(val: any): asserts val is T { }
+/**
+ * 修改类型 - TS限制，一次只能断言一个参数
+ * @link [多参数断言 issue](https://github.com/microsoft/TypeScript/issues/26916)
+ */
+export function asType<T>(val: any): asserts val is T { }
 
 
 
