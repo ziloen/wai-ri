@@ -27,15 +27,15 @@ importers:
       vue-router: 4.1.2_vue@3.2.37
     devDependencies:
       '@types/eslint': 8.4.5
-      '@ziloen/eslint-config-typescript': 0.0.38
+      '@ziloen/eslint-config-typescript': 0.0.39
       bumpp: 8.2.1
       eslint: 8.20.0
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.59
-      '@wai-ri/random': workspace:^0.0.59
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/core': workspace:^0.0.61
+      '@wai-ri/random': workspace:^0.0.61
+      '@wai-ri/shared': workspace:^0.0.61
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -45,7 +45,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/shared': workspace:^0.0.61
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -55,7 +55,7 @@ importers:
     specifiers:
       '@lsegurado/htmltype': '*'
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/shared': workspace:^0.0.61
       d3: '*'
       typescript: '*'
     dependencies:
@@ -68,7 +68,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/shared': workspace:^0.0.61
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -79,7 +79,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/shared': workspace:^0.0.61
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -87,7 +87,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/shared': workspace:^0.0.61
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -105,7 +105,7 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/shared': workspace:^0.0.61
       three: '*'
       typescript: '*'
     dependencies:
@@ -115,7 +115,7 @@ importers:
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.59
+      '@wai-ri/shared': workspace:^0.0.61
       typescript: '*'
       vue: '*'
       vue-router: '*'
@@ -657,8 +657,8 @@ packages:
       - supports-color
     dev: true
 
-  /@ziloen/eslint-config-typescript/0.0.38:
-    resolution: {integrity: sha512-GJYdRaF4m9xPSyzX4ONMp4KxB54XzcoxXlFF+SmlDdqL3uWb2woZvSTl9CW1r+Qtro/rAdT/X9EpDdE/3L8cyw==}
+  /@ziloen/eslint-config-typescript/0.0.39:
+    resolution: {integrity: sha512-+McA8bOsKygYqKxNHFnNrJU6PfspQim8fAtf4BEf5wEHVR+gZN8IkPKBS0WgdagOc4w/X8vT7tagLp+IO+i8Bg==}
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.30.7_6wltbjakwuqm7awqswigmiuhd4
       '@typescript-eslint/parser': 5.30.7_he2ccbldppg44uulnyq4rwocfa

@@ -10,7 +10,7 @@
   "main": "./index.ts",
   "dependencies": {
     "@types/d3": "*",
-    "@wai-ri/shared": "workspace:^0.0.59",
+    "@wai-ri/shared": "workspace:^0.0.61",
     "echarts": "*",
     "typescript": "*"
   }
