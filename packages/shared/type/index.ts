@@ -73,18 +73,14 @@ export type IsAny<T> = 0 extends (1 & T) ? true : false
 
 
 
-type SetValuesToString<T extends Record<keyof any, keyof any | boolean | null | undefined>> = {
-  [K in keyof T]:
-    T[K] extends keyof any
-      ? T[K]
-      : T[K] extends Stringable
-        ? `${T[K]}`
-        : never
+/** 翻转对象键与值 */
+export type Flip<Obj extends Record<string, string | number | boolean>> = {
+  [Key in keyof Obj as `${Obj[Key]}`]: Key
 }
-
-/** 反转 对象 值与键 */
-export type Reverse<Obj extends ObjectType<_, _>> = { [Val in ValueOf<Obj>]: KeysMatching<Obj, Val> }
-export type ReverseLoose<T extends Record<keyof any, keyof any | boolean | null | undefined>> = Reverse<SetValuesToString<T>>
+/** 翻转对象键与值 更宽松 */
+export type FlipLoose<Obj extends Record<string | number, Stringable>> = {
+  [Key in keyof Obj as Obj[Key] extends keyof any ? Obj[Key] : Obj[Key] extends Stringable ? `${Obj[Key]}` : never]: Key extends Stringable ? `${Key}` : never
+}
 
 
 

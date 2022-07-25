@@ -1,10 +1,10 @@
-import type { ReverseLoose } from '@wai-ri/shared'
+import type { FlipLoose } from '@wai-ri/shared'
 
 /** 生成双向映射 */
 export function useEnum<T extends Record<string | number, string | number | boolean | null | undefined>>(obj: T)
   : Readonly<
     & T
-    & ReverseLoose<T>
+    & FlipLoose<T>
     & { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }
   > {
   const newObj = Object.create(null)
