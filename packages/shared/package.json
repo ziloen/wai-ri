@@ -8,6 +8,9 @@
   "license": "MIT",
   "author": "ziloen",
   "main": "./index.ts",
+  "sideEffects": [
+    "./type/assertNotNil.ts"
+  ],
   "dependencies": {
     "typescript": "*"
   }

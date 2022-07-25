@@ -1,4 +1,5 @@
 import type { ObjectType } from './index'
+export { assertNotNil } from './assertNotNil'
 
 
 
@@ -51,16 +52,9 @@ export function isFalsy(val: unknown): val is (null | undefined | false) {
 
 
 
-/** 断言 值不为空，为空抛出错误 */
-export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
-  if (val === null || val === undefined)
-    throw new Error('断言失败')
-}
-
-
-
 /**
- * 修改类型 - TS限制，一次只能断言一个参数
+ * 修改类型 - TS限制，一次只能断言一个参数  
+ * 打包器会清除空函数调用，所以不会有运行时负担
  * @link [多参数断言 issue](https://github.com/microsoft/TypeScript/issues/26916)
  */
 export function asType<T>(val: any): asserts val is T { }
