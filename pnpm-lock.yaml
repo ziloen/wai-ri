@@ -33,9 +33,9 @@ importers:
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.62
-      '@wai-ri/random': workspace:^0.0.62
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/core': workspace:^0.0.63
+      '@wai-ri/random': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.63
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -45,7 +45,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/shared': workspace:^0.0.63
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -55,7 +55,7 @@ importers:
     specifiers:
       '@lsegurado/htmltype': '*'
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/shared': workspace:^0.0.63
       d3: '*'
       typescript: '*'
     dependencies:
@@ -68,7 +68,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/shared': workspace:^0.0.63
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -79,7 +79,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/shared': workspace:^0.0.63
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -87,7 +87,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/shared': workspace:^0.0.63
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -105,7 +105,7 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/shared': workspace:^0.0.63
       three: '*'
       typescript: '*'
     dependencies:
@@ -115,7 +115,7 @@ importers:
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.62
+      '@wai-ri/shared': workspace:^0.0.63
       typescript: '*'
       vue: '*'
       vue-router: '*'
@@ -123,7 +123,7 @@ importers:
       '@wai-ri/shared': link:../shared
       typescript: 4.7.4
       vue: 3.2.37
-      vue-router: 4.1.2_vue@3.2.37
+      vue-router: 4.1.3_vue@3.2.37
 
 packages:
 
@@ -2123,15 +2123,6 @@ packages:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
     dev: true
-
-  /vue-router/4.1.2_vue@3.2.37:
-    resolution: {integrity: sha512-5BP1qXFncVRwgV/XnqzsKApdMjQPqWIpoUBdL1ynz8HyLxIX/UDAx7Ql2BjmA5CXT/p61JfZvkpiFWFpaqcfag==}
-    peerDependencies:
-      vue: ^3.2.0
-    dependencies:
-      '@vue/devtools-api': 6.2.1
-      vue: 3.2.37
-    dev: false
 
   /vue-router/4.1.3_vue@3.2.37:
     resolution: {integrity: sha512-XvK81bcYglKiayT7/vYAg/f36ExPC4t90R/HIpzrZ5x+17BOWptXLCrEPufGgZeuq68ww4ekSIMBZY1qdUdfjA==}
