@@ -15,13 +15,10 @@ export type New<Item, L extends number, T extends Item[] = []> = T['length'] ext
 
 /** 获取长度 */
 export type Length<T extends any[] | string | number> =
-  T extends any[]
-    ? T['length']
-    : T extends string
-      ? Split<T>['length']
-      : T extends number
-        ? Split<`${T}`>['length']
-        : never
+  T extends any[] ? T['length'] :
+  T extends string ? Split<T>['length'] :
+  T extends number ? Split<`${T}`>['length'] :
+  never
 
 
 
@@ -126,6 +123,17 @@ export type ToIntersection<T extends readonly unknown[], Result = unknown> = T e
 
 /** TODO: 排序 */
 export type Sort<N extends number[]> = N
+
+
+
+/** 是否是元组类型，如 [number] ，数组类型如 number[] 会返回 false */
+export type IsTuple<T> =
+  [T] extends [never] ? false :
+  T extends any[]
+    ? number extends T['length']
+      ? false
+      : true
+    : false
 
 
 

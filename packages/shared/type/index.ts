@@ -10,7 +10,6 @@ export * as Union from './Union'
 
 
 
-import type { SetParams, UnaryFn } from './Function'
 import type { IsUnion, ToTuple } from './Union'
 import type { Stringable, _ } from './_internal'
 
@@ -31,7 +30,6 @@ export type AsyncFn<Args extends any[] = any[], Return = any> = (...args: Args) 
 
 
 /** 数组的元素类型 */
-// export type ArrayType<A extends any[]> = A extends Array<infer P> ? P : never
 export type ArrayType<A extends any[]> = A[number]
 
 
@@ -57,9 +55,7 @@ export type Arrayable<T> = T | T[]
 
 
 /** 根据 value 获取 key 类型 */
-export type KeysMatching<Obj, Val> = { [Key in keyof Obj]-?: Obj[Key] extends Val ? Key : never }[keyof Obj]
-// 另一种 解法
-// export type KeysMatching<Obj, Val> = keyof { [Key in keyof Obj as (Obj[Key] extends Val ? Key : never)]: Key }
+export type KeysMatching<Obj, Val> = keyof { [Key in keyof Obj as Obj[Key] extends Val ? Key : never]: _ }
 
 
 
@@ -111,49 +107,6 @@ export type ExpandDeep<
 
 
 
-/** 管道函数 参数类型 */
-type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
-  Len extends 0
-  ? []
-  : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
-  ? [
-    // [SourceT] extends [never] ? First :
-    SetParams<First, [SourceT]>,
-
-    ...PipeParams<
-      [SetParams<Second, [ReturnType<First>]>, ...Rest],
-      ReturnType<First>
-    >
-  ]
-  : Funcs
-
-/** 管道函数 返回类型 */
-type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
-
-// declare function pipe<Funcs extends UnaryFn[]>(...args: PipeParams<Funcs, number>): PipeReturn<Funcs, number>
-
-// 测试 pipe ---
-// declare function num2str(a: number): string
-// declare function num2boo(a: number): boolean
-// declare function str2num(a: string): number
-// declare function str2boo(a: string): boolean
-// declare function boo2num(a: boolean): number
-// declare function boo2str(a: boolean): string
-
-// pipe(num2str, str2num, num2boo, boo2num)
-// // @ts-expect-error 'number' not assignable to 'string'
-// pipe(str2num, num2boo, boo2num)
-// // @ts-expect-error 'boolean' not assignable to 'string'
-// pipe(num2boo, str2num, num2boo)
-// pipe(num2boo, boo2str)
-// // @ts-expect-error 'boolean' not assignable to 'number'
-// pipe(num2boo, num2str)
-// pipe(num2boo)
-// pipe()
-
-
-
-
 /** 用 New 类型 扩展 Org 类型*/
 export type Assign<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
 
@@ -166,10 +119,15 @@ export type Extensible<O extends ObjectType> = ExpandDeep<O & { [K: keyof any]: 
 
 /** 使两属性互斥，不是线程互斥锁，Disjoint / Mutex / MutuallyExclusive */
 export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
-  { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
-  (
-    { [K in K1]?: never } & { [K in K2]: T[K] } |
-    { [K in K2]?: never } & { [K in K1]: T[K] }
-  )
+  ExpandDeep<
+    (
+      { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
+      (
+        | { [K in K1]?: never } & { [K in K2]: T[K] }
+        | { [K in K2]?: never } & { [K in K1]: T[K] }
+      )
+    ),
+    1
+  >
 // ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never }) |
 // ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
