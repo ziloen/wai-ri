@@ -10,13 +10,10 @@ export function useEnum<T extends Record<string | number, string | number | bool
   > {
   const newObj = Object.create(null)
 
-  // 创建自定义迭代器 可以 for(const [key, val] of myEnum) {  }
+  // 创建自定义迭代器，用于 for..of 循环
   Reflect.defineProperty(newObj, Symbol.iterator, {
     enumerable: false,
-    // 这种会被原始 obj 对象影响，但只有调用时才调用 entries
-    // value: () => Object.entries(obj)[Symbol.iterator]()
-    // 这种会提前调用 entries 并保存
-    value: bindSelf(Object.entries(obj), Symbol.iterator),
+    value: bindSelf(Object.entries(obj), Symbol.iterator)
   })
 
   for (const key in obj) {
