@@ -28,8 +28,8 @@ export type ReplaceAll<
   Old extends string,
   New extends string
 > =
-  Str extends `${infer Before}${Old}${infer After}`
-    ? `${Before}${New}${ReplaceAll<After, Old, New>}`
+  Str extends `${infer A}${Old}${infer B}`
+    ? `${A}${New}${ReplaceAll<B, Old, New>}`
     : Str
 
 
@@ -56,16 +56,16 @@ export type ToNumber<NumStr> =
 export type CharAt<
   Str extends string,
   Index extends number = 0,
-  Current extends any[] = [],
-  CurrInex extends number = Current['length'],
-  Next extends any[] = [...Current, _],
+  Iter extends any[] = [],
+  CurrentIndex extends number = Iter['length'],
+  NextIter extends any[] = [...Iter, _],
 > =
-  CurrInex extends Index
+  CurrentIndex extends Index
     ? Str extends `${infer Result}${_}`
       ? Result
       : ''
     : Str extends `${_}${infer Rest}`
-      ? CharAt<Rest, Index, Next>
+      ? CharAt<Rest, Index, NextIter>
       : never
 
 

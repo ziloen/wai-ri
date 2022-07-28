@@ -13,6 +13,7 @@ export * from './sleep'
 export * from './switchLatest'
 export * from './trimString'
 export * from './useEnum'
+export * from './bindSelf'
 
 
 
