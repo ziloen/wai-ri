@@ -11,7 +11,7 @@ async function loadData(id: number) {
   // ... 异步操作
 }
 
-const loadData_debounced = asyncDebounce(loadData, 120/* ms */)
+const loadData_debounced = asyncDebounce(loadData, 120/* ms */, { maxWait: 2000/* ms */ })
 
 const btn = document.getElementById("btn")
 
