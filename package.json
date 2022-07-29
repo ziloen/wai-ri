@@ -12,7 +12,9 @@
     "@types/eslint": "^8.4.5",
     "@ziloen/eslint-config-typescript": "latest",
     "bumpp": "^8.2.1",
-    "eslint": "^8.20.0"
+    "eslint": "^8.20.0",
+    "vite": "^3.0.3",
+    "vitest": "^0.19.1"
   },
   "dependencies": {
     "axios": "^0.27.2",
