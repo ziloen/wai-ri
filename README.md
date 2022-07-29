@@ -19,3 +19,5 @@
 
 ### TODO
  - [ ] 编写测试
+ - [ ] CI：PR/Push时自动测试，release 时自动生成 changelog
+ - [ ] vitepress 编写文档
