@@ -114,7 +114,7 @@ export type ExpandDeep<
 
 /** 用 New 类型 扩展 Org 类型*/
 export type Assign<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
-
+export type Merge<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
 
 
 /** 可扩展类型 */
