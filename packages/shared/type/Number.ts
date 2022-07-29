@@ -273,7 +273,6 @@ type _Sub<
 //   : ToNeg<MinusByNine<FullAdder<NumToArr<N1>, NumToArr<MinusByNine<N2>>>>>
 
 
-/** 两数相减 */
 // 避免借位 9999 代表减数长度的 9, 即 Tuple.New<'9', Length<Split<`${A}`>>>
 // A > B :
 //   A - B = A + (9999 - B) + 1 - 10000
@@ -284,7 +283,10 @@ type _Sub<
 // A < B :
 //   A - B = -(9999 - (A + (9999 - B)))
 //          -> ToNeg<SubByNine<Add<A, SubByNine<B>>>>
-//
+/** 
+ * 两数相减  
+ * 另一种解法 - [TS实现减法(支持大数运算)](https://zhuanlan.zhihu.com/p/518192267)
+ */
 export type Sub<N1 extends number, N2 extends number> =
   N1 extends N2 ? 0 :
   IsNeg<N1> extends true
