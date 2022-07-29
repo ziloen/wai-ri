@@ -78,6 +78,7 @@ export type IsAny<T> = 0 extends (1 & T) ? true : false
 export type Flip<Obj extends Record<string, string | number | boolean>> = {
   [Key in keyof Obj as `${Obj[Key]}`]: Key
 }
+
 /** 翻转对象键与值 更宽松 */
 export type FlipLoose<Obj extends Record<string | number, Stringable>> = {
   [Key in keyof Obj as Obj[Key] extends keyof any ? Obj[Key] : Obj[Key] extends Stringable ? `${Obj[Key]}` : never]: Key extends Stringable ? `${Key}` : never
@@ -94,20 +95,20 @@ export type Expand<T> = ExpandDeep<T, 3>
 export type ExpandDeep<
   T,
   TargetDeep extends number = 5,
-  DeepArr extends any[] = [],
-  NowDeep extends number = DeepArr['length'],
-  Next extends any[] = [...DeepArr, _]
+  Iter extends any[] = [],
+  NowDeep extends number = Iter['length'],
+  NextIter extends any[] = [...Iter, _]
 > =
   // 已到达深度，结束
   NowDeep extends TargetDeep ? T :
   // 对象类型
-  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, Next> } :
+  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
   // 联合类型
-  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, Next> :
+  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
   // 函数类型
-  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, TargetDeep, Next>, ExpandDeep<Return, TargetDeep, Next>> :
+  T extends Fn<infer Params, infer Return> ? Fn<ExpandDeep<Params, TargetDeep, NextIter>, ExpandDeep<Return, TargetDeep, NextIter>> :
   // Promise 类型
-  T extends Promise<infer P> ? Promise<ExpandDeep<P, TargetDeep, Next>> :
+  T extends Promise<infer P> ? Promise<ExpandDeep<P, TargetDeep, NextIter>> :
   T
 
 
