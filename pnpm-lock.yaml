@@ -33,9 +33,9 @@ importers:
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.63
-      '@wai-ri/random': workspace:^0.0.63
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/core': workspace:^0.0.65
+      '@wai-ri/random': workspace:^0.0.65
+      '@wai-ri/shared': workspace:^0.0.65
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -45,7 +45,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.65
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -55,7 +55,7 @@ importers:
     specifiers:
       '@lsegurado/htmltype': '*'
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.65
       d3: '*'
       typescript: '*'
     dependencies:
@@ -68,7 +68,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.65
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -79,7 +79,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.65
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -87,7 +87,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.65
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -105,17 +105,17 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.65
       three: '*'
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
-      three: 0.142.0
+      three: 0.143.0
       typescript: 4.7.4
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.63
+      '@wai-ri/shared': workspace:^0.0.65
       typescript: '*'
       vue: '*'
       vue-router: '*'
@@ -2033,6 +2033,10 @@ packages:
 
   /three/0.142.0:
     resolution: {integrity: sha512-ESjPO+3geFr+ZUfVMpMnF/eVU2uJPOh0e2ZpMFqjNca1wApS9lJb7E4MjwGIczgt9iuKd8PEm6Pfgp2bJ92Xtg==}
+    dev: false
+
+  /three/0.143.0:
+    resolution: {integrity: sha512-oKcAGYHhJ46TGEuHjodo2n6TY2R6lbvrkp+feKZxqsUL/WkH7GKKaeu6RHeyb2Xjfk2dPLRKLsOP0KM2VgT8Zg==}
     dev: false
 
   /to-fast-properties/2.0.0:
