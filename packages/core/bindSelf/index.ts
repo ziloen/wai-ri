@@ -1,12 +1,3 @@
-
-
-
-// 适用情况 - 不想多写一行
-// const obj = new Some()
-// const fn = obj.fn.bind(obj)
-// 简写成一行
-// const fn = bindSelf(new Some(), 'fn')
-
 import { Fn } from '@wai-ri/shared'
 
 /** 
@@ -17,3 +8,8 @@ export function bindSelf<T extends Record<any, any>, K extends keyof T>(obj: T, 
 }
 
 
+// 适用情况
+// const obj = new Some()
+// const fn = obj.fn.bind(obj)
+// 简写成一行
+// const fn = bindSelf(new Some(), 'fn')

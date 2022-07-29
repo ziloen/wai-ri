@@ -16,6 +16,7 @@ export function useEnum<T extends Record<string | number, string | number | bool
     value: bindSelf(Object.entries(obj), Symbol.iterator)
   })
 
+  // 双向映射
   for (const key in obj) {
     newObj[String(newObj[key] = obj[key])] = key
   }
