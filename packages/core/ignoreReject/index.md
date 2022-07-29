@@ -11,17 +11,16 @@ async function submitForm() {
   // ... 
 }
 
-// 使用前
+// 使用前，为了使 catch 只处理 submitForm 的 reject，需要套一层娃
 asyncValidateForm()
   .then(() => {
-    // 为了使 catch 只处理 submitForm 的 reject，需要套一层娃
     submitForm()
       .then(/* 成功 */)
       .catch(/* 错误 */)
   })
-  .catch(nothing)
+  // .catch(nothing)
 
-// 使用后
+// 使用后，catch 只处理 submitForm
 ignoreReject(asyncValidateForm())
   .then(submitForm)
   .then(/* 成功 */)
