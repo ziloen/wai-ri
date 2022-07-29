@@ -79,9 +79,10 @@ export function isKeyof<O extends ObjectType>(obj: O, key: string | number | sym
 
 
 
-// 带有 副作用，检查为空并未做任何操作，弃用，手动检查或者使用asType<NonNullable<typeof value>>(value)
-/** 断言 值不为空，为空抛出错误 */
-// export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
-//   if (val === null || val === undefined)
-//     throw new Error('断言失败')
-// }
+/** 
+ * 断言 值不为空，为空抛出错误 
+ * @deprecated 带有副作用，手动检查或者使用asType<NonNullable<typeof value>>(value)
+ */
+export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
+  if (val === null || val === undefined) throw new Error('断言失败')
+}

@@ -40,10 +40,10 @@ export function scrollIntoView<T extends MaybeElementRef>(elRef: T, arg?: boolea
 /**
  * 断言非空Ref
  * @param refVal Ref值
+ * @deprecated 使用 asType
  */
 export function assertNotNilRef<T>(refVal: Ref<T>): asserts refVal is Ref<NonNullable<T>> {
-  if (refVal.value === null || refVal.value === undefined)
-    throw new Error('断言失败')
+  if (refVal.value === null || refVal.value === undefined) throw new Error('断言失败')
 }
 
 
