@@ -1,8 +1,8 @@
-import type { FlipLoose } from '@wai-ri/shared'
+import type { FlipLoose, Stringable } from '@wai-ri/shared'
 import { bindSelf } from '../bindSelf'
 
 /** 生成双向映射 */
-export function useEnum<T extends Record<string | number, string | number | boolean | null | undefined>>(obj: T)
+export function useEnum<T extends Record<string | number, Stringable>>(obj: T)
   : Readonly<
     & T
     & FlipLoose<T>

@@ -11,7 +11,12 @@ export * as Union from './Union'
 
 
 import type { IsUnion, ToTuple } from './Union'
-import type { Stringable, _ } from './_internal'
+import type { _ } from './_internal'
+
+
+
+/** 可使用 `${}` 的类型 */
+export type Stringable = string | number | bigint | boolean | null | undefined
 
 
 
@@ -129,5 +134,5 @@ export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
     ),
     1
   >
-// ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never }) |
-// ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
+// | ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never })
+// | ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })

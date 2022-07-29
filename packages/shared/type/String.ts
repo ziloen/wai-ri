@@ -1,4 +1,6 @@
-import type { Stringable, _ } from './_internal'
+import { Stringable } from '.'
+import type { _ } from './_internal'
+
 
 
 
