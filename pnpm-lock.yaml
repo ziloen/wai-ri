@@ -15,8 +15,8 @@ importers:
       eslint: ^8.20.0
       jsdom: ^20.0.0
       rxjs: ^7.5.6
-      three: ^0.142.0
-      typescript: 4.8.0-dev.20220727
+      three: ^0.143.0
+      typescript: 4.8.0-dev.20220729
       vite: ^3.0.4
       vitest: ^0.19.1
       vue: ^3.2.37
@@ -26,8 +26,8 @@ importers:
       d3: 7.6.1
       echarts: 5.3.3
       rxjs: 7.5.6
-      three: 0.142.0
-      typescript: 4.8.0-dev.20220727
+      three: 0.143.0
+      typescript: 4.8.0-dev.20220729
       vue: 3.2.37
       vue-router: 4.1.3_vue@3.2.37
     devDependencies:
@@ -2540,10 +2540,6 @@ packages:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
 
-  /three/0.142.0:
-    resolution: {integrity: sha512-ESjPO+3geFr+ZUfVMpMnF/eVU2uJPOh0e2ZpMFqjNca1wApS9lJb7E4MjwGIczgt9iuKd8PEm6Pfgp2bJ92Xtg==}
-    dev: false
-
   /three/0.143.0:
     resolution: {integrity: sha512-oKcAGYHhJ46TGEuHjodo2n6TY2R6lbvrkp+feKZxqsUL/WkH7GKKaeu6RHeyb2Xjfk2dPLRKLsOP0KM2VgT8Zg==}
     dev: false
@@ -2647,8 +2643,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.8.0-dev.20220727:
-    resolution: {integrity: sha512-uGcc2dPwT0QpWpWPgTp9ko6wJM3T/GDHqfsOi1O41GeiEzUujqKkwppbTxW5L/yFzIdtmyJbKrO8GaKyUMUdFg==}
+  /typescript/4.8.0-dev.20220729:
+    resolution: {integrity: sha512-z+G8JjBcEA+D7iGniz0xhHU1oArnTKkYHiq/RuF32b1tz8zevpNbnAAIB7DyX1u0USY0XnDNbQIjWlbgdbb16w==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
