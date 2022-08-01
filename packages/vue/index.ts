@@ -1,5 +1,5 @@
 
-import type { ComponentPublicInstance, Ref } from 'vue'
+import { ComponentPublicInstance, onBeforeMount, onUnmounted, Ref } from 'vue'
 import { unref } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import { useRouter } from 'vue-router'
@@ -56,4 +56,12 @@ export function openRoute(to: RouteLocationRaw) {
   // 无效，错误用法
   const router = useRouter()
   globalThis.open(router.resolve(to).href, '_blank')
+}
+
+
+/**
+ * @todo 新函数，在改变路由时取消请求
+ */
+function useCancleAxiosOnExit() {
+  onUnmounted(() => {})
 }
