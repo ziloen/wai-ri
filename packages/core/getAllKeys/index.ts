@@ -1,0 +1,9 @@
+/** 获取所有属性名，类似 Reflect.ownKeys，但会检查原型链 */
+export function getAllKeys(obj: Record<keyof any, any>) {
+  const objProto = Object.prototype
+  const keysSet = new Set<any>()
+  for (let temp: any = obj; temp !== objProto; temp = Reflect.getPrototypeOf(temp)) {
+    for (const key of Reflect.ownKeys(temp)) keysSet.add(key)
+  }
+  return Array.from(keysSet)
+}
