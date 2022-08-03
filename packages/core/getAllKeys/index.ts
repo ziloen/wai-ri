@@ -1,5 +1,11 @@
-/** 获取所有属性名，类似 Reflect.ownKeys，但会检查原型链 */
-export function getAllKeys(obj: Record<keyof any, any>) {
+type Options = Partial<{
+  // 过滤保留哪些
+  filter: (key: string | symbol, descriptor: PropertyDescriptor) => boolean
+  deep: number
+}>
+
+/** 获取所有属性名，类似 Reflect.ownKeys，但会检查原型链（不包括Objec.prototype） */
+export function getAllKeys(obj: Record<keyof any, any> /* , options?: Options */) {
   const objProto = Object.prototype
   const keysSet = new Set<any>()
   for (let temp: any = obj; temp !== objProto; temp = Reflect.getPrototypeOf(temp)) {

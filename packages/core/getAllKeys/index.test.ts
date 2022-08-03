@@ -26,8 +26,15 @@ describe('getKeys', () => {
     target.n = 49
 
     const keys = getAllKeys(target);
-
     
-    expect(keys.length).toBe(4)
+    
+    expect(keys).toMatchInlineSnapshot(`
+      [
+        "n",
+        "q",
+        "x",
+        "c",
+      ]
+    `)
   })
 })

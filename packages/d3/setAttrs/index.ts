@@ -78,12 +78,10 @@ type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) 
  * 同.attr函数参数，但是一次设置多个attr
  * @example
  * selection
- *   .each(setAttrs((data, index, group) => {
- *     return {
- *       x: index * 50,
- *       y: data.value
- *     }
- *   }))
+ *   .each(setAttrs((data, index, group) => ({
+ *     x: index * 50,
+ *     y: data.value
+ *   })))
  */
 export function setAttrs<T extends BaseType, D>(fn: ValueFn<T, D, SVGAttrType<T>>) {
   return function (this: T, ...args: [D, number, any]) {
