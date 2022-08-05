@@ -16,7 +16,7 @@ importers:
       jsdom: ^20.0.0
       rxjs: ^7.5.6
       three: ^0.143.0
-      typescript: 4.8.0-dev.20220803
+      typescript: 4.8.0-dev.20220804
       vite: ^3.0.4
       vitest: ^0.20.3
       vue: ^3.2.37
@@ -27,7 +27,7 @@ importers:
       echarts: 5.3.3
       rxjs: 7.5.6
       three: 0.143.0
-      typescript: 4.8.0-dev.20220803
+      typescript: 4.8.0-dev.20220804
       vue: 3.2.37
       vue-router: 4.1.3_vue@3.2.37
     devDependencies:
@@ -2700,8 +2700,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.8.0-dev.20220803:
-    resolution: {integrity: sha512-kSQ2BkI4A0i81bjz+X+ibWVlC/DiImiNzJkz8tOj3U3hSgtgBTWw0a2YnVVHvyVdw7R59qDjE/sjX/3p8zY7xg==}
+  /typescript/4.8.0-dev.20220804:
+    resolution: {integrity: sha512-N5tKzl5WE31E6YHL3nlYls2zCxkCfax3gb3zKKcrRJXEzfPRFodE0xzkIgGJIshTLQnF/uwiN2Nc8TG50aE9Hg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
