@@ -25,4 +25,10 @@ ignoreReject(asyncValidateForm())
   .then(submitForm)
   .then(/* 成功 */)
   .catch(/* 错误 */)
+
+// 0.0.70+ 新增错误处理函数
+ignoreReject(asyncValidateForm(), err => console.log(err))
+  .then(submitForm)
+  .then(/* 成功 */)
+  .catch(/* 错误 */)
 ```
