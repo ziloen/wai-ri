@@ -52,9 +52,9 @@ export function isFalsy(val: unknown): val is (null | undefined | false) {
 
 
 /**
- * 修改类型 - TS限制，一次只能断言一个参数  
- * 打包器会清除空函数调用，所以不会有运行时负担（已验证，会被清除）
- * @link [多参数断言 issue](https://github.com/microsoft/TypeScript/issues/26916)
+ * 修改类型 
+ * 打包器会清除空函数调用，所以不会有运行时负担（已验证，会被清除）  
+ * - TS限制，一次只能断言一个参数，[多参数断言 issue](https://github.com/microsoft/TypeScript/issues/26916)
  */
 export function asType<T>(val: any): asserts val is T { }
 
