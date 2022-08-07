@@ -70,7 +70,7 @@ export function isKeyof<O extends ObjectType>(obj: O, key: string | number | sym
 
   // return key in obj
 
-  // 等同于 in 操作符
+  // 等同于 in 操作符，检查原型链，但不包括不可枚举
   // return Reflect.has(obj, key)
 
   // 不同于 in 操作符, Object.hasOwn 不检查原型链
