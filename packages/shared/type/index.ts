@@ -104,8 +104,9 @@ export type ExpandDeep<
   // 函数类型
   T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => ExpandDeep<Return, TargetDeep, NextIter> :
   // 对象类型
-  T extends Record<keyof any, _> ? T extends Promise<infer P>
-  // Promise 类型
+  T extends object ?
+  T extends Promise<infer P>
+  // 不展开Promise 类型
   ? Promise<ExpandDeep<P, TargetDeep, NextIter>>
   : { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
   // 联合类型
