@@ -21,7 +21,7 @@ export type Stringable = string | number | bigint | boolean | null | undefined
 
 
 /** 对象类型，用来取代 object | {} */
-export type ObjectType<K extends keyof any = keyof any, V = unknown> = Record<K, V>
+export type ObjectType<K extends keyof any = keyof any, V = any> = Record<K, V>
 
 
 /** 函数 */
@@ -102,7 +102,7 @@ export type ExpandDeep<
   // 已到达深度，结束
   NowDeep extends TargetDeep ? T :
   // 对象类型
-  T extends ObjectType ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
+  T extends Record<_, _> ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
   // 联合类型
   IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
   // 函数类型
