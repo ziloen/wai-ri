@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@types/eslint': ^8.4.5
-      '@types/node': ^18.6.3
+      '@types/node': ^18.6.4
       '@types/semver': ^7.3.10
       '@ziloen/eslint-config-typescript': latest
       axios: ^0.27.2
@@ -32,7 +32,7 @@ importers:
       vue-router: 4.1.3_vue@3.2.37
     devDependencies:
       '@types/eslint': 8.4.5
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
       '@types/semver': 7.3.10
       '@ziloen/eslint-config-typescript': 0.0.42
       bumpp: 8.2.1
@@ -43,9 +43,9 @@ importers:
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.69
-      '@wai-ri/random': workspace:^0.0.69
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/core': workspace:^0.0.70
+      '@wai-ri/random': workspace:^0.0.70
+      '@wai-ri/shared': workspace:^0.0.70
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -55,7 +55,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/shared': workspace:^0.0.70
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -65,7 +65,7 @@ importers:
     specifiers:
       '@lsegurado/htmltype': '*'
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/shared': workspace:^0.0.70
       d3: '*'
       typescript: '*'
     dependencies:
@@ -78,7 +78,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/shared': workspace:^0.0.70
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -89,7 +89,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/shared': workspace:^0.0.70
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -97,7 +97,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/shared': workspace:^0.0.70
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -115,7 +115,7 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/shared': workspace:^0.0.70
       three: '*'
       typescript: '*'
     dependencies:
@@ -125,7 +125,7 @@ importers:
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.69
+      '@wai-ri/shared': workspace:^0.0.70
       typescript: '*'
       vue: '*'
       vue-router: '*'
@@ -162,8 +162,8 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@babel/parser/7.18.10:
-    resolution: {integrity: sha512-TYk3OA0HKL6qNryUayb5UUEhM/rkOQozIBEA5ITXh5DWrSp0TlUQXMyZmnWxG/DizSWBeeQ0Zbc5z8UGaaqoeg==}
+  /@babel/parser/7.18.11:
+    resolution: {integrity: sha512-9JKn5vN+hDt0Hdqn1PiJ2guflwP+B6Ga8qbDuoF0PzzVhrzsKIJo8yGqVk6CmMHiMei9w1C1Bp9IMJSIK+HPIQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
@@ -269,11 +269,11 @@ packages:
   /@types/chai-subset/1.3.3:
     resolution: {integrity: sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==}
     dependencies:
-      '@types/chai': 4.3.1
+      '@types/chai': 4.3.3
     dev: true
 
-  /@types/chai/4.3.1:
-    resolution: {integrity: sha512-/zPMqDkzSZ8t3VtxOa4KPq7uzzW978M9Tvh+j7GHKuo6k6GTLxPJ4J5gE5cjfJ26pnXst0N5Hax8Sr0T2Mi9zQ==}
+  /@types/chai/4.3.3:
+    resolution: {integrity: sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==}
     dev: true
 
   /@types/d3-array/3.0.3:
@@ -474,8 +474,8 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
-  /@types/node/18.6.3:
-    resolution: {integrity: sha512-6qKpDtoaYLM+5+AFChLhHermMQxc3TOEFIDzrZLPRGHPrLEwqFkkT5Kx3ju05g6X7uDPazz3jHbKPX0KzCjntg==}
+  /@types/node/18.6.4:
+    resolution: {integrity: sha512-I4BD3L+6AWiUobfxZ49DlU43gtI+FTHSv9pE2Zekg6KjMpre4ByusaljW3vYSLJrvQ1ck1hUaeVu8HVlY3vzHg==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -615,7 +615,7 @@ packages:
   /@vue/compiler-core/3.2.37:
     resolution: {integrity: sha512-81KhEjo7YAOh0vQJoSmAD68wLfYqJvoiD4ulyedzF+OEk/bk6/hx3fTNVfuzugIIaTrOx4PGx6pAiBRe5e9Zmg==}
     dependencies:
-      '@babel/parser': 7.18.10
+      '@babel/parser': 7.18.11
       '@vue/shared': 3.2.37
       estree-walker: 2.0.2
       source-map: 0.6.1
@@ -631,7 +631,7 @@ packages:
   /@vue/compiler-sfc/3.2.37:
     resolution: {integrity: sha512-+7i/2+9LYlpqDv+KTtWhOZH+pa8/HnX/905MdVmAcI/mPQOBwkHHIzrsEsucyOIZQYMkXUiTkmZq5am/NyXKkg==}
     dependencies:
-      '@babel/parser': 7.18.10
+      '@babel/parser': 7.18.11
       '@vue/compiler-core': 3.2.37
       '@vue/compiler-dom': 3.2.37
       '@vue/compiler-ssr': 3.2.37
@@ -639,7 +639,7 @@ packages:
       '@vue/shared': 3.2.37
       estree-walker: 2.0.2
       magic-string: 0.25.9
-      postcss: 8.4.14
+      postcss: 8.4.16
       source-map: 0.6.1
     dev: false
 
@@ -657,7 +657,7 @@ packages:
   /@vue/reactivity-transform/3.2.37:
     resolution: {integrity: sha512-IWopkKEb+8qpu/1eMKVeXrK0NLw9HicGviJzhJDEyfxTR9e1WtpnnbYkJWurX6WwoFP0sz10xQg8yL8lgskAZg==}
     dependencies:
-      '@babel/parser': 7.18.10
+      '@babel/parser': 7.18.11
       '@vue/compiler-core': 3.2.37
       '@vue/shared': 3.2.37
       estree-walker: 2.0.2
@@ -1981,8 +1981,8 @@ packages:
       builtin-modules: 3.3.0
     dev: true
 
-  /is-core-module/2.9.0:
-    resolution: {integrity: sha512-+5FPy5PnwmO3lvfMb0AsoPaBG+5KHUI0wYFXOtYPnVVVspTFUuMZNfNaNVRt3FZadstu2c8x23vykRW/NBoU6A==}
+  /is-core-module/2.10.0:
+    resolution: {integrity: sha512-Erxj2n/LDAZ7H8WNJXd9tw38GYM3dv8rk8Zcs+jJuxYTW7sozH+SS8NtrSjVL1/vpLvWi1hxy96IzjJ3EHTJJg==}
     dependencies:
       has: 1.0.3
     dev: true
@@ -2340,8 +2340,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /postcss/8.4.14:
-    resolution: {integrity: sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==}
+  /postcss/8.4.16:
+    resolution: {integrity: sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.4
@@ -2417,7 +2417,7 @@ packages:
     resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}
     hasBin: true
     dependencies:
-      is-core-module: 2.9.0
+      is-core-module: 2.10.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
@@ -2748,7 +2748,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.14.53
-      postcss: 8.4.14
+      postcss: 8.4.16
       resolve: 1.22.1
       rollup: 2.77.2
     optionalDependencies:
@@ -2780,9 +2780,9 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/chai': 4.3.1
+      '@types/chai': 4.3.3
       '@types/chai-subset': 1.3.3
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
       chai: 4.3.6
       debug: 4.3.4
       jsdom: 20.0.0
