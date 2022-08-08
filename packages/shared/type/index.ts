@@ -101,13 +101,13 @@ export type ExpandDeep<
 > =
   // 已到达深度，结束
   NowDeep extends TargetDeep ? T :
-  // 函数类型
+  // 展开函数类型
   T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => ExpandDeep<Return, TargetDeep, NextIter> :
   // 不展开 Promise 类型
   T extends Promise<infer P> ? Promise<ExpandDeep<P, TargetDeep, NextIter>> :
-  // 对象类型
+  // 展开对象类型
   T extends object ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
-  // 联合类型
+  // 展开联合类型
   IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
   T
 
