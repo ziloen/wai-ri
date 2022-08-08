@@ -102,7 +102,7 @@ export type ExpandDeep<
   // 已到达深度，结束
   NowDeep extends TargetDeep ? T :
   // 函数类型
-  T extends Fn<infer Params, infer Return> ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => ExpandDeep<Return, TargetDeep, NextIter> :
+  T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => ExpandDeep<Return, TargetDeep, NextIter> :
   // 对象类型
   T extends Record<keyof any, _> ? T extends Promise<infer P>
   // Promise 类型
