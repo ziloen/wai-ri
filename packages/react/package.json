@@ -1,0 +1,16 @@
+{
+  "name": "@wai-ri/react",
+  "version": "0.0.73",
+  "homepage": "https://github.com/ziloen/wai-ri",
+  "keywords": [
+    "utils"
+  ],
+  "license": "MIT",
+  "author": "ziloen",
+  "main": "./index.ts",
+  "dependencies": {
+    "@wai-ri/shared": "workspace:^0.0.73",
+    "react": "*",
+    "@types/react": "*"
+  }
+}
