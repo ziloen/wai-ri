@@ -1,6 +1,6 @@
 {
   "name": "@wai-ri/core",
-  "version": "0.0.75",
+  "version": "0.0.73",
   "homepage": "https://github.com/ziloen/wai-ri",
   "keywords": [
     "utils"
@@ -9,7 +9,7 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/shared": "workspace:^0.0.73",
+    "@wai-ri/shared": "workspace:^0.0.74",
     "typescript": "*"
   }
 }
