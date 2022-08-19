@@ -10,7 +10,7 @@
     "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public"
   },
   "devDependencies": {
-    "@types/eslint": "^8.4.5",
+    "@types/eslint": "^8.4.6",
     "@types/node": "^18.7.6",
     "@types/semver": "^7.3.12",
     "@ziloen/eslint-config-typescript": "latest",

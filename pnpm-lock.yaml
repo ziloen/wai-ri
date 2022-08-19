@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@types/eslint': ^8.4.5
+      '@types/eslint': ^8.4.6
       '@types/node': ^18.7.6
       '@types/react': ^18.0.17
       '@types/semver': ^7.3.12
@@ -35,7 +35,7 @@ importers:
       vue: 3.2.37
       vue-router: 4.1.3_vue@3.2.37
     devDependencies:
-      '@types/eslint': 8.4.5
+      '@types/eslint': 8.4.6
       '@types/node': 18.7.6
       '@types/semver': 7.3.12
       '@ziloen/eslint-config-typescript': 0.0.42
@@ -47,9 +47,9 @@ importers:
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.74
-      '@wai-ri/random': workspace:^0.0.74
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/core': workspace:^0.0.73
+      '@wai-ri/random': workspace:^0.0.75
+      '@wai-ri/shared': workspace:^0.0.75
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -59,7 +59,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -69,7 +69,7 @@ importers:
     specifiers:
       '@lsegurado/htmltype': '*'
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       d3: '*'
       typescript: '*'
     dependencies:
@@ -82,7 +82,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -93,7 +93,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -102,7 +102,7 @@ importers:
   packages/react:
     specifiers:
       '@types/react': '*'
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       react: '*'
     dependencies:
       '@types/react': 18.0.17
@@ -111,7 +111,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -129,7 +129,7 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       three: '*'
       typescript: '*'
     dependencies:
@@ -139,7 +139,7 @@ importers:
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.74
+      '@wai-ri/shared': workspace:^0.0.75
       typescript: '*'
       vue: '*'
       vue-router: '*'
@@ -469,8 +469,8 @@ packages:
       '@types/d3-zoom': 3.0.1
     dev: false
 
-  /@types/eslint/8.4.5:
-    resolution: {integrity: sha512-dhsC09y1gpJWnK+Ff4SGvCuSnk9DaU0BJZSzOwa6GVSg65XtTugLBITDAAzRU5duGBoXBHpdR/9jHGxJjNflJQ==}
+  /@types/eslint/8.4.6:
+    resolution: {integrity: sha512-/fqTbjxyFUaYNO7VcW5g+4npmqVACz1bB7RTHYuLj+PRjw9hrCwrUXVQFpChUS0JsyEFvMZ7U/PfmvWgxJhI9g==}
     dependencies:
       '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
@@ -982,10 +982,6 @@ packages:
 
   /concat-map/0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
-    dev: true
-
-  /consola/2.15.3:
-    resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
     dev: true
 
   /cross-spawn/7.0.3:
