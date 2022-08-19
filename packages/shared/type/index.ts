@@ -3,6 +3,7 @@
  * 参考：https://github.com/millsp/ts-toolbelt
  */
 export * as Function from './Function'
+export * as Logical from './Logical'
 export * as Number from './Number'
 export * as String from './String'
 export * as Tuple from './Tuple'
