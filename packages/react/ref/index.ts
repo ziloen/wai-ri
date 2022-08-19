@@ -6,12 +6,12 @@ export type VueRef<T> = {
 
 /** 类似于 Vue 中 ref 的用法 */
 export function ref<T>(initState: (() => T) | T): VueRef<T> {
-  const [val, setVal] = useState(initState)
-  const latestVal = useRef(val)
-  latestVal.current = val
-
+  const [state, setState] = useState(initState)
+  const latestState = useRef(state)
+  latestState.current = state
+  
   return {
-    get value() { return latestVal.current },
-    set value(newValue) { setVal(newValue) }
+    get value() { return latestState.current },
+    set value(newState) { setState(newState) }
   }
 }
