@@ -5,7 +5,7 @@ import { Fn } from '@wai-ri/shared'
  * @param start 开始值
  * @param stop 结束值
  */
-export function lerp(start: number, stop: number): Fn<[number], number>
+export function lerp(start: number, stop: number): (amt: number) => number
 /**
  * 插值
  * @param start 开始值
@@ -13,7 +13,7 @@ export function lerp(start: number, stop: number): Fn<[number], number>
  * @param amt 比例 0 - 1
  */
 export function lerp(start: number, stop: number, amt: number): number
-export function lerp(start: number, stop: number, amt?: number): number | Fn<[number], number> {
+export function lerp(start: number, stop: number, amt?: number): number | ((amt: number) => number) {
   if (amt)
     return _lerp(start, stop, amt)
 
