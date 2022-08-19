@@ -9,16 +9,18 @@ export async function useClipboard(...args: any[]): Promise<any> {
   const value = args[0]
 
   if (args.length !== 0) {
-    type N = PermissionDescriptor
-    // const permissions = navigator.permissions.query('clip')
-    return navigator.clipboard.writeText(value)
+    return navigator.permissions.query({ name: <any>'clipboard-write' })
+      .then(status => {
+        if (status.state === 'denied') return Promise.reject('[useClickboard]: clipboard-write denied.')
+        else return navigator.clipboard.writeText(value)
+      })
   }
 
   else {
-    navigator.permissions.query({ name: 'clipboard-read' as any })
+    return navigator.permissions.query({ name: <any>'clipboard-read' })
       .then(status => {
-        status.state
+        if (status.state === 'denied') return Promise.reject('[useClickboard]: clipboard-read denied.')
+        else return navigator.clipboard.readText()
       })
-    navigator.clipboard.readText()
   }
 }
