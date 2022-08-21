@@ -14,6 +14,7 @@ export function useCssVar(propName: string, target: MaybeStyleElementRef, initVa
     if (!target) return
     const el = target instanceof Element ? target : target.current
     if (!el) return
+    // 动态target? 动态propName?
 
     el.style.setProperty(propName, cssVarRef.value)
 
