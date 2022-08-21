@@ -21,7 +21,7 @@ export function useCssVar(propName: string, target: MaybeStyleElementRef, initVa
     return () => {
       el.style.removeProperty(propName)
     }
-  }, [cssVarRef.value, target])
+  }, [cssVarRef, target])
 
   return cssVarRef
 }
