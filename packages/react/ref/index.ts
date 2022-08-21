@@ -11,10 +11,10 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
   const latestState = useRef(state)
   latestState.current = state
 
-  return {
+  return Object.freeze({
     get value() { return latestState.current },
     set value(newState) { setState(latestState.current = newState) }
-  }
+  })
 }
 
 
