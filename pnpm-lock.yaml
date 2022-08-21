@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@types/eslint': ^8.4.6
-      '@types/node': ^18.7.6
+      '@types/node': ^18.7.8
       '@types/react': ^18.0.17
       '@types/semver': ^7.3.12
       '@ziloen/eslint-config-typescript': latest
@@ -31,12 +31,12 @@ importers:
       react: 18.2.0
       rxjs: 7.5.6
       three: 0.143.0
-      typescript: 4.9.0-dev.20220819
+      typescript: 4.9.0-dev.20220820
       vue: 3.2.37
       vue-router: 4.1.3_vue@3.2.37
     devDependencies:
       '@types/eslint': 8.4.6
-      '@types/node': 18.7.6
+      '@types/node': 18.7.8
       '@types/semver': 7.3.12
       '@ziloen/eslint-config-typescript': 0.0.42
       bumpp: 8.2.1
@@ -47,9 +47,9 @@ importers:
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.77
-      '@wai-ri/random': workspace:^0.0.77
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/core': workspace:^0.0.78
+      '@wai-ri/random': workspace:^0.0.78
+      '@wai-ri/shared': workspace:^0.0.78
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -59,7 +59,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -69,7 +69,7 @@ importers:
     specifiers:
       '@lsegurado/htmltype': '*'
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       d3: '*'
       typescript: '*'
     dependencies:
@@ -82,7 +82,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -93,7 +93,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -102,7 +102,7 @@ importers:
   packages/react:
     specifiers:
       '@types/react': '*'
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       react: '*'
     dependencies:
       '@types/react': 18.0.17
@@ -111,7 +111,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -129,7 +129,7 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       three: '*'
       typescript: '*'
     dependencies:
@@ -139,7 +139,7 @@ importers:
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.77
+      '@wai-ri/shared': workspace:^0.0.78
       typescript: '*'
       vue: '*'
       vue-router: '*'
@@ -488,8 +488,8 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
-  /@types/node/18.7.6:
-    resolution: {integrity: sha512-EdxgKRXgYsNITy5mjjXjVE/CS8YENSdhiagGrLqjG0pvA2owgJ6i4l7wy/PFZGC0B1/H20lWKN7ONVDNYDZm7A==}
+  /@types/node/18.7.8:
+    resolution: {integrity: sha512-/YP55EMK2341JkODUb8DM9O0x1SIz2aBvyF33Uf1c76St3VpsMXEIW0nxuKkq/5cxnbz0RD9cfwNZHEAZQD3ag==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -981,7 +981,7 @@ packages:
     dev: false
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
   /cross-spawn/7.0.3:
@@ -1808,12 +1808,12 @@ packages:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
-      flatted: 3.2.6
+      flatted: 3.2.7
       rimraf: 3.0.2
     dev: true
 
-  /flatted/3.2.6:
-    resolution: {integrity: sha512-0sQoMh9s0BYsm+12Huy/rkKxVu4R1+r96YX5cG44rHV0pQ6iC3Q+mkoMFaGWObMFYQxCVT+ssG1ksneA2MI9KQ==}
+  /flatted/3.2.7:
+    resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
   /follow-redirects/1.15.1:
@@ -2743,8 +2743,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.9.0-dev.20220819:
-    resolution: {integrity: sha512-MFHRQ1r0ZqHeJVsG3Zwz3rlPoJMyvpHfZ6AEwO0zxUamMB5PMmrNnJIj6LlV2p3dVFKgPZrxgLu+kRpvYzGT7A==}
+  /typescript/4.9.0-dev.20220820:
+    resolution: {integrity: sha512-2BZrCbymSKqBj9IaoF6EXkVpfwLko1fceDKpKxhkcomTjzKMSyuvy7mHl6DyxgwBbGkESYnOHIUz84Tnf/iL2A==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
@@ -2822,7 +2822,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.3
       '@types/chai-subset': 1.3.3
-      '@types/node': 18.7.6
+      '@types/node': 18.7.8
       chai: 4.3.6
       debug: 4.3.4
       jsdom: 20.0.0
