@@ -23,3 +23,19 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
 export function useFn<T extends Fn>(fn: T): T {
   return useCallback(fn, [])
 }
+
+
+
+type WatchCallback = any
+type WatchOptions<Immediate = boolean> = {
+  immediate?: Immediate
+  deep?: boolean
+}
+type WatchStopHandle = () => void
+
+
+/** 监听某个值 */
+function watch<T, Immediate extends Readonly<boolean> = false>(source: T | (() => T), cb: WatchCallback, options?: WatchOptions<Immediate>): WatchStopHandle {
+
+  return () => { }
+}
