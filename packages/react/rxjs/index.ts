@@ -1,12 +1,32 @@
 import { useEffect, useState } from 'react'
 import type { Subscription } from 'rxjs'
 import { BehaviorSubject } from 'rxjs'
+import { VueRef } from '../ref'
 
 
 /**  */
 export function useBehaviorSubject<T>(initVal: T) {
-  const [subject] = useState(() => new BehaviorSubject(initVal))
-  return subject
+  return useState(() => new BehaviorSubject(initVal))[0]
+}
+
+
+export function useBehaviorSubjectRef<T>(subject: BehaviorSubject<T>): VueRef<T> {
+  const [state, setState] = useState(subject.value)
+
+  useEffect(() => {
+    const subscription = subject.subscribe(setState)
+    return () => subscription.unsubscribe()
+  }, [subject])
+
+
+  return Object.freeze({
+    set value(newValue) {
+      subject.next(newValue)
+    },
+    get value() {
+      return state
+    }
+  })
 }
 
 

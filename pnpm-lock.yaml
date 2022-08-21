@@ -31,7 +31,7 @@ importers:
       react: 18.2.0
       rxjs: 7.5.6
       three: 0.143.0
-      typescript: 4.9.0-dev.20220820
+      typescript: 4.9.0-dev.20220821
       vue: 3.2.37
       vue-router: 4.1.3_vue@3.2.37
     devDependencies:
@@ -2743,8 +2743,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.9.0-dev.20220820:
-    resolution: {integrity: sha512-2BZrCbymSKqBj9IaoF6EXkVpfwLko1fceDKpKxhkcomTjzKMSyuvy7mHl6DyxgwBbGkESYnOHIUz84Tnf/iL2A==}
+  /typescript/4.9.0-dev.20220821:
+    resolution: {integrity: sha512-fbyWCHTzhcKE54GF2lajI5h7GrdLUkCEgzqQOT1cf+IPqVwcM9Bk1/d+NjJKrMoroOPztYvEat0b8pxn3+/XJw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
