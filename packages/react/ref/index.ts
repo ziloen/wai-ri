@@ -13,7 +13,7 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
 
   return {
     get value() { return latestState.current },
-    set value(newState) { setState(newState) }
+    set value(newState) { setState(latestState.current = newState) }
   }
 }
 
