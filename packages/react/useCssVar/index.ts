@@ -12,9 +12,9 @@ export function useCssVar(propName: string, target?: MaybeStyleElementRef, initV
 
   useEffect(() => {
     const el = target
-      ? target instanceof Element
+      ? (target instanceof Element
         ? target
-        : target.current
+        : target.current)
       : window.document.documentElement
 
     if (!el?.style) return

@@ -15,7 +15,7 @@ export function clamp(n: number, min: number, max: number): number {
 export function clampArray<T extends MaybeNumber[]>(valueArr: T, min: number, max: number): T {
   return valueArr.map(v => {
     if (Number.isNaN(v) || isNil(v))
-      return undefined
+      return
     else
       return Math.max(Math.min(v, max), min)
   }) as T

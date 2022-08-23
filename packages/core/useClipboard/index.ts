@@ -4,14 +4,14 @@
 export async function useClipboard(): Promise<any>
 export async function useClipboard(value: any): Promise<any>
 export async function useClipboard(...args: any[]): Promise<any> {
-  if (!(navigator && 'permissions' in navigator && 'clipboard' in navigator)) return Promise.reject(new Error('[useClipboard]: Clipboard is not supported!'))
+  if (!(navigator && 'permissions' in navigator && 'clipboard' in navigator)) throw new Error('[useClipboard]: Clipboard is not supported!')
 
   const value = args[0]
 
   if (args.length !== 0) {
     return navigator.permissions.query({ name: <any>'clipboard-write' })
       .then(status => {
-        if (status.state === 'denied') return Promise.reject(new Error('[useClickboard]: clipboard-write denied.'))
+        if (status.state === 'denied') throw new Error('[useClickboard]: clipboard-write denied.')
         else return navigator.clipboard.writeText(value)
       })
   }
@@ -19,7 +19,7 @@ export async function useClipboard(...args: any[]): Promise<any> {
   else {
     return navigator.permissions.query({ name: <any>'clipboard-read' })
       .then(status => {
-        if (status.state === 'denied') return Promise.reject(new Error('[useClickboard]: clipboard-read denied.'))
+        if (status.state === 'denied') throw new Error('[useClickboard]: clipboard-read denied.')
         else return navigator.clipboard.readText()
       })
   }

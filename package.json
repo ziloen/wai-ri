@@ -7,7 +7,8 @@
   "license": "ISC",
   "scripts": {
     "test": "vitest",
-    "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public"
+    "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@types/eslint": "^8.4.6",

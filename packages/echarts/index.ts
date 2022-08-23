@@ -1,3 +1,4 @@
+import { asType } from '@wai-ri/shared'
 import type { ECharts, EChartsOption } from 'echarts'
 import { init } from 'echarts'
 import type { Ref } from 'vue'
@@ -20,7 +21,7 @@ export function useEcharts(id: string, initOption: EChartsOption, dataOption: Re
   }
 
   onMounted(() => {
-    const chartDom = globalThis.document.getElementById(id)
+    const chartDom = globalThis.document.querySelector(id) as HTMLElement | null
     if (!chartDom) return
     chart.value = init(chartDom)
     chart.value.setOption(initOption)
