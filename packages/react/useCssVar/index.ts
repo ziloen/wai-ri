@@ -7,15 +7,15 @@ import { ref } from '../ref'
 type StyleElement = SVGElement | HTMLElement | MathMLElement
 type MaybeStyleElementRef = StyleElement | RefObject<StyleElement>
 
-export function useCssVar(propName: string, target?: MaybeStyleElementRef, initVal = '') {
+export function useCssVar(
+  propName: string,
+  target: MaybeStyleElementRef = globalThis.document.documentElement,
+  initVal = ''
+) {
   const cssVarRef = ref(initVal)
 
   useEffect(() => {
-    const el = target
-      ? (target instanceof Element
-        ? target
-        : target.current)
-      : window.document.documentElement
+    const el = target instanceof Element ? target : target.current
 
     if (!el?.style) return
     // 动态target? 动态propName?

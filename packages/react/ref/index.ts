@@ -11,10 +11,19 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
   const latestState = useRef(state)
   latestState.current = state
 
-  return Object.freeze({
-    get value() { return latestState.current },
-    set value(newState) { setState(latestState.current = newState) }
+  const proxyObj = Object.create(null)
+
+  Reflect.defineProperty(proxyObj, '__v_isRef', { value: true })
+  Reflect.defineProperty(proxyObj, 'value', {
+    get() {
+      return latestState.current
+    },
+    set(newState) {
+      setState(latestState.current = newState)
+    },
   })
+
+  return Object.freeze(proxyObj)
 }
 
 
