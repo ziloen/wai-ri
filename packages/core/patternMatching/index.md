@@ -1,15 +1,15 @@
-# match
+# patternMatching
 
 模式匹配
 
 ## 使用
 
 ```ts
-import { match } from '@wai-ri/core'
+import { patternMatching } from '@wai-ri/core'
 
 const optionType = 'edit'
 
-const result = match(optionType, {
+const result = patternMatching(optionType, {
   edit: () => /** edit */ {},
   remove: () => /** remove */ {},
   add: () => /** add option */ {},
