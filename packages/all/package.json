@@ -8,9 +8,9 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@wai-ri/core": "workspace:^0.0.78",
-    "@wai-ri/random": "workspace:^0.0.78",
-    "@wai-ri/shared": "workspace:^0.0.78",
+    "@wai-ri/core": "workspace:^0.0.79",
+    "@wai-ri/random": "workspace:^0.0.79",
+    "@wai-ri/shared": "workspace:^0.0.79",
     "typescript": "*"
   }
 }
