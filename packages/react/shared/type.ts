@@ -5,4 +5,4 @@ import type { Dispatch, SetStateAction, RefObject } from 'react'
 
 export type StateSetter<T> = Dispatch<SetStateAction<T>>
 
-export type MaybeElementRef = Element | RefObject<Element>
+export type MaybeElementRef<T = Element> = T | RefObject<T>

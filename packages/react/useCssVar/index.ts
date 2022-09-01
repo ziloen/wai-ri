@@ -1,11 +1,12 @@
 // 参考(抄袭😀): https://vueuse.org/core/useCssVar/
 
-import { RefObject, useEffect } from 'react'
+import { useEffect } from 'react'
 import { ref } from '../ref'
+import { MaybeElementRef, unRefElement } from '../shared'
 
 
 type StyleElement = SVGElement | HTMLElement | MathMLElement
-type MaybeStyleElementRef = StyleElement | RefObject<StyleElement>
+type MaybeStyleElementRef = MaybeElementRef<StyleElement>
 
 export function useCssVar(
   propName: string,
@@ -15,7 +16,7 @@ export function useCssVar(
   const cssVarRef = ref(initVal)
 
   useEffect(() => {
-    const el = target instanceof Element ? target : target.current
+    const el = unRefElement(target)
 
     if (!el?.style) return
     // 动态target? 动态propName?
