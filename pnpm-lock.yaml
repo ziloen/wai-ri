@@ -17,7 +17,7 @@ importers:
       jsdom: ^20.0.0
       react: ^18.2.0
       rxjs: ^7.5.6
-      three: ^0.143.0
+      three: ^0.144.0
       typescript: next
       vite: ^3.0.9
       vitest: ^0.22.1
@@ -30,8 +30,8 @@ importers:
       echarts: 5.3.3
       react: 18.2.0
       rxjs: 7.5.6
-      three: 0.143.0
-      typescript: 4.9.0-dev.20220830
+      three: 0.144.0
+      typescript: 4.9.0-dev.20220831
       vue: 3.2.38
       vue-router: 4.1.5_vue@3.2.38
     devDependencies:
@@ -2658,6 +2658,10 @@ packages:
     resolution: {integrity: sha512-oKcAGYHhJ46TGEuHjodo2n6TY2R6lbvrkp+feKZxqsUL/WkH7GKKaeu6RHeyb2Xjfk2dPLRKLsOP0KM2VgT8Zg==}
     dev: false
 
+  /three/0.144.0:
+    resolution: {integrity: sha512-R8AXPuqfjfRJKkYoTQcTK7A6i3AdO9++2n8ubya/GTU+fEHhYKu1ZooRSCPkx69jbnzT7dD/xEo6eROQTt2lJw==}
+    dev: false
+
   /tinypool/0.2.4:
     resolution: {integrity: sha512-Vs3rhkUH6Qq1t5bqtb816oT+HeJTXfwt2cbPH17sWHIYKTotQIFPk3tf2fgqRrVyMDVOc1EnPgzIxfIulXVzwQ==}
     engines: {node: '>=14.0.0'}
@@ -2758,8 +2762,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.9.0-dev.20220830:
-    resolution: {integrity: sha512-DVMaPFszCw9wFZcTYcFiksny0rUttUJpIvtwCD3ynKYepnX1OCTHwLwsAGtETxi6AuutJ5pSRn2LoAILjzYwvw==}
+  /typescript/4.9.0-dev.20220831:
+    resolution: {integrity: sha512-FXVLQI/P9R7uT/I0ODGrIPmV9uDlQXufoe+RUcvZOvTtLzk2Kd1H9rr+e3l6hiSho6ikrnvews2LWF5AulwO/w==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
