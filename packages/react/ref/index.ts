@@ -9,7 +9,7 @@ export type VueRef<T> = {
 export function ref<T>(initState: (() => T) | T): VueRef<T> {
   const [state, setState] = useState(initState)
   const latestState = useRef(state)
-  
+
   const proxyObj = Object.create(null)
   Reflect.defineProperty(proxyObj, '__v_isRef', { value: true })
   Reflect.defineProperty(proxyObj, 'value', {
