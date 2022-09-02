@@ -45,6 +45,6 @@ type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...
 
 export function pipe<T>(startValue: T) {
   return function <Fns extends UnaryFn[]>(...fns: PipeParams<Fns, T>): PipeReturn<Fns, T> {
-    return fns.reduce((preValue, current) =>  current(preValue), startValue) as any
+    return fns.reduce((preValue, current) => current(preValue), startValue) as any
   }
 }

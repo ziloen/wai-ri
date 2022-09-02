@@ -1,4 +1,3 @@
-import { asType } from '@wai-ri/shared'
 import type { ECharts, EChartsOption } from 'echarts'
 import { init } from 'echarts'
 import type { Ref } from 'vue'

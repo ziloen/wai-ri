@@ -1,5 +1,7 @@
 import { Fn } from '@wai-ri/shared'
 
+
+
 /** 
  * 绑定对象函数 this 为对象本身
  */

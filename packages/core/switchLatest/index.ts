@@ -1,5 +1,7 @@
 import type { AsyncFn } from '@wai-ri/shared'
 
+
+
 /** 切换到最后一次 */
 export function switchLatest<Params extends unknown[], Return>(asyncFn: AsyncFn<Params, Return>) {
   let lastKey: symbol

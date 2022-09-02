@@ -1,5 +1,3 @@
-import { Fn } from '@wai-ri/shared'
-
 /**
  * 插值
  * @param start 开始值
