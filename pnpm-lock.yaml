@@ -31,7 +31,7 @@ importers:
       react: 18.2.0
       rxjs: 7.5.6
       three: 0.144.0
-      typescript: 4.9.0-dev.20220831
+      typescript: 4.9.0-dev.20220902
       vue: 3.2.38
       vue-router: 4.1.5_vue@3.2.38
     devDependencies:
@@ -134,7 +134,7 @@ importers:
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
-      three: 0.143.0
+      three: 0.144.0
       typescript: 4.8.2
 
   packages/vue:
@@ -1344,8 +1344,8 @@ packages:
       zrender: 5.3.2
     dev: false
 
-  /entities/4.3.1:
-    resolution: {integrity: sha512-o4q/dYJlmyjP2zfnaWDUC6A3BQFmVTX+tZPezK7k0GLSU9QYCauscf5Y+qcEPzKL+EixVouYDgLQK5H9GrLpkg==}
+  /entities/4.4.0:
+    resolution: {integrity: sha512-oYp7156SP8LkeGD0GF85ad1X9Ai79WtRsZ2gxJqtBuzH+98YUV6jkHEKlZkMbcrjJjIVJNIDP/3WL9wQkoPbWA==}
     engines: {node: '>=0.12'}
     dev: true
 
@@ -2338,7 +2338,7 @@ packages:
   /parse5/7.0.0:
     resolution: {integrity: sha512-y/t8IXSPWTuRZqXc0ajH/UwDj4mnqLEbSttNbThcFhGrZuOyoyvNBO85PBp2jQa55wY9d07PBNjsK8ZP3K5U6g==}
     dependencies:
-      entities: 4.3.1
+      entities: 4.4.0
     dev: true
 
   /path-exists/4.0.0:
@@ -2654,10 +2654,6 @@ packages:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
 
-  /three/0.143.0:
-    resolution: {integrity: sha512-oKcAGYHhJ46TGEuHjodo2n6TY2R6lbvrkp+feKZxqsUL/WkH7GKKaeu6RHeyb2Xjfk2dPLRKLsOP0KM2VgT8Zg==}
-    dev: false
-
   /three/0.144.0:
     resolution: {integrity: sha512-R8AXPuqfjfRJKkYoTQcTK7A6i3AdO9++2n8ubya/GTU+fEHhYKu1ZooRSCPkx69jbnzT7dD/xEo6eROQTt2lJw==}
     dev: false
@@ -2762,8 +2758,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /typescript/4.9.0-dev.20220831:
-    resolution: {integrity: sha512-FXVLQI/P9R7uT/I0ODGrIPmV9uDlQXufoe+RUcvZOvTtLzk2Kd1H9rr+e3l6hiSho6ikrnvews2LWF5AulwO/w==}
+  /typescript/4.9.0-dev.20220902:
+    resolution: {integrity: sha512-K1iMNFhcRuYtQxDQD2JHECQ0x24OzwOD09TBFuRsIhnxzOG6XUU01tkKcCYgb//DkNDD6Jy+MpHf8SxzvPCnIA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
