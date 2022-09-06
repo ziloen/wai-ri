@@ -97,11 +97,11 @@ export type ExpandDeep<
   T,
   TargetDeep extends number = 5,
   Iter extends any[] = [],
-  NowDeep extends number = Iter['length'],
+  Deep extends number = Iter['length'],
   NextIter extends any[] = [...Iter, _]
 > =
   // 已到达深度，结束
-  NowDeep extends TargetDeep ? T :
+  Deep extends TargetDeep ? T :
   // 展开函数类型
   T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => ExpandDeep<Return, TargetDeep, NextIter> :
   // 不展开 Promise 类型
@@ -110,6 +110,7 @@ export type ExpandDeep<
   T extends object ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
   // 展开联合类型
   IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
+  // 已完全展开，返回
   T
 
 
@@ -138,3 +139,26 @@ export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
   >
 // | ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never })
 // | ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
+
+
+
+/** 
+ * 将 Union 的类型合并
+ * ```ts
+ * type A = { a?: string }
+ * type B = { a: number, b: string }
+ * type C = ZipObjectUnion<A | B>
+ * type C = { 
+ *   a: string | number | undefined,
+ *   b: string 
+ * }
+ * ```
+ */
+export type ZipObjectUnion<T> = {
+  [K in (T extends infer P ? keyof P : never)]:
+  T extends infer P
+  ? K extends keyof P
+  ? P[K]
+  : never
+  : never
+}
