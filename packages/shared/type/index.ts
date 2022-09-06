@@ -25,6 +25,7 @@ export type Stringable = string | number | bigint | boolean | null | undefined
 export type ObjectType<K extends keyof any = keyof any, V = any> = Record<K, V>
 
 
+
 /** 函数 */
 export type Fn<Args extends any[] = any[], Return = any> = (...args: Args) => Return
 
@@ -90,8 +91,6 @@ export type FlipLoose<Obj extends Record<string | number, Stringable>> = {
 /** 展开类型 */
 export type Expand<T> = ExpandDeep<T, 3>
 
-
-
 /** 递归展开 */
 export type ExpandDeep<
   T,
@@ -117,10 +116,13 @@ export type ExpandDeep<
 
 /** 用 New 类型 扩展 Org 类型*/
 export type Assign<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
+
+/** 同 Assign */
 export type Merge<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
 
 
-/** 可扩展类型 */
+
+/** 可扩展类型，在添加未约束的属性时不会报错 */
 export type Extensible<O extends ObjectType> = ExpandDeep<O & { [K: keyof any]: unknown }, 1>
 
 
