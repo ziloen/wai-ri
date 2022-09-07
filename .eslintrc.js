@@ -9,18 +9,15 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json'
   },
-  ignorePatterns: ['.*'],
+  ignorePatterns: ['.*', '*.config.js', '*.config.ts'],
   rules: {
-    // '@typescript-eslint/no-namespace': 'off',
-    // 'no-promise-executor-return': 'off',
-    // '@typescript-eslint/promise-function-async': 'off'
+    'no-promise-executor-return': 'off',
+    '@typescript-eslint/promise-function-async': 'off'
   },
   overrides: [
     {
       files: ["*.test.ts"],
-      rules: {
-        'no-undef': 'off'
-      }
+      rules: { 'no-undef': 'off' }
     }
   ]
 }
