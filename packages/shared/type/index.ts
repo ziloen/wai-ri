@@ -149,7 +149,7 @@ export type PartialByKeys<T, K extends keyof T> = ExpandDeep<{ [P in K]?: T[K] }
 
 
 
-/** 选择哪些属性为必须 */
+/** 选择哪些属性为必选 */
 export type RequiredByKeys<T, K extends keyof T> = ExpandDeep<{ [P in K]-?: T[K] } & Omit<T, K>, 1>
 
 
