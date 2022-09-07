@@ -9,7 +9,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json'
   },
-  ignorePatterns: ['.*', '*.config.js', '*.config.ts'],
+  ignorePatterns: ['.*'],
   rules: {
     'no-promise-executor-return': 'off',
     '@typescript-eslint/promise-function-async': 'off'
