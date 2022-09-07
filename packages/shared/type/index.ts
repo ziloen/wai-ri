@@ -144,6 +144,16 @@ export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
 
 
 
+/** 选择哪些属性为可选 */
+export type PartialByKeys<T, K extends keyof T> = ExpandDeep<{ [P in K]?: T[K] } & Omit<T, K>, 1>
+
+
+
+/** 选择哪些属性为必须 */
+export type RequiredByKeys<T, K extends keyof T> = ExpandDeep<{ [P in K]-?: T[K] } & Omit<T, K>, 1>
+
+
+
 /** 
  * 将 Union 的类型合并
  * ```ts
