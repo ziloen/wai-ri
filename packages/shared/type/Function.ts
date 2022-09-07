@@ -20,17 +20,17 @@ export type SetReturn<T extends Fn, R> = T extends Fn<infer P, _> ? Fn<P, R> : n
 
 
 /** 创建函数类型 */
-export type New<Args extends any[] = any[], Return = any> = (...args: Args) => Return
+// export type New<Args extends any[] = any[], Return = any> = (...args: Args) => Return
 
 
 
 /** 获取返回类型 */
-export type Return<F extends Fn> = F extends Fn<_, infer R> ? R : never
+// export type Return<F extends Fn> = F extends Fn<_, infer R> ? R : never
 
 
 
 /** 获取参数类型 */
-export type Parameters<F extends Fn> = F extends Fn<infer P, _> ? P : never
+// export type Parameters<F extends Fn> = F extends Fn<infer P, _> ? P : never
 
 
 

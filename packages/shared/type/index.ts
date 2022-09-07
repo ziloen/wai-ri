@@ -42,7 +42,7 @@ export type ArrayType<A extends any[]> = A[number]
 
 
 /** T 类型 L 长度的 Tuple */
-export type FixedArray<T, L extends number, A extends unknown[] = []> = A['length'] extends L ? A : FixedArray<T, L, [T, ...A]>
+// export type FixedArray<T, L extends number, A extends unknown[] = []> = A['length'] extends L ? A : FixedArray<T, L, [T, ...A]>
 
 
 
