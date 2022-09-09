@@ -159,14 +159,14 @@ export type RequiredByKeys<T, K extends keyof T> = ExpandDeep<{ [P in K]-?: T[K]
  * ```ts
  * type A = { a?: string }
  * type B = { a: number, b: string }
- * type C = ZipObjectUnion<A | B>
+ * type C = CombineObjectUnion<A | B>
  * type C = { 
  *   a: string | number | undefined,
  *   b: string 
  * }
  * ```
  */
-export type ZipObjectUnion<T> = {
+export type CombineObjectUnion<T> = {
   [K in (T extends infer P ? keyof P : never)]:
   T extends infer P
   ? K extends keyof P
