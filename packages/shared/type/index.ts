@@ -16,6 +16,11 @@ import type { _ } from './_internal'
 
 
 
+/** Timeout 类型 */
+export type Timemout = ReturnType<typeof setTimeout>
+
+
+
 /** 可使用 `${}` 的类型 */
 export type Stringable = string | number | bigint | boolean | null | undefined
 
