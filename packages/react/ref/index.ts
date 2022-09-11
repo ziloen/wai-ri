@@ -3,6 +3,7 @@ import { useCallback, useRef, useState } from 'react'
 
 export type VueRef<T> = {
   value: T
+  (): T
 }
 
 /** 类似于 Vue 中 ref 的用法 */
@@ -10,7 +11,10 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
   const [state, setState] = useState(initState)
   const latestState = useRef(state)
 
-  const proxyObj = Object.create(null)
+  const proxyObj = function () {
+    return latestState.current
+  }
+
   Reflect.defineProperty(proxyObj, '__v_isRef', { value: true })
   Reflect.defineProperty(proxyObj, 'value', {
     get() {
@@ -21,7 +25,7 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
     },
   })
 
-  return Object.freeze(proxyObj)
+  return Object.freeze(proxyObj) as VueRef<T>
 }
 
 
