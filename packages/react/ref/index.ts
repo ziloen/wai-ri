@@ -17,12 +17,8 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
 
   Reflect.defineProperty(proxyObj, '__v_isRef', { value: true })
   Reflect.defineProperty(proxyObj, 'value', {
-    get() {
-      return latestState.current
-    },
-    set(newState) {
-      setState(latestState.current = newState)
-    },
+    get() { return latestState.current },
+    set(newState) { setState(latestState.current = newState) },
   })
 
   return Object.freeze(proxyObj) as VueRef<T>
