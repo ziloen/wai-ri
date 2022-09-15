@@ -1,4 +1,5 @@
-import type { Extensible } from '@wai-ri/shared'
+import { asType, Extensible } from '@wai-ri/shared'
+import { sleep } from './sleep'
 
 export * from '@wai-ri/shared'
 export * from './asyncDebounce'
@@ -20,3 +21,33 @@ export * from './useEnum'
 
 
 export const extend: <T, U extends Extensible<Partial<T>>>(target: T, source: U) => T = Object.assign
+
+
+async function iframeDownload(url: string, fileName = '') {
+  const iframe = document.createElement('iframe')
+  iframe.style.display = 'none'
+  iframe.src = 'about:blank'
+
+  async function iframeLoad() {
+    const window = iframe.contentWindow
+    if (!window) return
+
+    const document = window.document
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = fileName
+    anchor.rel = "noopener"
+    document.body.append(anchor)
+    anchor.dispatchEvent(new MouseEvent('click', {
+      view: window,
+      bubbles: false
+    }))
+    
+    window.setTimeout(() => {
+      iframe.remove()
+    }, 60000)
+  }
+
+  iframe.onload = iframeLoad
+  document.body.append(iframe)
+}
