@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react'
 import { ref } from '../ref'
-import { MaybeRef, unRefElement } from '../shared'
+import { MaybeElementRef, unRefElement } from '../shared'
 
 
 type StyleElement = SVGElement | HTMLElement | MathMLElement
-type MaybeStyleElementRef = MaybeRef<StyleElement>
+type MaybeStyleElementRef = MaybeElementRef<StyleElement>
 
 export function useCssVar(
   propName: string,

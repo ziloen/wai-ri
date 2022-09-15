@@ -1,8 +1,8 @@
 import { useRef } from 'react'
-import { MaybeRef, unRefElement } from '../shared'
+import { MaybeElementRef, unRefElement } from '../shared'
 
 
-export function useAnimation(targetRef: MaybeRef<HTMLElement>, keyframs: Keyframe[] | PropertyIndexedKeyframes, option?: number | KeyframeEffectOptions): Animation {
+export function useAnimation(targetRef: MaybeElementRef<HTMLElement>, keyframs: Keyframe[] | PropertyIndexedKeyframes, option?: number | KeyframeEffectOptions): Animation {
   const stateRef = useRef<Animation>()
 
   if (!stateRef.current) {
