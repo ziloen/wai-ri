@@ -11,8 +11,7 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@types/eslint": "^8.4.6",
-    "@types/node": "^18.7.16",
+    "@types/node": "^18.7.20",
     "@types/semver": "^7.3.12",
     "@ziloen/eslint-config": "latest",
     "bumpp": "^8.2.1",
