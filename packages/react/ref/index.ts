@@ -1,5 +1,5 @@
 import { Fn } from '@wai-ri/shared'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 
 export type VueRef<T> = {
   value: T
@@ -25,10 +25,21 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
 }
 
 
+type PickFn<T extends (this: any, ...args: any[]) => any> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
 
-/** 不需要改变的函数 */
+/** 抄袭的 ahooks useMemoizedFn */
 export function useFn<T extends Fn>(fn: T): T {
-  return useCallback(fn, [])
+  const fnRef = useRef(fn)
+
+  fnRef.current = useMemo(() => fn, [fn])
+  const memoizedFn = useRef<PickFn<T>>()
+  if (!memoizedFn.current) {
+    memoizedFn.current = function (this, ...args) {
+      return fnRef.current.apply(this, args)
+    }
+  }
+
+  return memoizedFn.current as T
 }
 
 
