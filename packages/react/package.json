@@ -10,7 +10,9 @@
   "main": "./index.ts",
   "dependencies": {
     "@types/react": "*",
+    "@types/react-dom": "*",
     "@wai-ri/shared": "workspace:^0.0.84",
-    "react": "*"
+    "react": "*",
+    "react-dom": "*"
   }
 }
