@@ -8,7 +8,7 @@ importers:
       '@types/react': ^18.0.21
       '@types/semver': ^7.3.12
       '@ziloen/eslint-config': latest
-      axios: ^0.27.2
+      axios: ^1.0.0
       bumpp: ^8.2.1
       d3: ^7.6.1
       echarts: ^5.4.0
@@ -24,7 +24,7 @@ importers:
       vue-router: ^4.1.5
     dependencies:
       '@types/react': 18.0.21
-      axios: 0.27.2
+      axios: 1.0.0
       d3: 7.6.1
       echarts: 5.4.0
       react: 18.2.0
@@ -36,7 +36,7 @@ importers:
     devDependencies:
       '@types/node': 18.7.23
       '@types/semver': 7.3.12
-      '@ziloen/eslint-config': 0.0.63
+      '@ziloen/eslint-config': 0.0.65
       bumpp: 8.2.1
       eslint: 8.24.0
       jsdom: 20.0.1
@@ -744,8 +744,8 @@ packages:
     resolution: {integrity: sha512-0PLQ6RUtZM0vO3teRfzGi4ltLUO5aO+kLgwh4Um3THSR03rpQWLTuRCkuO5A41ITzwdWeKdPHtSARuPkoo5pCQ==}
     dev: false
 
-  /@ziloen/eslint-config-basic/0.0.60:
-    resolution: {integrity: sha512-7B7wOi3OJ2Bv+Eo3AetAIw6dZ2EL59HUXVeQiFxIRXpPzSc4w1HqWDkTJHc/NnfgFNoo5Ca6WICPmi8A88+cqg==}
+  /@ziloen/eslint-config-basic/0.0.64:
+    resolution: {integrity: sha512-Ih290E3PqJHj8oPVOl9ejRVaSjYslXBnPKmeAkuR+KpMGxTNaxRMMfsEwPR0jiapz4DxshW+fbR0bolgLmf93A==}
     dependencies:
       eslint: 8.24.0
       eslint-plugin-promise: 6.0.1_eslint@8.24.0
@@ -754,68 +754,46 @@ packages:
       - supports-color
     dev: true
 
-  /@ziloen/eslint-config-basic/0.0.61:
-    resolution: {integrity: sha512-lw+P2J8aCsh/lClcpKzLooN1hkP+2trdNO8QkY9kgy0p2nSeywuzytqqcy8UjJ03gDRnVRqRN3YrAiOhr0XCTg==}
+  /@ziloen/eslint-config-react/0.0.64:
+    resolution: {integrity: sha512-wRuyT/OsIwnWAvXqvb+/ZQQOLiQl0nxmP5X0DSbAalLMSGObYj8bFELBKdcIi2L0YQY00pg/EHzd1QVeMmiO5Q==}
     dependencies:
-      eslint: 8.24.0
-      eslint-plugin-promise: 6.0.1_eslint@8.24.0
-      eslint-plugin-unicorn: 44.0.0_eslint@8.24.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@ziloen/eslint-config-react/0.0.62:
-    resolution: {integrity: sha512-bsvtSLjRb+HT8wYdxtXxAPAusijzy+J5CWkNhY18jdrq0tXp1sIyHGAGD22afh08kgMWCbsPWDwQBYD3i+gNXg==}
-    dependencies:
-      '@ziloen/eslint-config-typescript': 0.0.61
+      '@ziloen/eslint-config-typescript': 0.0.64
       eslint: 8.24.0
       eslint-plugin-react: 7.31.8_eslint@8.24.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@ziloen/eslint-config-typescript/0.0.61:
-    resolution: {integrity: sha512-ar6/AUyq6w8qgQY2qj6Ppfg8kubkcNmaz3LgEuVh11tXlx4EOirXQyjs1AfZvVLAQ7TNadVqNZL24KnjwBiLEQ==}
+  /@ziloen/eslint-config-typescript/0.0.64:
+    resolution: {integrity: sha512-8IFKPlj5FZdXYd05eT5AKfaskAa/3LQLSpbPXYLZDpTuT1t7VmtA2vnsH2a+wwYGfVpn9ffofYz8A3pB4+K98g==}
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.39.0_xyciw6oqjoiiono4dhv3uhn5my
       '@typescript-eslint/parser': 5.39.0_ypn2ylkkyfa5i233caldtndbqa
-      '@ziloen/eslint-config-basic': 0.0.60
+      '@ziloen/eslint-config-basic': 0.0.64
       eslint: 8.24.0
       typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@ziloen/eslint-config-typescript/0.0.62:
-    resolution: {integrity: sha512-n1ms2UzVE47p7eG31FgO2aEXWH1JJGpaNM9IeYNK6HLZ870Bg2UfEJ0Dvf4MQhpJAfLGhr+XuWgE/8H3uwcrpg==}
+  /@ziloen/eslint-config-vue/0.0.64:
+    resolution: {integrity: sha512-CYdUH1y1h8dX6jyxlpk37PXFMgLVFI1l0Ozl+d2UYavVR4PJjT584Uy6ec2PaXcrPfb46cNeKTjRgeVCbwWXwQ==}
     dependencies:
-      '@typescript-eslint/eslint-plugin': 5.39.0_xyciw6oqjoiiono4dhv3uhn5my
-      '@typescript-eslint/parser': 5.39.0_ypn2ylkkyfa5i233caldtndbqa
-      '@ziloen/eslint-config-basic': 0.0.61
+      '@ziloen/eslint-config-typescript': 0.0.64
       eslint: 8.24.0
-      typescript: 4.8.4
+      eslint-plugin-vue: 9.6.0_eslint@8.24.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@ziloen/eslint-config-vue/0.0.62:
-    resolution: {integrity: sha512-SVbxrVCgRAnwnzW0iLKB6ssC5c8mXzNHNIXAooldOxcusfm1A3TGgr1+JgALqLFSGj0chLXQ+uzuFEIieESucg==}
-    dependencies:
-      '@ziloen/eslint-config-typescript': 0.0.61
-      eslint: 8.24.0
-      eslint-plugin-vue: 9.5.1_eslint@8.24.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@ziloen/eslint-config/0.0.63:
-    resolution: {integrity: sha512-K/M1XiiFD3vznRtK3qsQ14WoxJ0rrNxdGdeSOP71BTRPfEdaYhfISTm4hiOvMU/UfsYEo+FWT7m2tW+Vd387nw==}
+  /@ziloen/eslint-config/0.0.65:
+    resolution: {integrity: sha512-RfclWppbZysLmMcASOIgWsIpXuR59FwIbiO7YI3ZEEcgjNTi4mpe+U643bFT29OXdLtLuDpKLEWWKZ+uiyd1Sw==}
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.39.0_xyciw6oqjoiiono4dhv3uhn5my
       '@typescript-eslint/parser': 5.39.0_ypn2ylkkyfa5i233caldtndbqa
-      '@ziloen/eslint-config-react': 0.0.62
-      '@ziloen/eslint-config-typescript': 0.0.62
-      '@ziloen/eslint-config-vue': 0.0.62
+      '@ziloen/eslint-config-react': 0.0.64
+      '@ziloen/eslint-config-typescript': 0.0.64
+      '@ziloen/eslint-config-vue': 0.0.64
       eslint: 8.24.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.24.0
       eslint-plugin-html: 7.1.0
@@ -823,7 +801,7 @@ packages:
       eslint-plugin-promise: 6.0.1_eslint@8.24.0
       eslint-plugin-react: 7.31.8_eslint@8.24.0
       eslint-plugin-unicorn: 44.0.0_eslint@8.24.0
-      eslint-plugin-vue: 9.5.1_eslint@8.24.0
+      eslint-plugin-vue: 9.6.0_eslint@8.24.0
       typescript: 4.8.4
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
@@ -950,6 +928,16 @@ packages:
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios/1.0.0:
+    resolution: {integrity: sha512-SsHsGFN1qNPFT5QhSoSD37SHDfGyLSW5AESmyLk2JeCMHv5g0I9g0Hz/zQHx2KNe0jGXh2q2hAm7OdkXm360CA==}
+    dependencies:
+      follow-redirects: 1.15.2
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -1950,8 +1938,8 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
-  /eslint-plugin-vue/9.5.1_eslint@8.24.0:
-    resolution: {integrity: sha512-Y0sL2RY7Xc9S8kNih9lbwHIDmewUg9bfas6WSzsOWRgDXhIHKxRBZYNAnVcXBFfE+bMWHUA5GLChl7TcTYUI8w==}
+  /eslint-plugin-vue/9.6.0_eslint@8.24.0:
+    resolution: {integrity: sha512-zzySkJgVbFCylnG2+9MDF7N+2Rjze2y0bF8GyUNpFOnT8mCMfqqtLDJkHBuYu9N/psW1A6DVbQhPkP92E+qakA==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -3003,6 +2991,10 @@ packages:
       object-assign: 4.1.1
       react-is: 16.13.1
     dev: true
+
+  /proxy-from-env/1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+    dev: false
 
   /psl/1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
