@@ -1,4 +1,4 @@
-import type { ObjectType } from './index'
+import type { ExtractByKey, ObjectType } from './index'
 
 
 
@@ -75,7 +75,7 @@ export const isArray = Array.isArray
 
 
 /** 判断 key is keyof obj */
-export function isKeyof<O extends ObjectType>(obj: O, key: string | number | symbol): key is keyof O {
+export function isKeyof<O extends ObjectType, K extends keyof any>(obj: O, key: K): obj is ExtractByKey<O, K> {
 
   // return key in obj
 
