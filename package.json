@@ -14,6 +14,7 @@
     "@types/node": "^18.7.23",
     "@types/semver": "^7.3.12",
     "@ziloen/eslint-config": "latest",
+    "@ziloen/eslint-config-format": "latest",
     "bumpp": "^8.2.1",
     "eslint": "^8.24.0",
     "jsdom": "^20.0.1",
@@ -33,7 +34,10 @@
     "vue-router": "^4.1.5"
   },
   "eslintConfig": {
-    "extends": "@ziloen",
+    "extends": [
+      "@ziloen",
+      "@ziloen/eslint-config-format"
+    ],
     "root": true,
     "env": {
       "node": true,
