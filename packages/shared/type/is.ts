@@ -41,7 +41,7 @@ export function isNil(val: unknown): val is null | undefined {
 
 
 /** 是否为 假值(不包括 0 和 '') */
-export function isFalsy(val: unknown): val is (null | undefined | false) {
+export function isFalsy(val: unknown): val is null | undefined | false {
   return (
     val === undefined ||
     val === null ||
@@ -76,20 +76,13 @@ export const isArray = Array.isArray
 
 /** 判断 key is keyof obj */
 export function isKeyof<O extends ObjectType, K extends keyof any>(obj: O, key: K): obj is ExtractByKeys<O, K> {
-
-  // return key in obj
-
-  // 等同于 in 操作符，检查原型链，但不包括不可枚举
-  // return Reflect.has(obj, key)
-
-  // 不同于 in 操作符, Object.hasOwn 不检查原型链
   return Object.hasOwn(obj, key)
 }
 
 
 
-/** 
- * 断言 值不为空，为空抛出错误 
+/**
+ * 断言 值不为空，为空抛出错误
  * @deprecated 带有副作用，手动检查或者使用asType<NonNullable<typeof value>>(value)
  */
 export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
