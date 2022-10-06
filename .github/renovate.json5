@@ -11,7 +11,9 @@
   "labels": [
     "dependencies"
   ],
-  "pin": false,
+  "pin": {
+    "enabled": false
+  },
   "updateInternalDeps": true,
   "rangeStrategy": "bump",
   "constraints": {
