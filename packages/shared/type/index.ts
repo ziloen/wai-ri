@@ -192,7 +192,7 @@ export type CombineObjectUnion<T> = {
  * type B = { a: _ } | { b: _ }
  * ```
  */
-export type ExtractByKey<T, K extends keyof any> =
+export type ExtractByKeys<T, K extends keyof any> =
   T extends infer R
     ? K extends keyof R
       ? R
