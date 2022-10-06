@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { ref } from '../ref'
-import { MaybeElementRef, unRefElement } from '../shared'
+import { MaybeElementRef, unRef } from '../shared'
 
 
 type StyleElement = SVGElement | HTMLElement | MathMLElement
@@ -16,7 +16,7 @@ export function useCssVar(
   const cssVarRef = ref(initVal)
 
   useEffect(() => {
-    const el = unRefElement(target)
+    const el = unRef(target)
 
     if (!el?.style) return
     // 动态target? 动态propName?
