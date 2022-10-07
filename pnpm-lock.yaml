@@ -9,7 +9,7 @@ importers:
       '@types/semver': ^7.3.12
       '@ziloen/eslint-config': latest
       '@ziloen/eslint-config-format': latest
-      axios: ^1.0.0
+      axios: ^1.1.0
       bumpp: ^8.2.1
       d3: ^7.6.1
       echarts: ^5.4.0
@@ -19,14 +19,14 @@ importers:
       rxjs: ^7.5.7
       three: ^0.145.0
       typescript: latest
-      typescript-lib-enhancer: ^1.0.1
-      vite: ^3.1.5
+      typescript-lib-enhancer: ^1.0.2
+      vite: ^3.1.6
       vitest: ^0.23.4
       vue: ^3.2.40
       vue-router: ^4.1.5
     dependencies:
       '@types/react': 18.0.21
-      axios: 1.0.0
+      axios: 1.1.0
       d3: 7.6.1
       echarts: 5.4.0
       react: 18.2.0
@@ -43,8 +43,8 @@ importers:
       bumpp: 8.2.1
       eslint: 8.24.0
       jsdom: 20.0.1
-      typescript-lib-enhancer: 1.0.1
-      vite: 3.1.5
+      typescript-lib-enhancer: 1.0.2
+      vite: 3.1.6
       vitest: 0.23.4_jsdom@20.0.1
 
   packages/all:
@@ -91,14 +91,6 @@ importers:
       '@types/d3': 7.4.0
       '@wai-ri/shared': link:../shared
       echarts: 5.4.0
-      typescript: 4.8.4
-
-  packages/lib-enhancer:
-    specifiers:
-      typed-query-selector: latest
-      typescript: latest
-    dependencies:
-      typed-query-selector: 2.8.0
       typescript: 4.8.4
 
   packages/random:
@@ -955,8 +947,8 @@ packages:
       - debug
     dev: false
 
-  /axios/1.0.0:
-    resolution: {integrity: sha512-SsHsGFN1qNPFT5QhSoSD37SHDfGyLSW5AESmyLk2JeCMHv5g0I9g0Hz/zQHx2KNe0jGXh2q2hAm7OdkXm360CA==}
+  /axios/1.1.0:
+    resolution: {integrity: sha512-hsJgcqz4JY7f+HZ4cWTrPZ6tZNCNFPTRx1MjRqu/hbpgpHdSCUpLVuplc+jE/h7dOvyANtw/ERA3HC2Rz/QoMg==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
@@ -3478,9 +3470,10 @@ packages:
 
   /typed-query-selector/2.8.0:
     resolution: {integrity: sha512-jo9NLGQ0b7sT9TK3mxzemATQqTb/uh8TRvcOK6WSwKNewALt3AA8q2m7cdpF/uUbd/cdixaBxCGe6fpzpEWbGw==}
+    dev: true
 
-  /typescript-lib-enhancer/1.0.1:
-    resolution: {integrity: sha512-yksNNIjsFKWwBPTI54gSOpqHRhIKnlPvGygqNrOOkaWVOPj7xanBAdOUZzCm/eaGK4y65HwTwcZRBw4n7tL+tw==}
+  /typescript-lib-enhancer/1.0.2:
+    resolution: {integrity: sha512-Bj6HaucY3XRNViagiCc5mNueYXUQuho/S4mbqIijee9PIc8OheVmnNmVkaHez//BUBScbeEDWgelcxfFRrV1Iw==}
     dependencies:
       '@ziloen/eslint-config': 0.0.65
       bumpp: 8.2.1
@@ -3535,8 +3528,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite/3.1.5:
-    resolution: {integrity: sha512-V4Avke0b7h2zTWVJf8vq6TE3aH061NQ3b1ixHQyqdoE/5HIVsxVLCyTLjJtHVcsJ5fIKSHvOtflWpgavHS8RPw==}
+  /vite/3.1.6:
+    resolution: {integrity: sha512-qMXIwnehvvcK5XfJiXQUiTxoYAEMKhM+jqCY6ZSTKFBKu1hJnAKEzP3AOcnTerI0cMZYAaJ4wpW1wiXLMDt4mA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3595,7 +3588,7 @@ packages:
       tinybench: 2.3.0
       tinypool: 0.3.0
       tinyspy: 1.0.2
-      vite: 3.1.5
+      vite: 3.1.6
     transitivePeerDependencies:
       - less
       - sass
