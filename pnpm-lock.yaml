@@ -19,7 +19,7 @@ importers:
       rxjs: ^7.5.7
       three: ^0.145.0
       typescript: latest
-      typescript-lib-enhancer: ^1.0.2
+      typescript-lib-enhancer: ^1.0.4
       vite: ^3.1.6
       vitest: ^0.24.0
       vue: ^3.2.40
@@ -43,7 +43,7 @@ importers:
       bumpp: 8.2.1
       eslint: 8.25.0
       jsdom: 20.0.1
-      typescript-lib-enhancer: 1.0.2
+      typescript-lib-enhancer: 1.0.4
       vite: 3.1.6
       vitest: 0.24.0_jsdom@20.0.1
 
@@ -3467,17 +3467,12 @@ packages:
     resolution: {integrity: sha512-jo9NLGQ0b7sT9TK3mxzemATQqTb/uh8TRvcOK6WSwKNewALt3AA8q2m7cdpF/uUbd/cdixaBxCGe6fpzpEWbGw==}
     dev: true
 
-  /typescript-lib-enhancer/1.0.2:
-    resolution: {integrity: sha512-Bj6HaucY3XRNViagiCc5mNueYXUQuho/S4mbqIijee9PIc8OheVmnNmVkaHez//BUBScbeEDWgelcxfFRrV1Iw==}
+  /typescript-lib-enhancer/1.0.4:
+    resolution: {integrity: sha512-o0ItR/ZRHfVnnq8F0e21hvRNtmNiV8btWYMXtEVu/lfn30bC5rcmvgxyMxQTklJs3xCmS/a59oFYQpRmN2Mqfw==}
     dependencies:
-      '@ziloen/eslint-config': 0.0.65
       bumpp: 8.2.1
       typed-query-selector: 2.8.0
       typescript: 4.8.4
-    transitivePeerDependencies:
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
     dev: true
 
   /typescript/4.8.4:
