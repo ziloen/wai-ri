@@ -18,8 +18,10 @@ export function ref<T>(initState: (() => T) | T): VueRef<T> {
   Reflect.defineProperty(proxyObj, '__v_isRef', { value: true })
   Reflect.defineProperty(proxyObj, 'value', {
     get() { return latestState.current },
-    set(newState) { setState(latestState.current = newState) },
+    set(newState) { setState(latestState.current = newState); return true },
   })
+
+  // TODO: 监听数组push 等
 
   return Object.freeze(proxyObj) as VueRef<T>
 }
