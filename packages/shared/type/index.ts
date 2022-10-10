@@ -66,6 +66,13 @@ export type Arrayable<T> = T | T[]
 
 
 
+/** 变为可写 */
+export type Writable<BaseType, Keys extends keyof BaseType = keyof BaseType> = {
+  -readonly [Key in Extract<keyof BaseType, Keys>]: BaseType[Key]
+} & Omit<BaseType, Keys>
+
+
+
 /** 根据 value 获取 key 类型 */
 export type KeysMatching<Obj, Val> = keyof { [Key in keyof Obj as Obj[Key] extends Val ? Key : never]: _ }
 
@@ -92,6 +99,9 @@ export type FlipLoose<Obj extends Record<string | number, Stringable>> = {
 }
 
 
+
+/** 展开对象，仅一层 */
+export type Simplify<T> = { [K in keyof T]: T[K] }
 
 /** 展开类型 */
 export type Expand<T> = ExpandDeep<T, 3>
@@ -120,29 +130,28 @@ export type ExpandDeep<
 
 
 /** 用 New 类型 扩展 Org 类型*/
-export type Assign<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
+export type Assign<Org extends ObjectType, New extends ObjectType> = Simplify< New & Omit<Org, keyof New>>
 
 /** 同 Assign */
-export type Merge<Org extends ObjectType, New extends ObjectType> = Expand<New & Omit<Org, keyof New>>
+export type Merge<Org extends ObjectType, New extends ObjectType> = Simplify<New & Omit<Org, keyof New>>
 
 
 
 /** 可扩展类型，在添加未约束的属性时不会报错 */
-export type Extensible<O extends ObjectType> = ExpandDeep<O & { [K: keyof any]: unknown }, 1>
+export type Extensible<O extends ObjectType> = Simplify<O & { [K: keyof any]: unknown }>
 
 
 
 /** 使两属性互斥，不是线程互斥锁，Disjoint / Mutex / MutuallyExclusive */
 export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
-  ExpandDeep<
+  Simplify<
   (
     { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
     (
       | { [K in K1]?: never } & { [K in K2]: T[K] }
       | { [K in K2]?: never } & { [K in K1]: T[K] }
     )
-  ),
-  1
+  )
   >
 // | ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never })
 // | ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
@@ -150,12 +159,12 @@ export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
 
 
 /** 选择哪些属性为可选 */
-export type PartialByKeys<T, K extends keyof T> = ExpandDeep<{ [P in K]?: T[K] } & Omit<T, K>, 1>
+export type PartialByKeys<T, K extends keyof T> = Simplify<{ [P in K]?: T[K] } & Omit<T, K>>
 
 
 
 /** 选择哪些属性为必选 */
-export type RequiredByKeys<T, K extends keyof T> = ExpandDeep<{ [P in K]-?: T[K] } & Omit<T, K>, 1>
+export type RequiredByKeys<T, K extends keyof T> = Simplify<{ [P in K]-?: T[K] } & Omit<T, K>>
 
 
 
