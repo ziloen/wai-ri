@@ -35,13 +35,13 @@ export function asyncDebounce<
   let timer: ReturnType<typeof setTimeout> | undefined
   let maxTimer: ReturnType<typeof setTimeout> | undefined
 
-  const { maxWait, /** immediate */ } = options
+  const { maxWait/* , immediate */ } = options
 
   asType<number>(maxWait)
   asType<number>(wait)
   asType<Fn<any[], Awaited<Return>>>(asyncFn)
 
-  return function (...args: Params): Promise<Awaited<Return>> {
+  return async function (...args: Params): Promise<Return> {
     return new Promise(res => {
       timer && clearTimeout(timer)
 
