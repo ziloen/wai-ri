@@ -1,3 +1,4 @@
+export * from './shared'
 
 import { ComponentPublicInstance, onUnmounted, Ref, unref } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
@@ -19,7 +20,7 @@ type UnRefElementReturn<T extends MaybeElement = MaybeElement> = T extends VueIn
  */
 export function unrefElement<T extends MaybeElement>(elRef: MaybeElementRef<T>): UnRefElementReturn<T> {
   const plain = unref(elRef)
-  return (plain as VueInstance)?.$el ?? plain
+  return (plain as VueInstance).$el ?? plain
 }
 
 
@@ -31,7 +32,7 @@ export function unrefElement<T extends MaybeElement>(elRef: MaybeElementRef<T>):
  */
 export function scrollIntoView<T extends MaybeElementRef>(elRef: T, arg?: boolean | ScrollIntoViewOptions) {
   const el = unrefElement(elRef)
-  el && el.scrollIntoView(arg)
+  el?.scrollIntoView(arg)
 }
 
 

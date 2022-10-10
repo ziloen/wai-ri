@@ -20,7 +20,7 @@
     "jsdom": "^20.0.1",
     "typescript-lib-enhancer": "^1.0.4",
     "vite": "^3.1.7",
-    "vitest": "^0.24.0"
+    "vitest": "^0.24.1"
   },
   "dependencies": {
     "@types/react": "^18.0.21",
