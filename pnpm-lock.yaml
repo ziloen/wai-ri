@@ -49,9 +49,9 @@ importers:
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.85
-      '@wai-ri/random': workspace:^0.0.85
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/core': workspace:^0.0.86
+      '@wai-ri/random': workspace:^0.0.86
+      '@wai-ri/shared': workspace:^0.0.86
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -61,7 +61,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -71,7 +71,7 @@ importers:
     specifiers:
       '@lsegurado/htmltype': '*'
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       d3: '*'
       typescript: '*'
     dependencies:
@@ -84,7 +84,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -95,7 +95,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -105,7 +105,7 @@ importers:
     specifiers:
       '@types/react': '*'
       '@types/react-dom': '*'
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       react: '*'
       react-dom: '*'
     dependencies:
@@ -117,7 +117,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -135,7 +135,7 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       three: '*'
       typescript: '*'
     dependencies:
@@ -145,7 +145,7 @@ importers:
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.85
+      '@wai-ri/shared': workspace:^0.0.86
       typescript: '*'
       vue: '*'
       vue-router: '*'
