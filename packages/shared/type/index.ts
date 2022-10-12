@@ -77,6 +77,8 @@ export type Writable<BaseType, Keys extends keyof BaseType = keyof BaseType> = {
   -readonly [Key in Extract<keyof BaseType, Keys>]: BaseType[Key]
 } & Omit<BaseType, Keys>
 
+export type Mutable<T> = Writable<T>
+
 
 
 /** 根据 value 获取 key 类型 */
@@ -167,10 +169,14 @@ export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
 /** 选择哪些属性为可选 */
 export type PartialByKeys<T, K extends keyof T> = Simplify<{ [P in K]?: T[K] } & Omit<T, K>>
 
+export type SetOptional<T, K extends keyof T> = PartialByKeys<T, K>
+
 
 
 /** 选择哪些属性为必选 */
 export type RequiredByKeys<T, K extends keyof T> = Simplify<{ [P in K]-?: T[K] } & Omit<T, K>>
+
+export type SetRequired<T, K extends keyof T> = RequiredByKeys<T, K>
 
 
 
