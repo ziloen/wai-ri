@@ -31,6 +31,12 @@ export type ObjectType<K extends keyof any = keyof any, V = any> = Record<K, V>
 
 
 
+/** 空对象类型 */
+declare const emptyObjectSymbol: unique symbol
+export type EmptyObject = { [emptyObjectSymbol]?: never }
+
+
+
 /** 函数 */
 export type Fn<Args extends any[] = any[], Return = any> = (...args: Args) => Return
 
