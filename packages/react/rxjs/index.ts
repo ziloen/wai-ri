@@ -30,7 +30,7 @@ export function useBehaviorSubjectRef<T>(subject: BehaviorSubject<T>): VueRef<T>
     get value() {
       return state
     }
-  })
+  }) as any
 }
 
 

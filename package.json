@@ -8,7 +8,8 @@
   "scripts": {
     "test": "vitest",
     "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public",
-    "lint": "eslint . --ignore-pattern '*.test.*' --fix"
+    "lint": "eslint . --ignore-pattern '*.test.*' --fix",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^18.8.4",
