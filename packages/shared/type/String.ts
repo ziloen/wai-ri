@@ -73,3 +73,14 @@ export type CharAt<
 
 /** 转换为字符串类型 */
 export type ToString<T> = T extends Stringable ? `${T}` : ''
+
+
+
+/** 去除左边空白 */
+export type TrimLeft<S extends string> = S extends ` ${infer R}` ? TrimLeft<R> : S
+
+/** 去除右边空白 */
+export type TrimRight<S extends string> = S extends `${infer R} ` ? TrimRight<R> : S
+
+/** 去除左右空白 */
+export type Trim<S extends string> = TrimLeft<TrimRight<S>>
