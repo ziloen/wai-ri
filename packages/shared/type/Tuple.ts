@@ -16,9 +16,9 @@ export type New<Item, L extends number, T extends Item[] = []> = T['length'] ext
 /** 获取长度 */
 export type Length<T extends any[] | string | number> =
   T extends any[] ? T['length'] :
-  T extends string ? Split<T>['length'] :
-  T extends number ? Split<`${T}`>['length'] :
-  never
+    T extends string ? Split<T>['length'] :
+      T extends number ? Split<`${T}`>['length'] :
+        never
 
 
 
@@ -95,9 +95,9 @@ export type Includes<T extends readonly unknown[], Ele> = Ele extends T[number] 
  */
 export type Join<T extends Literal[], Devider extends string = ''> =
   T extends [] ? '' :
-  T extends [infer X extends Literal] ? X :
-  T extends [infer F extends Literal, ...infer Rest extends Literal[]] ? `${F}${Devider}${Join<Rest, Devider>}` :
-  string
+    T extends [infer X extends Literal] ? X :
+      T extends [infer F extends Literal, ...infer Rest extends Literal[]] ? `${F}${Devider}${Join<Rest, Devider>}` :
+        string
 
 
 
@@ -129,11 +129,11 @@ export type Sort<N extends number[]> = N
 /** 是否是元组类型，如 [number] ，数组类型如 number[] 会返回 false */
 export type IsTuple<T> =
   [T] extends [never] ? false :
-  T extends any[]
-    ? number extends T['length']
-      ? false
-      : true
-    : false
+    T extends any[]
+      ? number extends T['length']
+        ? false
+        : true
+      : false
 
 
 

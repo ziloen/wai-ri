@@ -26,7 +26,7 @@ export function useEcharts(id: string, initOption: EChartsOption, dataOption: Re
     chart.value.setOption(initOption)
     globalThis.addEventListener('resize', resize)
     // watch 是否需要注销？
-    watch(dataOption, (val) => {
+    watch(dataOption, val => {
       chart.value?.setOption(val, { replaceMerge: Object.keys(val) })
     }, { deep: true, immediate: true })
   })

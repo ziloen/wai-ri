@@ -8,10 +8,10 @@
   "scripts": {
     "test": "vitest",
     "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public",
-    "lint": "eslint . --ignore-pattern '*.test.*'"
+    "lint": "eslint . --ignore-pattern '*.test.*' --fix"
   },
   "devDependencies": {
-    "@types/node": "^18.8.3",
+    "@types/node": "^18.8.4",
     "@types/semver": "^7.3.12",
     "@ziloen/eslint-config": "latest",
     "@ziloen/eslint-config-format": "latest",

@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/react": "*",
     "@types/react-dom": "*",
-    "@wai-ri/shared": "workspace:^0.0.87",
+    "@wai-ri/shared": "workspace:^0.0.88",
     "react": "*",
     "react-dom": "*"
   }

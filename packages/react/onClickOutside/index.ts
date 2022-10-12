@@ -21,9 +21,9 @@ type OnClickOutsideOptions = {
 
 /**
  * 监听元素外点击事件
- * @param target 
- * @param handler 
- * @param options 
+ * @param target
+ * @param handler
+ * @param options
  */
 export function onClickOutside(target: MaybeElementRef, handler: Handler, options?: OnClickOutsideOptions) {
   const savedHandler = useRef(handler)
@@ -36,7 +36,7 @@ export function onClickOutside(target: MaybeElementRef, handler: Handler, option
     const targetElement = target instanceof Element ? target : target.current
     if (!targetElement || !targetElement.addEventListener) return
 
-    const evtListener: typeof handler = (e) => savedHandler.current(e);
+    const evtListener: typeof handler = e => savedHandler.current(e)
 
     targetElement.addEventListener('pointer', evtListener as any)
 

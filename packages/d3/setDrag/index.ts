@@ -23,10 +23,10 @@ type DragFn<T extends DraggedElementBaseType, D> = (this: T, event: D3DragEvent<
 export function setDrag<T extends DraggedElementBaseType, D>(
   onStart: DragFn<T, D>,
   onDrag: DragFn<T, D>,
-  onEnd: DragFn<T, D>,
+  onEnd: DragFn<T, D>
 ) {
   return drag<T, D, D>()
-    .on("start", function (e, d) { onStart.call(this, e, d, this) })
-    .on("drag", function (e, d) { onDrag.call(this, e, d, this) })
-    .on("end", function (e, d) { onEnd.call(this, e, d, this) })
+    .on('start', function (e, d) { onStart.call(this, e, d, this) })
+    .on('drag', function (e, d) { onDrag.call(this, e, d, this) })
+    .on('end', function (e, d) { onEnd.call(this, e, d, this) })
 }

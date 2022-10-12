@@ -5,18 +5,18 @@ import { SetParams, UnaryFn } from '@wai-ri/shared/type/Function'
 /** 管道函数 参数类型 */
 type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
   Len extends 0
-  ? []
-  : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
-  ? [
-    // [SourceT] extends [never] ? First :
-    SetParams<First, [SourceT]>,
+    ? []
+    : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
+      ? [
+        // [SourceT] extends [never] ? First :
+        SetParams<First, [SourceT]>,
 
-    ...PipeParams<
-      [SetParams<Second, [ReturnType<First>]>, ...Rest],
-      ReturnType<First>
-    >
-  ]
-  : Funcs
+        ...PipeParams<
+        [SetParams<Second, [ReturnType<First>]>, ...Rest],
+        ReturnType<First>
+        >
+      ]
+      : Funcs
 
 
 

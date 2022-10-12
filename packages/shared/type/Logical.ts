@@ -3,16 +3,16 @@
 /** 与 */
 export type And<B1 extends boolean, B2 extends boolean> =
   B1 extends false ? false :
-  B2 extends false ? false :
-  true
+    B2 extends false ? false :
+      true
 
 
 
 /** 或 */
 export type Or<B1 extends boolean, B2 extends true> =
   B1 extends true ? true :
-  B2 extends true ? true :
-  false
+    B2 extends true ? true :
+      false
 
 
 
@@ -40,8 +40,8 @@ export type Nor<B1 extends boolean, B2 extends boolean> =
 /** 转化为布尔值 */
 export type ToBool<T> =
   [T] extends [never] ? false :
-  T extends undefined | null | false | 0 | '' ? false :
-  true
+    T extends undefined | null | false | 0 | '' ? false :
+      true
 
 
 

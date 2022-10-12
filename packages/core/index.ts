@@ -36,13 +36,13 @@ async function iframeDownload(url: string, fileName = '') {
     const anchor = document.createElement('a')
     anchor.href = url
     anchor.download = fileName
-    anchor.rel = "noopener"
+    anchor.rel = 'noopener'
     document.body.append(anchor)
     anchor.dispatchEvent(new MouseEvent('click', {
       view: window,
       bubbles: false
     }))
-    
+
     window.setTimeout(() => {
       iframe.remove()
     }, 60000)

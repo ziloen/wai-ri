@@ -1,9 +1,9 @@
 import { asyncDebounce } from '.'
 
 
-describe("asyncDebounce", () => {
+describe('asyncDebounce', () => {
   it('debounce', () => {
-    
+
   })
 
   it('maxWait', () => {

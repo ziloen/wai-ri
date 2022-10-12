@@ -142,7 +142,7 @@ const s = {
       v_uv = a_uv;
 
       gl_Position = u_projection * u_view * u_world * vec4(a_position, 1);
-    }`,
+    }`
 }
 
 const q = {
@@ -316,5 +316,5 @@ const q = {
     v_depth = (mat3(u_view) * mat3(u_world) * a_position).z;
 
     gl_Position = position;
-  }`,
+  }`
 }

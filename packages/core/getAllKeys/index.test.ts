@@ -8,7 +8,7 @@ describe('getKeys', () => {
     const target = Object.create(next)
     target.n = 49
 
-    const keys = getAllKeys(target);
+    const keys = getAllKeys(target)
 
     expect(keys.length).toBe(3)
   })
@@ -25,9 +25,9 @@ describe('getKeys', () => {
     const target = Object.create(next)
     target.n = 49
 
-    const keys = getAllKeys(target);
-    
-    
+    const keys = getAllKeys(target)
+
+
     expect(keys).toMatchInlineSnapshot(`
       [
         "n",

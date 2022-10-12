@@ -20,7 +20,7 @@ describe('switchLatest', () => {
     const promises: Fn[] = []
 
     async function fetchData() {
-      return new Promise((res) => {
+      return new Promise(res => {
         promises.push(res)
       })
     }
@@ -35,7 +35,7 @@ describe('switchLatest', () => {
     for (const promise of promises) {
       promise()
     }
-    await sleep(0);
+    await sleep(0)
     expect(count).toBe(5)
   })
 })

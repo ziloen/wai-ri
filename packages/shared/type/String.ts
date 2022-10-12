@@ -3,7 +3,6 @@ import type { _ } from './_internal'
 
 
 
-
 /**
  * 分离字符串
  * @param Str 要分离的字符串
@@ -16,7 +15,7 @@ export type Split<
 > =
   Str extends `${infer First}${Separator}${infer Rest}`
     ? Split<Rest, Separator, [...Result, First]>
-    : [...Result, ...Str extends '' ? [] : [Str]]
+    : [...Result, ...(Str extends '' ? [] : [Str])]
 
 
 
@@ -45,11 +44,11 @@ export type ToNumber<NumStr> =
         ? N
         : `${NumStr}` extends `${'00'}${infer N}`
           ? ToNumber<N>
-            : `${NumStr}` extends `${infer B}.${infer A}0`
-              ? ToNumber<`${B}.${A}`>
-              : `${NumStr}` extends `${infer N extends number}`
-                  ? N
-                  : never
+          : `${NumStr}` extends `${infer B}.${infer A}0`
+            ? ToNumber<`${B}.${A}`>
+            : `${NumStr}` extends `${infer N extends number}`
+              ? N
+              : never
     : never
 
 

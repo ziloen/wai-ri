@@ -15,10 +15,10 @@ export type IsNeg<N extends number> = `${N}` extends `-${number}` ? true : false
 /** 判断是否为正数 */
 export type IsPos<N extends number,> =
   `${N}` extends `-${number}`
-  ? false
-  : N extends 0
-  ? false
-  : true
+    ? false
+    : N extends 0
+      ? false
+      : true
 
 
 
@@ -37,11 +37,11 @@ type MustLiteral<N extends number> = `${N}` extends `${infer T extends number}` 
  * }
  * // 会误伤 number 类型
 */
-export type CheckNaN<N extends number, Msg = "可能为NaN"> = [MustLiteral<N>] extends [never] ? Msg : N
+export type CheckNaN<N extends number, Msg = '可能为NaN'> = [MustLiteral<N>] extends [never] ? Msg : N
 
 
 
-export type CheckNegative<T extends number, Msg = "不能使用负数"> = `${T}` extends `-${number}` ? Msg : T
+export type CheckNegative<T extends number, Msg = '不能使用负数'> = `${T}` extends `-${number}` ? Msg : T
 
 
 
@@ -106,17 +106,17 @@ type IncInTen<N extends number> = N extends keyof NumMap ? NumMap[N][2] : never
 /** 暂不考虑负数 */
 type AddInTen<N1 extends number, N2 extends number> =
   N1 extends 0 ? N2 :
-  N2 extends 0 ? N1 :
-  AddInTen<IncInTen<N1>, DecInTen<N2>>
+    N2 extends 0 ? N1 :
+      AddInTen<IncInTen<N1>, DecInTen<N2>>
 
 
 type SubInTen<N1 extends number, N2 extends number> =
   N1 extends N2 ? 0 :
-  N1 extends 0 ? N2 :
-  N2 extends 0 ? N1 :
-  UnsignedGreatThan<N1, N2> extends true
-    ? SubInTen<DecInTen<N1>, DecInTen<N2>>
-    : SubInTen<N2, N1>
+    N1 extends 0 ? N2 :
+      N2 extends 0 ? N1 :
+        UnsignedGreatThan<N1, N2> extends true
+          ? SubInTen<DecInTen<N1>, DecInTen<N2>>
+          : SubInTen<N2, N1>
 
 
 
@@ -146,7 +146,6 @@ type HalfAddMap = {
 
 
 
-
 // 半加器
 type HalfAdder<N1 extends number, N2 extends number> =
   AddInTen<N1, N2> extends infer K
@@ -159,20 +158,20 @@ type HalfAdder<N1 extends number, N2 extends number> =
 // 全加器
 type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 0, Result extends string = ''> =
   N1 extends []
-  ? N2 extends []
-    ? Carry extends 0
-      ? Result
-      : `${1}${Result}`
-    : Carry extends 0
-      ? `${Join<N2>}${Result}`
-      : FullAdder<['1'], N2, 0, Result>
-  : N2 extends []
-    ? Carry extends 0
-      ? `${Join<N1>}${Result}`
-      : FullAdder<['1'], N1, 0, Result>
-    : HalfAdder<AddInTen<StrToNum<Last<N1>>, Carry>, StrToNum<Last<N2>>> extends [infer N extends number, infer C extends number]
-      ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
-      : never
+    ? N2 extends []
+      ? Carry extends 0
+        ? Result
+        : `${1}${Result}`
+      : Carry extends 0
+        ? `${Join<N2>}${Result}`
+        : FullAdder<['1'], N2, 0, Result>
+    : N2 extends []
+      ? Carry extends 0
+        ? `${Join<N1>}${Result}`
+        : FullAdder<['1'], N1, 0, Result>
+      : HalfAdder<AddInTen<StrToNum<Last<N1>>, Carry>, StrToNum<Last<N2>>> extends [infer N extends number, infer C extends number]
+        ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
+        : never
 
 
 type _Add<N1 extends number, N2 extends number> = StrToNum<FullAdder<NumToArr<N1>, NumToArr<N2>>>
@@ -181,12 +180,12 @@ type _Add<N1 extends number, N2 extends number> = StrToNum<FullAdder<NumToArr<N1
 // 两数相加 TODO: 支持负数，小数 TS 4.8+
 export type Add<N1 extends number, N2 extends number> =
   IsPos<N1> extends true
-  ? IsPos<N2> extends true
-    ? _Add<N1, N2>
-    : Sub<N1, Abs<N2>>
-  : IsPos<N2> extends true
-    ? Sub<N2, Abs<N1>>
-    : ToNeg<_Add<Abs<N1>, Abs<N2>>>
+    ? IsPos<N2> extends true
+      ? _Add<N1, N2>
+      : Sub<N1, Abs<N2>>
+    : IsPos<N2> extends true
+      ? Sub<N2, Abs<N1>>
+      : ToNeg<_Add<Abs<N1>, Abs<N2>>>
 
 type N = Add<120, 219>
 
@@ -257,7 +256,6 @@ type MinusByNine<
 
 
 
-
 type _Sub<
   N1 extends number,
   N2 extends number,
@@ -283,19 +281,19 @@ type _Sub<
 // A < B :
 //   A - B = -(9999 - (A + (9999 - B)))
 //          -> ToNeg<SubByNine<Add<A, SubByNine<B>>>>
-/** 
- * 两数相减  
+/**
+ * 两数相减
  * 另一种解法 - [TS实现减法(支持大数运算)](https://zhuanlan.zhihu.com/p/518192267)
  */
 export type Sub<N1 extends number, N2 extends number> =
   N1 extends N2 ? 0 :
-  IsNeg<N1> extends true
-    ? IsNeg<N2> extends true
-      ? Sub<Abs<N2>, Abs<N1>>
-      : ToNeg<_Add<Abs<N1>, N2>>
-    : IsNeg<N2> extends true
-      ? _Add<N1, Abs<N2>>
-      : _Sub<N1, N2>
+    IsNeg<N1> extends true
+      ? IsNeg<N2> extends true
+        ? Sub<Abs<N2>, Abs<N1>>
+        : ToNeg<_Add<Abs<N1>, N2>>
+      : IsNeg<N2> extends true
+        ? _Add<N1, Abs<N2>>
+        : _Sub<N1, N2>
 
 
 

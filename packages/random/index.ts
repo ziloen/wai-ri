@@ -19,7 +19,7 @@ export function random<T>(...args: [T[]] | [boolean?] | [number, boolean?] | [nu
 
   // 数组
   if (Array.isArray(args[0])) {
-    return args[0][~~(_random * (args[0].length))]
+    return args[0][~~(_random * args[0].length)]
   }
 
   // 初始化

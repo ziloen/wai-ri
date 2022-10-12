@@ -9,7 +9,7 @@ import { VueRef } from '../ref'
 /**  */
 export function useBehaviorSubject<T>(initVal: T) {
   // const []
-  // 
+  //
   return useState(() => new BehaviorSubject(initVal))[0]
 }
 
@@ -36,5 +36,5 @@ export function useBehaviorSubjectRef<T>(subject: BehaviorSubject<T>): VueRef<T>
 
 /** 结束时自动退订 */
 export function useSubscription(sub: Subscription) {
-  useEffect(() => (() => sub.unsubscribe()))
+  useEffect(() => () => sub.unsubscribe())
 }

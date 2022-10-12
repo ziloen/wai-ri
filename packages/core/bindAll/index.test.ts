@@ -24,14 +24,14 @@ describe('bindAll', () => {
     Reflect.defineProperty(target, 'getX', {
       enumerable: false,
       writable: true,
-      value: function () {
+      value() {
         return this.x
       }
     })
 
     Reflect.defineProperty(next, 'getA', {
       enumerable: false,
-      value: function () {
+      value() {
         return this.x
       }
     })

@@ -1,7 +1,7 @@
 import { useEnum } from '.'
 
 
-describe("useEnum", () => {
+describe('useEnum', () => {
 
   it('双向绑定', () => {
     const e = useEnum({ a: 12, b: '9', c: false, d: undefined, e: null } as const)

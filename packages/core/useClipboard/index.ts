@@ -14,9 +14,7 @@ export async function useClipboard(...args: any[]): Promise<any> {
         if (status.state === 'denied') throw new Error('[useClickboard]: clipboard-write denied.')
         else return navigator.clipboard.writeText(value)
       })
-  }
-
-  else {
+  } else {
     return navigator.permissions.query({ name: <any>'clipboard-read' })
       .then(status => {
         if (status.state === 'denied') throw new Error('[useClickboard]: clipboard-read denied.')
