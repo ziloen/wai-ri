@@ -324,6 +324,9 @@ type RadixMap = Exclude<NumToUnion<36>, 0 | 1>
 export type ToString<N extends number, Radix extends RadixMap> = `${N}`
 
 
+// TODO: Infinity type
+// type Inf = 1e999
+
 
 // N1 - N2 > 0
 export type GreatThan<N1 extends number, N2 extends number> = N1 extends N2 ? false : IsPos<Sub<N1, N2>>
