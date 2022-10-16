@@ -6,14 +6,15 @@
   "author": "ziloen",
   "license": "ISC",
   "scripts": {
-    "test": "vitest",
+    "test": "vitest --ui",
     "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public",
     "lint": "eslint . --ignore-pattern '*.test.*' --fix",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/node": "^18.8.4",
+    "@types/node": "^18.11.0",
     "@types/semver": "^7.3.12",
+    "@vitest/ui": "^0.24.3",
     "@ziloen/eslint-config": "latest",
     "@ziloen/eslint-config-format": "latest",
     "bumpp": "^8.2.1",
