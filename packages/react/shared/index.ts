@@ -7,6 +7,11 @@ export function unRefElement<T extends Element = Element>(target: MaybeElementRe
 }
 
 export function unRef<T>(value: MaybeRef<T>): T {
-  if (typeof value !== 'object' || value === null) return value
+  if (
+    typeof value !== 'object' ||
+    value === null ||
+    Object.prototype.toString.call(value) !== '[object Object]'
+  ) return value as T
+
   return (Object.hasOwn(value, 'current') ? value.current : value) as T
 }
