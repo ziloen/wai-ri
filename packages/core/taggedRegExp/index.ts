@@ -9,9 +9,12 @@
  * const keywords = ['center', 'align', 'justify']
  * const matchRegExp = taggedRegExp`^flex-(${keywords})$` // => `^flex-(center|align|justify)$`
  * ```
- * @param literals
- * @param expressions
- * @returns
+ * 已知问题：
+ * 在没有表达式的字符上使用会报错 taggedRegExp`123`
+ *
+ * 功能：
+ * 支持Object？ Objec.keys()？
+ * 支持[abc]语法？taggedRegExp`^flex-[${keywords}]$` => ... // 即前后为[]且不为 \[ \]
  */
 export function taggedRegExp(literals: TemplateStringsArray, expressions: readonly unknown[]) {
   let result: string = expressions.reduce<string>((pre, express, i) => {
