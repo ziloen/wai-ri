@@ -15,6 +15,7 @@
  * 功能：
  * 支持Object？ Objec.keys()？
  * 支持[abc]语法？taggedRegExp`^flex-[${keywords}]$` => ... // 即前后为[]且不为 \[ \]
+ * 支持 (?<= )  (?= ) 等等
  */
 export function taggedRegExp(literals: TemplateStringsArray, expressions: readonly unknown[]) {
   let result: string = expressions.reduce<string>((pre, express, i) => {
