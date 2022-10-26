@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import type { Subscription } from 'rxjs'
 import { BehaviorSubject } from 'rxjs'
-import { VueRef } from '../ref'
+import { VueRef } from '../useVueRef'
 
 
 /**  */
