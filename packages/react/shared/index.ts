@@ -15,3 +15,23 @@ export function unRef<T>(value: MaybeRef<T>): T {
 
   return (Object.hasOwn(value, 'current') ? value.current : value) as T
 }
+
+
+type TargetType = HTMLElement | Element | Window | Document | null;
+/**
+ * 取出 DOM 元素数组
+ * @param value
+ * @returns
+ */
+export function unRefTargetElements<T extends TargetType = Element>(
+  value: MaybeRef<T> | MaybeRef<T>[]
+): T[] {
+  let targetArr
+  if (Array.isArray(value)) {
+    targetArr = value.map(ref => unRef(ref))
+  } else {
+    targetArr = [unRef(value)]
+  }
+
+  return targetArr
+}
