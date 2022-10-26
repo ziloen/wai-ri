@@ -1,6 +1,7 @@
 import { MaybeRef, unRef, useLatest } from '../index'
 import { useRef, useEffect } from 'react'
 import { Fn } from '@wai-ri/shared'
+import { noop } from '@wai-ri/core'
 
 type TargetType = Element | Window | Document | HTMLElement
 
@@ -59,11 +60,11 @@ export function useEventListener<L extends Fn>(
   options: AddEventListenerOptions = {}
 ): () => void {
   const listenerRef = useLatest(listener)
-  const cleanupRef = useRef(() => { })
+  const cleanupRef = useRef(noop)
 
   function cleanup() {
     cleanupRef.current()
-    cleanupRef.current = () => { }
+    cleanupRef.current = noop
   }
 
   useEffect(() => {
