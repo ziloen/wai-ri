@@ -58,6 +58,7 @@ export type ArrayType<A extends any[]> = A[number]
  * const e: EventName = "mouseup" // 输入时会有提示，且允许任意字符串
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type EnumString<T> = T | (string & {})
 
 
@@ -135,15 +136,15 @@ export type ExpandDeep<
   // 已到达深度，结束
   Deep extends TargetDeep ? T :
   // 展开函数类型
-  T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => ExpandDeep<Return, TargetDeep, NextIter> :
-  // 不展开 Promise 类型
-  T extends Promise<infer P> ? Promise<ExpandDeep<P, TargetDeep, NextIter>> :
-  // 展开对象类型
-  T extends object ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
-  // 展开联合类型
-  IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
-  // 已完全展开，返回
-  T
+    T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => ExpandDeep<Return, TargetDeep, NextIter> :
+    // 不展开 Promise 类型
+      T extends Promise<infer P> ? Promise<ExpandDeep<P, TargetDeep, NextIter>> :
+      // 展开对象类型
+        T extends object ? { [K in keyof T]: ExpandDeep<T[K], TargetDeep, NextIter> } :
+        // 展开联合类型
+          IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
+          // 已完全展开，返回
+            T
 
 
 
@@ -163,13 +164,11 @@ export type Extensible<O extends ObjectType> = Simplify<O & { [K: keyof any]: un
 /** 使两属性互斥，不是线程互斥锁，Disjoint / Mutex / MutuallyExclusive */
 export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
   Simplify<
-    (
-      { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
-      (
-        | { [K in K1]?: never } & { [K in K2]: T[K] }
-        | { [K in K2]?: never } & { [K in K1]: T[K] }
-      )
-    )
+  { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
+  (
+    | { [K in K1]?: never } & { [K in K2]: T[K] }
+    | { [K in K2]?: never } & { [K in K1]: T[K] }
+  )
   >
 // | ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never })
 // | ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
@@ -206,10 +205,10 @@ export type SetRequired<T, K extends keyof T> = RequiredByKeys<T, K>
 export type CombineObjectUnion<T> = {
   [K in (T extends infer P ? keyof P : never)]:
   T extends infer P
-  ? K extends keyof P
-  ? P[K]
-  : never
-  : never
+    ? K extends keyof P
+      ? P[K]
+      : never
+    : never
 }
 
 
@@ -225,7 +224,7 @@ export type CombineObjectUnion<T> = {
  */
 export type ExtractByKeys<T, K extends keyof any> =
   T extends infer R
-  ? K extends keyof R
-  ? R
-  : never
-  : never
+    ? K extends keyof R
+      ? R
+      : never
+    : never
