@@ -3,14 +3,33 @@ import { useEffect, useRef, useState } from 'react'
 
 
 
+/**
+ * 在挂载后执行一次
+ */
 export function onMounted(fn: () => any) {
   useEffect(fn, [])
 }
 
 
 
+/**
+ * 在卸载后执行一次
+ */
 export function onUnMounted(fn: () => any) {
   useEffect(() => fn, [])
+}
+
+
+
+/**
+ * 在 Render 阶段执行一次
+ */
+export function useBeforeMount(fn: () => void) {
+  const invokedRef = useRef(false)
+  if (!invokedRef.current) {
+    fn()
+    invokedRef.current = true
+  }
 }
 
 
