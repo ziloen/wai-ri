@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 /**
  * 在挂载后执行一次
  */
-export function onMounted(fn: () => any) {
+export function useMounted(fn: () => any) {
   useEffect(fn, [])
 }
 
@@ -15,7 +15,7 @@ export function onMounted(fn: () => any) {
 /**
  * 在卸载后执行一次
  */
-export function onUnMounted(fn: () => any) {
+export function useUnmounted(fn: () => any) {
   useEffect(() => fn, [])
 }
 
