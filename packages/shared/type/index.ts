@@ -125,6 +125,15 @@ export type Simplify<T> = { [K in keyof T]: T[K] }
 /** 展开类型 */
 export type Expand<T> = ExpandDeep<T, 3>
 
+type StopExpandIfRecursion<T, P, TargetDeep extends number, NextIter extends any[]> =
+  Equal<T, P> extends true
+    ? P
+    : Equal<T[], P> extends true
+      ? P
+      : ExpandDeep<P, TargetDeep, NextIter>
+
+// FIXME: type ChildNode = { id: string, chilren?: ChildNode[] } 判断无效
+// FIXME: type A = { b: B }; type B = { a: A } 判断无效
 /** 递归展开 */
 export type ExpandDeep<
   T,
@@ -136,11 +145,11 @@ export type ExpandDeep<
   // 已到达深度，结束
   Deep extends TargetDeep ? T :
   // 展开函数类型
-    T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => Equal<T, Return> extends true ? Return : ExpandDeep<Return, TargetDeep, NextIter> :
+    T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => StopExpandIfRecursion<T, Return, TargetDeep, NextIter> :
     // 不展开 Promise 类型
       T extends Promise<infer P> ? Equal<T, P> extends true ? T : Promise<ExpandDeep<P, TargetDeep, NextIter>> :
       // 展开对象类型
-        T extends object ? { [K in keyof T]: Equal<T[K], T> extends true ? T[K] : ExpandDeep<T[K], TargetDeep, NextIter> } :
+        T extends object ? { [K in keyof T]: StopExpandIfRecursion<T, T[K], TargetDeep, NextIter> } :
         // 展开联合类型
           IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
           // 已完全展开，返回
