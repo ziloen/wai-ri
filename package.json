@@ -14,15 +14,15 @@
   "devDependencies": {
     "@types/node": "^18.11.9",
     "@types/semver": "^7.3.13",
-    "@vitest/ui": "^0.24.5",
+    "@vitest/ui": "^0.25.0",
     "@ziloen/eslint-config": "latest",
     "@ziloen/eslint-config-format": "latest",
     "bumpp": "^8.2.1",
     "eslint": "^8.27.0",
     "jsdom": "^20.0.2",
     "typescript-lib-enhancer": "^1.0.6",
-    "vite": "^3.2.2",
-    "vitest": "^0.24.5"
+    "vite": "^3.2.3",
+    "vitest": "^0.25.0"
   },
   "dependencies": {
     "@types/react": "^18.0.25",
