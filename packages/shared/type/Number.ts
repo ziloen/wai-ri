@@ -325,7 +325,8 @@ export type ToString<N extends number, Radix extends RadixMap> = `${N}`
 
 
 // TODO: Infinity type
-// type Inf = 1e999
+// eslint-disable-next-line no-loss-of-precision, @typescript-eslint/no-loss-of-precision
+export type Infinity = 1e999
 
 
 // N1 - N2 > 0
