@@ -1,6 +1,6 @@
 // 参考 rxooks
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Subscription } from 'rxjs'
 import { BehaviorSubject } from 'rxjs'
 import { VueRef } from '../useVueRef'
@@ -10,7 +10,8 @@ import { VueRef } from '../useVueRef'
 export function useBehaviorSubject<T>(initVal: T) {
   // const []
   //
-  return useState(() => new BehaviorSubject(initVal))[0]
+  // return useState(() => new BehaviorSubject(initVal))[0]
+  const state$ = useMemo(() => new BehaviorSubject(initVal), [])
 }
 
 

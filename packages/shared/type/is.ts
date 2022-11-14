@@ -16,6 +16,13 @@ export function isNaN(val: unknown) {
 
 
 
+/** 是否为 Object */
+export function isObject(val: unknown): val is Record<any, any> {
+  return val !== null && typeof val === 'object'
+}
+
+
+
 /** 是否为 null */
 export function isNull(val: unknown): val is null {
   return null === val
