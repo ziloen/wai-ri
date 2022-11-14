@@ -5,7 +5,7 @@ import { RefObject, useEffect, useLayoutEffect, useRef } from 'react'
 type PointerElement = HTMLElement | SVGElement
 type MaybeElementRef = PointerElement | RefObject<PointerElement>
 type Handler = (evt: PointerEvent) => void
-type OnClickOutsideOptions = {
+interface OnClickOutsideOptions {
   /**
    * List of elements that should not trigger the event.
    */
@@ -34,9 +34,9 @@ export function onClickOutside(target: MaybeElementRef, handler: Handler, option
 
   useEffect(() => {
     const targetElement = target instanceof Element ? target : target.current
-    if (!targetElement || !targetElement.addEventListener) return
+    if (!targetElement) return
 
-    const evtListener: typeof handler = e => savedHandler.current(e)
+    const evtListener: typeof handler = e => { savedHandler.current(e) }
 
     targetElement.addEventListener('pointer', evtListener as any)
 
