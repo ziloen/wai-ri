@@ -4,7 +4,7 @@ import { MaybeRef, unRef } from '../'
 
 
 // TODO: 能否像 Vue 那样 keep alive，保留状态如视频播放不中断，复用之前的内容不重新生成
-type TeleportProps = {
+interface TeleportProps {
   /**
    * 传送目标容器，querySelector() 或者 目标元素本身
    */
