@@ -207,16 +207,37 @@ export type Merge<Org extends ObjectType, New extends ObjectType> = Simplify<New
 export type Extensible<O extends ObjectType> = Simplify<O & Record<keyof any, unknown>>
 
 
+/**
+ * 工具，仅供 MergeMutex 与 Mutex 使用
+ * @internal
+ */
+type WithoutKeys<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P] } & { [_ in K]?: never }
+
+/**
+ * 合并两对象，并使其互斥
+ */
+export type MergeMutex<T1, T2> =
+  ExpandDeep<
+  (T1 | T2) extends object
+    ? WithoutKeys<T1, keyof T2> | WithoutKeys<T2, keyof T1>
+    : T1 | T2
+  , 1
+  >
+
+
 
 /** 使两属性互斥，不是线程互斥锁，Disjoint / Mutex / MutuallyExclusive */
 export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
-  Simplify<
-  { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
-  (
-    | { [K in K1]?: never } & { [K in K2]: T[K] }
-    | { [K in K2]?: never } & { [K in K1]: T[K] }
-  )
+  ExpandDeep<
+  | WithoutKeys<T, K1>
+  | WithoutKeys<T, K2>
+  , 1
   >
+// { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
+// (
+//   | { [K in K1]?: never } & { [K in K2]: T[K] }
+//   | { [K in K2]?: never } & { [K in K1]: T[K] }
+// )
 // | ({ [P in Exclude<K, K1>]: T[P] } & { [P in K1]?: never })
 // | ({ [P in Exclude<K, K2>]: T[P] } & { [P in K2]?: never })
 
@@ -249,7 +270,7 @@ export type SetRequired<T, K extends keyof T> = RequiredByKeys<T, K>
  * }
  * ```
  */
-export type CombineObjectUnion<T> = {
+export type MergeUnion<T> = {
   [K in (T extends infer P ? keyof P : never)]:
   T extends infer P
     ? K extends keyof P
