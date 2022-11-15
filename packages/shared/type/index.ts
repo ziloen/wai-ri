@@ -225,7 +225,7 @@ export type MergeMutex<T1, T2> =
   >
 
 
-// FIXME: 有BUG，不显示注释，且可选变成了必选（丢失了 a?: string 的 ?）
+// FIXME: 有BUG，丢失注释信息，且可选变成了必选（丢失了 a?: string 的 ?）
 /** 使两属性互斥，不是线程互斥锁，Disjoint / Mutex / MutuallyExclusive */
 export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
   ExpandDeep<
