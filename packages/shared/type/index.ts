@@ -63,7 +63,24 @@ export type EnumString<T> = T | (string & {})
 
 
 
-/** 要么是空对象，要么是指定类型 (使当前对象与空对象互斥，相比Partial，只要有一个属性存在，则其余属性皆存在) */
+/**
+ * 要么是空对象，要么是指定类型
+ *
+ * 相比 Partial<T>，只要有一个属性存在，则缩小为T
+ * ```ts
+ * type T = { a: string, b: number }
+ * const partial = {} as Partial<T>
+ * const maybe = {} as MaybeEmpty<T>
+ *
+ * if (partial.a) {
+ *   // 只有 partial.a 被缩小为 string, partial.b 仍为 b?: number | undefined
+ * }
+ *
+ * if (maybe.a) {
+ *   // maybe 被缩小为 T
+ * }
+ * ```
+ */
 export type MaybeEmpty<T> = T | { [K in keyof T]: undefined }
 
 
