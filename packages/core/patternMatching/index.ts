@@ -2,9 +2,7 @@
 
 const FALLBACK_ARM = '_'
 
-type MatchArm = {
-  [key: keyof any]: any
-}
+type MatchArm = Record<keyof any, any>
 
 /**
  * 模式匹配
