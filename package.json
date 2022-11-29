@@ -9,7 +9,7 @@
     "test": "vitest --ui",
     "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public",
     "lint": "eslint . --ignore-pattern '*.test.*' --fix",
-    "type-check": "tsc --noEmit"
+    "typecheck": "vitest typecheck"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
@@ -51,7 +51,8 @@
       "project": "./tsconfig.json"
     },
     "rules": {
-      "no-promise-executor-return": "off"
+      "no-promise-executor-return": "off",
+      "@typescript-eslint/keyword-spacing": "off"
     },
     "ignorePatterns": [
       ".*"

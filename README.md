@@ -22,3 +22,6 @@
  - [ ] CI：PR/Push时自动测试，release 时自动生成 changelog
  - [ ] vitepress 编写文档
  - [ ] random
+
+
+FIXME: 更新 typescript eslint 时移除 `"@typescript-eslint/keyword-spacing": "off"`

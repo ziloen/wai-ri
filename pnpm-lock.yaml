@@ -51,9 +51,9 @@ importers:
 
   packages/all:
     specifiers:
-      '@wai-ri/core': workspace:^0.0.88
-      '@wai-ri/random': workspace:^0.0.88
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/core': workspace:*
+      '@wai-ri/random': workspace:*
+      '@wai-ri/shared': workspace:*
       typescript: '*'
     dependencies:
       '@wai-ri/core': link:../core
@@ -63,7 +63,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -71,13 +71,13 @@ importers:
 
   packages/d3:
     specifiers:
-      '@lsegurado/htmltype': '*'
+      '@lsegurado/htmltype': ^0.1.6
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       d3: '*'
       typescript: '*'
     dependencies:
-      '@lsegurado/htmltype': 0.1.5
+      '@lsegurado/htmltype': 0.1.6
       '@types/d3': 7.4.0
       '@wai-ri/shared': link:../shared
       d3: 7.6.1
@@ -86,7 +86,7 @@ importers:
   packages/echarts:
     specifiers:
       '@types/d3': '*'
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       echarts: '*'
       typescript: '*'
     dependencies:
@@ -97,7 +97,7 @@ importers:
 
   packages/random:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       typescript: '*'
     dependencies:
       '@wai-ri/shared': link:../shared
@@ -107,7 +107,7 @@ importers:
     specifiers:
       '@types/react': '*'
       '@types/react-dom': '*'
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       react: '*'
       react-dom: '*'
     dependencies:
@@ -119,7 +119,7 @@ importers:
 
   packages/rxios:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       axios: '*'
       rxjs: '*'
       typescript: '*'
@@ -137,7 +137,7 @@ importers:
 
   packages/three:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       three: '*'
       typescript: '*'
     dependencies:
@@ -147,7 +147,7 @@ importers:
 
   packages/vue:
     specifiers:
-      '@wai-ri/shared': workspace:^0.0.88
+      '@wai-ri/shared': workspace:*
       typescript: '*'
       vue: '*'
       vue-router: '*'
@@ -266,8 +266,8 @@ packages:
       type-detect: 4.0.8
     dev: true
 
-  /@lsegurado/htmltype/0.1.5:
-    resolution: {integrity: sha512-mvV0rAPxZcxhJQarrnIKVgGZsPP2VTZwjS+2bLp206JOxng9y7OEHYziDfN+Jg7u6z0wOOZFGk9z2yQNtMhu3A==}
+  /@lsegurado/htmltype/0.1.6:
+    resolution: {integrity: sha512-KeTFlSIS9BX8Cb9FKzS7cZtPXCkEcE0rpVKHFCuj9byphW9XUIxZXIpmpvlSBwHr/SrWKhKB7BZS4BAip5fYvw==}
     dependencies:
       csstype: 3.1.1
     dev: false

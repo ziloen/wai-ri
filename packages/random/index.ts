@@ -12,29 +12,30 @@ export function random(max: number, float?: boolean): number
 export function random(min: number, max: number, float?: boolean): number
 /** 取出数组随机元素 */
 export function random<T>(arr: T[]): T
-export function random<T>(...args: [T[]] | [boolean?] | [number, boolean?] | [number, number, boolean?]): T | number {
+export function random<T>(...args: unknown[]): T | number {
 
   // 原始随机数
   const _random = Math.random()
 
   // 数组
-  if (Array.isArray(args[0])) {
-    return args[0][~~(_random * args[0].length)]
+  const args_0 = args[0]
+  if (Array.isArray(args_0)) {
+    return (args_0[~~(_random * args_0.length)]) as T
   }
 
   // 初始化
   let min = 0, max = 1
   // TODO: Number.isInteger 判断 min 和 max
-  const is_float = args.at(-1) === true ? true : false
+  const is_float = args.at(-1) === true
 
-  if (typeof args[0] === 'number') {
+  if (typeof args_0 === 'number') {
     if (typeof args[1] === 'number') {
 
-      min = args[0]
+      min = args_0
       max = args[1]
       // if (min < 0) min -= 1;
     } else {
-      max = args[0]
+      max = args_0
       // if (max < 0) max -= 1;
     }
   }

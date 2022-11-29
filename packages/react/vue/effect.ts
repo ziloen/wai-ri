@@ -5,19 +5,22 @@ import { Dep } from './dep'
 
 export let activeEffect: ReactiveEffect | undefined
 
+// TODO:
+export type EffectScheduler = () => void
+
 export class ReactiveEffect<T = any> {
   computed?: ComputedRefImpl<T>
 
   constructor(
-   public fn: () => T,
-   public scheduler: EffectScheduler | null = null
+    public fn: () => T,
+    public scheduler: EffectScheduler | null = null
   ) {
 
   }
 }
 
 export function triggerEffects(
-  dep: Dep | ReactiveEffect[],
+  dep: Dep | ReactiveEffect[]
 ) {
   // spread into array for stabilization
   const effects = isArray(dep) ? dep : [...dep]
@@ -35,7 +38,7 @@ export function triggerEffects(
 
 
 function triggerEffect(
-  effect: ReactiveEffect,
+  effect: ReactiveEffect
 ) {
 
 }

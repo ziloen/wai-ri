@@ -9,9 +9,9 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@lsegurado/htmltype": "*",
+    "@lsegurado/htmltype": "^0.1.6",
     "@types/d3": "*",
-    "@wai-ri/shared": "workspace:^0.0.88",
+    "@wai-ri/shared": "workspace:*",
     "d3": "*",
     "typescript": "*"
   }
