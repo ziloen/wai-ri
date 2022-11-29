@@ -30,7 +30,7 @@ describe('match', () => {
   })
 
   it('run match function', () => {
-    const val = 12
+    const val = 12 as 12 | 9
     const errVal = 9
 
     const result = patternMatching(val, {
@@ -40,14 +40,14 @@ describe('match', () => {
 
     const errResult = patternMatching(errVal, {
       12: () => '计算结果',
-      _: () => '默认结果'
+      _: () => '默认结果',
+      9: () => 12
     })
 
     expect(result).toBe('计算结果')
     expect(errResult).toBe('默认结果')
 
-    assertType<"计算结果">(result)
-    // @ts-expect-error ...
-    assertType<'计算结果' | '默认结果'>(errResult)
+    assertType<'计算结果' | '默认结果'>(result)
+    assertType<'计算结果' | '默认结果' | 12>(errResult)
   })
 })
