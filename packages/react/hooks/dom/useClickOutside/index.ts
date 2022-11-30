@@ -25,7 +25,7 @@ interface OnClickOutsideOptions {
  * @param handler
  * @param options
  */
-export function onClickOutside(target: MaybeElementRef, handler: Handler, options?: OnClickOutsideOptions) {
+export function useClickOutside(target: MaybeElementRef, handler: Handler, options?: OnClickOutsideOptions) {
   const savedHandler = useRef(handler)
 
   useLayoutEffect(() => {
@@ -36,12 +36,12 @@ export function onClickOutside(target: MaybeElementRef, handler: Handler, option
     const targetElement = target instanceof Element ? target : target.current
     if (!targetElement) return
 
-    const evtListener: typeof handler = e => { savedHandler.current(e) }
+    const evtListener = (e: Event) => { savedHandler.current(e as PointerEvent) }
 
-    targetElement.addEventListener('pointer', evtListener as any)
+    targetElement.addEventListener('pointer', evtListener)
 
     return () => {
-      targetElement.removeEventListener('pointerdown', evtListener as any)
+      targetElement.removeEventListener('pointerdown', evtListener)
     }
   })
 }

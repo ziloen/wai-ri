@@ -1,4 +1,4 @@
-import { MaybeRef, unRef, useLatest } from '../index'
+import { MaybeRef, unRef, useLatest } from '../../../index'
 import { useRef, useEffect } from 'react'
 import { Fn } from '@wai-ri/shared'
 import { noop } from '@wai-ri/core'

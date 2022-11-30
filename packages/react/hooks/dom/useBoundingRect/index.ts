@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MaybeRef, unRef, useEventListener, useResizeObserver } from '../'
+import { MaybeRef, unRef, useEventListener, useResizeObserver } from '../../..'
 
 // FIXME: ResizeObserver 无法检测 css 和 父元素 transition & transform & animate 位置变化导致的元素位置变化
 type UseBoundingRectOptions = {

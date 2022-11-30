@@ -1,9 +1,9 @@
 // 参考 rxooks
 
 import { useEffect, useMemo, useState } from 'react'
-import type { Subscription } from 'rxjs'
+import type{ Subscription } from 'rxjs'
 import { BehaviorSubject } from 'rxjs'
-import { VueRef } from '../useVueRef'
+import { VueRef } from '../../useVueRef'
 
 
 /**  */

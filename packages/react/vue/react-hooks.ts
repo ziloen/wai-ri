@@ -1,6 +1,3 @@
-import { Fn, noop } from '@wai-ri/core'
-import { useEffect, useMemo, useRef } from 'react'
-import { useLatest, useUpdate } from '../lifeCycle'
 
 export function useVueRef<T>(value: T) {
   // const update = useUpdate()

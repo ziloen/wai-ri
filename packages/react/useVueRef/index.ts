@@ -1,6 +1,6 @@
 import { Fn } from '@wai-ri/shared'
-import { useCallback, useMemo, useRef, useState } from 'react'
-import { useUpdate } from '../lifeCycle'
+import { useMemo, useRef } from 'react'
+import { useUpdate } from '../shared/lifeCycle'
 
 const RAW_SYMBOL = Symbol('VueRef Raw Symbol')
 
@@ -11,7 +11,8 @@ export type VueRef<T> = {
   [REF_SYMBOL]: true
 }
 
-function isRef<T>(v: unknown | VueRef<T>): v is VueRef<T> {
+function isRef<T>(v: VueRef<T> | T): v is VueRef<T> {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   return !!((v as any)?.[REF_SYMBOL] === true)
 }
 
@@ -21,7 +22,9 @@ function hasChange<T>(value: T, newValue: T) {
 
 
 function toRaw<T>(observed: T): T {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   const raw = observed && (observed as any)[RAW_SYMBOL]
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return raw ? toRaw(raw) : observed
 }
 
@@ -110,6 +113,7 @@ export function useFn<T extends Fn>(fn: T): T {
   const memoizedFn = useRef<PickFn<T>>()
   if (!memoizedFn.current) {
     memoizedFn.current = function (this, ...args) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return fnRef.current.apply(this, args)
     }
   }

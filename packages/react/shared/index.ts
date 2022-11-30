@@ -1,4 +1,5 @@
 export * from './type'
+export * from './lifeCycle'
 
 import { useRef } from 'react'
 import { MaybeElementRef, MaybeRef } from './type'
