@@ -15,8 +15,8 @@
     "@types/node": "^18.11.9",
     "@types/semver": "^7.3.13",
     "@vitest/ui": "^0.25.3",
-    "@ziloen/eslint-config": "^0.0.77",
-    "@ziloen/eslint-config-format": "^0.0.77",
+    "@ziloen/eslint-config": "^0.0.78",
+    "@ziloen/eslint-config-format": "^0.0.78",
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",
     "jsdom": "^20.0.3",
@@ -51,8 +51,7 @@
       "project": "./tsconfig.json"
     },
     "rules": {
-      "no-promise-executor-return": "off",
-      "@typescript-eslint/keyword-spacing": "off"
+      "@typescript-eslint/no-confusing-void-expression": "off"
     },
     "ignorePatterns": [
       ".*"

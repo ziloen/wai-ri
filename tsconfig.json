@@ -39,7 +39,31 @@
       ],
       "@wai-ri/shared/*": [
         "./packages/shared/*"
-      ]
+      ],
+      "@wai-ri/react": [
+        "./packages/react/index.ts"
+      ],
+      "@wai-ri/react/*": [
+        "./packages/react/*"
+      ],
+      "@wai-ri/vue": [
+        "./packages/vue/index.ts"
+      ],
+      "@wai-ri/vue/*": [
+        "./packages/vue/*"
+      ],
+      "@wai-ri/d3": [
+        "./packages/d3/index.ts"
+      ],
+      "@wai-ri/d3/*": [
+        "./packages/d3/*"
+      ],
+      "@wai-ri/echarts": [
+        "./packages/echarts/index.ts"
+      ],
+      "@wai-ri/echarts/*": [
+        "./packages/echarts/*"
+      ],
     },
     "types": [
       "vitest/globals",

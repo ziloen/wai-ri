@@ -1,9 +1,10 @@
 export * from './type'
 
+import { useRef } from 'react'
 import { MaybeElementRef, MaybeRef } from './type'
 
 export function unRefElement<T extends Element = Element>(target: MaybeElementRef<T>): T {
-  return target instanceof Element ? target : target.current as T
+  return target instanceof Element ? target : target.current!
 }
 
 export function unRef<T>(value: MaybeRef<T>): T {
@@ -17,7 +18,7 @@ export function unRef<T>(value: MaybeRef<T>): T {
 }
 
 
-type TargetType = HTMLElement | Element | Window | Document | null;
+type TargetType = HTMLElement | Element | Window | Document | null
 /**
  * 取出 DOM 元素数组
  * @param value
