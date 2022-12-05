@@ -12,7 +12,7 @@
     "@lsegurado/htmltype": "^0.1.6",
     "@types/d3": "*",
     "@wai-ri/shared": "workspace:*",
-    "d3": "*",
+    "d3": "^7.7.0",
     "typescript": "*"
   }
 }

@@ -9,11 +9,11 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@types/react": "*",
+    "@types/react": "^18.0.26",
     "@types/react-dom": "*",
     "@wai-ri/shared": "workspace:*",
     "react": "*",
     "react-dom": "*",
-    "rxjs": "^7.5.7"
+    "rxjs": "^7.6.0"
   }
 }

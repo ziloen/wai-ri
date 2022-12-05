@@ -10,7 +10,7 @@
   "main": "./index.ts",
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "three": "*",
+    "three": "^0.147.0",
     "typescript": "*"
   }
 }
