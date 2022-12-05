@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { fromEvent } from 'rxjs'
 import { share } from 'rxjs/operators'
 
-const windowScroll$ = fromEvent(window, 'scroll', { passive: true }).pipe(share())
+const windowScroll$ = fromEvent(window, 'scroll', { passive: true }).pipe(share({ resetOnRefCountZero: true }))
 
 export function useWindowScroll(fn: (event: UIEvent) => void) {
   const fnRef = useLatest(fn)

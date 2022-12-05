@@ -3,8 +3,7 @@ import { useEffect } from 'react'
 import { fromEvent } from 'rxjs'
 import { share } from 'rxjs/operators'
 
-
-const windowResize$ = fromEvent(window, 'resize', { passive: true }).pipe(share())
+const windowResize$ = fromEvent(window, 'resize', { passive: true }).pipe(share({ resetOnRefCountZero: true }))
 
 export function useWindowResize(fn: (event: UIEvent) => void) {
   const fnRef = useLatest(fn)
