@@ -1,7 +1,8 @@
 export * from './shared'
 
-import { ComponentPublicInstance, onUnmounted, Ref, unref } from 'vue'
-import type { RouteLocationRaw } from 'vue-router'
+import { Fn } from '@wai-ri/shared'
+import { ComponentPublicInstance, onMounted, onUnmounted, Ref, unref } from 'vue'
+import type{ RouteLocationRaw } from 'vue-router'
 import { useRouter } from 'vue-router'
 
 
@@ -64,4 +65,14 @@ export function openRoute(to: RouteLocationRaw) {
  */
 function useCancleAxiosOnExit() {
   onUnmounted(() => { })
+}
+
+/**
+ * 类似 React useEffect(initFn, [])
+ * @param initFn
+ */
+export function useLifetime(initFn: () => (undefined | (() => void))): void {
+  let destoryFn: (() => void) | undefined
+  onMounted(() => destoryFn = initFn())
+  onUnmounted(() => { typeof destoryFn === 'function' && destoryFn() })
 }
