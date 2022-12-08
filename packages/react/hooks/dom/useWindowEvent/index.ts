@@ -19,7 +19,7 @@ function craeteSharedEventHook<E extends Event>(
 }
 
 export const useWindowKeyup = craeteSharedEventHook<KeyboardEvent>(
-  fromEvent(window, 'keyup')
+  fromEvent(window, 'keyup', { passive: true })
 )
 export const useWindowScroll = craeteSharedEventHook(
   fromEvent(window, 'scroll', { passive: true })
