@@ -7,7 +7,7 @@ import { share } from 'rxjs/operators'
 function craeteSharedEventHook<E extends Event>(
   observerable: Observable<Event>
 ) {
-  const shareable$ = observerable.pipe(share())
+  const shareable$ = observerable.pipe(share({ resetOnRefCountZero: true }))
 
   return function (fn: (event: E) => void) {
     const fnRef = useLatest(fn)
