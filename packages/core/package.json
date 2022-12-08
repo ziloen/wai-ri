@@ -10,6 +10,6 @@
   "main": "./index.ts",
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "typescript": "*"
+    "typescript": "^4.9.4"
   }
 }

@@ -12,6 +12,6 @@
     "@types/d3": "*",
     "@wai-ri/shared": "workspace:*",
     "echarts": "*",
-    "typescript": "*"
+    "typescript": "^4.9.4"
   }
 }
