@@ -4,26 +4,24 @@ import { fromEvent, Observable } from 'rxjs'
 import { share } from 'rxjs/operators'
 
 
-function craeteSharedEventHook<E extends Event>(
-  observerable: Observable<Event>
-) {
+function craeteSharedSubscribeHook<V>(observerable: Observable<V>) {
   const shareable$ = observerable.pipe(share({ resetOnRefCountZero: true }))
 
-  return function (fn: (event: E) => void) {
+  return function (fn: (value: V) => void) {
     const fnRef = useLatest(fn)
     useEffect(() => {
-      const subscription = shareable$.subscribe(e => fnRef.current(e as E))
+      const subscription = shareable$.subscribe(e => fnRef.current(e))
       return () => subscription.unsubscribe()
     }, [])
   }
 }
 
-export const useWindowKeyup = craeteSharedEventHook<KeyboardEvent>(
-  fromEvent(window, 'keyup', { passive: true })
+export const useWindowKeyup = craeteSharedSubscribeHook(
+  fromEvent<KeyboardEvent>(window, 'keyup', { passive: true })
 )
-export const useWindowScroll = craeteSharedEventHook(
+export const useWindowScroll = craeteSharedSubscribeHook(
   fromEvent(window, 'scroll', { passive: true })
 )
-export const useWindowResize = craeteSharedEventHook<UIEvent>(
-  fromEvent(window, 'resize', { passive: true })
+export const useWindowResize = craeteSharedSubscribeHook(
+  fromEvent<UIEvent>(window, 'resize', { passive: true })
 )
