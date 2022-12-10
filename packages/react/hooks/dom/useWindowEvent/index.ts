@@ -17,11 +17,14 @@ function craeteSharedSubscribeHook<V>(observerable: Observable<V>) {
 }
 
 export const useWindowKeyup = craeteSharedSubscribeHook(
-  fromEvent<KeyboardEvent>(window, 'keyup', { passive: true })
+  fromEvent<KeyboardEvent>(window, 'keyup', { passive: true, capture: true })
 )
 export const useWindowScroll = craeteSharedSubscribeHook(
-  fromEvent(window, 'scroll', { passive: true })
+  fromEvent(window, 'scroll', { passive: true, capture: true })
 )
 export const useWindowResize = craeteSharedSubscribeHook(
-  fromEvent<UIEvent>(window, 'resize', { passive: true })
+  fromEvent<UIEvent>(window, 'resize', { passive: true, capture: true })
+)
+export const useWindowPointer = craeteSharedSubscribeHook(
+  fromEvent(window, 'pointermove', { passive: true, capture: true })
 )
