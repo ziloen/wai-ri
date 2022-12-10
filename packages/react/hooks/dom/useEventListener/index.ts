@@ -53,7 +53,7 @@ export function useEventListener<
   options?: AddEventListenerOptions
 ): () => void
 
-export function useEventListener<L extends Fn>(
+export function useEventListener<L extends (e: Event) => void>(
   target: MaybeRef<TargetType | null>,
   type: string,
   listener: L,
