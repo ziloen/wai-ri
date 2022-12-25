@@ -11,7 +11,7 @@
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
     "axios": "^1.2.1",
-    "rxjs": "^7.6.0",
+    "rxjs": "^7.8.0",
     "typescript": "^4.9.4"
   }
 }

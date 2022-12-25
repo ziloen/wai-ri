@@ -14,6 +14,6 @@
     "@wai-ri/shared": "workspace:*",
     "react": "*",
     "react-dom": "*",
-    "rxjs": "^7.6.0"
+    "rxjs": "^7.8.0"
   }
 }
