@@ -12,11 +12,11 @@
     "typecheck": "vitest typecheck"
   },
   "devDependencies": {
-    "@types/node": "^18.11.17",
+    "@types/node": "^18.11.18",
     "@types/semver": "^7.3.13",
     "@vitest/ui": "^0.26.2",
-    "@ziloen/eslint-config": "^0.0.79",
-    "@ziloen/eslint-config-format": "^0.0.79",
+    "@ziloen/eslint-config": "^0.0.80",
+    "@ziloen/eslint-config-format": "^0.0.80",
     "bumpp": "^8.2.1",
     "eslint": "^8.30.0",
     "jsdom": "^20.0.3",

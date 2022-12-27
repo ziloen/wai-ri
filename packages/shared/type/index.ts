@@ -38,12 +38,12 @@ export interface EmptyObject { [emptyObjectSymbol]?: never }
 
 
 /** 函数 */
-export type Fn<Args extends any[] = any[], Return = any> = (...args: Args) => Return
+export type Fn<Args extends readonly unknown[] = any[], Return = any> = (...args: Args) => Return
 
 
 
 /** 异步函数 */
-export type AsyncFn<Args extends any[] = any[], Return = any> = (...args: Args) => Promise<Return>
+export type AsyncFn<Args extends readonly unknown[] = any[], Return = any> = (...args: Args) => Promise<Return>
 
 
 
