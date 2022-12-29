@@ -5,7 +5,7 @@ import { _ } from './_internal'
 
 
 
-type StrToNum<T extends string> = T extends `${infer N extends number}` ? N : never;
+type StrToNum<T extends string> = T extends `${infer N extends number}` ? N : never
 
 /** 判断是否是负数 */
 export type IsNeg<N extends number> = `${N}` extends `-${number}` ? true : false
@@ -13,7 +13,7 @@ export type IsNeg<N extends number> = `${N}` extends `-${number}` ? true : false
 
 
 /** 判断是否为正数 */
-export type IsPos<N extends number,> =
+export type IsPos<N extends number> =
   `${N}` extends `-${number}`
     ? false
     : N extends 0
@@ -75,26 +75,26 @@ type NumMap = {
   // '-3': [-3, -4, -2, -1],
   // '-2': [-2, -3, -1, -1],
   // '-1': [-1, -2, 0, -1],
-  0: [0, -1, 1, 1],
-  1: [1, 0, 2, 1],
-  2: [2, 1, 3, 1],
-  3: [3, 2, 4, 1],
-  4: [4, 3, 5, 1],
-  5: [5, 4, 6, 1],
-  6: [6, 5, 7, 1],
-  7: [7, 6, 8, 1],
-  8: [8, 7, 9, 1],
-  9: [9, 8, 10, 1],
-  10: [10, 9, 11, 1],
-  11: [11, 10, 12, 1],
-  12: [12, 11, 13, 1],
-  13: [13, 12, 14, 1],
-  14: [14, 13, 15, 1],
-  15: [15, 14, 16, 1],
-  16: [16, 15, 17, 1],
-  17: [17, 16, 18, 1],
-  18: [18, 17, 19, 1],
-  19: [19, 18, 20, 1],
+  0: [0, -1, 1, 1]
+  1: [1, 0, 2, 1]
+  2: [2, 1, 3, 1]
+  3: [3, 2, 4, 1]
+  4: [4, 3, 5, 1]
+  5: [5, 4, 6, 1]
+  6: [6, 5, 7, 1]
+  7: [7, 6, 8, 1]
+  8: [8, 7, 9, 1]
+  9: [9, 8, 10, 1]
+  10: [10, 9, 11, 1]
+  11: [11, 10, 12, 1]
+  12: [12, 11, 13, 1]
+  13: [13, 12, 14, 1]
+  14: [14, 13, 15, 1]
+  15: [15, 14, 16, 1]
+  16: [16, 15, 17, 1]
+  17: [17, 16, 18, 1]
+  18: [18, 17, 19, 1]
+  19: [19, 18, 20, 1]
 }
 
 
@@ -122,26 +122,26 @@ type SubInTen<N1 extends number, N2 extends number> =
 
 // [num]: [当前位，进位]
 type HalfAddMap = {
-  0: [0, 0],
-  1: [1, 0],
-  2: [2, 0],
-  3: [3, 0],
-  4: [4, 0],
-  5: [5, 0],
-  6: [6, 0],
-  7: [7, 0],
-  8: [8, 0],
-  9: [9, 0],
+  0: [0, 0]
+  1: [1, 0]
+  2: [2, 0]
+  3: [3, 0]
+  4: [4, 0]
+  5: [5, 0]
+  6: [6, 0]
+  7: [7, 0]
+  8: [8, 0]
+  9: [9, 0]
   10: [0, 1]
-  11: [1, 1],
-  12: [2, 1],
-  13: [3, 1],
-  14: [4, 1],
-  15: [5, 1],
-  16: [6, 1],
-  17: [7, 1],
-  18: [8, 1],
-  19: [9, 1],
+  11: [1, 1]
+  12: [2, 1]
+  13: [3, 1]
+  14: [4, 1]
+  15: [5, 1]
+  16: [6, 1]
+  17: [7, 1]
+  18: [8, 1]
+  19: [9, 1]
 }
 
 
@@ -229,7 +229,7 @@ export type UnsignedGreatThan<
   N1 extends number,
   N2 extends number,
   L1 extends number = Length<N1>,
-  L2 extends number = Length<N2>,
+  L2 extends number = Length<N2>
 > =
   N1 extends N2
     ? false
@@ -258,7 +258,7 @@ type MinusByNine<
 
 type _Sub<
   N1 extends number,
-  N2 extends number,
+  N2 extends number
 // S1 extends string = `${N1}`,
 // S2 extends string = `${N2}`
 > =

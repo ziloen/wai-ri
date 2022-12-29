@@ -15,5 +15,5 @@ export function useAnimation(targetRef: MaybeElementRef<HTMLElement>, keyframs: 
     stateRef.current = animation
   }
 
-  return stateRef.current!
+  return stateRef.current
 }

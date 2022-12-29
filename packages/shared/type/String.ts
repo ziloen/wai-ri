@@ -59,7 +59,7 @@ export type CharAt<
   Index extends number = 0,
   Iter extends any[] = [],
   CurrentIndex extends number = Iter['length'],
-  NextIter extends any[] = [...Iter, _],
+  NextIter extends any[] = [...Iter, _]
 > =
   CurrentIndex extends Index
     ? Str extends `${infer Result}${_}`

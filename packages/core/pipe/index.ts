@@ -21,7 +21,7 @@ type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']>
 
 
 /** 管道函数 返回类型 */
-type PipeReturn<Funcs extends UnaryFn[], FirstArg = never,> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
+type PipeReturn<Funcs extends UnaryFn[], FirstArg = never> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
 
 // 测试 pipe ---
 // declare function num2str(a: number): string

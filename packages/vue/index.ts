@@ -2,7 +2,7 @@ export * from './shared'
 
 import { Fn } from '@wai-ri/shared'
 import { ComponentPublicInstance, onMounted, onUnmounted, Ref, unref } from 'vue'
-import type{ RouteLocationRaw } from 'vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 import { useRouter } from 'vue-router'
 
 
@@ -21,7 +21,7 @@ type UnRefElementReturn<T extends MaybeElement = MaybeElement> = T extends VueIn
  */
 export function unrefElement<T extends MaybeElement>(elRef: MaybeElementRef<T>): UnRefElementReturn<T> {
   const plain = unref(elRef)
-  return (plain as VueInstance).$el ?? plain
+  return ((plain as (VueInstance | undefined))?.$el ?? plain) as UnRefElementReturn<T>
 }
 
 

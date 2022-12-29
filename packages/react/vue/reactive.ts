@@ -1,8 +1,8 @@
 import { isObject } from '@wai-ri/shared'
 import { Ref } from './ref'
 
-const RAW = Symbol("Reactive raw flag")
-const IS_REACTIVE = Symbol("Is reactive flag")
+const RAW = Symbol('Reactive raw flag')
+const IS_REACTIVE = Symbol('Is reactive flag')
 
 const ReactiveFlags = {
   RAW,

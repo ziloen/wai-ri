@@ -10,8 +10,8 @@ describe('Expand', () => {
     // 检查 T 的类型是否与下面相同
     type T = Expand<C>
     type R = Expect<Equal<T, {
-      a?: string,
-      readonly b: number,
+      a?: string
+      readonly b: number
       c: boolean
     }>>
   })

@@ -5,7 +5,7 @@ import { MaybeRef, unRef } from '../shared'
 import { useVueRef } from '../useVueRef'
 
 
-type StyleElement = SVGElement | HTMLElement | MathMLElement
+type StyleElement = SVGElement | HTMLElement | MathMLElement | null | undefined
 type MaybeStyleElementRef = MaybeRef<StyleElement>
 
 export function useCssVar(

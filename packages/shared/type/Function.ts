@@ -15,7 +15,7 @@ export type SetParams<T extends Fn, P extends any[]> = T extends Fn<_, infer R> 
 
 
 /** 设置返回类型 */
-export type SetReturn<T extends Fn, R> = T extends Fn<infer P, _> ? Fn<P, R> : never
+export type SetReturn<T extends Fn, R> = T extends Fn<infer P> ? Fn<P, R> : never
 
 
 

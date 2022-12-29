@@ -2,11 +2,11 @@ import { Dep } from './dep'
 import { triggerEffects } from './effect'
 import { toRaw, toReactive } from './reactive'
 
-export const RefSymbol: unique symbol = Symbol("Ref flag")
+export const RefSymbol: unique symbol = Symbol('Ref flag')
 export declare const RawSymbol: unique symbol
 
 export interface Ref<T = any> {
-  value: T,
+  value: T
   [RefSymbol]: true
 }
 
@@ -49,7 +49,7 @@ class RefImpl<T> {
   /** 原始值 */
   #rawValue: T
 
-  public dep?: Dep = undefined;
+  public dep?: Dep = undefined
   /** Ref 标志 */
   public readonly [RefSymbol] = true
 
