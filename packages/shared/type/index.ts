@@ -110,7 +110,7 @@ export type Writable<BaseType, Keys extends keyof BaseType = keyof BaseType> = {
   -readonly [Key in Extract<keyof BaseType, Keys>]: BaseType[Key]
 } & Omit<BaseType, Keys>
 
-export type Mutable<T> = Writable<T>
+export type Mutable<T, K extends keyof T = keyof T> = Writable<T, K>
 
 
 
