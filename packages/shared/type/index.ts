@@ -81,7 +81,7 @@ export type EnumString<T> = T | (string & {})
  * }
  * ```
  */
-export type MaybeEmpty<T> = T | { [K in keyof T]: undefined }
+export type MaybeEmpty<T> = T | { [K in keyof T]?: undefined }
 
 
 
