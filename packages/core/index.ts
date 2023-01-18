@@ -1,10 +1,10 @@
-import { asType, Extensible } from '@wai-ri/shared'
-import { sleep } from './sleep'
+import { Extensible } from '@wai-ri/shared'
 
 export * from '@wai-ri/shared'
 export * from './asyncDebounce'
 export * from './bindAll'
 export * from './bindSelf'
+export * from './blockThread'
 export * from './clamp'
 export * from './escapeRegExp'
 export * from './getAllKeys'
@@ -23,12 +23,12 @@ export * from './useEnum'
 export const extend: <T, U extends Extensible<Partial<T>>>(target: T, source: U) => T = Object.assign
 
 
-async function iframeDownload(url: string, fileName = '') {
+function iframeDownload(url: string, fileName = '') {
   const iframe = document.createElement('iframe')
   iframe.style.display = 'none'
   iframe.src = 'about:blank'
 
-  async function iframeLoad() {
+  function iframeLoad() {
     const window = iframe.contentWindow
     if (!window) return
 
