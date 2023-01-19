@@ -1,6 +1,5 @@
 export * from './shared'
 
-import { Fn } from '@wai-ri/shared'
 import { ComponentPublicInstance, onMounted, onUnmounted, Ref, unref } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import { useRouter } from 'vue-router'
