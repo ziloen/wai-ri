@@ -1,5 +1,4 @@
 import { useLatest } from '@wai-ri/react/shared'
-import { asType } from '@wai-ri/shared'
 
 
 /** 锁定 pointer move 事件 */
@@ -19,8 +18,7 @@ export function usePointerCapture(
     clickEventMask.style.zIndex = '1'
     document.documentElement.append(clickEventMask)
 
-    const target = e.currentTarget
-    asType<HTMLElement>(target)
+    const target = e.currentTarget as HTMLElement
     /** 使当前元素锁定 pointer */
     target.setPointerCapture(e.pointerId)
     const controller = new AbortController
@@ -28,14 +26,14 @@ export function usePointerCapture(
     /** 转发 move 事件 */
     target.addEventListener(
       'pointermove',
-      (e: PointerEvent) => handleRef.current(e),
+      e => handleRef.current(e),
       { signal: controller.signal }
     )
 
     /** pointerup 停止监听 */
     target.addEventListener(
       'pointerup',
-      (e: PointerEvent) => {
+      e => {
         /** 移除添加的临时蒙版 */
         clickEventMask.remove()
         /** 清除 move 事件监听 */
