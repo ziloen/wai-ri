@@ -5,14 +5,14 @@ importers:
   .:
     specifiers:
       '@types/node': ^18.11.18
-      '@types/react': ^18.0.26
+      '@types/react': ^18.0.27
       '@types/semver': ^7.3.13
       '@vitest/ui': ^0.27.2
       '@ziloen/eslint-config': ^0.0.83
       '@ziloen/eslint-config-format': ^0.0.83
       axios: ^1.2.3
       bumpp: ^8.2.1
-      d3: ^7.8.1
+      d3: ^7.8.2
       echarts: ^5.4.1
       eslint: ^8.32.0
       jsdom: ^21.0.0
@@ -26,9 +26,9 @@ importers:
       vue: ^3.2.45
       vue-router: ^4.1.6
     dependencies:
-      '@types/react': 18.0.26
+      '@types/react': 18.0.27
       axios: 1.2.3
-      d3: 7.8.1
+      d3: 7.8.2
       echarts: 5.4.1
       react: 18.2.0
       rxjs: 7.8.0
@@ -74,13 +74,13 @@ importers:
       '@lsegurado/htmltype': ^0.1.7
       '@types/d3': '*'
       '@wai-ri/shared': workspace:*
-      d3: ^7.8.1
+      d3: ^7.8.2
       typescript: ^4.9.4
     dependencies:
       '@lsegurado/htmltype': 0.1.7
       '@types/d3': 7.4.0
       '@wai-ri/shared': link:../shared
-      d3: 7.8.1
+      d3: 7.8.2
       typescript: 4.9.4
 
   packages/echarts:
@@ -105,14 +105,14 @@ importers:
 
   packages/react:
     specifiers:
-      '@types/react': ^18.0.26
+      '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
       '@wai-ri/shared': workspace:*
       react: '*'
       react-dom: '*'
       rxjs: ^7.8.0
     dependencies:
-      '@types/react': 18.0.26
+      '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       '@wai-ri/shared': link:../shared
       react: 18.2.0
@@ -710,11 +710,11 @@ packages:
   /@types/react-dom/18.0.10:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
     dependencies:
-      '@types/react': 18.0.26
+      '@types/react': 18.0.27
     dev: false
 
-  /@types/react/18.0.26:
-    resolution: {integrity: sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug==}
+  /@types/react/18.0.27:
+    resolution: {integrity: sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -1353,8 +1353,8 @@ packages:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: false
 
-  /d3-array/3.2.1:
-    resolution: {integrity: sha512-gUY/qeHq/yNqqoCKNq4vtpFLdoCdvyNpWoC/KNjhGbhDuQpAM9sIQQKkXSNpXa9h5KySs/gzm7R88WkUutgwWQ==}
+  /d3-array/3.2.2:
+    resolution: {integrity: sha512-yEEyEAbDrF8C6Ob2myOBLjwBLck1Z89jMGFee0oPsn95GqjerpaOA4ch+vc2l0FNFFwMD5N7OCSEN5eAlsUbgQ==}
     engines: {node: '>=12'}
     dependencies:
       internmap: 2.0.3
@@ -1380,7 +1380,7 @@ packages:
     resolution: {integrity: sha512-VE5S6TNa+j8msksl7HwjxMHDM2yNK3XCkusIlpX5kwauBfXuyLAtNg9jCp/iHH61tgI4sb6R/EIMWCqEIdjT/g==}
     engines: {node: '>=12'}
     dependencies:
-      d3-path: 3.0.1
+      d3-path: 3.1.0
     dev: false
 
   /d3-color/3.1.0:
@@ -1388,11 +1388,11 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /d3-contour/4.0.0:
-    resolution: {integrity: sha512-7aQo0QHUTu/Ko3cP9YK9yUTxtoDEiDGwnBHyLxG5M4vqlBkO/uixMRele3nfsfj6UXOcuReVpVXzAboGraYIJw==}
+  /d3-contour/4.0.2:
+    resolution: {integrity: sha512-4EzFTRIikzs47RGmdxbeUvLWtGedDUNkTcmzoeyg4sP/dvCexO47AaQL7VKy/gul85TOxw+IBgA8US2xwbToNA==}
     engines: {node: '>=12'}
     dependencies:
-      d3-array: 3.2.1
+      d3-array: 3.2.2
     dev: false
 
   /d3-delaunay/6.0.2:
@@ -1451,11 +1451,11 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /d3-geo/3.0.1:
-    resolution: {integrity: sha512-Wt23xBych5tSy9IYAM1FR2rWIBFWa52B/oF/GYe5zbdHrg08FU8+BuI6X4PvTwPDdqdAdq04fuWJpELtsaEjeA==}
+  /d3-geo/3.1.0:
+    resolution: {integrity: sha512-JEo5HxXDdDYXCaWdwLRt79y7giK8SbhZJbFWXqbRTolCHFI5jRqteLzCsq51NKbUoX0PjBVSohxrx+NoOUujYA==}
     engines: {node: '>=12'}
     dependencies:
-      d3-array: 3.2.1
+      d3-array: 3.2.2
     dev: false
 
   /d3-hierarchy/3.1.2:
@@ -1470,8 +1470,8 @@ packages:
       d3-color: 3.1.0
     dev: false
 
-  /d3-path/3.0.1:
-    resolution: {integrity: sha512-gq6gZom9AFZby0YLduxT1qmrp4xpBA1YZr19OI717WIdKE2OM5ETq5qrHLb301IgxhLwcuxvGZVLeeWc/k1I6w==}
+  /d3-path/3.1.0:
+    resolution: {integrity: sha512-p3KP5HCf/bvjBSSKuXid6Zqijx7wIfNW+J/maPs+iwR35at5JCbLUT0LzF1cnjbCHWhqzQTIN2Jpe8pRebIEFQ==}
     engines: {node: '>=12'}
     dev: false
 
@@ -1502,7 +1502,7 @@ packages:
     resolution: {integrity: sha512-GZW464g1SH7ag3Y7hXjf8RoUuAFIqklOAq3MRl4OaWabTFJY9PN/E1YklhXLh+OQ3fM9yS2nOkCoS+WLZ6kvxQ==}
     engines: {node: '>=12'}
     dependencies:
-      d3-array: 3.2.1
+      d3-array: 3.2.2
       d3-format: 3.1.0
       d3-interpolate: 3.0.1
       d3-time: 3.1.0
@@ -1514,11 +1514,11 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /d3-shape/3.1.0:
-    resolution: {integrity: sha512-tGDh1Muf8kWjEDT/LswZJ8WF85yDZLvVJpYU9Nq+8+yW1Z5enxrmXOhTArlkaElU+CTn0OTVNli+/i+HP45QEQ==}
+  /d3-shape/3.2.0:
+    resolution: {integrity: sha512-SaLBuwGm3MOViRq2ABk3eLoxwZELpH6zhl3FbAoJ7Vm1gofKx6El1Ib5z23NUEhF9AsGl7y+dzLe5Cw2AArGTA==}
     engines: {node: '>=12'}
     dependencies:
-      d3-path: 3.0.1
+      d3-path: 3.1.0
     dev: false
 
   /d3-time-format/4.1.0:
@@ -1532,7 +1532,7 @@ packages:
     resolution: {integrity: sha512-VqKjzBLejbSMT4IgbmVgDjpkYrNWUYJnbCGo874u7MMKIWsILRX+OpX/gTk8MqjpT1A/c6HY2dCA77ZN0lkQ2Q==}
     engines: {node: '>=12'}
     dependencies:
-      d3-array: 3.2.1
+      d3-array: 3.2.2
     dev: false
 
   /d3-timer/3.0.1:
@@ -1565,16 +1565,16 @@ packages:
       d3-transition: 3.0.1_d3-selection@3.0.0
     dev: false
 
-  /d3/7.8.1:
-    resolution: {integrity: sha512-fdipulGWUYTZTxxU9gDJ2P4mpZL2u7Oqe6n2FI95Q8UY0AjbKNYjPHvhLOsvR+HcSao4vo3YYy4Bk9CWOrt1Vw==}
+  /d3/7.8.2:
+    resolution: {integrity: sha512-WXty7qOGSHb7HR7CfOzwN1Gw04MUOzN8qh9ZUsvwycIMb4DYMpY9xczZ6jUorGtO6bR9BPMPaueIKwiDxu9uiQ==}
     engines: {node: '>=12'}
     dependencies:
-      d3-array: 3.2.1
+      d3-array: 3.2.2
       d3-axis: 3.0.0
       d3-brush: 3.0.0
       d3-chord: 3.0.1
       d3-color: 3.1.0
-      d3-contour: 4.0.0
+      d3-contour: 4.0.2
       d3-delaunay: 6.0.2
       d3-dispatch: 3.0.1
       d3-drag: 3.0.0
@@ -1583,17 +1583,17 @@ packages:
       d3-fetch: 3.0.1
       d3-force: 3.0.0
       d3-format: 3.1.0
-      d3-geo: 3.0.1
+      d3-geo: 3.1.0
       d3-hierarchy: 3.1.2
       d3-interpolate: 3.0.1
-      d3-path: 3.0.1
+      d3-path: 3.1.0
       d3-polygon: 3.0.1
       d3-quadtree: 3.0.1
       d3-random: 3.0.1
       d3-scale: 4.0.2
       d3-scale-chromatic: 3.0.0
       d3-selection: 3.0.0
-      d3-shape: 3.1.0
+      d3-shape: 3.2.0
       d3-time: 3.1.0
       d3-time-format: 4.1.0
       d3-timer: 3.0.1
