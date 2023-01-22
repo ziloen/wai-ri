@@ -23,6 +23,14 @@ export function isObject(val: unknown): val is Record<any, any> {
 
 
 
+/** 是否为函数 */
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function isFn(val: unknown): val is Function {
+  return typeof val === 'function'
+}
+
+
+
 /** 是否为 null */
 export function isNull(val: unknown): val is null {
   return null === val

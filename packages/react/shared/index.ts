@@ -1,7 +1,8 @@
-export * from './type'
 export * from './lifeCycle'
+export * from './type'
 
-import { useRef } from 'react'
+import { Fn } from '@wai-ri/shared'
+import { useMemo, useRef } from 'react'
 import { MaybeElementRef, MaybeRef } from './type'
 
 export function unRefElement<T extends Element = Element>(target: MaybeElementRef<T>): T {
@@ -36,4 +37,23 @@ export function unRefTargetElements<T extends TargetType = Element>(
   }
 
   return targetArr
+}
+
+
+
+type PickFn<T extends (this: any, ...args: any[]) => any> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
+
+/** 抄袭的 ahooks useMemoizedFn */
+export function useFn<T extends Fn>(fn: T): T {
+  const fnRef = useRef(fn)
+  fnRef.current = useMemo(() => fn, [fn])
+  const memoizedFn = useRef<PickFn<T>>()
+  if (!memoizedFn.current) {
+    memoizedFn.current = function (this, ...args) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return fnRef.current.apply(this, args)
+    }
+  }
+
+  return memoizedFn.current as T
 }

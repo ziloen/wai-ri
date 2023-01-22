@@ -1,5 +1,5 @@
 import { Fn } from '@wai-ri/shared'
-import { useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 import { useUpdate } from '../shared/lifeCycle'
 
 const RAW_SYMBOL = Symbol('VueRef Raw Symbol')
@@ -100,25 +100,6 @@ export function useVueRef<T>(initState: T): VueRef<T> {
   // watch(ref, update)
   // return ref
   return useMemo(() => createRef(initState, update), [])
-}
-
-
-
-type PickFn<T extends (this: any, ...args: any[]) => any> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
-
-/** 抄袭的 ahooks useMemoizedFn */
-export function useFn<T extends Fn>(fn: T): T {
-  const fnRef = useRef(fn)
-  fnRef.current = useMemo(() => fn, [fn])
-  const memoizedFn = useRef<PickFn<T>>()
-  if (!memoizedFn.current) {
-    memoizedFn.current = function (this, ...args) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return fnRef.current.apply(this, args)
-    }
-  }
-
-  return memoizedFn.current as T
 }
 
 
