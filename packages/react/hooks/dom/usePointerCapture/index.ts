@@ -27,7 +27,7 @@ export function usePointerCapture(
     target.addEventListener(
       'pointermove',
       e => handleRef.current(e),
-      { signal: controller.signal }
+      { signal: controller.signal, passive: true }
     )
 
     /** pointerup 停止监听 */
