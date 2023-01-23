@@ -30,7 +30,7 @@ export function useLocalStorage<T>(
   })
 
   function updateState(value: T | ((prevState: T) => T)) {
-    const currentState = isFn(value) ? value(state) : state
+    const currentState = isFn(value) ? value(state) : value
     setState(currentState)
 
     if (currentState === null || currentState === undefined) {
