@@ -1,11 +1,11 @@
-import { MaybeElementRef, unRef, useLatest } from '@wai-ri/react/shared'
-import { useEffect } from 'react'
+import { Ref, onBeforeUnmount, onMounted, unref } from 'vue'
 
 type Positon = {
   /** 当前 clientX */
   x: number
   /** 当前 clientY */
   y: number
+
 }
 
 type MovePosition = {
@@ -34,21 +34,19 @@ type UsePointerCaptureOptions = {
 
 /** 锁定 pointer move 事件 */
 export function usePointerCapture(
-  target: MaybeElementRef<HTMLElement | null | undefined>,
+  target: Ref<HTMLDivElement | undefined | null> | HTMLDivElement | undefined | null,
   { onMove, onEnd, onStart }: UsePointerCaptureOptions
 ) {
-  const onStartRef = useLatest(onStart)
-  const onMoveRef = useLatest(onMove)
-  const onEndRef = useLatest(onEnd)
+  const useEventAC = new AbortController
 
-  useEffect(() => {
-    const el = unRef(target)
-    if (!el) return
+  onMounted(() => {
     let startPosition = { x: 0, y: 0 }
+    const el = unref(target)
+    if (!el) return
     el.addEventListener('pointerdown', e => {
       const { x, y } = e
       /** 如果用户取消捕获 */
-      if (onStartRef.current?.(e, { x, y }) === false) return
+      if (onStart?.(e, { x, y }) === false) return
       /** 保存初始位置 */
       startPosition = { x, y }
       /** 阻止默认行为，防止 user-select 不为 none 时，拖动导致 capture 失效 */
@@ -73,7 +71,7 @@ export function usePointerCapture(
           const { x, y } = e
           const dx = x - startPosition.x
           const dy = y - startPosition.y
-          onMoveRef.current?.(e, { x, y, dx, dy })
+          onMove?.(e, { x, y, dx, dy })
         },
         { signal: controller.signal, passive: true }
       )
@@ -91,10 +89,14 @@ export function usePointerCapture(
           controller.abort()
           /** 释放 poniter */
           el.releasePointerCapture(e.pointerId)
-          onEndRef.current?.(e, { x, y, dx, dy })
+          onEnd?.(e, { x, y, dx, dy })
         },
         { once: true }
       )
-    })
-  }, [])
+    }, { signal: useEventAC.signal })
+  })
+
+  onBeforeUnmount(() => {
+    useEventAC.abort()
+  })
 }

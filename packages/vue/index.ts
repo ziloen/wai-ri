@@ -1,3 +1,4 @@
+export * from './dom'
 export * from './shared'
 
 import { ComponentPublicInstance, onMounted, onUnmounted, Ref, unref } from 'vue'
