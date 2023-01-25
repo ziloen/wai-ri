@@ -4,7 +4,7 @@ export function usePointerCapture(
   onPointerMove: (event: PointerEvent) => void,
   onPointerUp?: (event: PointerEvent) => void
 ) {
-  return function startPointCapture(e: React.PointerEvent<HTMLElement> | PointerEvent) {
+  return function startPointCapture(e: PointerEvent) {
     /** 阻止默认行为，防止 user-select 不为 none 时，拖动导致 capture 失效 */
     e.preventDefault()
 
