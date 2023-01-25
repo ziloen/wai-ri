@@ -4,7 +4,7 @@ import AxiosStatic from 'axios'
 import { Observable } from 'rxjs'
 
 
-export function useRxios(instance: AxiosInstance) {
+export function createRxios(instance: AxiosInstance) {
   return function rxios<ResponseData, ConfigData>(config: AxiosRequestConfig<ConfigData>) {
     return new Observable<AxiosResponse<ResponseData, ConfigData>>(observer => {
       const controller = new AbortController
