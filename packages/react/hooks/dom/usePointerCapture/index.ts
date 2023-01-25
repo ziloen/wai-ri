@@ -3,7 +3,8 @@ import { useLatest } from '@wai-ri/react/shared'
 
 /** 锁定 pointer move 事件 */
 export function usePointerCapture(
-  onPointerMove: (event: PointerEvent) => void
+  onPointerMove: (event: PointerEvent) => void,
+  onPointerUp?: (event: PointerEvent) => void
 ) {
   const handleRef = useLatest(onPointerMove)
 
@@ -34,6 +35,8 @@ export function usePointerCapture(
     target.addEventListener(
       'pointerup',
       e => {
+        /** 转发 up 事件 */
+        onPointerUp?.(e)
         /** 移除添加的临时蒙版 */
         clickEventMask.remove()
         /** 清除 move 事件监听 */
