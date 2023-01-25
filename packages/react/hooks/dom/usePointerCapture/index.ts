@@ -16,6 +16,7 @@ export function usePointerCapture(
     const clickEventMask = document.createElement('div')
     clickEventMask.style.position = 'fixed'
     clickEventMask.style.inset = '0'
+    // FIXME: z-index 很容易被其他元素影响导致不在最上层
     clickEventMask.style.zIndex = '1'
     document.documentElement.append(clickEventMask)
 
