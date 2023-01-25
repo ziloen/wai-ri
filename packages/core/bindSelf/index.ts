@@ -1,4 +1,4 @@
-import { Fn } from '@wai-ri/shared'
+import { Fn, asType, isFn } from '@wai-ri/shared'
 
 
 
@@ -10,11 +10,14 @@ export function bindSelf<T extends Record<keyof any, any>, K extends (keyof T)[]
 export function bindSelf<T extends Record<keyof any, any>, K extends keyof T | (keyof T)[]>(obj: T, key: K) {
   if (Array.isArray(key)) {
     key.forEach(k => {
-      Reflect.set(obj, k, Function.prototype.bind.call(Reflect.get(obj, k), obj))
+      const fn = obj[k]
+      isFn(fn) && Reflect.set(obj, k, (fn as Fn).bind(obj))
     })
     return obj
   } else {
-    Reflect.set(obj, key, Function.prototype.bind.call(Reflect.get(obj, key), obj))
-    return Reflect.get(obj, key)
+    asType<keyof T>(key)
+    const fn = obj[key]
+    isFn(fn) && Reflect.set(obj, key, (fn as Fn).bind(obj))
+    return obj[key] as Fn
   }
 }

@@ -1,10 +1,10 @@
-import { asType, Fn, Number as N } from '@wai-ri/shared'
+import { Fn, Timeout } from '@wai-ri/shared'
 
 
 
-type DebounceOption<MaxWait extends number> = {
+type DebounceOption = {
   /** 最大等待时间，在不停触发的情况下，至少多少毫秒调用一次，类似节流 */
-  maxWait?: N.CheckNegative<MaxWait>
+  maxWait?: number
   /** 立即调用(不在防抖时间内时) */
   // immediate?: boolean
 }
@@ -24,22 +24,16 @@ type DebounceOption<MaxWait extends number> = {
  */
 export function asyncDebounce<
   Params extends unknown[],
-  Return,
-  Wait extends number,
-  MaxWait extends number
+  Return
 >(
   asyncFn: Fn<Params, Return>,
-  wait: N.CheckNegative<Wait> = <any>0,
-  options: DebounceOption<MaxWait> = {}
+  wait = 0,
+  options: DebounceOption = {}
 ) {
-  let timer: ReturnType<typeof setTimeout> | undefined
-  let maxTimer: ReturnType<typeof setTimeout> | undefined
+  let timer: Timeout | undefined
+  let maxTimer: Timeout | undefined
 
   const { maxWait/* , immediate */ } = options
-
-  asType<number>(maxWait)
-  asType<number>(wait)
-  asType<Fn<any[], Awaited<Return>>>(asyncFn)
 
   return async function (...args: Params): Promise<Return> {
     return new Promise(res => {

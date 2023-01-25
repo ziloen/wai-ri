@@ -17,7 +17,7 @@ import type { _ } from './_internal'
 
 
 /** Timeout 类型 */
-export type Timemout = ReturnType<typeof setTimeout>
+export type Timeout = ReturnType<typeof setTimeout>
 
 
 

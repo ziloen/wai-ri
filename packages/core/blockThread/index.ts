@@ -1,7 +1,11 @@
 
 /**
  * 阻塞 JS 线程
- * @param ms
+ * @param ms 阻塞时长
+ * ```ts
+ * // 模拟 cpu 长耗时任务
+ * blockThread(200)
+ * ```
  */
 export function blockThread(ms = 1000) {
   const start = performance.now()
