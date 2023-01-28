@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "@vitest/ui": "^0.28.2",
+    "@vitest/ui": "^0.28.3",
     "@ziloen/eslint-config": "^0.0.83",
     "@ziloen/eslint-config-format": "^0.0.83",
     "bumpp": "^8.2.1",
@@ -21,7 +21,7 @@
     "jsdom": "^21.1.0",
     "typescript-lib-enhancer": "^1.0.6",
     "vite": "^4.0.4",
-    "vitest": "^0.28.2"
+    "vitest": "^0.28.3"
   },
   "dependencies": {
     "typescript": "^4.9.4"
