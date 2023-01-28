@@ -45,6 +45,7 @@ export function usePointerCapture(
     const el = unRef(target)
     if (!el) return
     let startPosition = { x: 0, y: 0 }
+    const controller = new AbortController
     el.addEventListener('pointerdown', e => {
       const { x, y } = e
       /** 如果用户取消捕获 */
@@ -99,6 +100,7 @@ export function usePointerCapture(
         },
         { once: true }
       )
-    })
+    }, { signal: controller.signal })
+    return () => controller.abort()
   }, [])
 }
