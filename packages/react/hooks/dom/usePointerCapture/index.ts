@@ -58,7 +58,7 @@ export function usePointerCapture(
       // TODO: 这里应为 isFirefox
       if (/firefox/i.test(navigator.userAgent)) {
         /** firefox 下 releasePointerCapture 时会触发 click 事件，添加临时全局蒙版 */
-        const clickEventMask = document.createElement('div')
+        clickEventMask = document.createElement('div')
         clickEventMask.style.position = 'fixed'
         clickEventMask.style.inset = '0'
         // FIXME: z-index 很容易被其他元素影响导致不在最上层
