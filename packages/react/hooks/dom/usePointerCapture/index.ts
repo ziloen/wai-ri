@@ -54,13 +54,17 @@ export function usePointerCapture(
       /** 阻止默认行为，防止 user-select 不为 none 时，拖动导致 capture 失效 */
       e.preventDefault()
 
-      /** firefox 下 releasePointerCapture 时会触发 click 事件，添加临时全局蒙版 */
-      const clickEventMask = document.createElement('div')
-      clickEventMask.style.position = 'fixed'
-      clickEventMask.style.inset = '0'
-      // FIXME: z-index 很容易被其他元素影响导致不在最上层
-      clickEventMask.style.zIndex = '1'
-      document.documentElement.append(clickEventMask)
+      let clickEventMask: HTMLDivElement | undefined
+      // TODO: 这里应为 isFirefox
+      if (/firefox/i.test(navigator.userAgent)) {
+        /** firefox 下 releasePointerCapture 时会触发 click 事件，添加临时全局蒙版 */
+        const clickEventMask = document.createElement('div')
+        clickEventMask.style.position = 'fixed'
+        clickEventMask.style.inset = '0'
+        // FIXME: z-index 很容易被其他元素影响导致不在最上层
+        clickEventMask.style.zIndex = '9999'
+        document.documentElement.append(clickEventMask)
+      }
 
       /** 使当前元素锁定 pointer */
       el.setPointerCapture(e.pointerId)
@@ -86,7 +90,7 @@ export function usePointerCapture(
           const dx = x - startPosition.x
           const dy = y - startPosition.y
           /** 移除添加的临时蒙版 */
-          clickEventMask.remove()
+          clickEventMask?.remove()
           /** 清除 move 事件监听 */
           controller.abort()
           /** 释放 poniter */
