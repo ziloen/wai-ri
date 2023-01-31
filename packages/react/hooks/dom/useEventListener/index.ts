@@ -1,7 +1,6 @@
-import { MaybeRef, unRef, useLatest } from '../../../index'
-import { useRef, useEffect } from 'react'
-import { Fn } from '@wai-ri/shared'
 import { noop } from '@wai-ri/core'
+import { useEffect, useRef } from 'react'
+import { MaybeRef, unRef, useLatest } from '../../../index'
 
 type TargetType = Element | Window | Document | HTMLElement
 
@@ -19,7 +18,7 @@ export function useEventListener<
 >(
   target: MaybeRef<T>,
   type: K,
-  listener: (ev: HTMLElementEventMap[K]) => void,
+  listener: (this: NonNullable<T>, ev: HTMLElementEventMap[K]) => void,
   options?: AddEventListenerOptions
 ): () => void
 
@@ -29,7 +28,7 @@ export function useEventListener<
 >(
   target: MaybeRef<T>,
   type: K,
-  listener: (ev: ElementEventMap[K]) => void,
+  listener: (this: NonNullable<T>, ev: ElementEventMap[K]) => void,
   options?: AddEventListenerOptions
 ): () => void
 
@@ -39,7 +38,7 @@ export function useEventListener<
 >(
   target: MaybeRef<T>,
   type: K,
-  listener: (ev: DocumentEventMap[K]) => void,
+  listener: (this: NonNullable<T>, ev: DocumentEventMap[K]) => void,
   options?: AddEventListenerOptions
 ): () => void
 
@@ -49,7 +48,7 @@ export function useEventListener<
 >(
   target: MaybeRef<T>,
   type: K,
-  listener: (ev: WindowEventMap[K]) => void,
+  listener: (this: NonNullable<T>, ev: WindowEventMap[K]) => void,
   options?: AddEventListenerOptions
 ): () => void
 
@@ -73,7 +72,9 @@ export function useEventListener<L extends (e: Event) => void>(
     if (!targetElement?.addEventListener) return
 
     // 使用中间函数转发，保持 listener 最新
-    const eventListener = (e: Event) => listenerRef.current(e)
+    const eventListener = function (this: typeof targetElement, e: Event) {
+      listenerRef.current.call(this, e)
+    }
     targetElement.addEventListener(type, eventListener, options)
     cleanupRef.current = () =>
       targetElement.removeEventListener(type, eventListener, options.capture)
