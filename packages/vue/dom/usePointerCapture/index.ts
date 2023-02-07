@@ -52,14 +52,17 @@ export function usePointerCapture(
       /** 阻止默认行为，防止 user-select 不为 none 时，拖动导致 capture 失效 */
       e.preventDefault()
 
-      /** firefox 下 releasePointerCapture 时会触发 click 事件，添加临时全局蒙版 */
+      // firefox 下 releasePointerCapture 时会触发 click 事件
+      // 添加临时全局蒙版，pointerup 时触发其他元素的 click 事件
+      // bugzilla: https://bugzilla.mozilla.org/show_bug.cgi?id=1694436
+      // stackoverflow: https://stackoverflow.com/questions/61797698
       let clickEventMask: HTMLDivElement | undefined
       if (/firefox/i.test(navigator.userAgent)) {
         clickEventMask = document.createElement('div')
         clickEventMask.style.position = 'fixed'
         clickEventMask.style.inset = '0'
-        // FIXME: z-index 很容易被其他元素影响导致不在最上层
-        clickEventMask.style.zIndex = '9999'
+        // FIXME: z-index 很容易被其他元素影响导致不在最上层，👿除非设置为上限值 +2147483647
+        clickEventMask.style.zIndex = '2147483647'
         document.documentElement.append(clickEventMask)
       }
 
@@ -91,6 +94,7 @@ export function usePointerCapture(
           /** 清除 move 事件监听 */
           controller.abort()
           /** 释放 poniter */
+          // 听说不需要 release，pointerup 时会自动调用？
           el.releasePointerCapture(e.pointerId)
           onEnd?.(e, { x, y, dx, dy })
         },

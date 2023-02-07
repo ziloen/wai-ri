@@ -59,18 +59,18 @@ export function usePointerCapture<T extends HTMLElement>(
         /** 阻止默认行为，防止 user-select 不为 none 时，拖动导致触发 pointercancel 事件，capture 失效() */
         downEvent.preventDefault()
 
+        // firefox 下 releasePointerCapture 时会触发 click 事件
+        // 添加临时全局蒙版，pointerup 时触发其他元素的 click 事件
+        // bugzilla: https://bugzilla.mozilla.org/show_bug.cgi?id=1694436
+        // stackoverflow: https://stackoverflow.com/questions/61797698
         let clickEventMask: HTMLDivElement | undefined
         // TODO: 这里应为 isFirefox
         if (/firefox/i.test(navigator.userAgent)) {
-          // firefox 下 releasePointerCapture 时会触发 click 事件
-          // 添加临时全局蒙版，pointerup 时触发其他元素的 click 事件
-          // bugzilla: https://bugzilla.mozilla.org/show_bug.cgi?id=1694436
-          // stackoverflow: https://stackoverflow.com/questions/61797698
           clickEventMask = document.createElement('div')
           clickEventMask.style.position = 'fixed'
           clickEventMask.style.inset = '0'
-          // FIXME: z-index 很容易被其他元素影响导致不在最上层
-          clickEventMask.style.zIndex = '9999'
+          // FIXME: z-index 很容易被其他元素影响导致不在最上层，👿除非设置为上限值 +2147483647
+          clickEventMask.style.zIndex = '2147483647'
           document.documentElement.append(clickEventMask)
         }
 
