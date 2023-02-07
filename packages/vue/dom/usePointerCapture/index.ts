@@ -43,10 +43,10 @@ export function usePointerCapture(
     let startPosition = { x: 0, y: 0 }
     const el = unref(target)
     if (!el) return
-    el.addEventListener('pointerdown', e => {
+    el.addEventListener('pointerdown', function (e) {
       const { x, y } = e
       /** 如果用户取消捕获 */
-      if (onStart?.(e, { x, y }) === false) return
+      if (onStart?.call(this, e, { x, y }) === false) return
       /** 保存初始位置 */
       startPosition = { x, y }
       /** 阻止默认行为，防止 user-select 不为 none 时，拖动导致 capture 失效 */
@@ -73,11 +73,11 @@ export function usePointerCapture(
       /** 转发 move 事件 */
       el.addEventListener(
         'pointermove',
-        e => {
+        function (e) {
           const { x, y } = e
           const dx = x - startPosition.x
           const dy = y - startPosition.y
-          onMove?.(e, { x, y, dx, dy })
+          onMove?.call(this, e, { x, y, dx, dy })
         },
         { signal: controller.signal, passive: true }
       )
@@ -85,7 +85,7 @@ export function usePointerCapture(
       /** pointerup 停止监听 */
       el.addEventListener(
         'pointerup',
-        e => {
+        function (e) {
           const { x, y } = e
           const dx = x - startPosition.x
           const dy = y - startPosition.y
@@ -95,8 +95,8 @@ export function usePointerCapture(
           controller.abort()
           /** 释放 poniter */
           // 听说不需要 release，pointerup 时会自动调用？
-          el.releasePointerCapture(e.pointerId)
-          onEnd?.(e, { x, y, dx, dy })
+          // el.releasePointerCapture(e.pointerId)
+          onEnd?.call(this, e, { x, y, dx, dy })
         },
         { once: true }
       )
