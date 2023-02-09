@@ -296,7 +296,7 @@ export type SetRequired<T, K extends keyof T> = RequiredByKeys<T, K>
  * type A = { a?: string }
  * type B = { a: number, b: string }
  *
- * type C = CombineObjectUnion<A | B>
+ * type C = MergeUnion<A | B>
  * type C = {
  *   a: string | number | undefined,
  *   b: string
