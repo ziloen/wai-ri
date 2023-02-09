@@ -315,6 +315,44 @@ export type MergeUnion<T> = {
 
 
 /**
+ * 联合类型的所有 key
+ * ```ts
+ * type A = { a: string, c: boolean }
+ * type B = { b: number }
+ * type Keys = KeyofUnion<A | B>
+ * type Keys = "a" | "b" | "c"
+ * ```
+ */
+export type KeyofUnion<T> = T extends infer R ? keyof R : never
+
+
+
+/**
+ * 使用可选 undefined 填充联合类型
+ * ```ts
+ * type A = { a: string, c: boolean };
+ * type B = { b: number };
+ *
+ * type C = PaddingUnion<A | B>
+ * type C = {
+ *   a: string
+ *   c: boolean
+ *   b?: undefined
+ * } | {
+ *   a?: undefined
+ *   c?: undefined
+ *   b: number
+ * }
+ * ```
+ */
+export type PaddingUnion<T, K extends keyof any = KeyofUnion<T>> =
+  T extends infer R
+    ? R & { [P in Exclude<K, keyof R>]?: undefined }
+    : never
+
+
+
+/**
  * 从联合类型中挑选出有 K 键值的项
  * ```ts
  * type A = { a: _ } | { b: _ } | { c: _ }
