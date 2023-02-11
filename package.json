@@ -12,12 +12,12 @@
     "typecheck": "vitest typecheck"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.13.0",
     "@vitest/ui": "^0.28.4",
     "@ziloen/eslint-config": "^0.0.83",
     "@ziloen/eslint-config-format": "^0.0.83",
     "bumpp": "^8.2.1",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "jsdom": "^21.1.0",
     "typescript-lib-enhancer": "^1.0.6",
     "vite": "^4.1.1",
