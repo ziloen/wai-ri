@@ -1,4 +1,4 @@
-import { SVGElements } from '@lsegurado/htmltype'
+import { SVGElements } from '@michijs/htmltype'
 import { KeysMatching } from '@wai-ri/shared'
 import { BaseType } from 'd3'
 

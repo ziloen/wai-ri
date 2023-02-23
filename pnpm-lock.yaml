@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@types/node': ^18.13.0
+      '@types/node': ^18.14.0
       '@vitest/ui': ^0.28.5
       '@ziloen/eslint-config': ^0.0.83
       '@ziloen/eslint-config-format': ^0.0.83
@@ -12,21 +12,21 @@ importers:
       eslint: ^8.34.0
       jsdom: ^21.1.0
       typescript: ^4.9.5
-      typescript-lib-enhancer: ^1.0.6
-      vite: ^4.1.2
+      typescript-lib-enhancer: ^1.0.7
+      vite: ^4.1.4
       vitest: ^0.28.5
     dependencies:
       typescript: 4.9.5
     devDependencies:
-      '@types/node': 18.13.0
+      '@types/node': 18.14.0
       '@vitest/ui': 0.28.5
       '@ziloen/eslint-config': 0.0.83
       '@ziloen/eslint-config-format': 0.0.83
       bumpp: 8.2.1
       eslint: 8.34.0
       jsdom: 21.1.0
-      typescript-lib-enhancer: 1.0.6
-      vite: 4.1.2_@types+node@18.13.0
+      typescript-lib-enhancer: 1.0.7
+      vite: 4.1.4_@types+node@18.14.0
       vitest: 0.28.5_itn5mhdgoxdt6nk7zeh5bmcq5a
 
   packages/all:
@@ -51,13 +51,13 @@ importers:
 
   packages/d3:
     specifiers:
-      '@lsegurado/htmltype': ^0.1.9
+      '@michijs/htmltype': ^0.1.13
       '@types/d3': '*'
       '@wai-ri/shared': workspace:*
       d3: ^7.8.2
       typescript: ^4.9.5
     dependencies:
-      '@lsegurado/htmltype': 0.1.9
+      '@michijs/htmltype': 0.1.13
       '@types/d3': 7.4.0
       '@wai-ri/shared': link:../shared
       d3: 7.8.2
@@ -102,12 +102,12 @@ importers:
   packages/rxios:
     specifiers:
       '@wai-ri/shared': workspace:*
-      axios: ^1.3.3
+      axios: ^1.3.4
       rxjs: ^7.8.0
       typescript: ^4.9.5
     dependencies:
       '@wai-ri/shared': link:../shared
-      axios: 1.3.3
+      axios: 1.3.4
       rxjs: 7.8.0
       typescript: 4.9.5
 
@@ -438,9 +438,8 @@ packages:
       type-detect: 4.0.8
     dev: true
 
-  /@lsegurado/htmltype/0.1.9:
-    resolution: {integrity: sha512-Qtj5lAP/ylB4Q4egMSldseWxQwlejIRCAy+WzIDq47Xvls+uIL1MoMlx19C4nJzNfBRhPZrzVDuVaCaaQi4RKQ==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+  /@michijs/htmltype/0.1.13:
+    resolution: {integrity: sha512-yiqO4VdoBu1ttCyht5x2bY2G/Afz4Xa2nXL9wv8jZPjQtnnhag+mLAoCSSrApe5Lt5yA8NNNMzu+rLg9xBh3uA==}
     dependencies:
       csstype: 3.1.1
     dev: false
@@ -676,8 +675,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/node/18.13.0:
-    resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==}
+  /@types/node/18.14.0:
+    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -1194,8 +1193,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /axios/1.3.3:
-    resolution: {integrity: sha512-eYq77dYIFS77AQlhzEL937yUBSepBfPIe8FcgEDN35vMNZKMrs81pgnyrQpwfy4NF4b4XWX1Zgx7yX+25w8QJA==}
+  /axios/1.3.4:
+    resolution: {integrity: sha512-toYm+Bsyl6VC5wSkfkbbNB6ROv7KY93PEBBL6xyDczaIHasAiv4wPqQ/c4RjoQzipxRD2W5g21cOqQulZ7rHwQ==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
@@ -3357,8 +3356,8 @@ packages:
     resolution: {integrity: sha512-ndEIpszUHiG4HtDsQLeIuMvRsDnn8c8rYStabochtUeCvfuvNptb5TUbVD68LRAILPX7p9nqQGh4xJgn3EHS/g==}
     dev: false
 
-  /rollup/3.16.0:
-    resolution: {integrity: sha512-9wE1H5N1SJqnROpQanBGJ7lrIitwlUYGj4Va4eyf3+vNhoIHLPLag2/CUGIiq3V9lHOBJB6zTsGsPvc50oeihg==}
+  /rollup/3.17.2:
+    resolution: {integrity: sha512-qMNZdlQPCkWodrAZ3qnJtvCAl4vpQ8q77uEujVCCbC/6CLB7Lcmvjq7HyiOSnf4fxTT9XgsE36oLHJBH49xjqA==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -3761,15 +3760,15 @@ packages:
       is-typed-array: 1.1.10
     dev: true
 
-  /typed-query-selector/2.8.0:
-    resolution: {integrity: sha512-jo9NLGQ0b7sT9TK3mxzemATQqTb/uh8TRvcOK6WSwKNewALt3AA8q2m7cdpF/uUbd/cdixaBxCGe6fpzpEWbGw==}
+  /typed-query-selector/2.9.0:
+    resolution: {integrity: sha512-UVibdpOGRs/oEZeBqpLNGxTxRdvUPJAcwOnbKiutxYM4k50aoLPbvkz6vRsvr6xLx8BDibHWWGypOZCcn6+YpA==}
     dev: true
 
-  /typescript-lib-enhancer/1.0.6:
-    resolution: {integrity: sha512-FkTt9If29ayU4EUMvrx2EIeZNMWsMm3/cYOwotp2k1Hi1z5s+g2LNhsUxdHqqXwzb1Ymekt3hcPzJ6uM0TrKkQ==}
+  /typescript-lib-enhancer/1.0.7:
+    resolution: {integrity: sha512-CeOzGhTLTG0oRUqkZi9+o58qYBzz481Nz5shwhEEJejw8I4tqyCEvk++enb3w/hgzFrFIJFpSQTzu6HRKJq/1Q==}
     dependencies:
       bumpp: 8.2.1
-      typed-query-selector: 2.8.0
+      typed-query-selector: 2.9.0
       typescript: 4.9.5
     dev: true
 
@@ -3820,7 +3819,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-node/0.28.5_@types+node@18.13.0:
+  /vite-node/0.28.5_@types+node@18.14.0:
     resolution: {integrity: sha512-LmXb9saMGlrMZbXTvOveJKwMTBTNUH66c8rJnQ0ZPNX+myPEol64+szRzXtV5ORb0Hb/91yq+/D3oERoyAt6LA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -3832,7 +3831,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.1.2_@types+node@18.13.0
+      vite: 4.1.4_@types+node@18.14.0
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3843,8 +3842,8 @@ packages:
       - terser
     dev: true
 
-  /vite/4.1.2_@types+node@18.13.0:
-    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
+  /vite/4.1.4_@types+node@18.14.0:
+    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3868,11 +3867,11 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.13.0
+      '@types/node': 18.14.0
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
-      rollup: 3.16.0
+      rollup: 3.17.2
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -3901,7 +3900,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.4
       '@types/chai-subset': 1.3.3
-      '@types/node': 18.13.0
+      '@types/node': 18.14.0
       '@vitest/expect': 0.28.5
       '@vitest/runner': 0.28.5
       '@vitest/spy': 0.28.5
@@ -3922,8 +3921,8 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.1
       tinyspy: 1.1.1
-      vite: 4.1.2_@types+node@18.13.0
-      vite-node: 0.28.5_@types+node@18.13.0
+      vite: 4.1.4_@types+node@18.14.0
+      vite-node: 0.28.5_@types+node@18.14.0
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
