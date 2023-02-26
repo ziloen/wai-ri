@@ -16,7 +16,7 @@
     "@vitest/ui": "^0.28.5",
     "@ziloen/eslint-config": "^0.0.83",
     "@ziloen/eslint-config-format": "^0.0.83",
-    "bumpp": "^8.2.1",
+    "bumpp": "^9.0.0",
     "eslint": "^8.34.0",
     "jsdom": "^21.1.0",
     "typescript-lib-enhancer": "^1.0.7",
