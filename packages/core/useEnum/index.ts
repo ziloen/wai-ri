@@ -2,14 +2,14 @@ import type { Expand, FlipLoose, Stringable } from '@wai-ri/shared'
 import { bindSelf } from '../bindSelf'
 
 
-
+// TODO: TypeScript 5.0 使用 const T 来改进
 /** 生成双向映射 */
 export function useEnum<T extends Record<string | number, Stringable>>(obj: T): Expand<Readonly<
 & T
 & FlipLoose<T>
 & { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }
 >> {
-  const newObj = Object.create(null)
+  const newObj = Object.create(null) as Record<string, unknown>
 
   // 创建自定义迭代器，用于 for..of 循环
   Reflect.defineProperty(newObj, Symbol.iterator, {
@@ -22,5 +22,9 @@ export function useEnum<T extends Record<string | number, Stringable>>(obj: T): 
     newObj[String(newObj[key] = obj[key])] = key
   }
 
-  return Object.freeze(newObj)
+  return Object.freeze(newObj) as Expand<Readonly<
+  & T
+  & FlipLoose<T>
+  & { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }
+  >>
 }
