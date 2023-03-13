@@ -1,3 +1,4 @@
+// browser allowed canvas size data source: https://github.com/jhildenbiddle/canvas-size#test-results
 
 type Browser =
   | 'chrome'
@@ -34,7 +35,11 @@ const canvasMaxArea = {
 } satisfies Record<Browser, number>
 
 
-/** check if the canvas size allowed in browser */
+/**
+ * check if the canvas size allowed in browser
+ *
+ * data source: [jhildenbiddle/canvas-size](https://github.com/jhildenbiddle/canvas-size#test-results)
+ */
 export function checkCanvasSize(width: number, height: number, browser: Browser) {
   if (width > canvasMaxWidth[browser]) return false
   if (height > canvasMaxHeight[browser]) return false
