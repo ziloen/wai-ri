@@ -14,8 +14,8 @@
   "devDependencies": {
     "@types/node": "^18.15.3",
     "@vitest/ui": "^0.29.3",
-    "@ziloen/eslint-config": "^0.0.84",
-    "@ziloen/eslint-config-format": "^0.0.84",
+    "@ziloen/eslint-config": "^0.0.85",
+    "@ziloen/eslint-config-format": "^0.0.85",
     "bumpp": "^9.0.0",
     "eslint": "^8.36.0",
     "jsdom": "^21.1.1",
