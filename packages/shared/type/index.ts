@@ -43,7 +43,7 @@ export type Fn<Args extends readonly unknown[] = any[], Return = any> = (...args
 
 
 /** 异步函数 */
-export type AsyncFn<Args extends readonly unknown[] = any[], Return = any> = (...args: Args) => Promise<Return>
+export type AsyncFn<Args extends readonly unknown[] = any[], Return = any> = (...args: Args) => Promise<Awaited<Return>>
 
 
 
