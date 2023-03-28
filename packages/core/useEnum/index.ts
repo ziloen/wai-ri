@@ -2,9 +2,8 @@ import type { Expand, FlipLoose, Stringable } from '@wai-ri/shared'
 import { bindSelf } from '../bindSelf'
 
 
-// TODO: TypeScript 5.0 使用 const T 来改进
 /** 生成双向映射 */
-export function useEnum<T extends Record<string | number, Stringable>>(obj: T): Expand<Readonly<
+export function useEnum<const T extends Record<string | number, Stringable>>(obj: T): Expand<Readonly<
 & T
 & FlipLoose<T>
 & { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }

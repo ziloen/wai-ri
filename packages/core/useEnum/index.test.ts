@@ -4,7 +4,7 @@ import { useEnum } from '.'
 describe('useEnum', () => {
 
   it('双向绑定', () => {
-    const e = useEnum({ a: 12, b: '9', c: false, d: undefined, e: null } as const)
+    const e = useEnum({ a: 12, b: '9', c: false, d: undefined, e: null })
     expect(e.a).toBe(12)
     expect(e[12]).toBe('a')
 
@@ -22,7 +22,7 @@ describe('useEnum', () => {
   })
 
   it('for..of循环', () => {
-    const e = useEnum({ a: 12, b: '9', c: false, d: undefined, e: null } as const)
+    const e = useEnum({ a: 12, b: '9', c: false, d: undefined, e: null })
     const keys = []
     const vals = []
     for (const [key, val] of e) {
