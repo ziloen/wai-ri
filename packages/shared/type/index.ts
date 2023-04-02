@@ -114,13 +114,15 @@ type EnumKeyHelper<E, K extends keyof E, V> = K extends unknown
  */
 export type EnumKeys<TypeofEnum, Enum> = EnumKeyHelper<TypeofEnum, keyof TypeofEnum, Enum>
 
-// TODO: 无效，获取的值为 Enum 本身，在 EnumString 中无效
-// type EnumValueHelper<E, K extends keyof E, V> = K extends unknown
-// ? E[K] extends V
-// ? E[K]
-// : never
-// : never
-// type EnumValues<TypeofEnum, Enum> = EnumValueHelper<TypeofEnum, keyof TypeofEnum, Enum>
+/**
+ * 获取 Enum 的 value 类型
+ * @example
+ * ```ts
+ * enum Enum { A = "EA", B = "EB", C = "EC" }
+ * type Values = EnumValues<Enum> // "EA" | "EB" | "EC"
+ * ```
+ */
+export type EnumValues<Enum> = Enum extends string ? `${Enum}` : Enum
 
 
 
