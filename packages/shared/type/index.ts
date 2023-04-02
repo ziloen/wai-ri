@@ -84,6 +84,7 @@ export type OverloadReturnType<T extends (...args: any[]) => any> = ReturnType<O
 export type ArrayType<A extends any[]> = A[number]
 
 
+
 /**
  * 用于提示指定枚举字符串，但是允许 string 类型
  * ```ts
@@ -93,6 +94,33 @@ export type ArrayType<A extends any[]> = A[number]
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type EnumString<T> = T | (string & {})
+
+
+
+// https://github.com/microsoft/TypeScript/issues/50933#issuecomment-1258750812
+type EnumKeyHelper<E, K extends keyof E, V> = K extends unknown
+  ? E[K] extends V
+    ? K
+    : never
+  : never
+
+/**
+ * 获取 Enum 的 key 类型
+ * @example
+ * ```ts
+ * enum Enum { A, B, C }
+ * type Keys = EnumKeys<typeof Enum, Enum> // "A" | "B" | "C"
+ * ```
+ */
+export type EnumKeys<TypeofEnum, Enum> = EnumKeyHelper<TypeofEnum, keyof TypeofEnum, Enum>
+
+// TODO: 无效，获取的值为 Enum 本身，在 EnumString 中无效
+// type EnumValueHelper<E, K extends keyof E, V> = K extends unknown
+// ? E[K] extends V
+// ? E[K]
+// : never
+// : never
+// type EnumValues<TypeofEnum, Enum> = EnumValueHelper<TypeofEnum, keyof TypeofEnum, Enum>
 
 
 
