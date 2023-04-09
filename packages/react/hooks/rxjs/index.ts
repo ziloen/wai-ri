@@ -2,12 +2,12 @@
 
 import { noop } from '@wai-ri/core'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { BehaviorSubject, Subscription, exhaustMap, fromEvent, Observable } from 'rxjs'
+import { BehaviorSubject, Observable, Subscription, exhaustMap, fromEvent } from 'rxjs'
 import { VueRef } from '../../useVueRef'
 
 
 /**  */
-export function useBehaviorSubject<T>(initVal: T) {
+function useBehaviorSubject<T>(initVal: T) {
   // const []
   //
   // return useState(() => new BehaviorSubject(initVal))[0]
@@ -15,7 +15,7 @@ export function useBehaviorSubject<T>(initVal: T) {
 }
 
 
-export function useBehaviorSubjectRef<T>(subject: BehaviorSubject<T>): VueRef<T> {
+function useBehaviorSubjectRef<T>(subject: BehaviorSubject<T>): VueRef<T> {
   const [state, setState] = useState(subject.value)
 
   useEffect(() => {
@@ -36,35 +36,23 @@ export function useBehaviorSubjectRef<T>(subject: BehaviorSubject<T>): VueRef<T>
 
 
 /**
- * 结束时自动退订
+ * 自动 unsubscribe
  * ```ts
+ * const subscriber = useFn(data => console.log(data))
+ *
  * useSubscription(() =>
  *   click$
  *     .pipe(
  *       map(e => e.x),
  *       exhaustMap(x => fetch(...))
  *     )
- * ).subscribe(result => setState(result))
+ *    .subscribe(subscriber)
+ * )
  * ```
  */
-export function useSubscription<T>(fn: () => Observable<T>) {
-  const ob = fn()
-
-  // const subscription = useRef<Subscription | undefined>()
-
-  // eslint-disable-next-line @typescript-eslint/no-extra-parens
-  const subscription = useRef<Partial<Observable<T>> | ((value: T) => void)>(noop)
-
+export function useSubscription(fn: () => Subscription) {
   useEffect(() => {
-    const sub = ob.subscribe((...args) => {
-      subscription.current
-    })
-    return () => sub.unsubscribe()
+    const subscription = fn()
+    return () => subscription.unsubscribe()
   }, [])
-
-  return {
-    subscribe: (observer?: Partial<Observable<T>> | ((value: T) => void)) => {
-
-    }
-  }
 }
