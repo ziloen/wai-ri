@@ -1,4 +1,4 @@
-import type { ExtractByKeys, ObjectType } from './index'
+import type { ExtractByKey, KeyofUnion, ObjectType } from './index'
 
 
 
@@ -23,7 +23,16 @@ export function isObject(val: unknown): val is Record<any, any> {
 
 
 
-/** 是否为函数 */
+/**
+ * 是否为函数
+ *
+ * 用于解决 `typeof val === 'function'` 类型不收窄问题
+ * @example
+ * ```ts
+ * const getter: number | (() => number) = 1
+ * const value = isFn(getter) ? getter() : getter
+ * ```
+ */
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function isFn(val: unknown): val is Function {
   return typeof val === 'function'
@@ -90,7 +99,7 @@ export const isArray = Array.isArray
 
 
 /** 判断 key is keyof obj */
-export function isKeyof<O extends ObjectType, K extends keyof any>(obj: O, key: K): obj is ExtractByKeys<O, K> {
+export function isKeyof<O extends ObjectType, K extends keyof any>(obj: O, key: K): obj is ExtractByKey<O, K> {
   return Object.hasOwn(obj, key)
 }
 
@@ -102,4 +111,26 @@ export function isKeyof<O extends ObjectType, K extends keyof any>(obj: O, key: 
  */
 export function assertNotNil<T>(val: T): asserts val is NonNullable<T> {
   if (val === null || val === undefined) throw new Error('断言失败')
+}
+
+
+/**
+ * 同 Object.hasOwn
+ */
+export function hasOwn<
+  T extends { [P in keyof any]: any },
+  K extends keyof any
+>(
+  obj: T,
+  key: K
+): obj is K extends KeyofUnion<T>
+  ? ExtractByKey<T, K>
+  : T & { [P in K]: unknown }
+export function hasOwn<
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  T extends object,
+  K extends keyof any
+>(obj: T, key: K) {
+  // eslint-disable-next-line prefer-object-has-own
+  return Object.prototype.hasOwnProperty.call(obj, key)
 }

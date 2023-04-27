@@ -38,7 +38,7 @@ export function switchLatestWith<Args extends readonly unknown[], Return, ID>(as
   const idMap = new Map<ID, symbol>
 
   return async function (...args: Args) {
-    return new Promise((resolve, reject) => {
+    return new Promise<Return>((resolve, reject) => {
       const id = identity(...args)
       const key = Symbol()
       idMap.set(id, key)

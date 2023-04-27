@@ -71,13 +71,13 @@ export function usePointerCapture(
       const controller = new AbortController
 
       /** 转发 move 事件 */
-      el.addEventListener(
+      onMove && el.addEventListener(
         'pointermove',
         function (e) {
           const { x, y } = e
           const dx = x - startPosition.x
           const dy = y - startPosition.y
-          onMove?.call(this, e, { x, y, dx, dy })
+          onMove.call(this, e, { x, y, dx, dy })
         },
         { signal: controller.signal, passive: true }
       )
@@ -86,9 +86,6 @@ export function usePointerCapture(
       el.addEventListener(
         'pointerup',
         function (e) {
-          const { x, y } = e
-          const dx = x - startPosition.x
-          const dy = y - startPosition.y
           /** 移除添加的临时蒙版 */
           clickEventMask?.remove()
           /** 清除 move 事件监听 */
@@ -96,7 +93,12 @@ export function usePointerCapture(
           /** 释放 poniter */
           // 听说不需要 release，pointerup 时会自动调用？
           // el.releasePointerCapture(e.pointerId)
-          onEnd?.call(this, e, { x, y, dx, dy })
+
+          if (!onEnd) return
+          const { x, y } = e
+          const dx = x - startPosition.x
+          const dy = y - startPosition.y
+          onEnd.call(this, e, { x, y, dx, dy })
         },
         { once: true }
       )

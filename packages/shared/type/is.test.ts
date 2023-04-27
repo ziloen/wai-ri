@@ -1,10 +1,12 @@
 import { isKeyof } from './is'
 
 
+
 describe('test', () => {
 
   it('shold narrow object type', () => {
-    const a: { a: number } | { b: string } = {} as any
+    const a = { a: 1 } as { a: number } | { b: string }
+    // const a: { a: number } | { b: string } = { a }
     if (isKeyof(a, 'a')) {
       a.a = 0
     } else {

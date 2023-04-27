@@ -3,6 +3,5 @@
   "editor.codeActionsOnSave": [
     "source.sortImports",
     "source.fixAll.eslint",
-  ],
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  ]
 }

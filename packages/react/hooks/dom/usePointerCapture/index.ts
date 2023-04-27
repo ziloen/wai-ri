@@ -82,10 +82,12 @@ export function usePointerCapture<T extends HTMLElement>(
         el.addEventListener(
           'pointermove',
           function (moveEvent) {
+            if (!onMoveRef.current) return
+
             const { x, y } = moveEvent
             const dx = x - startPosition.x
             const dy = y - startPosition.y
-            onMoveRef.current?.call(this as T, moveEvent, { x, y, dx, dy })
+            onMoveRef.current.call(this as T, moveEvent, { x, y, dx, dy })
           },
           { signal: controller.signal, passive: true }
         )
@@ -94,9 +96,6 @@ export function usePointerCapture<T extends HTMLElement>(
         el.addEventListener(
           'pointerup',
           function (upEvent) {
-            const { x, y } = upEvent
-            const dx = x - startPosition.x
-            const dy = y - startPosition.y
             /** 移除兼容用添加的临时蒙版 */
             clickEventMask?.remove()
             /** 清除 move 事件监听 */
@@ -104,7 +103,12 @@ export function usePointerCapture<T extends HTMLElement>(
             /** 释放 poniter */
             // 听说不需要 release，pointerup 时会自动调用？
             // el.releasePointerCapture(upEvent.pointerId)
-            onEndRef.current?.call(this as T, upEvent, { x, y, dx, dy })
+
+            if (!onEndRef.current) return
+            const { x, y } = upEvent
+            const dx = x - startPosition.x
+            const dy = y - startPosition.y
+            onEndRef.current.call(this as T, upEvent, { x, y, dx, dy })
           },
           { once: true }
         )

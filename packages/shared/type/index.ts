@@ -307,16 +307,16 @@ export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
 
 
 /** 选择哪些属性为可选 */
-export type PartialByKeys<T, K extends keyof T> = Simplify<{ [P in K]?: T[P] } & Omit<T, K>>
+export type PartialByKey<T, K extends keyof T> = Simplify<{ [P in K]?: T[P] } & Omit<T, K>>
 
-export type SetOptional<T, K extends keyof T> = PartialByKeys<T, K>
+export type SetOptional<T, K extends keyof T> = PartialByKey<T, K>
 
 
 
 /** 选择哪些属性为必选 */
-export type RequiredByKeys<T, K extends keyof T> = Simplify<{ [P in K]-?: T[P] } & Omit<T, K>>
+export type RequiredByKey<T, K extends keyof T> = Simplify<{ [P in K]-?: T[P] } & Omit<T, K>>
 
-export type SetRequired<T, K extends keyof T> = RequiredByKeys<T, K>
+export type SetRequired<T, K extends keyof T> = RequiredByKey<T, K>
 
 
 
@@ -391,7 +391,7 @@ export type PaddingUnion<T, K extends keyof any = KeyofUnion<T>> =
  * type B = { a: _ } | { b: _ }
  * ```
  */
-export type ExtractByKeys<T, K extends keyof any> =
+export type ExtractByKey<T, K extends keyof any> =
   T extends infer R
     ? K extends keyof R
       ? R
