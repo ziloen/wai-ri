@@ -205,7 +205,7 @@ export type FlipLoose<Obj extends Record<string | number, Stringable>> = {
 
 
 /** 展开对象，仅一层 */
-export type Simplify<T> = { [K in keyof T]: T[K] }
+export type Simplify<T> = { [K in keyof T]: T[K] } & {}
 
 /** 展开类型 */
 export type Expand<T> = ExpandDeep<T, 3>
@@ -259,15 +259,15 @@ export type ExpandDeep<
 
 
 /** 用 New 类型 扩展 Org 类型*/
-export type Assign<Org extends ObjectType, New extends ObjectType> = Simplify<New & Omit<Org, keyof New>>
+export type Assign<Org, New> = Simplify<New & Omit<Org, keyof New>>
 
 /** 同 Assign */
-export type Merge<Org extends ObjectType, New extends ObjectType> = Simplify<New & Omit<Org, keyof New>>
+export type Merge<Org, New> = Simplify<New & Omit<Org, keyof New>>
 
 
 
 /** 可扩展类型，在添加未约束的属性时不会报错 */
-export type Extensible<O extends ObjectType> = Simplify<O & Record<keyof any, unknown>>
+export type Extensible<O> = Simplify<O & Record<keyof any, unknown>>
 
 
 /**

@@ -15,6 +15,7 @@ function craeteSubscribeHook<V>(observerable: Observable<V>) {
   }
 }
 
+
 /** window 按键抬起事件 */
 export const useWindowKeyDown = craeteSubscribeHook(
   fromEvent<KeyboardEvent>(window, 'keydown', {
@@ -40,6 +41,13 @@ export const useWindowScroll = craeteSubscribeHook(
 /** window 尺寸调整监听 */
 export const useWindowResize = craeteSubscribeHook(
   fromEvent<UIEvent>(window, 'resize', { passive: true }).pipe(
+    share({ resetOnRefCountZero: true })
+  )
+)
+
+// 🚧，FIXME: 怎么给 MessageEvent 添加泛型？
+const useWindowMessage = craeteSubscribeHook(
+  fromEvent<MessageEvent>(window, 'message', { passive: true }).pipe(
     share({ resetOnRefCountZero: true })
   )
 )
