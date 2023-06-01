@@ -10,8 +10,8 @@
   "main": "./index.ts",
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "typescript": "^5.0.4",
+    "typescript": "^5.1.3",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.1"
+    "vue-router": "^4.2.2"
   }
 }
