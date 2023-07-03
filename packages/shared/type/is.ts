@@ -76,6 +76,18 @@ export function isFalsy(val: unknown): val is null | undefined | false {
 
 
 /**
+ * Return `true` if the given `val` is a primitive type. Otherwise return `false`.
+ */
+export function isPrimitive(val: unknown): val is string | number | boolean | symbol | bigint | null | undefined {
+  return (
+    (typeof val !== 'object' && typeof val !== 'function') ||
+    val === null
+  )
+}
+
+
+
+/**
  * 类型断言
  * - 仅类型修改，无运行时保证
  * - 打包器会清除空函数调用，所以不会有运行时负担
@@ -124,8 +136,8 @@ export function hasOwn<
   obj: T,
   key: K
 ): obj is K extends KeyofUnion<T>
-  ? ExtractByKey<T, K>
-  : T & { [P in K]: unknown }
+? ExtractByKey<T, K>
+: T & { [P in K]: unknown }
 export function hasOwn<
   // eslint-disable-next-line @typescript-eslint/ban-types
   T extends object,
