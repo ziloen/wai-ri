@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/d3": "*",
     "@wai-ri/shared": "workspace:*",
-    "echarts": "^5.4.2",
+    "echarts": "^5.4.3",
     "typescript": "^5.1.6"
   }
 }
