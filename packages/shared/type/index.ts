@@ -117,6 +117,12 @@ export type LiteralUnion<T = never, BaseType extends Primitive = string> = T | (
 
 
 
+/**
+ * 
+ */
+export type Awaitable<T> = T | Promise<T>
+
+
 // https://github.com/microsoft/TypeScript/issues/50933#issuecomment-1258750812
 type EnumKeyHelper<E, K extends keyof E, V> = K extends unknown
   ? E[K] extends V
