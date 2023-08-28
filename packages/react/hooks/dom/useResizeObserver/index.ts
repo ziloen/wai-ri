@@ -26,5 +26,5 @@ export function useResizeObserver(
     }
 
     return () => observer.disconnect()
-  }, [unRefTargetElements(target), options])
+  }, [...unRefTargetElements(target), options])
 }

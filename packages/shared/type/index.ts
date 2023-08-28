@@ -56,10 +56,10 @@ type OverloadUnionRecursive<TOverload, TPartialOverload = unknown> = TOverload e
   ? TPartialOverload extends TOverload
     ? never
     : | OverloadUnionRecursive<
-    TPartialOverload & TOverload,
-    TPartialOverload & ((...args: TArgs) => TReturn)
-    >
-    | ((...args: TArgs) => TReturn)
+      TPartialOverload & TOverload,
+      TPartialOverload & ((...args: TArgs) => TReturn)
+      >
+      | ((...args: TArgs) => TReturn)
   : never
 export type OverloadToUnion<TOverload extends (...args: any[]) => any> = Exclude<
 OverloadUnionRecursive<
@@ -98,13 +98,13 @@ export type EnumString<T> = T | (string & {})
 
 
 type Primitive =
-	| null
-	| undefined
-	| string
-	| number
-	| boolean
-	| symbol
-	| bigint
+  | null
+  | undefined
+  | string
+  | number
+  | boolean
+  | symbol
+  | bigint
 
 /**
  * 用于提示指定枚举字符串，但是允许 string 类型
@@ -231,7 +231,7 @@ export type FlipLoose<Obj extends Record<string | number, Stringable>> = {
 
 
 /** 展开对象，仅一层 */
-export type Simplify<T> = { [K in keyof T]: T[K] } & {}
+export type Simplify<T> = { [K in keyof T]: T[K] } & Record<never, never>
 
 /** 展开类型 */
 export type Expand<T> = ExpandDeep<T, 3>

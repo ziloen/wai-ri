@@ -12,40 +12,25 @@
     "typecheck": "vitest typecheck"
   },
   "devDependencies": {
-    "@types/node": "^20.4.9",
-    "@vitest/ui": "^0.34.1",
-    "@ziloen/eslint-config": "^0.0.99",
-    "@ziloen/eslint-config-format": "^0.0.99",
-    "bumpp": "^9.1.1",
-    "eslint": "^8.46.0",
+    "@types/node": "^20.5.7",
+    "@vitest/ui": "^0.34.3",
+    "@ziloen/eslint-config": "^0.0.101",
+    "@ziloen/eslint-config-format": "^0.0.101",
+    "bumpp": "^9.2.0",
+    "eslint": "^8.48.0",
     "jsdom": "^22.1.0",
-    "typescript-lib-enhancer": "^1.0.9",
+    "typescript-lib-enhancer": "^1.0.12",
     "vite": "^4.4.9",
-    "vitest": "^0.34.1"
+    "vitest": "^0.34.3"
   },
   "dependencies": {
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "eslintConfig": {
     "extends": [
       "@ziloen",
       "@ziloen/eslint-config-format"
     ],
-    "rules": {
-      "no-extra-parens": "off",
-      "@typescript-eslint/no-extra-parens": [
-        "warn",
-        "all",
-        {
-          "allowParensAfterCommentPattern": "@type",
-          "ignoreJSX": "multi-line",
-          "conditionalAssign": false,
-          "returnAssign": false,
-          "ternaryOperandBinaryExpressions": false,
-          "nestedBinaryExpressions": false
-        }
-      ]
-    },
     "root": true,
     "env": {
       "node": true,
@@ -57,13 +42,6 @@
     },
     "ignorePatterns": [
       ".*"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "*.test.ts"
-        ]
-      }
     ]
   }
 }
