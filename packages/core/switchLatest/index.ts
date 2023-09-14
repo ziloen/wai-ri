@@ -3,10 +3,15 @@ import type { AsyncFn, Fn } from '@wai-ri/shared'
 
 
 /** 切换到最后一次 */
-export function switchLatest<Args extends readonly unknown[], Return>(asyncFn: AsyncFn<Args, Return>) {
+export function switchLatest<
+  Args extends readonly unknown[],
+  Return
+>(
+  asyncFn: AsyncFn<Args, Return>
+) {
   let lastKey: symbol
-  return async function (...args: Args): Promise<Return> {
-    return new Promise((res, rej) => {
+  return function (...args: Args) {
+    return new Promise<Return>((res, rej) => {
       const key = lastKey = Symbol()
       asyncFn(...args)
         .then(
@@ -34,11 +39,18 @@ export function switchLatest<Args extends readonly unknown[], Return>(asyncFn: A
  * }
  * ```
  */
-export function switchLatestWith<Args extends readonly unknown[], Return, ID>(asyncFn: AsyncFn<Args, Return>, identity: Fn<Args, ID>): AsyncFn<Args, Return> {
+export function switchLatestWith<
+  Args extends readonly unknown[],
+  Return,
+  ID
+>(
+  asyncFn: AsyncFn<Args, Return>,
+  identity: Fn<Args, ID>
+): AsyncFn<Args, Return> {
   const idMap = new Map<ID, symbol>
 
-  return async function (...args: Args) {
-    return new Promise<Return>((resolve, reject) => {
+  return function (...args: Args) {
+    return new Promise<Awaited<Return>>((resolve, reject) => {
       const id = identity(...args)
       const key = Symbol()
       idMap.set(id, key)

@@ -12,16 +12,16 @@
     "typecheck": "vitest typecheck"
   },
   "devDependencies": {
-    "@types/node": "^20.5.7",
-    "@vitest/ui": "^0.34.3",
-    "@ziloen/eslint-config": "^0.0.101",
-    "@ziloen/eslint-config-format": "^0.0.101",
+    "@types/node": "^20.6.0",
+    "@vitest/ui": "^0.34.4",
+    "@ziloen/eslint-config": "^0.0.108",
+    "@ziloen/eslint-config-format": "^0.0.108",
     "bumpp": "^9.2.0",
-    "eslint": "^8.48.0",
+    "eslint": "^8.49.0",
     "jsdom": "^22.1.0",
     "typescript-lib-enhancer": "^1.0.12",
     "vite": "^4.4.9",
-    "vitest": "^0.34.3"
+    "vitest": "^0.34.4"
   },
   "dependencies": {
     "typescript": "^5.2.2"
