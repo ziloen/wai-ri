@@ -1,7 +1,7 @@
 export * from './dom'
 export * from './shared'
 
-import { ComponentPublicInstance, onMounted, onUnmounted, Ref, unref } from 'vue'
+import { ComponentPublicInstance, Ref, onMounted, onUnmounted, unref } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import { useRouter } from 'vue-router'
 
@@ -10,7 +10,11 @@ type MaybeRef<T> = T | Ref<T>
 type VueInstance = ComponentPublicInstance
 type MaybeElement = HTMLElement | SVGElement | VueInstance | undefined | null
 type MaybeElementRef<T extends MaybeElement = MaybeElement> = MaybeRef<T>
-type UnRefElementReturn<T extends MaybeElement = MaybeElement> = T extends VueInstance ? Exclude<MaybeElement, VueInstance> : T | undefined
+type UnRefElementReturn<
+  T extends MaybeElement = MaybeElement
+> = T extends VueInstance
+  ? Exclude<MaybeElement, VueInstance>
+  : T | undefined
 
 
 

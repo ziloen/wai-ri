@@ -8,20 +8,24 @@ type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']>
     ? []
     : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
       ? [
-        // [SourceT] extends [never] ? First :
-        SetParams<First, [SourceT]>,
-
-        ...PipeParams<
-        [SetParams<Second, [ReturnType<First>]>, ...Rest],
-        ReturnType<First>
-        >
-      ]
+          // [SourceT] extends [never] ? First :
+          SetParams<First, [SourceT]>,
+          ...PipeParams<
+            [SetParams<Second, [ReturnType<First>]>, ...Rest],
+            ReturnType<First>
+          >
+        ]
       : Funcs
 
 
 
 /** 管道函数 返回类型 */
-type PipeReturn<Funcs extends UnaryFn[], FirstArg = never> = Funcs extends [...unknown[], (arg: any) => infer R] ? R : FirstArg
+type PipeReturn<
+  Funcs extends UnaryFn[],
+  FirstArg = never
+> = Funcs extends [...unknown[], (arg: any) => infer R]
+  ? R
+  : FirstArg
 
 // 测试 pipe ---
 // declare function num2str(a: number): string

@@ -1,4 +1,4 @@
-import { Expand, Equal } from '.'
+import { Equal, Expand } from '.'
 import type { Expect } from './_internal'
 
 

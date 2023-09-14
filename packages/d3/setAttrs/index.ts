@@ -5,7 +5,12 @@ import { BaseType } from 'd3'
 
 
 // TODO: 先从 SVGElements 类型转换为字符串，再从字符串映射为 AttrType，有没有办法直接使用类型映射到另一类型？SVGPathElement -> SVGElements['path']
-type SVGAttrType<T, K = KeysMatching<globalThis.SVGElementTagNameMap, T>> = K extends keyof SVGElements ? SVGElements[K] : Record<string, string | number | undefined | null>
+type SVGAttrType<
+  T,
+  K = KeysMatching<globalThis.SVGElementTagNameMap, T>
+> = K extends keyof SVGElements
+  ? SVGElements[K]
+  : Record<string, string | number | undefined | null>
 
 type ValueFn<T extends BaseType, D, R> = (datum: D, index: number, groups: T[]) => R
 

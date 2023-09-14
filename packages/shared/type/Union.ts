@@ -6,8 +6,8 @@ import type { Fn } from '.'
 export type IsUnion<T, U = T> =
   T extends U
     ? [U] extends [T]
-      ? false
-      : true
+        ? false
+        : true
     : never
 
 

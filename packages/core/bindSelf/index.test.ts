@@ -14,6 +14,7 @@ describe('bindSelf', () => {
     }
 
     const inc = bindSelf(a, 'f1')
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     const { f1 } = a
     inc()
     expect(a.val).toBe(1)
@@ -34,6 +35,7 @@ describe('bindSelf', () => {
 
     const self = bindSelf(a, ['f1', 'f2'])
     expect(a === self).toBe(true)
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     const { f1, f2 } = a
 
     f1()

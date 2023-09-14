@@ -11,4 +11,7 @@ type InternalPropKeys = keyof AllowedComponentProps | keyof VNodeProps
  * type ButtonProps = ComponentProps<typeof NButton>
  * ```
  */
-export type ComponentProps<T extends Component> = T extends new () => { $props: infer DirtyProps } ? Simplify<Writable<Omit<DirtyProps, InternalPropKeys>>> : never
+export type ComponentProps<T extends Component> =
+  T extends new () => { $props: infer DirtyProps }
+    ? Simplify<Writable<Omit<DirtyProps, InternalPropKeys>>>
+    : never

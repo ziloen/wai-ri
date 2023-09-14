@@ -3,9 +3,9 @@ import { bindAll } from '.'
 describe('bindAll', () => {
   it('绑定', () => {
     const org = { x: 12 }
-    const next = Object.create(org)
+    const next = Object.create(org) as typeof org 
 
-    const target = Object.create(next)
+    const target = Object.create(next) as typeof next & { getX: () => number }
     target.getX = function () {
       return this.x
     }
@@ -18,20 +18,20 @@ describe('bindAll', () => {
 
   it('绑定不可枚举', () => {
     const org = { x: 12 }
-    const next = Object.create(org)
-    const target = Object.create(next)
+    const next = Object.create(org) as typeof org
+    const target = Object.create(next) as typeof next & { getX: () => number, getA: () => number }
 
     Reflect.defineProperty(target, 'getX', {
       enumerable: false,
       writable: true,
-      value() {
+      value(this: typeof target) {
         return this.x
       }
     })
 
     Reflect.defineProperty(next, 'getA', {
       enumerable: false,
-      value() {
+      value(this: typeof next) {
         return this.x
       }
     })

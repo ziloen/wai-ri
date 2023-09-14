@@ -41,7 +41,9 @@ export function unRefTargetElements<T extends TargetType = Element>(
 
 
 
-type PickFn<T extends (this: any, ...args: any[]) => any> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
+type PickFn<
+  T extends (this: any, ...args: any[]) => any
+> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
 
 /** "借鉴"的 ahooks useMemoizedFn */
 export function useFn<T extends Fn>(fn: T): T {

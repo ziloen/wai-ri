@@ -79,7 +79,11 @@ export type Splice<
 
 
 /** 反转整个数组 */
-export type Reverse<T extends readonly unknown[]> = T extends [...infer Rest, infer Last extends T[number]] ? [Last, ...Reverse<Rest>] : T
+export type Reverse<
+  T extends readonly unknown[]
+> = T extends [...infer Rest, infer Last extends T[number]]
+  ? [Last, ...Reverse<Rest>]
+  : T
 
 
 
@@ -117,7 +121,12 @@ export type First<T extends readonly unknown[]> = T extends [infer F extends T[n
 
 
 /** 转交集 */
-export type ToIntersection<T extends readonly unknown[], Result = unknown> = T extends [] ? Result : Result & ToIntersection<Shift<T>, T[0]>
+export type ToIntersection<
+  T extends readonly unknown[],
+  Result = unknown
+> = T extends []
+  ? Result
+  : Result & ToIntersection<Shift<T>, T[0]>
 
 
 

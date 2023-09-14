@@ -1,6 +1,6 @@
 import { useLatest } from '@wai-ri/react'
 import { useEffect } from 'react'
-import { fromEvent, Observable } from 'rxjs'
+import { Observable, fromEvent } from 'rxjs'
 import { map, share } from 'rxjs/operators'
 
 
