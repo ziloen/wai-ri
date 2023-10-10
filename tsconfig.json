@@ -67,7 +67,7 @@
     },
     "types": [
       "vitest/globals",
-      "typescript-lib-enhancer"
+      "ts-lib-enhance"
     ]
   },
   "include": [
