@@ -9,8 +9,8 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@types/react": "^18.2.27",
-    "@types/react-dom": "^18.2.12",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
     "@wai-ri/shared": "workspace:*",
     "rxjs": "^7.8.1"
   },

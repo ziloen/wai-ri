@@ -9,7 +9,7 @@
   "author": "ziloen",
   "main": "./index.ts",
   "dependencies": {
-    "@types/d3": "^7.4.1",
+    "@types/d3": "^7.4.2",
     "@wai-ri/shared": "workspace:*",
     "echarts": "^5.4.3",
     "typescript": "^5.2.2"

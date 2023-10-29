@@ -5,6 +5,7 @@
   "description": "util",
   "author": "ziloen",
   "license": "ISC",
+  "type": "module",
   "scripts": {
     "test": "vitest --ui",
     "release": "bumpp package.json packages/*/package.json --commit --no-push && pnpm -r publish --access public",
@@ -12,36 +13,18 @@
     "typecheck": "vitest typecheck"
   },
   "devDependencies": {
-    "@types/node": "^20.8.4",
+    "@types/node": "^20.8.9",
     "@vitest/ui": "^0.34.6",
-    "@ziloen/eslint-config": "^0.0.109",
-    "@ziloen/eslint-config-format": "^0.0.109",
+    "@ziloen/eslint-config": "^0.1.4",
+    "@ziloen/eslint-config-format": "^0.0.110",
     "bumpp": "^9.2.0",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "jsdom": "^22.1.0",
     "ts-lib-enhance": "^1.0.14",
-    "vite": "^4.4.11",
+    "vite": "^4.5.0",
     "vitest": "^0.34.6"
   },
   "dependencies": {
     "typescript": "^5.2.2"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@ziloen",
-      "@ziloen/eslint-config-format"
-    ],
-    "root": true,
-    "env": {
-      "node": true,
-      "browser": true,
-      "es2022": true
-    },
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "ignorePatterns": [
-      ".*"
-    ]
   }
 }
