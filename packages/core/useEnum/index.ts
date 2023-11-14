@@ -4,9 +4,9 @@ import { bindSelf } from '../bindSelf'
 
 /** 生成双向映射 */
 export function useEnum<const T extends Record<string | number, Stringable>>(obj: T): Expand<Readonly<
-& T
-& FlipLoose<T>
-& { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }
+  & T
+  & FlipLoose<T>
+  & { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }
 >> {
   const newObj = Object.create(null) as Record<string, unknown>
 
@@ -22,8 +22,8 @@ export function useEnum<const T extends Record<string | number, Stringable>>(obj
   }
 
   return Object.freeze(newObj) as Expand<Readonly<
-  & T
-  & FlipLoose<T>
-  & { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }
+    & T
+    & FlipLoose<T>
+    & { [Symbol.iterator](): IterableIterator<[keyof T, T[keyof T]]> }
   >>
 }
