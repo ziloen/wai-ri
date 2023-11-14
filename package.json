@@ -16,7 +16,6 @@
     "@types/node": "^20.9.0",
     "@vitest/ui": "^0.34.6",
     "@ziloen/eslint-config": "^0.1.5",
-    "@ziloen/eslint-config-format": "^0.0.110",
     "bumpp": "^9.2.0",
     "eslint": "^8.53.0",
     "jsdom": "^22.1.0",
