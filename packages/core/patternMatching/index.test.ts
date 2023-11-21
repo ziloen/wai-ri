@@ -45,7 +45,7 @@ describe('match', () => {
     })
 
     expect(result).toBe('计算结果')
-    expect(errResult).toBe('默认结果')
+    expect(errResult).toBe(12)
 
     assertType<'计算结果' | '默认结果'>(result)
     assertType<'计算结果' | '默认结果' | 12>(errResult)
