@@ -384,7 +384,7 @@ export type KeyofUnion<T> = T extends infer R ? keyof R : never
 
 
 /**
- * 使用可选 undefined 填充联合类型
+ * 使用可选 never 填充联合类型
  * ```ts
  * type A = { a: string, c: boolean };
  * type B = { b: number };
@@ -401,9 +401,9 @@ export type KeyofUnion<T> = T extends infer R ? keyof R : never
  * }
  * ```
  */
-export type PaddingUnion<T, K extends keyof any = KeyofUnion<T>> =
+export type PadUnion<T, K extends keyof any = KeyofUnion<T>> =
   T extends infer R
-    ? R & { [P in Exclude<K, keyof R>]?: undefined }
+    ? R & { [P in Exclude<K, keyof R>]?: never }
     : never
 
 
