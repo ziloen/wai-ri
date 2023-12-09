@@ -1,7 +1,7 @@
 import type { Not, Xor } from './Logical'
 import type { CharAt, Split, ToNumber } from './String'
 import type { Includes, Join, Last, Length, Pop, Push } from './Tuple'
-import { _ } from './_internal'
+import type { _ } from './_internal'
 
 
 

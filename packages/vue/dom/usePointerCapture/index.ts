@@ -1,4 +1,5 @@
-import { Ref, onBeforeUnmount, onMounted, unref } from 'vue'
+import type { Ref } from 'vue'
+import { onBeforeUnmount, onMounted, unref } from 'vue'
 
 type Positon = {
   /** 当前 clientX */

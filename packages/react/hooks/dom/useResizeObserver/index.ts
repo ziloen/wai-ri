@@ -1,4 +1,5 @@
-import { MaybeRef, unRefTargetElements, useLatest } from '@wai-ri/react'
+import type { MaybeRef } from '@wai-ri/react'
+import { unRefTargetElements, useLatest } from '@wai-ri/react'
 import { useEffect } from 'react'
 
 

@@ -18,5 +18,5 @@ import { useState } from 'react'
  */
 export function useAsyncThrow() {
   const [, set] = useState()
-  return (e: unknown) => set(() => { throw e })
+  return (e: Error) => set(() => { throw e })
 }

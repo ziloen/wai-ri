@@ -1,4 +1,4 @@
-import { Timeout } from '@wai-ri/shared'
+import type { Timeout } from '@wai-ri/shared'
 import { useEffect, useRef, useState } from 'react'
 
 export function useAutoResetState<T>(defautValue: T, afterMs: number) {

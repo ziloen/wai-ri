@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import { createPortal } from 'react-dom'
-import { MaybeRef, unRef } from '../'
+import type { MaybeRef } from '../'
+import { unRef } from '../'
 
 
 // TODO: 能否像 Vue 那样 keep alive，保留状态如视频播放不中断，复用之前的内容不重新生成

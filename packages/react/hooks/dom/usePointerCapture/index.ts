@@ -1,4 +1,5 @@
-import { MaybeRef, unRef, useLatest } from '@wai-ri/react/shared'
+import type { MaybeRef } from '@wai-ri/react/shared'
+import { unRef, useLatest } from '@wai-ri/react/shared'
 import { useEffect } from 'react'
 
 type Positon = {

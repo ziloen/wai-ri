@@ -1,5 +1,6 @@
 import type { Simplify, Writable } from '@wai-ri/shared'
-import { AllowedComponentProps, Component, ComponentCustomProps, VNodeProps } from 'vue'
+import type { AllowedComponentProps, Component, VNodeProps } from 'vue'
+import { ComponentCustomProps } from 'vue'
 
 // type ComponnetInternalPropKeys = keyof AllowedComponentProps | keyof ComponentCustomProps | keyof VNodeProps
 type InternalPropKeys = keyof AllowedComponentProps | keyof VNodeProps

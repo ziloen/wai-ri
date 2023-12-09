@@ -1,4 +1,5 @@
-import { Fn, asType } from '@wai-ri/shared'
+import type { Fn } from '@wai-ri/shared'
+import { asType } from '@wai-ri/shared'
 
 /** 绑定对象上的所有函数 */
 export function bindAll<T extends Record<keyof any, any>>(obj: T): T {

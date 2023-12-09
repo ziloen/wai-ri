@@ -1,6 +1,7 @@
 // 参考(抄袭😀): https://vueuse.org/core/onClickOutside/
 
-import { RefObject, useEffect, useLayoutEffect, useRef } from 'react'
+import type { RefObject } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 
 type PointerElement = HTMLElement | SVGElement
 type MaybeElementRef = PointerElement | RefObject<PointerElement>

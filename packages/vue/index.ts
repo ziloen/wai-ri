@@ -1,7 +1,8 @@
 export * from './dom'
 export * from './shared'
 
-import { ComponentPublicInstance, Ref, onMounted, onUnmounted, unref } from 'vue'
+import type { ComponentPublicInstance, Ref } from 'vue'
+import { onMounted, onUnmounted, unref } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import { useRouter } from 'vue-router'
 

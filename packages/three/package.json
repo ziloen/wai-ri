@@ -8,9 +8,10 @@
   "license": "MIT",
   "author": "ziloen",
   "main": "./index.ts",
+  "sideEffects": false,
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "three": "^0.158.0",
-    "typescript": "^5.3.2"
+    "three": "^0.159.0",
+    "typescript": "^5.3.3"
   }
 }

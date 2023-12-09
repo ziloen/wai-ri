@@ -1,8 +1,8 @@
-import { Extensible } from '@wai-ri/shared'
+import type { Extensible } from '@wai-ri/shared'
 
 export * from '@wai-ri/shared'
 export * from './asyncDebounce'
-export * from "./backward"
+export * from './backward'
 export * from './bindAll'
 export * from './bindSelf'
 export * from './blockThread'
@@ -21,8 +21,6 @@ export * from './switchLatest'
 export * from './trimString'
 export * from './useEnum'
 
-
-export const extend: <T, U extends Extensible<Partial<T>>>(target: T, source: U) => T = Object.assign
 
 
 function iframeDownload(url: string, fileName = '') {

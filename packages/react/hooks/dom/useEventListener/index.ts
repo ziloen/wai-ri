@@ -1,6 +1,7 @@
 import { noop } from '@wai-ri/core'
 import { useEffect, useRef } from 'react'
-import { MaybeRef, unRef, useLatest } from '../../../index'
+import type { MaybeRef } from '../../../index'
+import { unRef, useLatest } from '../../../index'
 
 type TargetType = Element | Window | Document | HTMLElement
 
