@@ -16,6 +16,7 @@ export function switchLatest<
       asyncFn(...args)
         .then(
           data => lastKey === key && res(data),
+          // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
           err => lastKey === key && rej(err)
         )
     })
@@ -57,6 +58,7 @@ export function switchLatestWith<
 
       asyncFn(...args)
         .then(v => idMap.get(id) === key && idMap.delete(id) && resolve(v))
+        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         .catch(e => idMap.get(id) === key && idMap.delete(id) && reject(e))
     })
   }

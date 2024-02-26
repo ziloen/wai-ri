@@ -1,4 +1,5 @@
 // browser allowed canvas size data source: https://github.com/jhildenbiddle/canvas-size#test-results
+// https://jhildenbiddle.github.io/canvas-size/#/?id=test-results
 
 type Browser =
   | 'chrome'

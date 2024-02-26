@@ -1,4 +1,4 @@
-import { Fn, Timeout } from '@wai-ri/shared'
+import type { Fn, Timeout } from '@wai-ri/shared'
 
 
 
@@ -12,6 +12,7 @@ type DebounceOption = {
 
 /**
  * 异步防抖 可.then
+ * 
  * @example
  * const debouncedAsyncFn = asyncDebounce(someAsyncFn, 200， { maxWait: 1000 })
  *

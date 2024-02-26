@@ -12,7 +12,7 @@
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
     "typescript": "^5.3.3",
-    "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue": "^3.4.20",
+    "vue-router": "^4.3.0"
   }
 }
