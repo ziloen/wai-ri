@@ -10,8 +10,8 @@
   "main": "./index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@types/react": "^18.2.58",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
     "@wai-ri/shared": "workspace:*",
     "rxjs": "^7.8.1"
   },

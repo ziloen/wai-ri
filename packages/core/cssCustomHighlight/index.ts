@@ -9,7 +9,6 @@ type Options = {
    * @default true
    */
   trim?: boolean
-
   /**
    * 
    */
