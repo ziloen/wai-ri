@@ -85,18 +85,6 @@ export type ArrayType<A extends any[]> = A[number]
 
 
 
-/**
- * 用于提示指定枚举字符串，但是允许 string 类型
- * @deprecated renamed to {@link LiteralUnion}
- * ```ts
- * type EventName = EnumAndString<'click' | 'keydown' | 'keyup'>
- * const e: EventName = "mouseup" // 输入时会有提示，且允许任意字符串
- * ```
- */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type EnumString<T> = T | (string & {})
-
-
 type Primitive =
   | null
   | undefined

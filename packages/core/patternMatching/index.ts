@@ -27,9 +27,8 @@ type GetMatchArmResults<
  * ```
  */
 export function patternMatching<
-  V,
   K extends keyof any,
-  const T extends Partial<Record<keyof any, V>>
+  const T extends Partial<Record<K | (keyof any & Record<never, never>), unknown>>
 >(
   value: K,
   matchArms: T
