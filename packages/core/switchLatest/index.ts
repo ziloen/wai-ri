@@ -3,6 +3,7 @@ import type { AsyncFn, Fn } from '@wai-ri/shared'
 
 
 /** 切换到最后一次 */
+/* #__NO_SIDE_EFFECTS__ */
 export function switchLatest<
   Args extends readonly unknown[],
   Return
@@ -40,6 +41,7 @@ export function switchLatest<
  * }
  * ```
  */
+/* #__NO_SIDE_EFFECTS__ */
 export function switchLatestWith<
   Args extends readonly unknown[],
   Return,
