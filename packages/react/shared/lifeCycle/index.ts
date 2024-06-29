@@ -1,4 +1,4 @@
-import { Fn } from '@wai-ri/shared'
+import type { Fn } from '@wai-ri/shared'
 import { useEffect, useRef, useState } from 'react'
 
 

@@ -1,4 +1,4 @@
-import { SetParams, UnaryFn } from '@wai-ri/shared/type/Function'
+import type { SetParams, UnaryFn } from '@wai-ri/shared/type/Function'
 
 
 // 参考 https://github.com/microsoft/TypeScript/issues/30370#issuecomment-1079751166

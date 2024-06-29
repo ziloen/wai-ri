@@ -56,21 +56,21 @@ type OverloadUnionRecursive<TOverload, TPartialOverload = unknown> = TOverload e
   ? TPartialOverload extends TOverload
     ? never
     : | OverloadUnionRecursive<
-      TPartialOverload & TOverload,
-      TPartialOverload & ((...args: TArgs) => TReturn)
-      >
-      | ((...args: TArgs) => TReturn)
+          TPartialOverload & TOverload,
+          TPartialOverload & ((...args: TArgs) => TReturn)
+    >
+    | ((...args: TArgs) => TReturn)
   : never
 export type OverloadToUnion<TOverload extends (...args: any[]) => any> = Exclude<
-OverloadUnionRecursive<
+  OverloadUnionRecursive<
 // The "() => never" signature must be hoisted to the "front" of the
 // intersection, for two reasons: a) because recursion stops when it is
 // encountered, and b) it seems to prevent the collapse of subsequent
 // "compatible" signatures (eg. "() => void" into "(a?: 1) => void"),
 // which gives a direct conversion to a union.
 (() => never) & TOverload
->,
-TOverload extends () => never ? never : () => never
+  >,
+  TOverload extends () => never ? never : () => never
 >
 // Inferring a union of parameter tuples or return types is now possible.
 /** 多签名重载函数参数类型 */
@@ -295,10 +295,10 @@ type WithoutKeys<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P] } 
  */
 export type MergeMutex<T1, T2> =
   ExpandDeep<
-  (T1 | T2) extends object
-    ? WithoutKeys<T1, keyof T2> | WithoutKeys<T2, keyof T1>
-    : T1 | T2
-  , 1
+    (T1 | T2) extends object
+      ? WithoutKeys<T1, keyof T2> | WithoutKeys<T2, keyof T1>
+      : T1 | T2
+    , 1
   >
 
 
@@ -306,9 +306,9 @@ export type MergeMutex<T1, T2> =
 /** 使两属性互斥，不是线程互斥锁，Disjoint / Mutex / MutuallyExclusive */
 export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
   ExpandDeep<
-  | WithoutKeys<T, K1>
-  | WithoutKeys<T, K2>
-  , 1
+    | WithoutKeys<T, K1>
+    | WithoutKeys<T, K2>
+    , 1
   >
 // { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
 // (

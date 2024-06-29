@@ -1,4 +1,4 @@
-import { Equal, Expand } from '.'
+import type { Equal, Expand } from '.'
 import type { Expect } from './_internal'
 
 
@@ -35,13 +35,13 @@ describe('Expand', () => {
     // 检查 T 的类型是否与下面相同
     type T = Expand<F>
     type R = Expect<Equal<T,
-    (a: {
-      c: boolean
-      a?: string
-      readonly b: number
-    }) => {
-      readonly b: number
-    }
+      (a: {
+        c: boolean
+        a?: string
+        readonly b: number
+      }) => {
+        readonly b: number
+      }
     >>
   })
 

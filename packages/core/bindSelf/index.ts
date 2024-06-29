@@ -1,4 +1,5 @@
-import { Fn, asType, isFn } from '@wai-ri/shared'
+import type { Fn } from '@wai-ri/shared'
+import { asType, isFn } from '@wai-ri/shared'
 
 
 

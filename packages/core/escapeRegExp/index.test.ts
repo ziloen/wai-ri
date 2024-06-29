@@ -16,7 +16,7 @@ describe('escapeRegExp', () => {
 
     const reg = new RegExp(`(${escaped.join('|')})`)
 
-    expect(reg).toMatchInlineSnapshot('/\\(\\\\\\(\\|\\\\\\|\\|\\\\\\)\\)/')
+    expect(reg).toMatchInlineSnapshot(String.raw`/\(\\\(\|\\\|\|\\\)\)/`)
 
     const has = ['(', '.)', 'sss|dddd']
     const not = ['ooo', '[]', 'ddd']

@@ -1,9 +1,9 @@
 export * from './lifeCycle'
 export * from './type'
 
-import { Fn } from '@wai-ri/shared'
+import type { Fn } from '@wai-ri/shared'
 import { useMemo, useRef } from 'react'
-import { MaybeElementRef, MaybeRef } from './type'
+import type { MaybeElementRef, MaybeRef } from './type'
 
 export function unRefElement<T extends Element = Element>(target: MaybeElementRef<T>): T {
   return target instanceof Element ? target : target.current!
