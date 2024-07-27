@@ -13,17 +13,17 @@
     "typecheck": "vitest typecheck"
   },
   "devDependencies": {
-    "@types/node": "^20.14.9",
-    "@vitest/ui": "^1.6.0",
-    "@ziloen/eslint-config": "^0.1.37",
+    "@types/node": "^20.14.12",
+    "@vitest/ui": "^2.0.4",
+    "@ziloen/eslint-config": "^0.1.42",
     "bumpp": "^9.4.1",
-    "eslint": "^9.6.0",
-    "jsdom": "^24.1.0",
+    "eslint": "^9.8.0",
+    "jsdom": "^24.1.1",
     "ts-lib-enhance": "^1.0.18",
-    "vite": "^5.3.2",
-    "vitest": "^1.6.0"
+    "vite": "^5.3.5",
+    "vitest": "^2.0.4"
   },
   "dependencies": {
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.4"
   }
 }

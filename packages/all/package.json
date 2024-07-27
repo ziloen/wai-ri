@@ -12,6 +12,6 @@
     "@wai-ri/core": "workspace:*",
     "@wai-ri/random": "workspace:*",
     "@wai-ri/shared": "workspace:*",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.4"
   }
 }
