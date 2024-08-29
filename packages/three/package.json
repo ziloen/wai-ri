@@ -11,7 +11,7 @@
   "sideEffects": false,
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "three": "^0.167.0",
+    "three": "^0.167.1",
     "typescript": "^5.5.4"
   }
 }

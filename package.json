@@ -14,14 +14,14 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.12",
-    "@vitest/ui": "^2.0.4",
-    "@ziloen/eslint-config": "^0.1.42",
-    "bumpp": "^9.4.1",
-    "eslint": "^9.8.0",
-    "jsdom": "^24.1.1",
+    "@vitest/ui": "^2.0.5",
+    "@ziloen/eslint-config": "^0.1.44",
+    "bumpp": "^9.5.2",
+    "eslint": "^9.9.1",
+    "jsdom": "^25.0.0",
     "ts-lib-enhance": "^1.0.18",
-    "vite": "^5.3.5",
-    "vitest": "^2.0.4"
+    "vite": "^5.4.2",
+    "vitest": "^2.0.5"
   },
   "dependencies": {
     "typescript": "^5.5.4"

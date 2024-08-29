@@ -197,12 +197,21 @@ export type KeysMatching<Obj, Val> = keyof { [Key in keyof Obj as Obj[Key] exten
 
 
 /** 相等 */
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
 
 
 
 /** 是否为 any */
 export type IsAny<T> = 0 extends (1 & T) ? true : false
+
+
+
+export type IsArray<T> = T extends readonly unknown[] ? true : false
+
+
+
+export type IsAnyOrUnknown<T> = unknown extends T ? true : false
 
 
 

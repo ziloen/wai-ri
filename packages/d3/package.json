@@ -10,7 +10,7 @@
   "main": "./index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@michijs/htmltype": "^0.2.15",
+    "@michijs/htmltype": "^0.2.16",
     "@types/d3": "^7.4.3",
     "@wai-ri/shared": "workspace:*",
     "d3": "^7.9.0",
