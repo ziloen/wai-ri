@@ -1,11 +1,11 @@
 
 // 🚧 因为没有引入 lodash，所以要加一个 forOwn 和 isPlainObject 的实现
 
-function forOwn(obj: object, iteratee: (value: any, key: keyof any) => void) {
-  const keys = Object.getOwnPropertyNames(obj).concat(Object.getOwnPropertySymbols(obj))
+function forOwn<T extends Record<any, any>>(obj: T, iteratee: (value: unknown, key: keyof T) => void) {
+  const keys = [...Object.getOwnPropertyNames(obj), ...Object.getOwnPropertySymbols(obj)]
 
   for (const key of keys) {
-    iteratee()
+    iteratee(obj[key as keyof T], key)
   }
 }
 
@@ -28,7 +28,7 @@ function forOwnDeepImpl(
     if (isPlainObject(val)) {
       forOwnDeepImpl(val, iteratee, path.concat(key))
     } else {
-      iteratee(val, key, path.concat(key))
+      iteratee(val as keyof any, key, path.concat(key))
     }
   })
 }
