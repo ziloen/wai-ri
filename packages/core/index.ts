@@ -35,6 +35,7 @@ function iframeDownload(url: string, fileName = '') {
     const document = window.document
     const anchor = document.createElement('a')
     anchor.href = url
+    // 不同源的地址 download 属性无效，需要服务端设置 Content-Disposition: attachment
     anchor.download = fileName
     anchor.rel = 'noopener'
     document.body.append(anchor)
