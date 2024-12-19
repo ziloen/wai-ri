@@ -10,7 +10,7 @@ export function bindSelf<T extends Record<keyof any, any>, K extends keyof T>(ob
 export function bindSelf<T extends Record<keyof any, any>>(obj: T, key: (keyof T)[]): T
 export function bindSelf<T extends Record<keyof any, any>, K extends keyof T>(obj: T, key: K | K[]) {
   if (Array.isArray(key)) {
-    (key as (keyof T)[]).forEach(k => {
+    (key as (keyof T)[]).forEach((k) => {
       const fn = obj[k]
       isFn(fn) && Reflect.set(obj, k, (fn as Fn).bind(obj))
     })

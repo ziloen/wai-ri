@@ -5,7 +5,7 @@ export function useAutoResetState<T>(defautValue: T, afterMs: number) {
   const [state, setState] = useState<T>(defautValue)
   const timeoutRef = useRef<Timeout | undefined>()
 
-  const set: typeof setState = value => {
+  const set: typeof setState = (value) => {
     setState(value)
 
     clearTimeout(timeoutRef.current)

@@ -10,7 +10,7 @@ function craeteSubscribeHook<V>(observerable: Observable<V>) {
   return function (fn: (value: V) => void) {
     const fnRef = useLatest(fn)
     useEffect(() => {
-      const subscription = observerable.subscribe(v => fnRef.current(v))
+      const subscription = observerable.subscribe((v) => fnRef.current(v))
       return () => subscription.unsubscribe()
     }, [])
   }

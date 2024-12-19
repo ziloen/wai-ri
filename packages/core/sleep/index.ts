@@ -12,5 +12,5 @@ export async function sleep(ms: number): Promise<void>
 export async function sleep<P extends any[], R = void>(ms: number, fn: Fn<P, R>, ...args: P): Promise<Awaited<R>>
 
 export async function sleep<P extends any[], R = void>(ms?: number, fn?: Fn<P, R>, ...args: P): Promise<R | undefined> {
-  return new Promise(res => setTimeout(() => res(fn?.(...args)), ms))
+  return new Promise((res) => setTimeout(() => res(fn?.(...args)), ms))
 }

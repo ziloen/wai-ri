@@ -16,9 +16,9 @@ export function switchLatest<
       const key = lastKey = Symbol()
       asyncFn(...args)
         .then(
-          data => lastKey === key && res(data),
+          (data) => lastKey === key && res(data),
           // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
-          err => lastKey === key && rej(err)
+          (err) => lastKey === key && rej(err)
         )
     })
   }
@@ -59,9 +59,9 @@ export function switchLatestWith<
       idMap.set(id, key)
 
       asyncFn(...args)
-        .then(v => idMap.get(id) === key && idMap.delete(id) && resolve(v))
+        .then((v) => idMap.get(id) === key && idMap.delete(id) && resolve(v))
         // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
-        .catch(e => idMap.get(id) === key && idMap.delete(id) && reject(e))
+        .catch((e) => idMap.get(id) === key && idMap.delete(id) && reject(e))
     })
   }
 }

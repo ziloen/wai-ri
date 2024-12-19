@@ -20,7 +20,6 @@ type UsePointerCaptureOptions<T> = {
   /**
    * 开始捕获指针的回调函数，返回 `false` 来阻止捕获指针
    */
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   onStart?: (this: T, event: PointerEvent, position: Positon) => void | false
 
   /**

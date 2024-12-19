@@ -36,7 +36,10 @@ export function unrefElement<T extends MaybeElement>(elRef: MaybeElementRef<T>):
  * @param elRef 目标元素
  * @param arg 参数
  */
-export function scrollIntoView<T extends MaybeElementRef>(elRef: T, arg?: boolean | ScrollIntoViewOptions) {
+export function scrollIntoView(
+  elRef: MaybeElementRef,
+  arg?: boolean | ScrollIntoViewOptions
+) {
   const el = unrefElement(elRef)
   el?.scrollIntoView(arg)
 }

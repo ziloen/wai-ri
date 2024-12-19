@@ -13,7 +13,7 @@ export function clamp(n: number, min: number, max: number): number {
 
 /** clamp Array version */
 export function clampArray<T extends MaybeNumber[]>(valueArr: T, min: number, max: number): T {
-  return valueArr.map(v => {
+  return valueArr.map((v) => {
     if (Number.isNaN(v) || isNil(v))
       return
     else

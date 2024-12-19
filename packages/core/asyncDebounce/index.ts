@@ -37,7 +37,7 @@ export function asyncDebounce<
   const { maxWait/* , immediate */ } = options
 
   return async function (...args: Params): Promise<Return> {
-    return new Promise(res => {
+    return new Promise((res) => {
       timer && clearTimeout(timer)
 
       // 如果有最大延迟时间

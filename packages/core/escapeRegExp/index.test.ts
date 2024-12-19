@@ -21,8 +21,8 @@ describe('escapeRegExp', () => {
     const has = ['(', '.)', 'sss|dddd']
     const not = ['ooo', '[]', 'ddd']
 
-    const testHas = has.every(v => reg.test(v))
-    const testNot = not.every(v => !reg.test(v))
+    const testHas = has.every((v) => reg.test(v))
+    const testNot = not.every((v) => !reg.test(v))
 
     expect(testHas).toBe(true)
     expect(testNot).toBe(true)

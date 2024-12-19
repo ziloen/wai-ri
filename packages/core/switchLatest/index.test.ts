@@ -20,7 +20,7 @@ describe('switchLatest', () => {
     const promises: Fn[] = []
 
     async function fetchData() {
-      return new Promise(res => {
+      return new Promise((res) => {
         promises.push(res)
       })
     }

@@ -31,7 +31,7 @@ export function unRefTargetElements<T extends TargetType = Element>(
 ): T[] {
   let targetArr
   if (Array.isArray(value)) {
-    targetArr = value.map(ref => unRef(ref))
+    targetArr = value.map((ref) => unRef(ref))
   } else {
     targetArr = [unRef(value)]
   }
@@ -45,12 +45,12 @@ type PickFn<
   T extends (this: any, ...args: any[]) => any
 > = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
 
-/** "借鉴"的 ahooks useMemoizedFn */
+/** ahooks useMemoizedFn */
 export function useFn<T extends Fn>(fn: T): T {
   const fnRef = useRef(fn)
   fnRef.current = useMemo(() => fn, [fn])
 
-  const memoizedFn = useRef<PickFn<T>>()
+  const memoizedFn = useRef<PickFn<T>>(null)
   if (!memoizedFn.current) {
     memoizedFn.current = function (this, ...args) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return

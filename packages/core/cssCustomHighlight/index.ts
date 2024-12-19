@@ -46,7 +46,7 @@ export function nativeHighlight(
     curr = treeWalker.nextNode()
   }
 
-  const ranges = textNodes.flatMap(node => {
+  const ranges = textNodes.flatMap((node) => {
     if (!node.textContent) return []
 
     let textContent = node.textContent
@@ -61,7 +61,7 @@ export function nativeHighlight(
       startPos = index + searchText.length
     }
 
-    return indices.map(index => {
+    return indices.map((index) => {
       const range = new Range()
       range.setStart(node, index)
       range.setEnd(node, index + searchText.length)
