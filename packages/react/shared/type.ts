@@ -1,7 +1,7 @@
-import type { Dispatch, MutableRefObject, RefObject, SetStateAction } from 'react'
+import type { Dispatch, RefObject, SetStateAction } from 'react'
 
 
-export type MaybeRef<T = any> = T | RefObject<T> | MutableRefObject<T>
+export type MaybeRef<T = any> = T | RefObject<T>
 
 export type StateSetter<T> = Dispatch<SetStateAction<T>>
 

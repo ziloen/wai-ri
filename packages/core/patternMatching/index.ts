@@ -39,6 +39,7 @@ export function patternMatching<
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return isFn(resultArm)
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     ? resultArm()
-    : resultArm
+    : resultArm as GetMatchArmResults<T>
 }

@@ -2,6 +2,7 @@ export * from './lifeCycle'
 export * from './type'
 
 import type { Fn } from '@wai-ri/shared'
+import type { RefObject } from 'react'
 import { useMemo, useRef } from 'react'
 import type { MaybeElementRef, MaybeRef } from './type'
 
@@ -16,7 +17,7 @@ export function unRef<T>(value: MaybeRef<T>): T {
     Object.prototype.toString.call(value) !== '[object Object]'
   ) return value as T
 
-  return (Object.hasOwn(value, 'current') ? value.current : value) as T
+  return (Object.hasOwn(value, 'current') ? (value as any as RefObject<T>).current : value) as T
 }
 
 

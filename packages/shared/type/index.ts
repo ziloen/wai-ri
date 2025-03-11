@@ -197,7 +197,6 @@ export type KeysMatching<Obj, Val> = keyof { [Key in keyof Obj as Obj[Key] exten
 
 
 /** 相等 */
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
 
 
@@ -306,8 +305,8 @@ export type MergeMutex<T1, T2> =
   ExpandDeep<
     (T1 | T2) extends object
       ? WithoutKeys<T1, keyof T2> | WithoutKeys<T2, keyof T1>
-      : T1 | T2
-    , 1
+      : T1 | T2,
+    1
   >
 
 
@@ -316,8 +315,8 @@ export type MergeMutex<T1, T2> =
 export type Mutex<T, K1 extends keyof T, K2 extends keyof T> =
   ExpandDeep<
     | WithoutKeys<T, K1>
-    | WithoutKeys<T, K2>
-    , 1
+    | WithoutKeys<T, K2>,
+    1
   >
 // { [K in Exclude<keyof T, K1 | K2>]: T[K] } &
 // (

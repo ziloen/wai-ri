@@ -10,10 +10,10 @@
   "main": "./index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@types/react": "^19.0.6",
-    "@types/react-dom": "^19.0.3",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "@wai-ri/shared": "workspace:*",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
     "react": "^19.0.0",

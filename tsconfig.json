@@ -68,7 +68,6 @@
     "types": [
       "vitest/globals",
       "ts-lib-enhance",
-      "ts-lib-enhance/view-transition",
     ]
   },
   "include": [

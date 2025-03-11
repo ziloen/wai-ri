@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export function useAutoResetState<T>(defautValue: T, afterMs: number) {
   const [state, setState] = useState<T>(defautValue)
-  const timeoutRef = useRef<Timeout | undefined>()
+  const timeoutRef = useRef<Timeout | undefined>(undefined)
 
   const set: typeof setState = (value) => {
     setState(value)

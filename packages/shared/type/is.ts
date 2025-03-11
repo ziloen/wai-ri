@@ -101,7 +101,6 @@ export function isPrimitive(val: unknown): val is string | number | boolean | sy
  * - TS限制，一次只能断言一个参数，[多参数断言](https://github.com/microsoft/TypeScript/issues/26916)
  */
 /* #__NO_SIDE_EFFECTS__ */
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export function asType<T>(val: any): asserts val is T { }
 
 

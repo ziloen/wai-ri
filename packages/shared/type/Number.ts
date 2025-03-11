@@ -161,7 +161,7 @@ type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 
     ? N2 extends []
       ? Carry extends 0
         ? Result
-        : `${1}${Result}`
+        : `1${Result}`
       : Carry extends 0
         ? `${Join<N2>}${Result}`
         : FullAdder<['1'], N2, 0, Result>
