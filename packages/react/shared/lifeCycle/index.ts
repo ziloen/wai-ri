@@ -1,5 +1,5 @@
 import type { Fn } from '@wai-ri/shared'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 
 
@@ -36,7 +36,8 @@ export function useBeforeMount(fn: () => void) {
 
 /**
  * 始终最新值，解决闭包问题。
- * 从 [ahooks](https://ahooks.js.org/hooks/use-latest) 复制
+ * 
+ * [ahooks](https://ahooks.js.org/hooks/use-latest)
  */
 export function useLatest<T>(value: T) {
   const ref = useRef(value)
@@ -51,7 +52,7 @@ export function useLatest<T>(value: T) {
  */
 export function useUpdate() {
   const [, setState] = useState<any>()
-  return () => setState({})
+  return useCallback(() => setState({}), [])
 }
 
 
@@ -63,12 +64,12 @@ export function useUpdate() {
  * @returns
  */
 export function useRunUntil(fn: Fn, condition: boolean) {
-  const [isDone, setIsDone] = useState(false)
+  const isDone = useRef(false)
   const fnRef = useLatest(fn)
 
-  if (isDone) return
+  if (isDone.current) return
   if (condition) {
+    isDone.current = true
     fnRef.current()
-    setIsDone(true)
   }
 }

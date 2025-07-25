@@ -8,8 +8,5 @@
   "license": "MIT",
   "author": "ziloen",
   "main": "./index.ts",
-  "sideEffects": false,
-  "dependencies": {
-    "typescript": "^5.8.2"
-  }
+  "sideEffects": false
 }
