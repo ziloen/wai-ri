@@ -2,7 +2,19 @@ import type { Expand, FlipLoose, Stringable } from '@wai-ri/shared'
 import { bindSelf } from '../bindSelf'
 
 
-/** 生成双向映射 */
+/** 
+ * 生成双向映射 
+ * 
+ * ```ts
+ * const Status = useEnum({
+ *   Pending: 'pending',
+ *   Success: 'success',
+ *   Error: 'error'
+ * })
+ * console.log(Status.Pending) // 'pending'
+ * console.log(Status.pending) // 'Pending'
+ * ```
+ */
 export function useEnum<const T extends Record<string | number, Stringable>>(obj: T): Expand<Readonly<
   & T
   & FlipLoose<T>

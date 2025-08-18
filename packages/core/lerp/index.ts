@@ -2,6 +2,11 @@
  * 插值
  * @param start 开始值
  * @param stop 结束值
+ * 
+ * ```ts
+ * const fn = lerp(10, 20)
+ * console.log(fn(0.5)) // 15
+ * ```
  */
 export function lerp(start: number, stop: number): (amt: number) => number
 /**
@@ -9,6 +14,10 @@ export function lerp(start: number, stop: number): (amt: number) => number
  * @param start 开始值
  * @param stop 结束值
  * @param amt 比例 0 - 1
+ * 
+ * ```ts
+ * console.log(lerp(10, 20, 0.5)) // 15
+ * ```
  */
 export function lerp(start: number, stop: number, amt: number): number
 export function lerp(start: number, stop: number, amt?: number): number | ((amt: number) => number) {
