@@ -5,7 +5,7 @@ type Options = Partial<{
 }>
 
 /** 获取所有属性名，类似 Reflect.ownKeys，但会检查原型链（不包括Objec.prototype） */
-export function getAllKeys(obj: Record<keyof any, any> /* , options?: Options */) {
+export function getAllKeys(obj: Record<PropertyKey, any> /* , options?: Options */) {
   const objProto = Object.prototype
   const keysSet = new Set<symbol | string>
   for (let temp: object = obj; temp !== objProto; temp = Reflect.getPrototypeOf(temp)!) {

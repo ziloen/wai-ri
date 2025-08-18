@@ -2,7 +2,7 @@ import type { Fn } from '@wai-ri/shared'
 import { asType } from '@wai-ri/shared'
 
 /** 绑定对象上的所有函数 */
-export function bindAll<T extends Record<keyof any, any>>(obj: T): T {
+export function bindAll<T extends Record<PropertyKey, any>>(obj: T): T {
   // 使用 for..in 无法获取 enumerable 为 false 的属性
   for (const key of getAllMethods(obj)) {
     obj[key] = (obj[key] as Fn).bind(obj) as T[keyof T]
@@ -23,7 +23,7 @@ type ExtactFnProp<T extends Record<any, any>> = {
  * @param obj 
  * @returns 
  */
-export function toBound<T extends Record<keyof any, any>>(obj: T): ExtactFnProp<T> {
+export function toBound<T extends Record<PropertyKey, any>>(obj: T): ExtactFnProp<T> {
   const bonded = Object.create(null) as T
   for (const key of getAllMethods(obj)) {
     asType<keyof T>(key)

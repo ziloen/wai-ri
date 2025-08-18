@@ -169,7 +169,10 @@ type FullAdder<N1 extends string[], N2 extends string[], Carry extends number = 
       ? Carry extends 0
         ? `${Join<N1>}${Result}`
         : FullAdder<['1'], N1, 0, Result>
-      : HalfAdder<AddInTen<StrToNum<Last<N1>>, Carry>, StrToNum<Last<N2>>> extends [infer N extends number, infer C extends number]
+      : HalfAdder<
+        AddInTen<StrToNum<Last<N1>>, Carry>,
+        StrToNum<Last<N2>>
+      > extends [infer N extends number, infer C extends number]
         ? FullAdder<Pop<N1>, Pop<N2>, C, `${N}${Result}`>
         : never
 

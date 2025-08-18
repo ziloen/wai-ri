@@ -27,7 +27,7 @@ export type Stringable = string | number | bigint | boolean | null | undefined
 
 
 /** 对象类型，用来取代 object | {} */
-export type ObjectType<K extends keyof any = keyof any, V = any> = Record<K, V>
+export type ObjectType<K extends PropertyKey = PropertyKey, V = any> = Record<K, V>
 
 
 
@@ -173,7 +173,7 @@ export type AwaitedReturn<F extends AsyncFn> = Awaited<ReturnType<F>>
 
 
 /** O 对象的 value 类型 */
-export type ValueOf<O extends Record<keyof any, any>> = O[keyof O]
+export type ValueOf<O extends Record<PropertyKey, any>> = O[keyof O]
 
 
 
@@ -221,7 +221,7 @@ export type Flip<Obj extends Record<string, string | number | boolean>> = {
 
 /** 翻转对象键与值 更宽松 */
 export type FlipLoose<Obj extends Record<string | number, Stringable>> = {
-  [Key in keyof Obj as Obj[Key] extends keyof any ? Obj[Key] : Obj[Key] extends Stringable ? `${Obj[Key]}` : never]: Key extends Stringable ? `${Key}` : never
+  [Key in keyof Obj as Obj[Key] extends PropertyKey ? Obj[Key] : Obj[Key] extends Stringable ? `${Obj[Key]}` : never]: Key extends Stringable ? `${Key}` : never
 }
 
 
@@ -266,17 +266,21 @@ export type ExpandDeep<
   NextIter extends any[] = [...Iter, _]
 > =
   // 已到达深度，结束
-  Deep extends TargetDeep ? T :
-  // 展开函数类型
-    T extends (...args: infer Params) => infer Return ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => StopExpandIfRecursion<T, Return, TargetDeep, NextIter> :
-    // 不展开 Promise 类型
-      T extends Promise<infer P> ? Equal<T, P> extends true ? T : Promise<ExpandDeep<P, TargetDeep, NextIter>> :
-      // 展开对象类型
-        T extends object ? { [K in keyof T]: StopExpandIfRecursion<T, T[K], TargetDeep, NextIter> } :
-        // 展开联合类型
-          IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter> :
+  Deep extends TargetDeep
+    ? T
+    // 展开函数类型
+    : T extends (...args: infer Params) => infer Return
+      ? (...args: ExpandDeep<Params, TargetDeep, NextIter>) => StopExpandIfRecursion<T, Return, TargetDeep, NextIter>
+      // 不展开 Promise 类型
+      : T extends Promise<infer P>
+        ? Equal<T, P> extends true ? T : Promise<ExpandDeep<P, TargetDeep, NextIter>>
+        // 展开对象类型
+        : T extends object
+          ? { [K in keyof T]: StopExpandIfRecursion<T, T[K], TargetDeep, NextIter> }
+          // 展开联合类型
+          : IsUnion<T> extends true ? ExpandDeep<ToTuple<T>[number], TargetDeep, NextIter>
           // 已完全展开，返回
-            T
+            : T
 
 
 
@@ -289,14 +293,14 @@ export type Merge<Org, New> = Simplify<New & Omit<Org, keyof New>>
 
 
 /** 可扩展类型，在添加未约束的属性时不会报错 */
-export type Extensible<O> = Simplify<O & Record<keyof any, unknown>>
+export type Extensible<O> = Simplify<O & Record<PropertyKey, unknown>>
 
 
 /**
  * 工具，仅供 MergeMutex 与 Mutex 使用
  * @internal
  */
-type WithoutKeys<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P] } & { [_ in K]?: never }
+type WithoutKeys<T, K extends PropertyKey> = { [P in Exclude<keyof T, K>]: T[P] } & { [_ in K]?: never }
 
 /**
  * 合并两对象，并使其互斥
@@ -397,7 +401,7 @@ export type KeyofUnion<T> = T extends infer R ? keyof R : never
  * }
  * ```
  */
-export type PadUnion<T, K extends keyof any = KeyofUnion<T>> =
+export type PadUnion<T, K extends PropertyKey = KeyofUnion<T>> =
   T extends infer R
     ? R & { [P in Exclude<K, keyof R>]?: never }
     : never
@@ -413,7 +417,7 @@ export type PadUnion<T, K extends keyof any = KeyofUnion<T>> =
  * type B = { a: _ } | { b: _ }
  * ```
  */
-export type ExtractByKey<T, K extends keyof any> =
+export type ExtractByKey<T, K extends PropertyKey> =
   T extends infer R
     ? K extends keyof R
       ? R

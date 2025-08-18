@@ -16,7 +16,7 @@ describe('switchLatest', () => {
   })
 
   it('切换到最新一次调用', async () => {
-    let count = 0
+    const results: number[] = []
     const promises: Fn[] = []
 
     async function fetchData() {
@@ -28,14 +28,18 @@ describe('switchLatest', () => {
     const fetchData_switch = switchLatest(fetchData)
 
     for (let i = 0; i <= 5; i++) {
+      const index = i
       fetchData_switch()
-        .then(() => count = i)
+        .then(() => {
+          results.push(index)
+        })
     }
 
-    for (const promise of promises) {
-      promise()
-    }
+
+    promises[5]()
+
     await sleep(0)
-    expect(count).toBe(5)
+
+    expect(results).toEqual([5])
   })
 })

@@ -79,7 +79,7 @@ function useCancleAxiosOnExit() {
  * 类似 React useEffect(initFn, [])
  * @param initFn
  */
-export function useLifetime(initFn: () => (undefined | (() => void))): void {
+export function useLifetime(initFn: () => undefined | (() => void)): void {
   let destoryFn: (() => void) | undefined
   onMounted(() => destoryFn = initFn())
   onUnmounted(() => { typeof destoryFn === 'function' && destoryFn() })

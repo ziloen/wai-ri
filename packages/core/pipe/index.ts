@@ -49,6 +49,7 @@ type PipeReturn<
 
 export function pipe<T>(startValue: T) {
   return function <Fns extends UnaryFn[]>(...fns: PipeParams<Fns, T>): PipeReturn<Fns, T> {
-    return fns.reduce((preValue, current) => current(preValue), startValue) as any
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return fns.reduce((preValue, current) => current(preValue), startValue) as PipeReturn<Fns, T>
   }
 }

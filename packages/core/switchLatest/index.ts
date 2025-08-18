@@ -2,7 +2,7 @@ import type { AsyncFn, Fn } from '@wai-ri/shared'
 
 
 
-/** 切换到最后一次 */
+/** 切换到最后一次调用 */
 /* #__NO_SIDE_EFFECTS__ */
 export function switchLatest<
   Args extends readonly unknown[],
@@ -17,8 +17,8 @@ export function switchLatest<
       asyncFn(...args)
         .then(
           (data) => lastKey === key && res(data),
-          // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
-          (err) => lastKey === key && rej(err)
+          // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
+          (err: Error) => lastKey === key && rej(err)
         )
     })
   }
@@ -60,8 +60,8 @@ export function switchLatestWith<
 
       asyncFn(...args)
         .then((v) => idMap.get(id) === key && idMap.delete(id) && resolve(v))
-        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
-        .catch((e) => idMap.get(id) === key && idMap.delete(id) && reject(e))
+        // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
+        .catch((e: Error) => idMap.get(id) === key && idMap.delete(id) && reject(e))
     })
   }
 }

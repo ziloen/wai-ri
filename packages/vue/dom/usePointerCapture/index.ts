@@ -20,7 +20,7 @@ type UsePointerCaptureOptions = {
   /**
    * 开始捕获指针的回调函数，返回 `false` 来阻止捕获指针
    */
-  onStart?: (event: PointerEvent, position: Positon) => (void | false)
+  onStart?: (event: PointerEvent, position: Positon) => void | false
 
   /**
    * 移动过程中的回调函数

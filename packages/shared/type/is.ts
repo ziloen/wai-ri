@@ -115,6 +115,6 @@ export function asNonNullable<T>(val: T): asserts val is NonNullable<T> { }
 
 /** 判断 key is keyof obj */
 /* #__NO_SIDE_EFFECTS__ */
-export function isKeyof<O extends ObjectType, K extends keyof any>(obj: O, key: K): obj is ExtractByKey<O, K> {
+export function isKeyof<O extends ObjectType, K extends PropertyKey>(obj: O, key: K): obj is ExtractByKey<O, K> {
   return Object.hasOwn(obj, key)
 }

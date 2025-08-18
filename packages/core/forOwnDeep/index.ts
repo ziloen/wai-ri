@@ -21,14 +21,14 @@ function isPlainObject(value: any): value is object {
  */
 function forOwnDeepImpl(
   obj: object,
-  iteratee: (key: keyof any, v: any, path: (keyof any)[]) => void,
-  path: (keyof any)[] = []
+  iteratee: (key: PropertyKey, v: any, path: PropertyKey[]) => void,
+  path: PropertyKey[] = []
 ) {
   forOwn(obj, (val, key) => {
     if (isPlainObject(val)) {
       forOwnDeepImpl(val, iteratee, path.concat(key))
     } else {
-      iteratee(val as keyof any, key, path.concat(key))
+      iteratee(val as PropertyKey, key, path.concat(key))
     }
   })
 }
@@ -40,7 +40,7 @@ function forOwnDeepImpl(
  */
 export function forOwnDeep(
   obj: object,
-  iteratee: (value: any, key: keyof any, path: (keyof any)[]) => void
+  iteratee: (value: any, key: PropertyKey, path: PropertyKey[]) => void
 ) {
   forOwnDeepImpl(obj, iteratee)
 }

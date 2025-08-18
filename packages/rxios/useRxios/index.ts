@@ -10,8 +10,8 @@ export function createRxios(instance: AxiosInstance) {
       const controller = new AbortController
 
       instance.request<ResponseData>({ ...config, signal: controller.signal })
-        .then((val) => (observer.next(val), observer.complete()))
-        .catch((err) => AxiosStatic.isCancel(err) ? observer.complete() : observer.error(err))
+        .then((val: AxiosResponse<ResponseData, ConfigData>) => (observer.next(val), observer.complete()))
+        .catch((err: unknown) => AxiosStatic.isCancel(err) ? observer.complete() : observer.error(err))
 
       return controller.abort.bind(controller)
     })

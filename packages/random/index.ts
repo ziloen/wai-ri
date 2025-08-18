@@ -20,6 +20,7 @@ export function random<T>(...args: unknown[]): T | number {
   // 数组
   const args_0 = args[0]
   if (Array.isArray(args_0)) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
     return (args_0[~~(_random * args_0.length)]) as T
   }
 
@@ -44,5 +45,6 @@ export function random<T>(...args: unknown[]): T | number {
     [min, max] = [max, min]
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
   return is_float ? _random * (max - min) + min : ~~(_random * (max + 1 - min) + min)
 }

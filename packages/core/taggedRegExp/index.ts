@@ -23,6 +23,6 @@ export function taggedRegExp(literals: TemplateStringsArray, expressions: readon
     const expressString = Array.isArray(express) ? express.join('|') : String(express)
     return pre + literal + expressString
   }, '')
-  result += literals.at(-1)
+  result += literals.at(-1)!
   return result
 }

@@ -52,6 +52,7 @@ export function useFn<T extends Fn>(fn: T): T {
   fnRef.current = useMemo(() => fn, [fn])
 
   const memoizedFn = useRef<PickFn<T>>(null)
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   if (!memoizedFn.current) {
     memoizedFn.current = function (this, ...args) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
