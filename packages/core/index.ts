@@ -1,8 +1,6 @@
-import type { Extensible } from '@wai-ri/shared'
-
 export * from '@wai-ri/shared'
-export * from './asyncDebounce'
-export * from './backward'
+export { asyncDebounce } from './asyncDebounce'
+export { backward, backwardEntries } from './backward'
 export * from './bindAll'
 export * from './bindSelf'
 export * from './blockThread'
@@ -14,11 +12,11 @@ export * from './ignoreReject'
 export * from './lerp'
 export * from './map'
 export * from './noop'
-export * from './patternMatching'
+export { patternMatching } from './patternMatching'
 export * from './pipe'
 export * from './sleep'
-export * from './switchLatest'
-export * from './useEnum'
+export { switchLatest, switchLatestWith } from './switchLatest'
+export { useEnum } from './useEnum'
 
 
 

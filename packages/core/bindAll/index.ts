@@ -1,7 +1,28 @@
 import type { Fn } from '@wai-ri/shared'
 import { asType } from '@wai-ri/shared'
 
-/** 绑定对象上的所有函数 */
+/** 
+ * 绑定对象上的所有函数
+ * 
+ * @note 这会修改原对象
+ * 
+ * @example
+ * ```ts
+ * class Example {
+ *   count = 0
+ *   increase() {
+ *     this.count++
+ *     return this.count
+ *   }
+ * }
+ * 
+ * const example = new Example()
+ * bindAll(example)
+ * const increase = example.increase
+ * console.log(increase()) // 1
+ * console.log(increase()) // 2
+ * ```
+ */
 export function bindAll<T extends Record<PropertyKey, any>>(obj: T): T {
   // 使用 for..in 无法获取 enumerable 为 false 的属性
   for (const key of getAllMethods(obj)) {
@@ -20,8 +41,23 @@ type ExtactFnProp<T extends Record<any, any>> = {
 
 /**
  * 获取对象上所有函数，并生成新函数
- * @param obj 
- * @returns 
+ * 
+ * @example
+ * ```ts
+ * class Example {
+ *   count = 0
+ *   increase() {
+ *     this.count++
+ *     return this.count
+ *   }
+ * }
+ * 
+ * const example = new Example()
+ * const bound = toBound(example)
+ * const increase = bound.increase
+ * console.log(increase()) // 1
+ * console.log(increase()) // 2
+ * ```
  */
 export function toBound<T extends Record<PropertyKey, any>>(obj: T): ExtactFnProp<T> {
   const bonded = Object.create(null) as T
