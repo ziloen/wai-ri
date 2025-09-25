@@ -10,10 +10,10 @@
  * // 3 2 1
  * ```
  */
-export function* backward<T>(array: readonly T[]) {
+export function* backward<T>(array: ArrayLike<T>) {
   for (let i = array.length - 1; i >= 0; i--) yield array[i] as T
 }
 
-export function* backwardEntries<T>(array: readonly T[]): IterableIterator<[number, T]> {
+export function* backwardEntries<T>(array: ArrayLike<T>): IterableIterator<[number, T]> {
   for (let i = array.length - 1; i >= 0; i--) yield [i, array[i]] as const
 }
