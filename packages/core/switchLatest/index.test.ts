@@ -36,7 +36,7 @@ describe('switchLatest', () => {
     }
 
 
-    promises[5]()
+    promises[5]!()
 
     await sleep(0)
 

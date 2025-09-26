@@ -1,7 +1,7 @@
 
 
 
-export function mapAtIndex<K, V>(map: Map<K, V>, index: number): [K, V] | undefined {
+export function mapAtIndex<K, V>(map: Map<K, V>, index: number): [K, V] | undefined | void {
   if (!Number.isInteger(index)) return
 
   if (index < 0) {

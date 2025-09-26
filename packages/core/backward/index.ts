@@ -11,9 +11,9 @@
  * ```
  */
 export function* backward<T>(array: ArrayLike<T>): IterableIterator<T> {
-  for (let i = array.length - 1; i >= 0; i--) yield array[i] as T
+  for (let i = array.length - 1; i >= 0; i--) yield array[i]!
 }
 
-export function* backwardEntries<T>(array: ArrayLike<T>): IterableIterator<[number, T]> {
-  for (let i = array.length - 1; i >= 0; i--) yield [i, array[i]] as const
+export function* backwardEntries<T>(array: ArrayLike<T>): IterableIterator<readonly [number, T]> {
+  for (let i = array.length - 1; i >= 0; i--) yield [i, array[i]!]
 }

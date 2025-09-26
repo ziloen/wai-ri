@@ -9,13 +9,15 @@ export async function useClipboard(...args: [value?: string]): Promise<any> {
 
   if (args.length !== 0) {
     const value = args[0]
+
+    if (typeof value !== 'string') throw new TypeError('[useClipboard]: value must be a string!')
+
     return navigator.permissions.query({ name: 'clipboard-write' as PermissionName })
       .then((status) => {
         if (status.state === 'denied') {
           throw new Error('[useClickboard]: clipboard-write denied.')
-        } else if (typeof value === 'string') {
-          return navigator.clipboard.writeText(value)
         }
+        return navigator.clipboard.writeText(value)
       })
   } else {
     return navigator.permissions.query({ name: 'clipboard-read' as PermissionName })
