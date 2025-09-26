@@ -11,6 +11,6 @@
   "sideEffects": false,
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "three": "^0.179.1"
+    "three": "^0.180.0"
   }
 }

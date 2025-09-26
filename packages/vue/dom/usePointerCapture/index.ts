@@ -37,7 +37,7 @@ type UsePointerCaptureOptions = {
 export function usePointerCapture(
   target: Ref<HTMLDivElement | undefined | null> | HTMLDivElement | undefined | null,
   { onMove, onEnd, onStart }: UsePointerCaptureOptions
-) {
+): void {
   const useEventAC = new AbortController
 
   onMounted(() => {

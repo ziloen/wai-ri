@@ -23,7 +23,7 @@ export function Teleport({
   to,
   disabled = false,
   children
-}: PropsWithChildren<TeleportProps>) {
+}: PropsWithChildren<TeleportProps>): React.JSX.Element | null {
   if (disabled) return <>{children}</>
 
   const container =

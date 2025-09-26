@@ -39,7 +39,7 @@ export function unrefElement<T extends MaybeElement>(elRef: MaybeElementRef<T>):
 export function scrollIntoView(
   elRef: MaybeElementRef,
   arg?: boolean | ScrollIntoViewOptions
-) {
+): void {
   const el = unrefElement(elRef)
   el?.scrollIntoView(arg)
 }
@@ -61,7 +61,7 @@ export function assertNotNilRef<T>(refVal: Ref<T>): asserts refVal is Ref<NonNul
  * 新标签打开路由
  * @param to 目标路由
  */
-export function openRoute(to: RouteLocationRaw) {
+export function openRoute(to: RouteLocationRaw): void {
   // 无效，错误用法
   const router = useRouter()
   globalThis.open(router.resolve(to).href, '_blank')

@@ -13,7 +13,7 @@ export function useResizeObserver(
   target: MaybeRef<Element | null> | MaybeRef<Element | null>[],
   callback: ResizeObserverCallback,
   options?: ResizeObserverOptions
-) {
+): void {
   const callbackRef = useLatest(callback)
 
   useEffect(() => {

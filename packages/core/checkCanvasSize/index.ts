@@ -41,7 +41,7 @@ const canvasMaxArea = {
  *
  * data source: [jhildenbiddle/canvas-size](https://github.com/jhildenbiddle/canvas-size#test-results)
  */
-export function checkCanvasSize(width: number, height: number, browser: Browser) {
+export function checkCanvasSize(width: number, height: number, browser: Browser): boolean {
   if (width > canvasMaxWidth[browser]) return false
   if (height > canvasMaxHeight[browser]) return false
   if (width * height > canvasMaxArea[browser]) return false

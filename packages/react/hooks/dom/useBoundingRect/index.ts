@@ -56,7 +56,10 @@ type UseBoundingRectOptions = {
 export function useBoundingRect(
   target: MaybeRef<Element | null>,
   options: UseBoundingRectOptions = {}
-) {
+): readonly [
+  DOMRect,
+  (bounding?: DOMRect) => void
+] {
   const {
     reset = false,
     windowResize = true,
@@ -111,5 +114,5 @@ export function useBoundingRect(
   // 因为 css transform 和 transiton 还有 父元素位置变动导致的位置变化不会被上面的事件监听到，所以把更新函数也暴露出去
   // 手动触发可以传要改的值，不传则默认从元素上取
   /** [包围盒，手动触发函数] */
-  return [bounding, update as (bounding?: DOMRect) => void] as const
+  return [bounding, update]
 }

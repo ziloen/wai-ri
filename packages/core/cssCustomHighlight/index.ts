@@ -26,16 +26,16 @@ export function nativeHighlight(
   node: HTMLElement,
   searchText: string,
   options: Options
-) {
+): () => void {
   if (!CSS.highlights || typeof Highlight === 'undefined')
-    return noop as () => void
+    return noop
 
   const { caseSensitive = false, trim = true, name } = options
 
   if (trim) searchText = searchText.trim()
   if (!caseSensitive) searchText = searchText.toLowerCase()
 
-  if (!searchText) return noop as () => void
+  if (!searchText) return noop
 
   const treeWalker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT)
 

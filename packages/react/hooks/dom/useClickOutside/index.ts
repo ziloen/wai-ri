@@ -26,7 +26,7 @@ interface OnClickOutsideOptions {
  * @param handler
  * @param options
  */
-export function useClickOutside(target: MaybeElementRef, handler: Handler, options?: OnClickOutsideOptions) {
+export function useClickOutside(target: MaybeElementRef, handler: Handler, options?: OnClickOutsideOptions): void {
   const savedHandler = useRef(handler)
 
   useLayoutEffect(() => {

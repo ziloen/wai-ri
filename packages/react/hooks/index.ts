@@ -2,7 +2,7 @@ export * from './dom'
 export * from './rxjs'
 export * from './state'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 
 /**
@@ -16,7 +16,7 @@ import { useState } from 'react'
  *   someAyncFunc().then(setState).catch(throwError)
  * }, [])
  */
-export function useAsyncThrow() {
+export function useAsyncThrow(): (e: Error) => void {
   const [, set] = useState()
-  return (e: Error) => set(() => { throw e })
+  return useCallback((e: Error) => set(() => { throw e }), [])
 }

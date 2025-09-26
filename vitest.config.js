@@ -2,7 +2,11 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vitest/config'
 
 
-function r(path: string) {
+/**
+ * @param {string} path 
+ * @returns {string}
+ */
+function r(path) {
   return resolve(__dirname, path)
 }
 

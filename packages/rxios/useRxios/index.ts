@@ -5,7 +5,7 @@ import { Observable } from 'rxjs'
 
 
 export function createRxios(instance: AxiosInstance) {
-  return function rxios<ResponseData, ConfigData>(config: AxiosRequestConfig<ConfigData>) {
+  return function rxios<ResponseData, ConfigData>(config: AxiosRequestConfig<ConfigData>): Observable<AxiosResponse<ResponseData, ConfigData>> {
     return new Observable<AxiosResponse<ResponseData, ConfigData>>((observer) => {
       const controller = new AbortController
 

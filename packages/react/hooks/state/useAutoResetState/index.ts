@@ -1,7 +1,10 @@
 import type { Timeout } from '@wai-ri/shared'
 import { useEffect, useRef, useState } from 'react'
 
-export function useAutoResetState<T>(defautValue: T, afterMs: number) {
+export function useAutoResetState<T>(defautValue: T, afterMs: number): readonly [
+  T,
+  (value: T | ((prevState: T) => T)) => void
+] {
   const [state, setState] = useState<T>(defautValue)
   const timeoutRef = useRef<Timeout | undefined>(undefined)
 
@@ -17,5 +20,5 @@ export function useAutoResetState<T>(defautValue: T, afterMs: number) {
 
   useEffect(() => () => clearTimeout(timeoutRef.current), [])
 
-  return [state, set] as const
+  return [state, set]
 }

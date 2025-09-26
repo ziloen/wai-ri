@@ -1,7 +1,7 @@
 
 // 🚧 因为没有引入 lodash，所以要加一个 forOwn 和 isPlainObject 的实现
 
-function forOwn<T extends Record<any, any>>(obj: T, iteratee: (value: unknown, key: keyof T) => void) {
+function forOwn<T extends Record<any, any>>(obj: T, iteratee: (value: unknown, key: keyof T) => void): void {
   const keys = [...Object.getOwnPropertyNames(obj), ...Object.getOwnPropertySymbols(obj)]
 
   for (const key of keys) {
@@ -23,7 +23,7 @@ function forOwnDeepImpl(
   obj: object,
   iteratee: (key: PropertyKey, v: any, path: PropertyKey[]) => void,
   path: PropertyKey[] = []
-) {
+): void {
   forOwn(obj, (val, key) => {
     if (isPlainObject(val)) {
       forOwnDeepImpl(val, iteratee, path.concat(key))
@@ -41,6 +41,6 @@ function forOwnDeepImpl(
 export function forOwnDeep(
   obj: object,
   iteratee: (value: any, key: PropertyKey, path: PropertyKey[]) => void
-) {
+): void {
   forOwnDeepImpl(obj, iteratee)
 }

@@ -17,7 +17,7 @@
  * 支持[abc]语法？taggedRegExp`^flex-[${keywords}]$` => ... // 即前后为[]且不为 \[ \]
  * 支持 (?<= )  (?= ) 等等
  */
-export function taggedRegExp(literals: TemplateStringsArray, expressions: readonly unknown[]) {
+export function taggedRegExp(literals: TemplateStringsArray, expressions: readonly unknown[]): string {
   let result: string = expressions.reduce<string>((pre, express, i) => {
     const literal = literals[i]
     const expressString = Array.isArray(express) ? express.join('|') : String(express)

@@ -12,7 +12,7 @@ export function isInteger(val: unknown): val is number {
 
 /** 是否为 NaN */
 /* #__NO_SIDE_EFFECTS__ */
-export function isNaN(val: unknown) {
+export function isNaN(val: unknown): val is number {
   return Number.isNaN(val)
 }
 

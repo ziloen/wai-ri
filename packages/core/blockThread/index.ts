@@ -7,7 +7,7 @@
  * blockThread(200)
  * ```
  */
-export function blockThread(ms = 1000) {
+export function blockThread(ms = 1000): void {
   const start = performance.now()
   while (performance.now() - start < ms);
 }

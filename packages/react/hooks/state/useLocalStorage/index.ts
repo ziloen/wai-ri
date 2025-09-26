@@ -22,7 +22,10 @@ export function useLocalStorage<T>(
     serializer = JSON.stringify,
     deserializer = JSON.parse
   }: UseStorageOptions<T> = {}
-) {
+): [
+  T,
+  (value: T | ((prevState: T) => T)) => void
+] {
   const [state, setState] = useState(() => {
     const result = storage.getItem(key)
     if (result === null) return initialState
@@ -40,5 +43,5 @@ export function useLocalStorage<T>(
     }
   }
 
-  return [state, useFn(updateState)] as const
+  return [state, useFn(updateState)]
 }

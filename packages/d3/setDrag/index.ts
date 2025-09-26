@@ -1,4 +1,4 @@
-import type { D3DragEvent, DraggedElementBaseType } from 'd3'
+import type { D3DragEvent, DragBehavior, DraggedElementBaseType } from 'd3'
 import { drag } from 'd3'
 
 type DragFn<T extends DraggedElementBaseType, D> = (this: T, event: D3DragEvent<T, D, D>, data: D, thisArg: T) => any
@@ -24,7 +24,7 @@ export function setDrag<T extends DraggedElementBaseType, D>(
   onStart: DragFn<T, D>,
   onDrag: DragFn<T, D>,
   onEnd: DragFn<T, D>
-) {
+): DragBehavior<T, D, D> {
   return drag<T, D, D>()
     .on('start', function (e, d) { onStart.call(this, e, d, this) })
     .on('drag', function (e, d) { onDrag.call(this, e, d, this) })

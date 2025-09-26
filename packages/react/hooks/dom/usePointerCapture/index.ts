@@ -37,7 +37,7 @@ type UsePointerCaptureOptions<T> = {
 export function usePointerCapture<T extends HTMLElement>(
   target: MaybeRef<T | null | undefined>,
   { onMove, onEnd, onStart }: UsePointerCaptureOptions<T>
-) {
+): void {
   const onStartRef = useLatest(onStart)
   const onMoveRef = useLatest(onMove)
   const onEndRef = useLatest(onEnd)

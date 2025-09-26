@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 /**
  * 在挂载后执行一次
  */
-export function useMounted(fn: () => any) {
+export function useMounted(fn: () => any): void {
   useEffect(fn, [])
 }
 
@@ -15,7 +15,7 @@ export function useMounted(fn: () => any) {
 /**
  * 在卸载后执行一次
  */
-export function useUnmounted(fn: () => any) {
+export function useUnmounted(fn: () => any): void {
   useEffect(() => fn, [])
 }
 
@@ -24,7 +24,7 @@ export function useUnmounted(fn: () => any) {
 /**
  * 在 Render 阶段执行一次
  */
-export function useBeforeMount(fn: () => void) {
+export function useBeforeMount(fn: () => void): void {
   const invokedRef = useRef(false)
   if (!invokedRef.current) {
     fn()
@@ -39,7 +39,7 @@ export function useBeforeMount(fn: () => void) {
  * 
  * [ahooks](https://ahooks.js.org/hooks/use-latest)
  */
-export function useLatest<T>(value: T) {
+export function useLatest<T>(value: T): React.RefObject<T> {
   const ref = useRef(value)
   ref.current = value
   return ref
@@ -50,7 +50,7 @@ export function useLatest<T>(value: T) {
 /**
  * 返回触发更新函数
  */
-export function useUpdate() {
+export function useUpdate(): () => void {
   const [, setState] = useState<any>()
   return useCallback(() => setState({}), [])
 }
@@ -63,7 +63,7 @@ export function useUpdate() {
  * @param condition
  * @returns
  */
-export function useRunUntil(fn: Fn, condition: boolean) {
+export function useRunUntil(fn: Fn, condition: boolean): void {
   const isDone = useRef(false)
   const fnRef = useLatest(fn)
 
