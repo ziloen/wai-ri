@@ -1,7 +1,6 @@
 export * from './lifeCycle'
 export * from './type'
 
-import type { Fn } from '@wai-ri/shared'
 import type { RefObject } from 'react'
 import { useMemo, useRef } from 'react'
 import type { MaybeElementRef, MaybeRef } from './type'
@@ -42,23 +41,21 @@ export function unRefTargetElements<T extends TargetType = Element>(
 
 
 
-type PickFn<
-  T extends (this: any, ...args: any[]) => any
-> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
+/** ahooks `useMemoizedFn` */
+export function useFn<T extends (this: any, ...args: any[]) => any>(fn: T): T {
+  const fnRef = useRef<T>(fn)
+  fnRef.current = useMemo<T>(() => fn, [fn])
+  const memoizedFn = useRef<T | null>(null)
 
-/** ahooks useMemoizedFn */
-export function useFn<T extends Fn>(fn: T): T {
-  const fnRef = useRef(fn)
-  fnRef.current = useMemo(() => fn, [fn])
-
-  const memoizedFn = useRef<PickFn<T>>(null)
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   if (!memoizedFn.current) {
     memoizedFn.current = function (this, ...args) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return fnRef.current.apply(this, args)
-    }
+    } as T
   }
 
   return memoizedFn.current as T
 }
+
+export const useMemoizedFn: typeof useFn = useFn

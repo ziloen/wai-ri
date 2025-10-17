@@ -1,6 +1,5 @@
-import type { MaybeRef } from '@wai-ri/react/shared'
-import { unRef, useLatest } from '@wai-ri/react/shared'
-import { useEffect } from 'react'
+import { useFn, useLatest } from '@wai-ri/react/shared'
+import type { RefCallback } from 'react'
 
 type Positon = {
   /** 当前 clientX */
@@ -34,26 +33,21 @@ type UsePointerCaptureOptions<T> = {
 }
 
 /** 锁定 pointer move 事件 */
-export function usePointerCapture<T extends HTMLElement>(
-  target: MaybeRef<T | null | undefined>,
-  { onMove, onEnd, onStart }: UsePointerCaptureOptions<T>
-): void {
-  const onStartRef = useLatest(onStart)
-  const onMoveRef = useLatest(onMove)
-  const onEndRef = useLatest(onEnd)
+export function usePointerCaptureRef<T extends HTMLElement>(options: UsePointerCaptureOptions<T>): RefCallback<T> {
+  const optionsRef = useLatest(options)
 
-  useEffect(() => {
-    const el = unRef(target)
+  return useFn((el) => {
     if (!el) return
+
+    const ac = new AbortController()
     let startPosition = { x: 0, y: 0 }
-    const controller = new AbortController
+
     el.addEventListener(
       'pointerdown',
       function (downEvent) {
         const { x, y } = downEvent
         /** 如果用户取消捕获 */
-        if (onStartRef.current?.call(this as T, downEvent, { x, y }) === false)
-          return
+        if (optionsRef.current.onStart?.call(this as T, downEvent, { x, y }) === false) return
         /** 保存初始位置 */
         startPosition = { x, y }
         /** 阻止默认行为，防止 user-select 不为 none 时，拖动导致触发 pointercancel 事件，capture 失效() */
@@ -64,7 +58,6 @@ export function usePointerCapture<T extends HTMLElement>(
         // bugzilla: https://bugzilla.mozilla.org/show_bug.cgi?id=1694436
         // stackoverflow: https://stackoverflow.com/questions/61797698
         let clickEventMask: HTMLDivElement | undefined
-        // TODO: 这里应为 isFirefox
         if (/firefox/i.test(navigator.userAgent)) {
           clickEventMask = document.createElement('div')
           clickEventMask.style.position = 'fixed'
@@ -76,18 +69,18 @@ export function usePointerCapture<T extends HTMLElement>(
 
         /** 使当前元素锁定 pointer */
         el.setPointerCapture(downEvent.pointerId)
-        const controller = new AbortController
+        const controller = new AbortController()
 
         /** 转发 move 事件 */
         el.addEventListener(
           'pointermove',
           function (moveEvent) {
-            if (!onMoveRef.current) return
+            if (!optionsRef.current.onMove) return
 
             const { x, y } = moveEvent
             const dx = x - startPosition.x
             const dy = y - startPosition.y
-            onMoveRef.current.call(this as T, moveEvent, { x, y, dx, dy })
+            optionsRef.current.onMove.call(this as T, moveEvent, { x, y, dx, dy })
           },
           { signal: controller.signal, passive: true }
         )
@@ -102,20 +95,20 @@ export function usePointerCapture<T extends HTMLElement>(
             controller.abort()
             /** 释放 poniter */
             // 听说不需要 release，pointerup 时会自动调用？
-            // el.releasePointerCapture(upEvent.pointerId)
+            el.releasePointerCapture(upEvent.pointerId)
 
-            if (!onEndRef.current) return
+            if (!optionsRef.current.onEnd) return
             const { x, y } = upEvent
             const dx = x - startPosition.x
             const dy = y - startPosition.y
-            onEndRef.current.call(this as T, upEvent, { x, y, dx, dy })
+            optionsRef.current.onEnd.call(this as T, upEvent, { x, y, dx, dy })
           },
           { once: true }
         )
       },
-      { signal: controller.signal }
+      { signal: ac.signal }
     )
 
-    return () => controller.abort()
-  }, [])
+    return () => ac.abort()
+  })
 }
