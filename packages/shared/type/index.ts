@@ -395,15 +395,15 @@ export type KeyofUnion<T> = T extends infer R ? keyof R : never
  *   c: boolean
  *   b?: undefined
  * } | {
+ *   b: number
  *   a?: undefined
  *   c?: undefined
- *   b: number
  * }
  * ```
  */
 export type PadUnion<T, K extends PropertyKey = KeyofUnion<T>> =
-  T extends infer R
-    ? R & { [P in Exclude<K, keyof R>]?: never }
+  T extends unknown
+    ? T & { [P in Exclude<K, keyof T>]?: never }
     : never
 
 
