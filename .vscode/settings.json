@@ -2,9 +2,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "editor.codeActionsOnSave": [
-    "source.sortImports",
-  ],
   "eslint.format.enable": true,
   "prettier.enable": false
 }
