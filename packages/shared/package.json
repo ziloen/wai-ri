@@ -7,6 +7,12 @@
   ],
   "license": "MIT",
   "author": "ziloen",
-  "main": "./index.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "sideEffects": false
 }

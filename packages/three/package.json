@@ -7,10 +7,16 @@
   ],
   "license": "MIT",
   "author": "ziloen",
-  "main": "./index.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "sideEffects": false,
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "three": "^0.183.2"
+    "three": "^0.185.1"
   }
 }

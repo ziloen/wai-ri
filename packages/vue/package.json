@@ -7,11 +7,17 @@
   ],
   "license": "MIT",
   "author": "ziloen",
-  "main": "./index.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "sideEffects": false,
   "dependencies": {
     "@wai-ri/shared": "workspace:*",
-    "vue": "^3.5.32",
-    "vue-router": "^5.0.4"
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
   }
 }

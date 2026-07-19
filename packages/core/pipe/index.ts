@@ -1,17 +1,18 @@
-import type { SetParams, UnaryFn } from '@wai-ri/shared/type/Function'
+import type { Function } from '@wai-ri/shared'
+
 
 
 // 参考 https://github.com/microsoft/TypeScript/issues/30370#issuecomment-1079751166
 /** 管道函数 参数类型 */
-type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']> =
+type PipeParams<Funcs extends Function.UnaryFn[], SourceT = never, Len = Funcs['length']> =
   Len extends 0
     ? []
-    : Funcs extends [infer First extends UnaryFn, infer Second extends UnaryFn, ...infer Rest extends UnaryFn[]]
+    : Funcs extends [infer First extends Function.UnaryFn, infer Second extends Function.UnaryFn, ...infer Rest extends Function.UnaryFn[]]
       ? [
           // [SourceT] extends [never] ? First :
-          SetParams<First, [SourceT]>,
+          Function.SetParams<First, [SourceT]>,
           ...PipeParams<
-            [SetParams<Second, [ReturnType<First>]>, ...Rest],
+            [Function.SetParams<Second, [ReturnType<First>]>, ...Rest],
             ReturnType<First>
           >
         ]
@@ -21,7 +22,7 @@ type PipeParams<Funcs extends UnaryFn[], SourceT = never, Len = Funcs['length']>
 
 /** 管道函数 返回类型 */
 type PipeReturn<
-  Funcs extends UnaryFn[],
+  Funcs extends Function.UnaryFn[],
   FirstArg = never
 > = Funcs extends [...unknown[], (arg: any) => infer R]
   ? R
@@ -48,7 +49,7 @@ type PipeReturn<
 
 
 export function pipe<T>(startValue: T) {
-  return function <Fns extends UnaryFn[]>(...fns: PipeParams<Fns, T>): PipeReturn<Fns, T> {
+  return function <Fns extends Function.UnaryFn[]>(...fns: PipeParams<Fns, T>): PipeReturn<Fns, T> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return fns.reduce((preValue, current) => current(preValue), startValue) as PipeReturn<Fns, T>
   }

@@ -79,6 +79,7 @@
   "include": [
     "eslint.config.js",
     "packages",
+    "tsdown.config.js",
     "vitest.config.js",
   ],
   "exclude": [
