@@ -1,4 +1,3 @@
-
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import AxiosStatic from 'axios'
 import { Observable } from 'rxjs'

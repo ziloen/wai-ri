@@ -47,37 +47,6 @@ export type Unshift<T extends readonly unknown[], Item> = [Item, ...T]
 
 
 
-// TODO:
-export type Slice<
-  T extends any[],
-  Start extends number = 0,
-  End extends number = never,
-  Index extends number = 0
-> = T
-// Sub<Start, Index>
-
-
-
-/**
- * @todo TODO:
- * @param T 操作的元组
- * @param DeleteCount 删除数
- * @param Item 添加项
- */
-export type Splice<
-  T extends any[],
-  DeleteCount extends number = 0,
-  Item extends any[] = [],
-  Len extends number = T['length'],
-  IndexArr extends any[] = [],
-  Index extends number = IndexArr['length']
-> = T
-// Index extends Len
-//   ? [...T, ...Item]
-//   : Splice<Shift<T>, >
-
-
-
 /** 反转整个数组 */
 export type Reverse<
   T extends readonly unknown[]
@@ -112,11 +81,6 @@ export type At<T extends any[], Index extends number, Len extends number = T['le
 
 /** 最后一个元素 */
 export type Last<T extends readonly unknown[]> = T extends [..._, infer L extends T[number]] ? L : never
-
-
-
-/** 第一个元素 */
-export type First<T extends readonly unknown[]> = T extends [infer F extends T[number], ..._] ? F : never
 
 
 

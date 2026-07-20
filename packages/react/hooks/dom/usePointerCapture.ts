@@ -1,6 +1,5 @@
 import type { RefCallback } from 'react'
-import { useLatest } from '../useLatest'
-import { useMemoizedFn } from '../useMemoizedFn'
+import { useRef } from 'react'
 
 type Position = {
   x: number
@@ -23,14 +22,23 @@ type Options<T> = {
   onMove?: (this: T, moveEvent: PointerEvent, position: MovePosition) => void
 
   onEnd?: (this: T, upEvent: PointerEvent, position: MovePosition) => void
+
+  /**
+   * - `pointerdown`：在 pointerdown 时就捕获指针，适合较小元素的拖动
+   * - `pointermove`：在 pointermove 时捕获指针，适合需要触发子元素点击事件的元素拖动
+   *
+   * @default 'pointerdown'
+   */
+  captureOn?: 'pointerdown' | 'pointermove' | undefined
 }
 
 export function usePointerCaptureRef<T extends HTMLElement>(
   options: Options<T>,
 ): RefCallback<T> {
-  const optionsRef = useLatest(options)
+  const optionsRef = useRef(options)
+  optionsRef.current = options
 
-  return useMemoizedFn((el: T | null) => {
+  return useRef((el: T | null) => {
     if (!el) return
 
     const ac = new AbortController()
@@ -50,6 +58,7 @@ export function usePointerCaptureRef<T extends HTMLElement>(
           onEnd(this, ...args) {
             optionsRef.current.onEnd?.call(this, ...args)
           },
+          captureOn: optionsRef.current.captureOn,
         })
       },
       { signal: ac.signal },
@@ -58,7 +67,7 @@ export function usePointerCaptureRef<T extends HTMLElement>(
     return () => {
       ac.abort()
     }
-  })
+  }).current
 }
 
 export function trackPointerMove<T extends HTMLElement>(
@@ -67,28 +76,35 @@ export function trackPointerMove<T extends HTMLElement>(
     onMove,
     onEnd,
     signal,
-  }: {
-    onMove?: Options<NoInfer<T>>['onMove']
-    onEnd?: Options<NoInfer<T>>['onEnd']
+    captureOn = 'pointerdown',
+  }: Pick<Options<NoInfer<T>>, 'captureOn' | 'onMove' | 'onEnd'> & {
     signal?: AbortSignal
   },
 ): void {
-  const el = downEvent.currentTarget as T | null
   const x = downEvent.clientX
   const y = downEvent.clientY
+  const el = downEvent.currentTarget as T | null
 
   if (!el) return
 
   /** 防止 user-select 不为 none 时，拖动触发 pointercancel 事件，capture 失效() */
   downEvent.preventDefault()
 
-  el.setPointerCapture(downEvent.pointerId)
+  let pointerId: number | null = null
+  if (captureOn === 'pointerdown') {
+    el.setPointerCapture(pointerId = downEvent.pointerId)
+  }
+
   const ac = new AbortController()
   signal = signal ? AbortSignal.any([ac.signal, signal]) : ac.signal
 
   el.addEventListener(
     'pointermove',
     function (moveEvent) {
+      if (pointerId === null && captureOn === 'pointermove') {
+        el.setPointerCapture(pointerId = moveEvent.pointerId)
+      }
+
       onMove?.call(this as T, moveEvent, {
         x: moveEvent.x,
         y: moveEvent.y,
@@ -101,7 +117,11 @@ export function trackPointerMove<T extends HTMLElement>(
 
   const release = function (this: EventTarget, event: PointerEvent) {
     ac.abort()
-    el.releasePointerCapture(event.pointerId)
+
+    if (pointerId !== null && el.hasPointerCapture(pointerId)) {
+      el.releasePointerCapture(pointerId)
+    }
+
     onEnd?.call(this as T, event, {
       x: event.x,
       y: event.y,

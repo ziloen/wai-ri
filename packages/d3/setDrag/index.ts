@@ -11,13 +11,13 @@ type DragFn<T extends DraggedElementBaseType, D> = (this: T, event: D3DragEvent<
  * @param onEnd 结束事件
  * @example
  * selection.call(setDrag(
- *   nothing,
+ *   noop,
  *   (event, data, thisArg) => {
  *     d3.select(thisArg)
  *       .attr('x', event.x)
  *       .attr('y', event.y)
  *   },
- *   nothing
+ *   noop,
  * ))
  */
 export function setDrag<T extends DraggedElementBaseType, D>(
